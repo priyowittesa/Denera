@@ -57,7 +57,7 @@ export function Topbar() {
           </DM.Trigger>
           <DM.Portal>
             <DM.Content align="end" sideOffset={6} className="float z-[70] w-[340px] origin-[var(--radix-dropdown-menu-content-transform-origin)] animate-pop rounded-lg bg-surface p-1.5">
-              <DM.Label className="px-2.5 pb-1.5 pt-1 text-[12px] font-medium text-ink-3">View the prototype as</DM.Label>
+              <DM.Label className="px-2.5 pb-1.5 pt-1 text-[12px] font-medium text-ink-3">Switch role</DM.Label>
               {PERSONA_ORDER.map((id) => {
                 const p = PERSONAS[id]
                 const active = persona.id === id

@@ -6,7 +6,6 @@ import {
 } from 'recharts'
 import { AtlasCard, Metric, ScreenFrame, SectionTitle } from '../components/atlas/frame'
 import { PlainStatus, StatusChip } from '../components/atlas/chips'
-import { ValuePanel } from '../components/atlas/ValuePanel'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
 import { Switch } from '../components/ui/switch'
@@ -37,7 +36,7 @@ export function S09Progress() {
   return (
     <ScreenFrame
       headline={<>Only 39% of the reported 42% progress is verified, and at this pace commercial operation slips {sc.days} days to {sc.cod}.</>}
-      answer={{ label: 'Verified progress', value: '39%', tone: 'warn', foot: <>Reported 42%, planned 46%. The 3-point gap is about <b className="font-semibold text-ink">Rp84 bn</b> of work at Rp28 bn a point.</> }}
+      answer={{ label: 'Verified progress', value: '39%', tone: 'warn', foot: <>Reported 42%, planned 46%. The 3-point gap is about <b className="font-semibold text-ink">Rp84 bn</b> of work at Rp28 bn a point.</>, stake: ['UC08', 'UC09'] }}
       status="Red"
       statusLabel="Schedule forecast breaches target"
       sub="7.0 points behind plan on verified work."
@@ -74,7 +73,7 @@ export function S09Progress() {
                 label="Recovery scenario"
                 size="sm"
                 value={sc.id}
-                onChange={(v) => setScenario(v, 'Screen 9')}
+                onChange={(v) => setScenario(v, 'Progress')}
                 items={SCENARIOS.map((s) => ({ value: s.id, label: <span>{s.short} <span className="tnum text-ink-4">+{s.days}</span></span> }))}
               />
               <ScenarioCard id={sc.id} />
@@ -125,8 +124,6 @@ export function S09Progress() {
           </Tabs>
         </Card>
       </section>
-
-      <ValuePanel ucs={['UC08', 'UC09']} />
     </ScreenFrame>
   )
 }

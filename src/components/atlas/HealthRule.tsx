@@ -29,7 +29,7 @@ export function HealthRuleBody({ signals }: { signals?: string[] }) {
           <div key={k}><dt className="inline font-medium text-ink">{k}. </dt><dd className="inline text-ink-2">{v}</dd></div>
         ))}
       </dl>
-      <p className="mt-3 text-ink-3">Computed from named signals. Ratings cannot be changed, only commented on. Wave 1 shows a light status from the weekly template; computed health (Wave 2) starts when the three Phase I partners have submitted the weekly template for four consecutive weeks (A) and health rules are agreed with the PMO.</p>
+      <p className="mt-3 text-ink-3">Computed from named signals. Ratings cannot be changed, only commented on. Health is computed once each partner has submitted the weekly template for four consecutive weeks.</p>
     </div>
   )
 }

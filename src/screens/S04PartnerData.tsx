@@ -36,7 +36,7 @@ export function S04PartnerData() {
       statusLabel="Coverage 9 of 12 feeds"
     >
       <Tabs defaultValue="construction">
-        <TabsList items={[{ value: 'construction', label: 'Construction projects' }, ...(isPcu ? [] : [{ value: 'phase2', label: 'Phase II agreements' }])]} />
+        <TabsList items={[{ value: 'construction', label: 'Construction projects' }, ...(isPcu ? [] : [{ value: 'phase2', label: 'Pre-investment agreements' }])]} />
         <TabsContent value="construction" className="pt-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
             {!compare ? (
@@ -104,7 +104,7 @@ export function S04PartnerData() {
                 ))}
               </tbody>
             </table>
-            <p className="border-t border-line-soft px-5 py-3 text-[12px] text-ink-3">Mitigation in the master: information and audit rights in the Phase II SHA template, with the data annex, before FID.</p>
+            <p className="border-t border-line-soft px-5 py-3 text-[12px] text-ink-3">Recommended: secure information and audit rights in the shareholder agreement template, with a data annex, before FID.</p>
           </Card>
         </TabsContent>
       </Tabs>
@@ -137,7 +137,6 @@ export function S04PartnerData() {
             <ol className="mt-4 space-y-1.5 text-[12px]">
               {audit.slice(0, 5).map((a, i) => <li key={i} className="flex gap-3"><span className="tnum w-[104px] shrink-0 text-ink-3">{a.t}</span><span className="text-ink-2"><b className="font-medium text-ink">{a.action}</b> {a.object}</span></li>)}
             </ol>
-            <p className="mt-4 text-[12px] text-ink-3">Design intent for the target product: Zero Trust, Microsoft Entra ID, least privilege. Not built in this prototype.</p>
           </Card>
         </section>
       </div>

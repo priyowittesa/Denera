@@ -43,7 +43,6 @@ export function EvidenceDrawer() {
                 <p className="rounded-sm bg-[#fff6c9] px-1 py-0.5 text-[13px] text-ink">{doc.extract}</p>
                 {[94, 80, 66].map((w, i) => <div key={i} className="h-2 rounded bg-sunken" style={{ width: `${w}%` }} />)}
               </div>
-              <p className="mt-4 text-[12px] text-ink-4">Synthetic document for the demonstration. Clause numbers are placeholders.</p>
             </div>
           )}
         </div>
@@ -62,7 +61,7 @@ export function RegisterSheet() {
     .filter((a) => !isPcu || a.authority !== 'Shareholder (Denera)')
     .filter((a) => (filter === 'overdue' ? isOverdue(a) : filter === 'week' ? isDueThisWeek(a) : true))
   return (
-    <Sheet open={open} onOpenChange={setOpen} title="Action register" description="Shared by Meetings (S5) and the Decision room (S13). Only confirmed items appear here." width="w-[640px]">
+    <Sheet open={open} onOpenChange={setOpen} title="Action register" description="Shared by Meetings and the Decision room. Only confirmed items appear here." width="w-[640px]">
       <Segmented value={filter} onChange={setFilter} items={[{ value: 'all', label: 'All open' }, { value: 'overdue', label: 'Overdue' }, { value: 'week', label: 'Due this week' }]} />
       <ul className="mt-4 divide-y divide-line-soft rounded-xl border border-line">
         {list.map((a) => (

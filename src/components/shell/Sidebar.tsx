@@ -92,12 +92,11 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
                     {!collapsed && (
                       <>
                         <span className="min-w-0 flex-1 truncate">{s.short}</span>
-                        <span className="tnum text-[12px] text-atlas-300/70">{s.n}</span>
                       </>
                     )}
                   </NavLink>
                 )
-                return <li key={s.path}>{collapsed ? <Tip side="right" content={`${s.n} · ${s.short}`}>{link}</Tip> : link}</li>
+                return <li key={s.path}>{collapsed ? <Tip side="right" content={s.short}>{link}</Tip> : link}</li>
               })}
             </ul>
           </div>
@@ -108,10 +107,10 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
         {!collapsed ? (
           <div className="rounded-xl border border-white/12 bg-white/[0.06] p-3.5">
             <div className="flex items-baseline justify-between">
-              <span className="text-[13px] font-semibold">Synthetic demo data</span>
+              <span className="text-[13px] font-semibold">Demo workspace</span>
               <span className="tnum text-[12px] text-atlas-200">30 Jun 2027</span>
             </div>
-            <p className="mt-0.5 text-[12px] leading-snug text-atlas-200/90">All figures are illustrative.</p>
+            <p className="mt-0.5 text-[12px] leading-snug text-atlas-200/90">Sample data for illustration.</p>
             <div className="mt-2.5 grid grid-cols-2 gap-2">
               <button onClick={() => setDefs(true)} className="press inline-flex items-center justify-center gap-1.5 rounded-md bg-white/10 py-1.5 text-[12px] font-medium hover:bg-white/15">
                 <BookOpen className="size-3.5" />Definitions

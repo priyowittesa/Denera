@@ -1,13 +1,15 @@
-import { Clock, FileText, Sparkles } from 'lucide-react'
+import { ArrowRight, Clock, FileText, Sparkles } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 import { cn } from '../../lib/cn'
 import { screenByPath } from '../../data/screens'
 import type { Health } from '../../data/types'
 import { useUi } from '../../state/ui'
-import { ClassChip, ConfidenceBadge, DataNeeded, LeadingTag, StatusChip, TierChip, WaveTag } from './chips'
+import { usePersona } from '../../state/store'
+import { projectValue, valueRowsFor } from './ValuePanel'
+import { ClassChip, ConfidenceBadge, DataNeeded, StatusChip } from './chips'
 
-export type Answer = { label: ReactNode; value: ReactNode; foot?: ReactNode; tone?: 'bad' | 'warn' | 'ok' | 'ink' }
+export type Answer = { label: ReactNode; value: ReactNode; foot?: ReactNode; tone?: 'bad' | 'warn' | 'ok' | 'ink'; action?: { label: string; onClick: () => void }; stake?: string[] }
 
 /** Context line, verdict headline and the one figure that answers the screen's question. */
 export function ScreenFrame({
@@ -37,15 +39,8 @@ export function ScreenFrame({
     <div className="mx-auto w-full max-w-[1320px] px-4 pb-28 pt-6 sm:px-6 sm:pt-8 xl:px-10">
       {meta && (
         <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2.5">
-          <div className="eyebrow flex min-w-0 flex-wrap items-center gap-x-2">
-            <span className="text-atlas-700">{meta.uc}</span>
-            <span aria-hidden className="text-ink-4">/</span>
-            <span>{project}</span>
-          </div>
+          <div className="eyebrow min-w-0">{project}</div>
           <div className="flex flex-wrap items-center gap-1">
-            {meta.leading && <LeadingTag />}
-            {meta.waves.map((w) => <WaveTag key={w} wave={w} />)}
-            {meta.tier && <TierChip tier={meta.tier} />}
             <DataNeeded sources={meta.dataNeeded.sources} owner={meta.dataNeeded.owner} />
             {confidence && <ConfidenceBadge />}
           </div>
@@ -69,12 +64,22 @@ export function ScreenFrame({
   )
 }
 
-function AnswerFigure({ label, value, foot, tone = 'ink' }: Answer) {
+function AnswerFigure({ label, value, foot, tone = 'ink', action, stake }: Answer) {
+  const { isPcu } = usePersona()
+  const rows = stake ? valueRowsFor(stake, isPcu) : []
   return (
     <div className="animate-rise border-t border-line pt-4 xl:border-l xl:border-t-0 xl:pl-7 xl:pt-0">
       <div className="eyebrow">{label}</div>
       <div className={cn('tnum mt-1 text-[28px] font-semibold leading-none tracking-[-0.025em]', tone === 'bad' ? 'text-bad' : tone === 'warn' ? 'text-warn' : tone === 'ok' ? 'text-ok' : 'text-ink')}>{value}</div>
       {foot && <div className="mt-2 text-[13px] leading-snug text-ink-3">{foot}</div>}
+      {action && (
+        <button onClick={action.onClick} className="press mt-2 inline-flex items-center gap-1 text-[13px] font-medium text-atlas-700 hover:underline">{action.label}<ArrowRight className="size-3.5" /></button>
+      )}
+      {rows.length > 0 && (
+        <dl className="mt-3 space-y-0.5 rounded-lg bg-sunken px-3 py-2 text-[12px] leading-snug">
+          {rows.map((r) => <div key={r.uc} className="flex flex-wrap gap-x-1"><dt className="text-ink-3">{r.metric}</dt><dd className="tnum font-medium text-ink-2">{projectValue(r, isPcu)}</dd></div>)}
+        </dl>
+      )}
     </div>
   )
 }

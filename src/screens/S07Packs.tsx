@@ -66,7 +66,7 @@ export function S07Packs() {
 
   const exp = (kind: string) => {
     log('Exported pack', `${version.toUpperCase()} ${kind}`)
-    toast.success('Pack exported (prototype)', { description: `${kind}, ${version === 'ic' ? 'Investment Committee' : version} version` })
+    toast.success('Pack exported', { description: `${kind}, ${version === 'ic' ? 'Investment Committee' : version} version` })
   }
 
   return (

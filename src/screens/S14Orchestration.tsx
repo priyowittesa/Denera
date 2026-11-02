@@ -7,6 +7,7 @@ import { Sheet } from '../components/ui/sheet'
 import { Button } from '../components/ui/button'
 import { APPROVAL_QUEUE, GUARDRAILS, RUNS, type Lane, type Run, type RunState } from '../data/runs'
 import { FEEDS } from '../data/registers'
+import { screenByPath } from '../data/screens'
 import { cn } from '../lib/cn'
 import { useDemo, usePersona } from '../state/store'
 
@@ -42,7 +43,7 @@ export function S14Orchestration() {
       headline={`ATLAS ran ${runs.length} jobs this week: ${completed} completed, ${waiting} are waiting for a person, ${blocked} is blocked for missing data.`}
       status="Yellow"
       statusLabel={`${waiting} waiting for a person`}
-      sub="A view of the two ATLAS modes at work. Orchestration jobs run on rules and schedules; Assistant jobs run when a person asks. It adds no use case."
+      sub="A view of the two ATLAS modes at work. Orchestration jobs run on rules and schedules; Assistant jobs run when a person asks."
       confidence={false}
     >
       <section className="overflow-hidden rounded-lg bg-atlas-950 text-white">
@@ -71,20 +72,19 @@ export function S14Orchestration() {
           <span className="tnum text-[13px] text-ink-3">{runs.length} jobs · {completed} completed · {waiting} waiting for human · {blocked} blocked</span>
         </div>
         <table className="mt-3 w-full min-w-[1060px] text-[13px]">
-          <thead className="border-y border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Job</th><th className="px-3 py-2.5 font-medium">Use case</th><th className="px-3 py-2.5 font-medium">Mode</th><th className="px-3 py-2.5 font-medium">Lane</th><th className="px-3 py-2.5 font-medium">Trigger</th><th className="px-3 py-2.5 font-medium">State</th><th className="px-3 py-2.5 font-medium">Waiting on</th><th className="px-5 py-2.5 font-medium">Output</th></tr></thead>
+          <thead className="border-y border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Job</th><th className="px-3 py-2.5 font-medium">Mode</th><th className="px-3 py-2.5 font-medium">Lane</th><th className="px-3 py-2.5 font-medium">Trigger</th><th className="px-3 py-2.5 font-medium">State</th><th className="px-3 py-2.5 font-medium">Waiting on</th><th className="px-5 py-2.5 font-medium">Output</th></tr></thead>
           <tbody className="divide-y divide-line-soft">
             {runs.map((r) => {
               const S = STATE[r.state]
               return (
                 <tr key={r.id} onClick={() => setTrace(r)} className="cursor-pointer hover:bg-atlas-50/50">
                   <td className="px-5 py-3"><button className="press text-left font-medium text-ink hover:text-atlas-700"><span className="tnum text-ink-3">{r.id}</span> {r.job}</button></td>
-                  <td className="px-3 py-3 text-ink-2">{r.uc}</td>
                   <td className="px-3 py-3"><span className={cn('rounded-sm px-1.5 py-0.5 text-[12px] font-medium', r.mode === 'Assistant' ? 'bg-info-bg text-info' : 'bg-sunken text-ink-2')}>{r.mode}</span></td>
                   <td className="px-3 py-3 text-ink-2">{r.lane}</td>
                   <td className="px-3 py-3 text-ink-2">{r.trigger}</td>
                   <td className="px-3 py-3"><span className={cn('inline-flex items-center gap-1 font-medium', S.c)}><S.I className="size-3.5" />{r.state === 'Blocked' ? 'Blocked: feed not agreed' : r.state}</span></td>
                   <td className="px-3 py-3 text-[13px] text-ink-2">{r.waiting}</td>
-                  <td className="px-5 py-3"><button onClick={(e) => { e.stopPropagation(); nav(r.to) }} className="press inline-flex items-center gap-1 whitespace-nowrap font-medium text-atlas-700 hover:underline">{r.output}<ArrowRight className="size-3.5" /></button></td>
+                  <td className="px-5 py-3"><button onClick={(e) => { e.stopPropagation(); nav(r.to) }} className="press inline-flex items-center gap-1 whitespace-nowrap font-medium text-atlas-700 hover:underline">{screenByPath(r.to)?.short ?? r.output}<ArrowRight className="size-3.5" /></button></td>
                 </tr>
               )
             })}
@@ -129,7 +129,7 @@ export function S14Orchestration() {
         </Card>
       </div>
 
-      <Sheet open={!!trace} onOpenChange={(v) => !v && setTrace(null)} title={trace ? `${trace.id} ${trace.job}` : ''} description={trace ? `${trace.uc} · ${trace.mode} · ${trace.lane}` : ''} footer={trace && <Button onClick={() => nav(trace.to)}>Open where it appears<ArrowRight /></Button>}>
+      <Sheet open={!!trace} onOpenChange={(v) => !v && setTrace(null)} title={trace ? `${trace.id} ${trace.job}` : ''} description={trace ? `${trace.mode} · ${trace.lane}` : ''} footer={trace && <Button onClick={() => nav(trace.to)}>Open where it appears<ArrowRight /></Button>}>
         {trace?.trace && (
           <ol className="relative ml-2 border-l border-line pl-6">
             {[
@@ -138,7 +138,7 @@ export function S14Orchestration() {
               ['Method or rule applied', trace.trace.method],
               ['Result and confidence', `${trace.trace.result}. Confidence ${trace.trace.confidence}.`],
               ['Human gate', `${trace.trace.gate}. State: ${trace.state}.`],
-              ['Where it appears', trace.output],
+              ['Where it appears', screenByPath(trace.to)?.title ?? trace.output],
             ].map(([k, v], i) => (
               <li key={k} className="relative mb-5 animate-rise" style={{ animationDelay: `${i * 40}ms` }}>
                 <span className="tnum absolute -left-[35px] top-0 grid size-5 place-items-center rounded-full bg-atlas-700 text-[12px] font-semibold text-white">{i + 1}</span>

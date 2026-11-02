@@ -1,10 +1,9 @@
 import { ArrowUpRight, ChevronRight, FileText, Gavel, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { HEALTH_ICON, StatusChip, WaveTag } from '../components/atlas/chips'
+import { HEALTH_ICON, StatusChip } from '../components/atlas/chips'
 import { AtlasCard, ScreenFrame } from '../components/atlas/frame'
 import { HealthRulePop } from '../components/atlas/HealthRule'
-import { ValuePanel } from '../components/atlas/ValuePanel'
 import { Button } from '../components/ui/button'
 import { Sheet } from '../components/ui/sheet'
 import { NARRATIVE, PROJECT, SCORECARDS, WEEKLY_MOVEMENT, type Scorecard } from '../data/cakrawala'
@@ -24,7 +23,7 @@ export function S08Cockpit() {
   return (
     <ScreenFrame
       headline="Cakrawala Raya is Yellow with escalation required. Without action this week it turns Red."
-      answer={{ label: 'COD exposure', value: '42 days', tone: 'bad', foot: <>Rises to <b className="font-semibold text-bad">64 days</b> if nothing is decided this week.</> }}
+      answer={{ label: 'COD exposure', value: '42 days', tone: 'bad', foot: <>Rises to <b className="font-semibold text-bad">64 days</b> if nothing is decided this week.</>, stake: ['UC01'] }}
       aside={
         <>
           <Button variant="outline" onClick={() => ask('A-05', ANSWERS['A-05'].q)}><Sparkles />Ask ATLAS</Button>
@@ -61,12 +60,10 @@ export function S08Cockpit() {
         </div>
       </div>
 
-      <ValuePanel ucs={['UC01']} />
-
       <Sheet open={!!panel} onOpenChange={(v) => !v && setPanel(null)} title={panel?.name ?? ''} description="Detail panel">
         {panel && (
           <div className="space-y-4">
-            <div className="flex gap-2"><StatusChip h={panel.status} size="md" />{panel.wave && <WaveTag wave={panel.wave} />}</div>
+            <div className="flex gap-2"><StatusChip h={panel.status} size="md" /></div>
             <p className="text-[14px] text-ink">{panel.text}</p>
             <div className="grid gap-3">
               {(panel.id === 'hse'
@@ -78,7 +75,7 @@ export function S08Cockpit() {
                 <div key={t} className="rounded-md border border-line p-3"><div className="text-[12px] font-medium text-atlas-700">Evidence</div><div className="text-[13px] font-medium text-ink">{t}</div><div className="text-[13px] text-ink-3">{x}</div></div>
               ))}
             </div>
-            <p className="text-[13px] text-ink-3">Data needed: {panel.wave === 'W3' ? 'HSE and quality records from the project company (Wave 3).' : 'Permit register and stakeholder log (Wave 1).'}</p>
+            <p className="text-[13px] text-ink-3">Source: {panel.wave === 'W3' ? 'HSE and quality records from the project company.' : 'Permit register and stakeholder log.'}</p>
           </div>
         )}
       </Sheet>

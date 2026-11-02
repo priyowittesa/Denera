@@ -260,7 +260,6 @@ export function Composer({ autoFocus, compact, defaultScope = 'cakrawala' }: { a
               >
                 <Sparkles className="size-3.5 shrink-0 text-atlas-600" />
                 <span className="min-w-0 flex-1 truncate">{m.q}</span>
-                <span className="text-[12px] text-ink-4">{m.wave}</span>
               </button>
             </li>
           ))}
@@ -311,7 +310,7 @@ export function Composer({ autoFocus, compact, defaultScope = 'cakrawala' }: { a
           )}
         </div>
       </form>
-      <p className="mt-2 text-center text-[12px] text-ink-3">ATLAS recommends; people decide. Every answer cites governed sources. Scripted demo answers.</p>
+      <p className="mt-2 text-center text-[12px] text-ink-3">ATLAS recommends; people decide. Every answer cites its sources.</p>
     </div>
   )
 }

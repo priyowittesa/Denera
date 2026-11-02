@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ClassChip, HEALTH_ICON, Stamp } from '../components/atlas/chips'
 import { AtlasCard, ScreenFrame } from '../components/atlas/frame'
-import { ValuePanel } from '../components/atlas/ValuePanel'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
 import { Modal, Sheet } from '../components/ui/sheet'
@@ -19,6 +18,7 @@ const KEY = 'interface-conflict'
 export function S10CriticalPath() {
   const [step, setStep] = useState<string | null>(null)
   const [impacted, setImpacted] = useState(false)
+  const [tab, setTab] = useState('look')
   const [chainOpen, setChainOpen] = useState(false)
   const [rejectOpen, setRejectOpen] = useState(false)
   const [reason, setReason] = useState('')
@@ -35,7 +35,7 @@ export function S10CriticalPath() {
   return (
     <ScreenFrame
       headline="In the next six weeks the boiler island chain moves COD: the interface freeze sits at zero float and drives the 42-day exposure."
-      answer={{ label: 'Under 5 days of float', value: '4 of 8', tone: 'bad', foot: 'Look-ahead activities to 11 Aug 2027. Interface freeze has none.' }}
+      answer={{ label: 'Under 5 days of float', value: '4 of 8', tone: 'bad', foot: 'Look-ahead activities to 11 Aug 2027. Interface freeze has none.', action: { label: 'See the six-week look-ahead', onClick: () => { setTab('look'); document.getElementById('s10-tabs')?.scrollIntoView({ behavior: 'smooth' }) } }, stake: ['UC10'] }}
       status="Red"
       statusLabel="Schedule Red"
       aside={
@@ -56,8 +56,8 @@ export function S10CriticalPath() {
         <p className="text-[13px] text-ink-2">Poor schedule logic produces a warning, not a confident answer.</p>
       </section>
 
-      <Tabs defaultValue="root" className="mt-6">
-        <TabsList items={[{ value: 'root', label: 'Root cause' }, { value: 'look', label: 'Look-ahead, next six weeks' }]} />
+      <Tabs id="s10-tabs" value={tab} onValueChange={setTab} className="mt-6 scroll-mt-6">
+        <TabsList items={[{ value: 'look', label: 'Look-ahead, next six weeks' }, { value: 'root', label: 'Root cause' }]} />
         <TabsContent value="root" className="pt-5">
           <div className="grid items-start gap-5 xl:grid-cols-[360px_minmax(0,1fr)]">
             <ChainStory step={step} setStep={setStep} impacted={impacted} />
@@ -138,8 +138,6 @@ export function S10CriticalPath() {
           </Card>
         </TabsContent>
       </Tabs>
-
-      <ValuePanel ucs={['UC10']} />
 
       <Sheet open={chainOpen} onOpenChange={setChainOpen} title="Correspondence chain" description="Transmittals, emails and minutes behind the boiler island delay">
         <ol className="relative ml-2 border-l border-line pl-5">

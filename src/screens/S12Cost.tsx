@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom'
 import { Bar, BarChart, CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { AuthorityLabel, StatusChip } from '../components/atlas/chips'
 import { AtlasCard, ScreenFrame, SectionTitle } from '../components/atlas/frame'
-import { ValuePanel } from '../components/atlas/ValuePanel'
 import { Card, CardBody, CardHeader } from '../components/ui/card'
 import { ALERT_LINE_USED, CONTINGENCY_PATH, COST_INSIGHT, COST_RISKS, DRIVERS, MONTHLY_CASHFLOW, VARIANCE_BY_PACKAGE, WHAT_IFS } from '../data/cost'
 import { revenuePerDay } from '../data/valueBasis'
@@ -33,7 +32,7 @@ export function S12Cost() {
       status="Red"
       statusLabel="Cost dimension Red"
       sub="Management EAC Rp2,910 bn against approved CAPEX Rp2,800 bn."
-      answer={isPcu ? { label: 'Forecast above CAPEX', value: 'Rp110 bn', tone: 'bad', foot: 'Rp65 bn is covered from contingency.' } : { label: 'Needs shareholder approval', value: 'Rp45 bn', tone: 'bad', foot: <>Of a <b className="font-semibold text-ink">Rp110 bn</b> forecast overrun. Contingency covers Rp65 bn.</> }}
+      answer={isPcu ? { label: 'Forecast above CAPEX', value: 'Rp110 bn', tone: 'bad', foot: 'Rp65 bn is covered from contingency.', stake: ['UC09'] } : { label: 'Needs shareholder approval', value: 'Rp45 bn', tone: 'bad', foot: <>Of a <b className="font-semibold text-ink">Rp110 bn</b> forecast overrun. Contingency covers Rp65 bn.</>, stake: ['UC09'] }}
     >
       <div className="grid items-start gap-4 2xl:grid-cols-3">
         <Group title="Forecast" items={[
@@ -52,7 +51,7 @@ export function S12Cost() {
           ['Actual cost', 'Rp1,138 bn'],
           ['Open commitments', 'Rp318 bn'],
           ['Cash paid', 'Rp1,190 bn', 'Includes Rp52 bn vendor advances'],
-          ...(!isPcu ? [['Next-quarter funding', 'Rp312 bn', 'Synthetic input from the cashflow forecast'] as [string, string, string]] : []),
+          ...(!isPcu ? [['Next-quarter funding', 'Rp312 bn', 'From the cashflow forecast'] as [string, string, string]] : []),
         ]} />
       </div>
 
@@ -70,7 +69,7 @@ export function S12Cost() {
       <Calculator days={days} setDays={setDays} pcu={isPcu} />
 
       <section id="scenarios" className="mt-8 scroll-mt-20">
-        <SectionTitle aside={<span className="text-[12px] text-ink-3">Advisory. Selecting a scenario also updates the S-curve forecast on Screen 9.</span>}>What-if scenarios against remaining contingency</SectionTitle>
+        <SectionTitle aside={<span className="text-[12px] text-ink-3">Advisory. Selecting a scenario also updates the S-curve forecast.</span>}>What-if scenarios against remaining contingency</SectionTitle>
         <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_300px]">
           <Card className="overflow-x-auto">
             <table className="w-full min-w-[760px] text-[13px]">
@@ -78,12 +77,12 @@ export function S12Cost() {
                 <tr><th className="px-5 py-2.5 font-medium">Scenario</th><th className="px-3 py-2.5 font-medium">COD delay</th><th className="px-3 py-2.5 text-right font-medium">Incremental cost</th><th className="px-3 py-2.5 text-right font-medium">Contingency remaining</th><th className="px-3 py-2.5 font-medium">Rating</th><th className="px-5 py-2.5 font-medium">Approval route</th></tr>
               </thead>
               <tbody className="tnum divide-y divide-line-soft">
-                <Row active={!alt && scenario === 'current'} onClick={() => { setAlt(false); setScenario('current', 'Screen 12') }} cells={['Current plan', 'plus 42 days', 'n/a', 'Rp111 bn (63%)']} rating="Yellow, escalation" route="n/a" />
+                <Row active={!alt && scenario === 'current'} onClick={() => { setAlt(false); setScenario('current', 'Cost') }} cells={['Current plan', 'plus 42 days', 'n/a', 'Rp111 bn (63%)']} rating="Yellow, escalation" route="n/a" />
                 {WHAT_IFS.map((w) => (
                   <Row
                     key={w.id}
                     active={w.id === 'alt' ? alt : !alt && scenario === w.scenario}
-                    onClick={() => { if (w.scenario) { setAlt(false); setScenario(w.scenario, 'Screen 12') } else setAlt(true) }}
+                    onClick={() => { if (w.scenario) { setAlt(false); setScenario(w.scenario, 'Cost') } else setAlt(true) }}
                     cells={[w.name, w.delay, w.cost, w.remaining]}
                     rating={w.rating}
                     route={w.route}
@@ -150,7 +149,7 @@ export function S12Cost() {
         <Card className="mt-5">
           <CardHeader title="Funding drawdown forecast" sub="Next quarter" />
           <CardBody className="grid gap-5 md:grid-cols-[220px_1fr]">
-            <div><div className="text-[12px] text-ink-3">Requirement</div><div className="tnum text-[22px] font-semibold text-ink">Rp312 bn</div><div className="text-[12px] text-ink-3">Synthetic input from the cashflow forecast</div></div>
+            <div><div className="text-[12px] text-ink-3">Requirement</div><div className="tnum text-[22px] font-semibold text-ink">Rp312 bn</div><div className="text-[12px] text-ink-3">From the cashflow forecast</div></div>
             <ul className="space-y-2 text-[13px]">
               {[['CP-1', 'Updated insurance certificates'], ['CP-2', "Independent engineer's progress certificate"]].map(([k, v]) => (
                 <li key={k} className="flex items-center justify-between rounded-md bg-sunken px-3 py-2"><span><b className="font-semibold text-ink">{k}</b> {v}</span><StatusChip h="Yellow" label="Open" /></li>
@@ -163,8 +162,6 @@ export function S12Cost() {
       <AtlasCard className="mt-5" title="ATLAS insight" sources={[{ label: 'Cost report June 2027', doc: 'cost-report' }, { label: 'Scenario run R8' }]} classification="Advisory" confidence="Medium">
         <p>{isPcu ? COST_INSIGHT.replace("but the Rp45 billion of foreign-exchange and owner's cost needs shareholder funding approval", "but Rp45 billion of foreign-exchange and owner's cost sits outside eligible contingency") : COST_INSIGHT}</p>
       </AtlasCard>
-
-      <ValuePanel ucs={['UC09']} />
     </ScreenFrame>
   )
 }

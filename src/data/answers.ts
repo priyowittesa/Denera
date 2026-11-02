@@ -26,7 +26,7 @@ export const ANSWERS: Record<string, Answer> = {
     rootCause: 'The notice follows the delay event on the boiler island package.',
     impact: { delivery: 'Protects entitlement against a 42-day COD exposure', capex: 'Protects the claims and variation position (Rp6 bn)', commercial: 'Notice window closes 6 July' },
     actions: [{ text: 'Request the project company board to issue the EPC notice by 5 PM Friday 2 July', authority: 'Joint' }, { text: 'Confirm or reject the two extracted deadlines', authority: 'Shareholder (Denera)' }],
-    sources: [{ label: 'EPC contract cl. 14.2', doc: 'epc-14-2' }, { label: 'Obligation register (Screen 3)' }], classification: 'Confirmed and Extracted',
+    sources: [{ label: 'EPC contract cl. 14.2', doc: 'epc-14-2' }, { label: 'Obligation register' }], classification: 'Confirmed and Extracted',
     followups: ['A-06'],
   },
   'A-02': {
@@ -36,7 +36,7 @@ export const ANSWERS: Record<string, Answer> = {
     rootCause: 'The waste supply and regional reports feed has no agreed template.',
     impact: { delivery: 'Waste supply status cannot be computed', capex: 'None directly', commercial: "Denera's visibility depends on this right" },
     actions: [{ text: 'Request the project company to provide the missing feed', authority: 'Shareholder (Denera)' }],
-    sources: [{ label: 'Shareholder agreement cl. 9.1 to 9.3', doc: 'sha-9' }, { label: 'Feed register (Screen 4)' }], classification: 'Extracted',
+    sources: [{ label: 'Shareholder agreement cl. 9.1 to 9.3', doc: 'sha-9' }, { label: 'Feed register' }], classification: 'Extracted',
     followups: [],
   },
   'A-03': {
@@ -56,7 +56,7 @@ export const ANSWERS: Record<string, Answer> = {
     rootCause: 'The late boiler island and waste-receiving package, an unresolved technical interface and a recovery programme that is not yet credible.',
     impact: { delivery: '42 days', capex: 'Rp110 bn overrun, of which Rp45 bn needs shareholder funding approval', commercial: 'Notice due 6 July 2027' },
     actions: [{ text: 'Approve the Boiler Island Recovery Strategy (six actions, two Joint)', authority: 'Joint' }, { text: 'Approve the Rp45 bn shareholder funding route', authority: 'Shareholder (Denera)' }],
-    sources: [{ label: 'Cockpit (Screen 8)' }, { label: 'Cost summary', doc: 'cost-report' }, { label: 'Notice calendar', doc: 'epc-14-2' }], classification: 'Advisory',
+    sources: [{ label: 'Cockpit' }, { label: 'Cost summary', doc: 'cost-report' }, { label: 'Notice calendar', doc: 'epc-14-2' }], classification: 'Advisory',
     followups: ['A-14'],
   },
   'A-05': {
@@ -65,7 +65,7 @@ export const ANSWERS: Record<string, Answer> = {
     figures: 'Reported 42%, verified 39%, planned 46%; structural steel reported 58% against verified 52%.', confidence: 'High',
     rootCause: 'An unresolved engineering interface delayed the boiler submittal approval and manufacturing release.',
     impact: { delivery: '42 days', capex: 'Rp110 bn forecast overrun', commercial: 'Notice due 6 July' },
-    actions: [{ text: 'Approve the six-action recovery bundle on Screen 13', authority: 'Joint' }],
+    actions: [{ text: 'Approve the six-action recovery bundle in the Decision room', authority: 'Joint' }],
     sources: [{ label: 'Schedule update 28 Jun', doc: 'epc-schedule' }, { label: 'Inspection records', doc: 'inspection-records' }, { label: 'Transmittal log', doc: 'transmittal-boiler' }], classification: 'Verified and Forecast',
     followups: ['A-07', 'A-08'],
   },
@@ -86,7 +86,7 @@ export const ANSWERS: Record<string, Answer> = {
     rootCause: 'The interface decision is the origin of the other two.',
     impact: { delivery: '42 to 64 days', capex: 'Rp110 bn', commercial: 'Notice due 6 July' },
     actions: [{ text: 'Technical task force to close the interface in 48 hours', authority: 'Project company' }, { text: 'Require revised recovery programme in three working days', authority: 'Project company' }],
-    sources: [{ label: 'Critical path (Screen 10)', doc: 'review-comment' }, { label: 'Procurement tower (Screen 11)', doc: 'vendor-email' }], classification: 'Forecast',
+    sources: [{ label: 'Critical path', doc: 'review-comment' }, { label: 'Procurement tower', doc: 'vendor-email' }], classification: 'Forecast',
     followups: ['A-11'],
   },
   'A-08': {
@@ -106,7 +106,7 @@ export const ANSWERS: Record<string, Answer> = {
     rootCause: 'Delayed manufacturing release (boiler); fabrication not verified (flue-gas).',
     impact: { delivery: 'Boiler island drives the 42-day exposure', capex: 'Rp120 bn open commitment on the boiler island', commercial: 'Contractor responsible for vendor performance' },
     actions: [{ text: 'Executive escalation of the boiler island', authority: 'Shareholder (Denera)' }, { text: 'Verify flue-gas fabrication', authority: 'Project company' }],
-    sources: [{ label: 'Procurement tower (Screen 11)', doc: 'vendor-email' }], classification: 'Forecast',
+    sources: [{ label: 'Procurement tower', doc: 'vendor-email' }], classification: 'Forecast',
     followups: ['A-13'],
   },
   'A-10': {
@@ -116,7 +116,7 @@ export const ANSWERS: Record<string, Answer> = {
     rootCause: 'Acceleration, freight, extended preliminaries and interface rework.',
     impact: { delivery: 'None directly', capex: 'Rp65 bn from contingency, Rp45 bn needs shareholder funding', commercial: 'Claims position Rp6 bn' },
     actions: [{ text: 'Update the cashflow forecast (Finance Lead)', authority: 'Shareholder (Denera)' }],
-    sources: [{ label: 'Cost model (Screen 12)', doc: 'cost-report' }], classification: 'Forecast',
+    sources: [{ label: 'Cost model', doc: 'cost-report' }], classification: 'Forecast',
     followups: [],
   },
   'A-11': {
@@ -146,7 +146,7 @@ export const ANSWERS: Record<string, Answer> = {
     rootCause: 'Further manufacturing or shipment slippage.',
     impact: { delivery: '72 days', capex: 'No-intervention already leaves Rp19 bn (11%) against the Rp17.6 bn alert', commercial: 'Depends on PPA delay and deemed-commissioning terms' },
     actions: [{ text: 'Decide the recovery strategy this week', authority: 'Joint' }],
-    sources: [{ label: 'Scenario model' }, { label: 'Delay-revenue calculator (Screen 12)' }], classification: 'Advisory',
+    sources: [{ label: 'Scenario model' }, { label: 'Delay-revenue calculator' }], classification: 'Advisory',
     followups: [],
   },
   'A-14': {
@@ -160,7 +160,7 @@ export const ANSWERS: Record<string, Answer> = {
   'A-16': {
     id: 'A-16', wave: 'W3', kind: 'full', table: true, label: 'AI draft', q: 'Prepare a recovery-action tracker for the weekly PMO meeting.',
     direct: 'Here is the tracker: the six bundle actions and the existing register actions with owner, due date, authority and status. Two actions are Joint and need a project company board decision.',
-    sources: [{ label: 'Decision room (Screen 13)', doc: 'steering-minute' }], classification: 'Advisory', confidence: 'High',
+    sources: [{ label: 'Decision room', doc: 'steering-minute' }], classification: 'Advisory', confidence: 'High',
     actions: [{ text: 'Propose all as actions', authority: 'Joint' }],
   },
   'A-17': {

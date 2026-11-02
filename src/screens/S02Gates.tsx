@@ -36,8 +36,8 @@ export function S02Gates() {
 
   return (
     <ScreenFrame
-      project="Phase II, 8 pre-investment projects"
-      headline="Three of eight Phase II projects can reach final investment decision by 30 September 2027; two have a permit dependency that puts FID at risk by three weeks."
+      project="Pre-investment portfolio, 8 projects"
+      headline="Three of eight pre-investment projects can reach final investment decision by 30 September 2027; two have a permit dependency that puts FID at risk by three weeks."
       status="Yellow"
       statusLabel="Two gates at risk"
       aside={<Button variant="outline" onClick={() => ask('A-03', ANSWERS['A-03'].q)}><Sparkles />Which can reach FID by 30 Sep 2027?</Button>}

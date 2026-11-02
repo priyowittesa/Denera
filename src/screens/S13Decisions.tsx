@@ -168,7 +168,7 @@ export function S13Decisions() {
             <TabsContent value="claims" className="p-5">
               <div className="grid gap-4 md:grid-cols-3">
                 <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Extension-of-time evidence pack</div><div className="tnum mt-1 text-[22px] font-semibold text-ink">4 of 7</div><div className="mt-2 h-1.5 rounded-full bg-surface"><div className="h-full rounded-full bg-series-verified" style={{ width: `${(4 / 7) * 100}%` }} /></div></div>
-                <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Claims readiness score</div><div className="tnum mt-1 text-[22px] font-semibold text-warn">62%</div><div className="text-[12px] text-ink-3">Synthetic</div></div>
+                <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Claims readiness score</div><div className="tnum mt-1 text-[22px] font-semibold text-warn">62%</div><div className="text-[12px] text-ink-3">Notices, records and correspondence</div></div>
                 <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Notices issued and due</div><div className="tnum mt-1 text-[22px] font-semibold text-ink">0 issued · {notices.length} due</div><div className="text-[12px] text-ink-3">PSEL Cakrawala Raya</div></div>
               </div>
               <ul className="mt-4 divide-y divide-line-soft rounded-md border border-line">

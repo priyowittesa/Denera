@@ -1,4 +1,4 @@
-import { CheckCircle2, CircleDashed, Clock3, Database, Hourglass, Info, Minus, OctagonAlert, ShieldCheck, Sparkles, Star, TriangleAlert, UserCheck } from 'lucide-react'
+import { CheckCircle2, CircleDashed, Clock3, Database, Hourglass, Info, Minus, OctagonAlert, ShieldCheck, Sparkles, TriangleAlert, UserCheck } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { cn } from '../../lib/cn'
 import type { Authority, Health, Wave } from '../../data/types'
@@ -8,36 +8,16 @@ import { Pop } from '../ui/popover'
 const chip = 'inline-flex items-center gap-1 whitespace-nowrap rounded-sm px-1.5 py-0.5 text-[12px] font-medium leading-4'
 
 const WAVE_TIP: Record<Wave, string> = {
-  W1: 'Wave 1: runs on documents and checklists available today.',
-  W2: 'Wave 2: needs agreed partner data.',
-  W3: 'Wave 3: needs agreed partner data and linked Wave 2 outputs.',
+  W1: 'Runs on documents and checklists available today.',
+  W2: 'Needs agreed partner data feeds.',
+  W3: 'Needs partner data feeds and linked forecasts.',
 }
 
 export function WaveTag({ wave }: { wave: Wave }) {
   return (
     <Tip content={WAVE_TIP[wave]}>
       <span tabIndex={0} className={cn(chip, wave === 'W1' ? 'bg-atlas-100/70 text-atlas-800' : 'border border-dashed border-ink-4/45 text-ink-2')}>
-        {wave}
-        {wave !== 'W1' && <span className="font-normal text-ink-3">target</span>}
-      </span>
-    </Tip>
-  )
-}
-
-export function TierChip({ tier }: { tier: string }) {
-  return (
-    <Tip content="Priority tier from the master weighted index (value 40%, feasibility 30%, strategic fit 30%). Tier 1 is 4.0 or more, Tier 2 is 3.3 to 3.9. Cut-offs are assumptions (A).">
-      <span tabIndex={0} className={cn(chip, 'text-ink-2 ring-1 ring-inset ring-line')}>{tier}</span>
-    </Tip>
-  )
-}
-
-export function LeadingTag() {
-  return (
-    <Tip content="One of the five leading PMO tracking and monitoring use cases in the master document: UC01, UC07, UC08, UC09, UC10.">
-      <span tabIndex={0} className={cn(chip, 'bg-atlas-700/[0.08] text-atlas-700')}>
-        <Star className="size-3 fill-current" />
-        Leading use case
+        {wave === 'W1' ? 'Now' : wave === 'W2' ? 'Next' : 'Later'}
       </span>
     </Tip>
   )
@@ -49,17 +29,17 @@ export function DataNeeded({ sources, owner }: { sources: string[]; owner: strin
       trigger={
         <button className={cn(chip, 'press text-ink-2 ring-1 ring-inset ring-line hover:bg-sunken')}>
           <Database className="size-3 text-info" />
-          Data needed
+          Data sources
         </button>
       }
     >
-      <p className="text-[12px] font-semibold text-ink">Data this screen needs</p>
+      <p className="text-[12px] font-semibold text-ink">Data behind this view</p>
       <ul className="mt-2 space-y-1.5">
         {sources.map((s) => (
           <li key={s} className="flex gap-2"><span className="mt-[7px] size-1 shrink-0 rounded-full bg-ink-4" />{s}</li>
         ))}
       </ul>
-      <p className="mt-3 border-t border-line-soft pt-3 text-[12px]"><span className="text-ink-3">Owner </span><span className="font-medium text-ink">{owner}</span></p>
+      <p className="mt-3 border-t border-line-soft pt-3 text-[12px]"><span className="text-ink-3">Provided by </span><span className="font-medium text-ink">{owner}</span></p>
     </Pop>
   )
 }
@@ -137,7 +117,7 @@ export function ConfidenceBadge({ value = 91 }: { value?: number }) {
     <Pop
       trigger={
         <button className={cn(chip, 'press text-ink-3 hover:bg-sunken hover:text-ink-2')}>
-          Confidence <span className="tnum font-semibold text-ink">{value}%</span>
+          Data confidence <span className="tnum font-semibold text-ink">{value}%</span>
         </button>
       }
       className="w-[300px]"

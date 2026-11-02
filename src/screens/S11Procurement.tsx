@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { ActionRoute } from '../components/atlas/ActionRoute'
 import { AuthorityLabel, StatusChip } from '../components/atlas/chips'
 import { ImpactStrip, ScreenFrame } from '../components/atlas/frame'
-import { ValuePanel } from '../components/atlas/ValuePanel'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
 import { Sheet } from '../components/ui/sheet'
@@ -40,7 +39,7 @@ export function S11Procurement() {
       status="Red"
       statusLabel="Procurement Red"
       sub="Five long-lead packages tracked against required-on-site dates."
-      answer={{ label: 'Packages that can move COD', value: '2 of 5', tone: 'bad', foot: 'Boiler island at minus 42 days of float, flue-gas treatment at minus 17.' }}
+      answer={{ label: 'Packages that can move COD', value: '2 of 5', tone: 'bad', foot: 'Boiler island at minus 42 days of float, flue-gas treatment at minus 17.', stake: ['UC07'] }}
     >
       <Card>
         <div className="flex flex-wrap items-center justify-between gap-3 px-5 pt-4">
@@ -135,8 +134,6 @@ export function S11Procurement() {
         <ImpactStrip delivery={['42 days', 'Boiler island drives COD exposure']} capex={['Rp120 bn', 'Open commitment on the boiler island']} commercial={['EPC', 'Contractor responsible for vendor performance']} />
       </div>
 
-      <ValuePanel ucs={['UC07']} />
-
       <Sheet open={!!detail} onOpenChange={(v) => !v && setDetail(null)} title={detail?.name ?? ''} description={detail ? `${detail.vendor} · forecast ${detail.forecast} · ${detail.basis}` : ''}>
         {detail?.id === 'boiler' ? (
           <dl className="divide-y divide-line-soft">
@@ -150,7 +147,7 @@ export function S11Procurement() {
         ) : detail && (
           <div className="space-y-3 text-[13px] text-ink-2">
             <p>Required on site {detail.required}; forecast {detail.forecast} ({detail.basis}).</p>
-            <p>Float to need date: <b className="text-ink">{detail.float}</b>. Full package detail is built for the boiler island in this prototype.</p>
+            <p>Float to need date: <b className="text-ink">{detail.float}</b>. Detailed vendor milestones are tracked for the boiler island.</p>
           </div>
         )}
       </Sheet>

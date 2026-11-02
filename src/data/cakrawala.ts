@@ -115,9 +115,4 @@ export const PROGRAM_TERMS: { term: string; def: string }[] = [
   { term: 'NEXA', def: 'ATLAS AI, agents and orchestration layer' },
   { term: 'Assistant', def: 'Answers and drafts when a person asks' },
   { term: 'Orchestration', def: 'Monitors data and deadlines, alerts and tracks actions to closure' },
-  { term: 'Wave', def: 'Delivery window: 0 to 6, 6 to 15, 12 to 24+ months' },
-  { term: 'Tier', def: 'Index band: 1 is 4.0+, 2 is 3.3 to 3.9, 3 below 3.3' },
-  { term: 'Leading use case', def: 'UC01, UC07, UC08, UC09, UC10: the five PMO tracking and monitoring use cases with business cases' },
-  { term: 'Gate to proceed', def: 'The condition that must be true before a leading use case moves to the next stage' },
-  { term: 'Phase 0 baseline', def: 'The current-state measure captured before build. Until it exists, value figures are sensitivities, not benefits' },
 ]

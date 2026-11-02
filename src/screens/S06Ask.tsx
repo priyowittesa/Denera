@@ -1,7 +1,7 @@
 import { History, SquarePen } from 'lucide-react'
 import { useState } from 'react'
 import { ChatScroller, Composer, Conversation, Greeting, SuggestionCard, ThreadList, useAskById } from '../components/atlas/Chat'
-import { DataNeeded, TierChip, WaveTag } from '../components/atlas/chips'
+import { DataNeeded } from '../components/atlas/chips'
 import { Button } from '../components/ui/button'
 import { Pop } from '../components/ui/popover'
 import { ASK_CARDS } from '../data/answers'
@@ -10,9 +10,9 @@ import { cn } from '../lib/cn'
 import { useChat, useDemo, usePersona } from '../state/store'
 
 const WAVES = [
-  { wave: 'W1' as const, label: 'Available today', note: 'Runs on documents and checklists' },
-  { wave: 'W2' as const, label: 'Target state, Wave 2', note: 'Needs agreed partner data' },
-  { wave: 'W3' as const, label: 'Target state, Wave 3', note: 'Needs Wave 2 outputs' },
+  { wave: 'W1' as const, label: 'Contracts and governance', note: 'Deadlines, rights, gates and briefs' },
+  { wave: 'W2' as const, label: 'Delivery and cost', note: 'Schedule, procurement, progress and cost' },
+  { wave: 'W3' as const, label: 'Scenarios', note: 'What-if questions and trackers' },
 ]
 
 export function S06Ask() {
@@ -34,7 +34,7 @@ export function S06Ask() {
           <Button variant="outline" className="w-full justify-start" onClick={newChat}><SquarePen />New chat</Button>
         </div>
         <div className="min-h-0 flex-1 overflow-y-auto px-2 pb-4"><ThreadList /></div>
-        <div className="border-t border-line-soft px-4 py-3 text-[12px] leading-snug text-ink-3">Conversations stay in this browser tab. Answers are scripted for the demo.</div>
+        <div className="border-t border-line-soft px-4 py-3 text-[12px] leading-snug text-ink-3">Conversations stay in this browser tab.</div>
       </aside>
 
       {/* Conversation */}
@@ -49,8 +49,6 @@ export function S06Ask() {
           <h1 className="min-w-0 flex-1 truncate text-[14px] font-medium text-ink">{empty ? 'New chat' : title}</h1>
           {meta && (
             <div className="hidden items-center gap-1 md:flex">
-              {meta.waves.map((w) => <WaveTag key={w} wave={w} />)}
-              {meta.tier && <TierChip tier={meta.tier} />}
               <DataNeeded sources={meta.dataNeeded.sources} owner={meta.dataNeeded.owner} />
             </div>
           )}

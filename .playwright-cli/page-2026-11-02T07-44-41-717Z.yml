@@ -1,0 +1,240 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - complementary [ref=e5]:
+        - generic [ref=e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=e11] [cursor=pointer]
+        - generic [ref=e22]:
+          - generic [ref=e23]: Your tenant
+          - generic [ref=e24]: Denera
+          - generic [ref=e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]: Delivery
+            - list [ref=e29]:
+              - listitem [ref=e30]:
+                - link "Portfolio" [ref=e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+              - listitem [ref=e38]:
+                - link "Cockpit" [ref=e39] [cursor=pointer]:
+                  - /url: "#/cockpit"
+              - listitem [ref=e44]:
+                - link "Progress and S-curve" [ref=e45] [cursor=pointer]:
+                  - /url: "#/progress"
+              - listitem [ref=e50]:
+                - link "Critical path" [ref=e51] [cursor=pointer]:
+                  - /url: "#/critical-path"
+              - listitem [ref=e57]:
+                - link "Procurement" [ref=e58] [cursor=pointer]:
+                  - /url: "#/procurement"
+              - listitem [ref=e64]:
+                - link "Cost and investment" [ref=e65] [cursor=pointer]:
+                  - /url: "#/cost"
+          - generic [ref=e70]:
+            - generic [ref=e71]: Governance
+            - list [ref=e72]:
+              - listitem [ref=e73]:
+                - link "Pre-investment gates" [ref=e74] [cursor=pointer]:
+                  - /url: "#/gates"
+              - listitem [ref=e79]:
+                - link "Notices and obligations" [ref=e80] [cursor=pointer]:
+                  - /url: "#/notices"
+              - listitem [ref=e86]:
+                - link "Partner data and rights" [ref=e87] [cursor=pointer]:
+                  - /url: "#/partner-data"
+              - listitem [ref=e92]:
+                - link "Meetings and actions" [ref=e93] [cursor=pointer]:
+                  - /url: "#/meetings"
+              - listitem [ref=e99]:
+                - link "Ask ATLAS" [ref=e100] [cursor=pointer]:
+                  - /url: "#/ask"
+              - listitem [ref=e104]:
+                - link "Governance packs" [ref=e105] [cursor=pointer]:
+                  - /url: "#/packs"
+          - generic [ref=e111]:
+            - generic [ref=e112]: Decisions and automation
+            - list [ref=e113]:
+              - listitem [ref=e114]:
+                - link "Decision room" [ref=e115] [cursor=pointer]:
+                  - /url: "#/decisions"
+              - listitem [ref=e121]:
+                - link "Orchestration Console" [ref=e122] [cursor=pointer]:
+                  - /url: "#/orchestration"
+        - generic [ref=e129]:
+          - generic [ref=e130]:
+            - generic [ref=e131]: Demo workspace
+            - generic [ref=e132]: 30 Jun 2027
+          - paragraph [ref=e133]: Sample data for illustration.
+          - generic [ref=e134]:
+            - button "Definitions" [ref=e135] [cursor=pointer]
+            - button "Reset demo" [ref=e138] [cursor=pointer]
+      - generic [ref=e142]:
+        - banner [ref=e143]:
+          - navigation "Breadcrumb" [ref=e144]:
+            - generic [ref=e145]: Denera
+            - generic [ref=e148]: Delivery
+            - generic [ref=e151]: Project Assurance Cockpit
+          - generic [ref=e152]:
+            - generic [ref=e153]:
+              - text: Data date
+              - generic [ref=e155]: 30 Jun 2027
+              - generic [ref=e156]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=e157] [cursor=pointer]
+            - button "Audit log" [ref=e162] [cursor=pointer]
+            - button "Switch role" [ref=e168] [cursor=pointer]:
+              - generic [ref=e169]: CE
+              - generic [ref=e170]:
+                - generic [ref=e171]: Denera CEO
+                - generic [ref=e172]: Shareholder executive
+        - main [ref=e175]:
+          - generic [ref=e450]:
+            - generic [ref=e451]:
+              - generic [ref=e452]: PSEL Cakrawala Raya
+              - generic [ref=e453]:
+                - button "Data sources" [ref=e454] [cursor=pointer]
+                - button "Data confidence 91%" [ref=e459] [cursor=pointer]:
+                  - text: Data confidence
+                  - generic [ref=e460]: 91%
+            - generic [ref=e461]:
+              - generic [ref=e462]:
+                - heading "Cakrawala Raya is Yellow with escalation required. Without action this week it turns Red." [level=1] [ref=e463]
+                - generic [ref=e464]:
+                  - button "Ask ATLAS" [ref=e465] [cursor=pointer]
+                  - button "See evidence" [ref=e469] [cursor=pointer]
+                  - button "View urgent decisions" [ref=e473] [cursor=pointer]
+              - generic [ref=e480]:
+                - generic [ref=e481]: COD exposure
+                - generic [ref=e482]: 42 days
+                - generic [ref=e483]: Rises to 64 days if nothing is decided this week.
+                - generic [ref=e485]:
+                  - term [ref=e486]: Revenue at risk, Denera share
+                  - definition [ref=e487]: USD 123,012 a day
+            - generic [ref=e488]:
+              - generic [ref=e489]:
+                - generic [ref=e490]:
+                  - generic [ref=e491]: Overall health
+                  - button "Yellow, escalation required" [ref=e492] [cursor=pointer]
+                  - generic [ref=e496]: "Without action: Red, 64 days"
+                - generic [ref=e497]:
+                  - generic [ref=e498]: Stage
+                  - generic [ref=e499]: EPC execution
+                  - generic [ref=e500]: Groundbreaking 3 Aug 2026
+                - generic [ref=e501]:
+                  - generic [ref=e502]: Target COD
+                  - generic [ref=e503]: 30 Jun 2028
+                  - generic [ref=e504]: Forecast 11 Aug 2028
+                - generic [ref=e505]:
+                  - generic [ref=e506]: Approved CAPEX
+                  - generic [ref=e507]: Rp2,800 bn
+                - generic [ref=e508]:
+                  - generic [ref=e509]: Management EAC
+                  - generic [ref=e510]: Rp2,910 bn
+                  - generic [ref=e511]: Range Rp2,846 to 2,918 bn
+                - generic [ref=e512]:
+                  - generic [ref=e513]: Data date 30 Jun 2027 08:30 WIB
+                  - generic [ref=e514]: Confidence 91%
+                  - link "Information rights 3 of 4" [ref=e515] [cursor=pointer]:
+                    - /url: "#/partner-data"
+              - generic [ref=e518]:
+                - region [ref=e519]:
+                  - generic [ref=e520]:
+                    - heading "Twelve health dimensions" [level=2] [ref=e521]
+                    - generic [ref=e522]: Computed by ATLAS. Comment, not edit. 4 of 12 Red
+                  - generic [ref=e523]:
+                    - button "Schedule Red Forecast COD slip of 42 days. Open" [ref=e524] [cursor=pointer]:
+                      - generic [ref=e525]:
+                        - generic [ref=e526]: Schedule
+                        - generic [ref=e527]: Red
+                      - paragraph [ref=e530]: Forecast COD slip of 42 days.
+                      - generic [ref=e531]: Open
+                    - button "Cost Red Rp45 bn of forecast cost needs shareholder funding approval; management EAC 3.9% above approved CAPEX. Open" [ref=e535] [cursor=pointer]:
+                      - generic [ref=e536]:
+                        - generic [ref=e537]: Cost
+                        - generic [ref=e538]: Red
+                      - paragraph [ref=e541]: Rp45 bn of forecast cost needs shareholder funding approval; management EAC 3.9% above approved CAPEX.
+                      - generic [ref=e542]: Open
+                    - button "Procurement Red Two critical packages late. Open" [ref=e546] [cursor=pointer]:
+                      - generic [ref=e547]:
+                        - generic [ref=e548]: Procurement
+                        - generic [ref=e549]: Red
+                      - paragraph [ref=e552]: Two critical packages late.
+                      - generic [ref=e553]: Open
+                    - button "Commercial Red Formal notice due in six days. Open" [ref=e557] [cursor=pointer]:
+                      - generic [ref=e558]:
+                        - generic [ref=e559]: Commercial
+                        - generic [ref=e560]: Red
+                      - paragraph [ref=e563]: Formal notice due in six days.
+                      - generic [ref=e564]: Open
+                    - button "Physical progress Yellow 39% verified against 46% planned. Open" [ref=e568] [cursor=pointer]:
+                      - generic [ref=e569]:
+                        - generic [ref=e570]: Physical progress
+                        - generic [ref=e571]: Yellow
+                      - paragraph [ref=e574]: 39% verified against 46% planned.
+                      - generic [ref=e575]: Open
+                    - button "Engineering Yellow Eleven overdue technical submittals. Open" [ref=e579] [cursor=pointer]:
+                      - generic [ref=e580]:
+                        - generic [ref=e581]: Engineering
+                        - generic [ref=e582]: Yellow
+                      - paragraph [ref=e585]: Eleven overdue technical submittals.
+                      - generic [ref=e586]: Open
+                    - button "Construction readiness Yellow Access and utility interfaces unresolved. Open" [ref=e590] [cursor=pointer]:
+                      - generic [ref=e591]:
+                        - generic [ref=e592]: Construction readiness
+                        - generic [ref=e593]: Yellow
+                      - paragraph [ref=e596]: Access and utility interfaces unresolved.
+                      - generic [ref=e597]: Open
+                    - button "Waste supply Yellow Regional commitment of 1,000 tonnes a day confirmed, collection fleet plan not yet evidenced. Open" [ref=e601] [cursor=pointer]:
+                      - generic [ref=e602]:
+                        - generic [ref=e603]: Waste supply
+                        - generic [ref=e604]: Yellow
+                      - paragraph [ref=e607]: Regional commitment of 1,000 tonnes a day confirmed, collection fleet plan not yet evidenced.
+                      - generic [ref=e608]: Open
+                    - button "Financing conditions Yellow Two conditions precedent open for the next drawdown. Open" [ref=e612] [cursor=pointer]:
+                      - generic [ref=e613]:
+                        - generic [ref=e614]: Financing conditions
+                        - generic [ref=e615]: Yellow
+                      - paragraph [ref=e618]: Two conditions precedent open for the next drawdown.
+                      - generic [ref=e619]: Open
+                    - button "Permits and stakeholders Yellow One approval at risk of delay. Open" [ref=e623] [cursor=pointer]:
+                      - generic [ref=e624]:
+                        - generic [ref=e625]: Permits and stakeholders
+                        - generic [ref=e626]: Yellow
+                      - paragraph [ref=e629]: One approval at risk of delay.
+                      - generic [ref=e630]: Open
+                    - button "HSE Green No lost-time incident; 94% of actions closed. Open" [ref=e634] [cursor=pointer]:
+                      - generic [ref=e635]:
+                        - generic [ref=e636]: HSE
+                        - generic [ref=e637]: Green
+                      - paragraph [ref=e641]: No lost-time incident; 94% of actions closed.
+                      - generic [ref=e642]: Open
+                    - button "Quality and commissioning Green Inspection and test plan completion aligns with verified work. Open" [ref=e646] [cursor=pointer]:
+                      - generic [ref=e647]:
+                        - generic [ref=e648]: Quality and commissioning
+                        - generic [ref=e649]: Green
+                      - paragraph [ref=e653]: Inspection and test plan completion aligns with verified work.
+                      - generic [ref=e654]: Open
+                - generic [ref=e658]:
+                  - generic [ref=e659]:
+                    - heading "ATLAS summary this week" [level=3] [ref=e664]
+                    - generic [ref=e665]:
+                      - paragraph [ref=e666]: Physical progress improved by 1.8% this week but remains 7.0 points behind plan. The primary completion risk has shifted from structural steel productivity to the late waste-receiving and boiler island package. ATLAS recommends executive intervention this week to secure a recovery plan, evaluate alternative logistics and protect contractual entitlement. Two of the six recommended actions, both labelled Joint, require a project company board decision.
+                      - generic [ref=e667]: 2 of 6 recommended actions are Joint and need a project company board decision.
+                    - generic [ref=e674]:
+                      - button "3 sources" [ref=e675] [cursor=pointer]
+                      - generic [ref=e679]: 30 Jun 2027 08:30
+                      - generic [ref=e683]: Confidence Medium
+                      - generic [ref=e684]: Advisory
+                  - generic [ref=e685]:
+                    - heading "Why this matters" [level=3] [ref=e686]
+                    - paragraph [ref=e687]: The primary completion risk is no longer civil productivity. The main exposure is the late waste-receiving and boiler island package, compounded by an unresolved technical interface and an unvalidated recovery programme. Without intervention this week, COD exposure is likely to increase from 42 to 64 days, which moves the overall status from Yellow to Red. This is an advisory forecast based on the assumptions listed on screen.
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=e688] [cursor=pointer]':
+            - generic [ref=e692]: Action register
+            - generic [ref=e693]:
+              - generic [ref=e694]: 6 open
+              - generic [ref=e695]:
+                - generic [ref=e698]: "2"
+                - text: overdue
+              - generic [ref=e699]: 4 due this week
+            - generic [ref=e700]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=e701]: "0"

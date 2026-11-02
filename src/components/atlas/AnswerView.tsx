@@ -96,7 +96,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
     <div className="space-y-5">
       {(a.wave !== 'W1' || a.label) && (
         <div className="flex flex-wrap gap-1.5">
-          {a.wave !== 'W1' && <Flag tone="dashed">Target state ({a.wave}): needs agreed partner data</Flag>}
+          {a.wave !== 'W1' && <Flag tone="dashed">Uses connected partner data</Flag>}
           {a.label && <Flag tone="info" icon={<Sparkles className="size-3.5" />}>{a.label}</Flag>}
         </div>
       )}
