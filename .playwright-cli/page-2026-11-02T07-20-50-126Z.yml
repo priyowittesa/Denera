@@ -1,0 +1,263 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e5]:
+        - generic [ref=f1e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=f1e11] [cursor=pointer]
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: Your tenant
+          - generic [ref=f1e24]: Denera
+          - generic [ref=f1e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]: Leading use cases
+            - list [ref=f1e29]:
+              - listitem [ref=f1e30]:
+                - link "Portfolio 1" [ref=f1e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=f1e37]: Portfolio
+                  - generic [ref=f1e38]: "1"
+              - listitem [ref=f1e39]:
+                - link "Cockpit 8" [ref=f1e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=f1e44]: Cockpit
+                  - generic [ref=f1e45]: "8"
+              - listitem [ref=f1e46]:
+                - link "Progress and S-curve 9" [ref=f1e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=f1e51]: Progress and S-curve
+                  - generic [ref=f1e52]: "9"
+              - listitem [ref=f1e53]:
+                - link "Critical path 10" [ref=f1e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=f1e59]: Critical path
+                  - generic [ref=f1e60]: "10"
+              - listitem [ref=f1e61]:
+                - link "Procurement 11" [ref=f1e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=f1e67]: Procurement
+                  - generic [ref=f1e68]: "11"
+              - listitem [ref=f1e69]:
+                - link "Cost and investment 12" [ref=f1e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=f1e74]: Cost and investment
+                  - generic [ref=f1e75]: "12"
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Enabling, Wave 1
+            - list [ref=f1e78]:
+              - listitem [ref=f1e79]:
+                - link "Phase II gates 2" [ref=f1e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=f1e84]: Phase II gates
+                  - generic [ref=f1e85]: "2"
+              - listitem [ref=f1e86]:
+                - link "Notices and obligations 3" [ref=f1e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=f1e92]: Notices and obligations
+                  - generic [ref=f1e93]: "3"
+              - listitem [ref=f1e94]:
+                - link "Partner data and rights 4" [ref=f1e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=f1e99]: Partner data and rights
+                  - generic [ref=f1e100]: "4"
+              - listitem [ref=f1e101]:
+                - link "Meetings and actions 5" [ref=f1e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=f1e107]: Meetings and actions
+                  - generic [ref=f1e108]: "5"
+              - listitem [ref=f1e109]:
+                - link "Ask ATLAS 6" [ref=f1e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=f1e113]: Ask ATLAS
+                  - generic [ref=f1e114]: "6"
+              - listitem [ref=f1e115]:
+                - link "Governance packs 7" [ref=f1e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=f1e121]: Governance packs
+                  - generic [ref=f1e122]: "7"
+          - generic [ref=f1e123]:
+            - generic [ref=f1e124]: Decisions and platform
+            - list [ref=f1e125]:
+              - listitem [ref=f1e126]:
+                - link "Decision room 13" [ref=f1e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=f1e132]: Decision room
+                  - generic [ref=f1e133]: "13"
+              - listitem [ref=f1e134]:
+                - link "Orchestration Console 14" [ref=f1e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=f1e140]: Orchestration Console
+                  - generic [ref=f1e141]: "14"
+        - generic [ref=f1e143]:
+          - generic [ref=f1e144]:
+            - generic [ref=f1e145]: Synthetic demo data
+            - generic [ref=f1e146]: 30 Jun 2027
+          - paragraph [ref=f1e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=f1e148]:
+            - button "Definitions" [ref=f1e149] [cursor=pointer]
+            - button "Reset demo" [ref=f1e152] [cursor=pointer]
+      - generic [ref=f1e156]:
+        - banner [ref=f1e157]:
+          - navigation "Breadcrumb" [ref=f1e158]:
+            - generic [ref=f1e159]: Denera
+            - generic [ref=f1e162]: Enabling, Wave 1
+            - generic [ref=f1e165]: Weekly PMO, Committee, Sponsor and Lender Pack
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - text: Data date
+              - generic [ref=f1e169]: 30 Jun 2027
+              - generic [ref=f1e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=f1e171] [cursor=pointer]
+            - button "Audit log" [ref=f1e176] [cursor=pointer]
+            - button "Switch role" [ref=f1e182] [cursor=pointer]:
+              - generic [ref=f1e183]: CE
+              - generic [ref=f1e184]:
+                - generic [ref=f1e185]: Denera CEO
+                - generic [ref=f1e186]: Shareholder executive
+        - main [ref=f1e189]:
+          - generic [ref=f1e4598]:
+            - generic [ref=f1e4599]:
+              - generic [ref=f1e4600]:
+                - generic [ref=f1e4601]: UC04
+                - generic [aria-hidden] [ref=f1e4602]: /
+                - generic [ref=f1e4603]: PSEL Cakrawala Raya
+              - generic [ref=f1e4604]:
+                - generic [ref=f1e4605]: W1
+                - generic [ref=f1e4606]: Tier 1
+                - button "Data needed" [ref=f1e4607] [cursor=pointer]
+                - button "Confidence 91%" [ref=f1e4612] [cursor=pointer]:
+                  - text: Confidence
+                  - generic [ref=f1e4613]: 91%
+            - generic [ref=f1e4615]:
+              - heading "The weekly pack for PSEL Cakrawala Raya is assembled and waiting for reviewer approval." [level=1] [ref=f1e4616]
+              - generic [ref=f1e4617]: Draft
+              - generic [ref=f1e4621]:
+                - generic [ref=f1e4622]:
+                  - button "Export PDF" [disabled]
+                - generic [ref=f1e4623]:
+                  - button "Export PowerPoint" [disabled]
+            - generic [ref=f1e4625]:
+              - generic [ref=f1e4626]:
+                - generic [ref=f1e4627]:
+                  - radiogroup "Pack version" [ref=f1e4628]:
+                    - radio "PMO" [checked] [ref=f1e4629] [cursor=pointer]
+                    - radio "Investment Committee" [ref=f1e4630] [cursor=pointer]
+                    - radio "Danantara sponsor" [ref=f1e4631] [cursor=pointer]
+                    - radio "Lender" [ref=f1e4632] [cursor=pointer]
+                  - button "Ask ATLAS to simplify the narrative" [ref=f1e4633] [cursor=pointer]
+                - article [ref=f1e4637]:
+                  - generic [ref=f1e4638]:
+                    - generic [ref=f1e4639]:
+                      - generic [ref=f1e4640]: Weekly pack · week ending 30 Jun 2027 · Confidential
+                      - heading "PSEL Cakrawala Raya" [level=2] [ref=f1e4641]
+                    - generic [ref=f1e4642]: AI draft
+                  - list [ref=f1e4646]:
+                    - listitem [ref=f1e4647]:
+                      - generic [ref=f1e4648]:
+                        - heading "Executive summary" [level=3] [ref=f1e4649]
+                        - paragraph [ref=f1e4650]: The primary completion risk is no longer civil productivity. The main exposure is the late waste-receiving and boiler island package, compounded by an unresolved technical interface and an unvalidated recovery programme. Without intervention this week, COD exposure is likely to increase from 42 to 64 days, which moves the overall status from Yellow to Red. This is an advisory forecast based on the assumptions listed on screen.
+                    - listitem [ref=f1e4651]:
+                      - generic [ref=f1e4652]:
+                        - heading "Change since last week" [level=3] [ref=f1e4653]
+                        - paragraph [ref=f1e4654]: Verified progress improved by 1.8% this week to 39%, 7.0 points behind plan.
+                      - generic [ref=f1e4655]: +1.8%
+                    - listitem [ref=f1e4656]:
+                      - generic [ref=f1e4657]:
+                        - heading "Overall project health and the rule applied" [level=3] [ref=f1e4658]
+                        - paragraph [ref=f1e4659]: "Yellow with escalation: four Red dimensions; exposure 42 days, at or below the 60-day line."
+                      - generic [ref=f1e4660]: Yellow, escalation
+                    - listitem [ref=f1e4661]:
+                      - generic [ref=f1e4662]:
+                        - heading "S-curve and earned value movement" [level=3] [ref=f1e4663]
+                        - paragraph [ref=f1e4664]: Planned 46%, reported 42%, verified 39%. SPI 0.85, CPI 0.96.
+                        - 'generic "Mini S-curve: planned 46%, reported 42%, verified 39%" [ref=f1e4665]':
+                          - application [ref=f1e4668]:
+                            - generic [ref=f1e4680]:
+                              - generic [ref=f1e4681]: "15"
+                              - generic [ref=f1e4683]: "30"
+                              - generic [ref=f1e4685]: "50"
+                    - listitem [ref=f1e4687]:
+                      - generic [ref=f1e4688]:
+                        - heading "Critical-path movement" [level=3] [ref=f1e4689]
+                        - paragraph [ref=f1e4690]: COD exposure 42 days; 64 without intervention.
+                      - generic [ref=f1e4691]: 42 days
+                    - listitem [ref=f1e4692]:
+                      - generic [ref=f1e4693]:
+                        - heading "CAPEX and cashflow outlook" [level=3] [ref=f1e4694]
+                        - paragraph [ref=f1e4695]: Management EAC Rp2,910 bn; range Rp2,846 to 2,918 bn. Rp45 bn needs shareholder funding approval.
+                      - generic [ref=f1e4696]: Rp2,910 bn
+                    - listitem [ref=f1e4697]:
+                      - generic [ref=f1e4698]:
+                        - heading "Long-lead procurement status" [level=3] [ref=f1e4699]
+                        - paragraph [ref=f1e4700]: Boiler island six weeks late; flue-gas treatment 17 days.
+                      - generic [ref=f1e4701]: −42 days float
+                    - listitem [ref=f1e4702]:
+                      - generic [ref=f1e4703]:
+                        - heading "Engineering and design-approval status" [level=3] [ref=f1e4704]
+                        - paragraph [ref=f1e4705]: Eleven overdue technical submittals.
+                      - generic [ref=f1e4706]: 11 overdue
+                    - listitem [ref=f1e4707]:
+                      - generic [ref=f1e4708]:
+                        - heading "Waste supply status" [level=3] [ref=f1e4709]
+                        - paragraph [ref=f1e4710]: 1,000 tonnes a day confirmed; collection fleet plan not evidenced.
+                      - generic [ref=f1e4711]: 1,000 t/day
+                    - listitem [ref=f1e4712]:
+                      - generic [ref=f1e4713]:
+                        - heading "Financing conditions and drawdown readiness" [level=3] [ref=f1e4714]
+                        - paragraph [ref=f1e4715]: "Two conditions precedent open for the next drawdown: CP-1 insurance certificates, CP-2 independent engineer certificate."
+                      - generic [ref=f1e4716]: 2 CPs open
+                    - listitem [ref=f1e4717]:
+                      - generic [ref=f1e4718]:
+                        - heading "HSE and quality status" [level=3] [ref=f1e4719]
+                        - paragraph [ref=f1e4720]: No lost-time incident; 94% of actions closed.
+                      - generic [ref=f1e4721]: 94%
+                    - listitem [ref=f1e4722]:
+                      - generic [ref=f1e4723]:
+                        - heading "Commercial notices and claims exposure" [level=3] [ref=f1e4724]
+                        - paragraph [ref=f1e4725]: EPC notice due Tuesday 6 July 2027, confirmed.
+                      - generic [ref=f1e4726]: 6 days
+                    - listitem [ref=f1e4727]:
+                      - generic [ref=f1e4728]:
+                        - heading "Top risks and mitigations" [level=3] [ref=f1e4729]
+                        - paragraph [ref=f1e4730]: "Two major risks without an effective owner: recovery programme credibility and grid connection date."
+                      - generic [ref=f1e4731]: 2 unowned
+                    - listitem [ref=f1e4732]:
+                      - generic [ref=f1e4733]:
+                        - heading "Decisions required, with authority labels" [level=3] [ref=f1e4734]
+                        - paragraph [ref=f1e4735]: "Boiler Island Recovery Strategy: six actions, two Joint for the project company board."
+                      - generic [ref=f1e4736]: 1 decision
+                    - listitem [ref=f1e4737]:
+                      - generic [ref=f1e4738]:
+                        - heading "Action-owner tracker" [level=3] [ref=f1e4739]
+                        - paragraph [ref=f1e4740]: Four steering actions in hand; two earlier actions overdue.
+                      - generic [ref=f1e4741]: 6 open
+              - complementary [ref=f1e4742]:
+                - generic [ref=f1e4743]:
+                  - heading "Release" [level=3] [ref=f1e4744]
+                  - list [ref=f1e4745]:
+                    - listitem [ref=f1e4746]:
+                      - generic [ref=f1e4747]: "1"
+                      - generic [ref=f1e4748]: Draft
+                    - listitem [ref=f1e4749]:
+                      - generic [ref=f1e4750]: "2"
+                      - generic [ref=f1e4751]: In review
+                    - listitem [ref=f1e4752]:
+                      - generic [ref=f1e4753]: "3"
+                      - generic [ref=f1e4754]: Approved by named reviewer
+                  - button "Send to reviewer (PMO lead)" [ref=f1e4756] [cursor=pointer]
+                  - paragraph [ref=f1e4760]: Numbers come only from the governed layer. A named reviewer approves release.
+                - generic [ref=f1e4761]:
+                  - heading "Headline status" [level=3] [ref=f1e4762]
+                  - generic [ref=f1e4763]: Yellow, escalation required
+                  - paragraph [ref=f1e4767]: Same rating as the Cockpit; computed, never typed.
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=f1e479] [cursor=pointer]':
+            - generic [ref=f1e483]: Action register
+            - generic [ref=f1e484]:
+              - generic [ref=f1e485]: 6 open
+              - generic [ref=f1e486]:
+                - generic [ref=f1e489]: "2"
+                - text: overdue
+              - generic [ref=f1e490]: 4 due this week
+            - generic [ref=f1e491]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=f1e492]: "0"

@@ -51,9 +51,9 @@ export function ScreenFrame({
           </div>
         </div>
       )}
-      <div className={cn('mt-5 grid gap-x-12 gap-y-6', answer && 'xl:grid-cols-[minmax(0,1fr)_300px] xl:items-end')}>
+      <div className={cn('mt-5 grid gap-x-12 gap-y-6', answer && 'xl:grid-cols-[minmax(0,1fr)_280px] xl:items-start')}>
         <div className="min-w-0">
-          <h1 className="display max-w-[30em] text-[clamp(23px,2.3vw,33px)] leading-[1.16] text-ink">{headline}</h1>
+          <h1 className="display max-w-[46em] text-[clamp(20px,1.7vw,24px)] leading-[1.3] text-ink">{headline}</h1>
           {(status || sub) && (
             <div className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-2">
               {status && <StatusChip h={status} label={statusLabel} size="md" />}
@@ -73,8 +73,8 @@ function AnswerFigure({ label, value, foot, tone = 'ink' }: Answer) {
   return (
     <div className="animate-rise border-t border-line pt-4 xl:border-l xl:border-t-0 xl:pl-7 xl:pt-0">
       <div className="eyebrow">{label}</div>
-      <div className={cn('tnum mt-1.5 text-[44px] font-semibold leading-none tracking-[-0.035em]', tone === 'bad' ? 'text-bad' : tone === 'warn' ? 'text-warn' : tone === 'ok' ? 'text-ok' : 'text-ink')}>{value}</div>
-      {foot && <div className="mt-2.5 text-[13px] leading-snug text-ink-2">{foot}</div>}
+      <div className={cn('tnum mt-1 text-[28px] font-semibold leading-none tracking-[-0.025em]', tone === 'bad' ? 'text-bad' : tone === 'warn' ? 'text-warn' : tone === 'ok' ? 'text-ok' : 'text-ink')}>{value}</div>
+      {foot && <div className="mt-2 text-[13px] leading-snug text-ink-3">{foot}</div>}
     </div>
   )
 }
@@ -111,8 +111,8 @@ export function AtlasCard({ title = 'ATLAS insight', children, sources, classifi
   return (
     <section className={cn('rounded-xl border p-5', tone === 'violet' ? 'border-atlas-100 bg-atlas-50/70' : 'border-line bg-surface', className)}>
       <div className="flex items-center gap-2">
-        <span className="grid size-6 place-items-center rounded-full bg-atlas-700 text-white"><Sparkles className="size-3.5" /></span>
-        <h3 className="text-[13px] font-semibold text-ink">{title}</h3>
+        <Sparkles className="size-4 text-atlas-600" />
+        <h3 className="text-[14px] font-semibold text-ink">{title}</h3>
       </div>
       <div className="mt-3 text-[14px] leading-[1.6] text-ink-2">{children}</div>
       <Provenance className="mt-4" sources={sources} classification={classification} confidence={confidence} />
@@ -123,9 +123,9 @@ export function AtlasCard({ title = 'ATLAS insight', children, sources, classifi
 export function Metric({ label, value, note, tone, tip, className }: { label: ReactNode; value: ReactNode; note?: ReactNode; tone?: 'bad' | 'warn' | 'ok'; tip?: ReactNode; className?: string }) {
   return (
     <div className={cn('min-w-0', className)}>
-      <div className="flex items-center gap-1 text-[12.5px] font-medium text-ink-3">{label}{tip}</div>
+      <div className="flex items-center gap-1 text-[13px] font-medium text-ink-3">{label}{tip}</div>
       <div className={cn('tnum mt-1 text-[22px] font-semibold leading-7 tracking-[-0.01em] text-ink', tone === 'bad' && 'text-bad', tone === 'warn' && 'text-warn', tone === 'ok' && 'text-ok')}>{value}</div>
-      {note && <div className="mt-0.5 text-[12.5px] leading-snug text-ink-3">{note}</div>}
+      {note && <div className="mt-0.5 text-[13px] leading-snug text-ink-3">{note}</div>}
     </div>
   )
 }
@@ -145,8 +145,8 @@ export function ImpactStrip({ delivery, capex, commercial }: { delivery: [string
       {[['Delivery', delivery], ['CAPEX', capex], ['Commercial', commercial]].map(([l, [n, p]]) => (
         <div key={l as string} className="bg-surface px-5 py-3.5">
           <div className="text-[12px] font-medium text-ink-3">{l as string} impact</div>
-          <div className="tnum mt-0.5 text-[17px] font-semibold text-ink">{n}</div>
-          <div className="text-[12.5px] text-ink-3">{p}</div>
+          <div className="tnum mt-0.5 text-[18px] font-semibold text-ink">{n}</div>
+          <div className="text-[13px] text-ink-3">{p}</div>
         </div>
       ))}
     </div>
@@ -160,7 +160,7 @@ export function EvidenceStrip({ items }: { items: { title: string; doc: string; 
       {items.map((e) => (
         <button key={e.title} onClick={() => open(e.doc)} className="press group rounded-xl border border-line bg-surface p-4 text-left hover:border-atlas-300 hover:bg-atlas-50/40">
           <div className="flex items-center gap-1.5 text-[12px] font-medium text-atlas-700"><FileText className="size-3.5" />Evidence</div>
-          <div className="mt-1.5 text-[13.5px] font-medium leading-snug text-ink">{e.title}</div>
+          <div className="mt-1.5 text-[14px] font-medium leading-snug text-ink">{e.title}</div>
           {e.meta && <div className="mt-1 text-[12px] text-ink-3">{e.meta}</div>}
         </button>
       ))}
@@ -171,7 +171,7 @@ export function EvidenceStrip({ items }: { items: { title: string; doc: string; 
 export function SectionTitle({ children, aside, className }: { children: ReactNode; aside?: ReactNode; className?: string }) {
   return (
     <div className={cn('mb-3 flex flex-wrap items-end justify-between gap-2', className)}>
-      <h2 className="text-[17px] font-semibold tracking-[-0.012em] text-ink">{children}</h2>
+      <h2 className="text-[18px] font-semibold tracking-[-0.012em] text-ink">{children}</h2>
       {aside}
     </div>
   )

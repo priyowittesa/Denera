@@ -47,7 +47,7 @@ export function S11Procurement() {
           <h2 className="text-[15px] font-semibold text-ink">Long-lead packages</h2>
           <div className="flex flex-wrap items-center gap-2">
             {filter ? (
-              <button onClick={() => setFilter(false)} className="press inline-flex items-center gap-1.5 rounded-full bg-atlas-700 px-3 py-1.5 text-[12.5px] font-medium text-white">
+              <button onClick={() => setFilter(false)} className="press inline-flex items-center gap-1.5 rounded-full bg-atlas-700 px-3 py-1.5 text-[13px] font-medium text-white">
                 Can delay COD by more than 14 days<X className="size-3.5" />
               </button>
             ) : (
@@ -72,11 +72,11 @@ export function S11Procurement() {
                   <div><dt className="text-[12px] text-ink-3">Schedule effect</dt><dd className={cn('font-semibold', late ? 'text-bad' : 'text-ink')}>{p.effect}</dd></div>
                   <div><dt className="text-[12px] text-ink-3">Float to need date</dt><dd className={cn('font-semibold', p.float.startsWith('Minus') ? 'text-bad' : p.float === 'Unknown' ? 'text-ink-3' : 'text-ink')}>{p.float}</dd></div>
                   <div><dt className="text-[12px] text-ink-3">Required on site</dt><dd className="text-ink">{p.required}</dd></div>
-                  <div><dt className="text-[12px] text-ink-3">Forecast</dt><dd className="flex flex-wrap items-center gap-1.5 text-ink">{p.forecast}<span className={cn('inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[11px] font-medium', B.c)}><B.I className="size-3" />{p.basis}</span></dd></div>
+                  <div><dt className="text-[12px] text-ink-3">Forecast</dt><dd className="flex flex-wrap items-center gap-1.5 text-ink">{p.forecast}<span className={cn('inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[12px] font-medium', B.c)}><B.I className="size-3" />{p.basis}</span></dd></div>
                 </dl>
                 {p.authority ? (
                   <div className="mt-3 flex flex-wrap items-center gap-2"><AuthorityLabel a={p.authority} /><ActionRoute authority={p.authority} verb={p.action} onAct={() => act(p)} className="h-auto min-h-9 whitespace-normal py-1.5 text-left" /></div>
-                ) : <p className="mt-3 text-[12.5px] text-ink-3">{p.action}</p>}
+                ) : <p className="mt-3 text-[13px] text-ink-3">{p.action}</p>}
               </li>
             )
           })}
@@ -107,7 +107,7 @@ export function S11Procurement() {
                     <td className="whitespace-nowrap px-3 py-3">{p.required}</td>
                     <td className={cn('whitespace-nowrap px-3 py-3', p.basis === 'Not available' && 'text-ink-3')}>{p.forecast}</td>
                     <td className="px-3 py-3">
-                      <Tip content={B.tip}><span tabIndex={0} className={cn('inline-flex items-center gap-1 whitespace-nowrap rounded-sm px-1.5 py-0.5 text-[11.5px] font-medium', B.c)}><B.I className="size-3" />{p.basis}</span></Tip>
+                      <Tip content={B.tip}><span tabIndex={0} className={cn('inline-flex items-center gap-1 whitespace-nowrap rounded-sm px-1.5 py-0.5 text-[12px] font-medium', B.c)}><B.I className="size-3" />{p.basis}</span></Tip>
                     </td>
                     <td className={cn('px-3 py-3 text-right', p.effectDays && p.effectDays > 14 && 'font-semibold text-bad')}>{p.effect}</td>
                     <td className={cn('whitespace-nowrap px-3 py-3 text-right font-medium', p.float.startsWith('Minus') && 'text-bad', p.float === 'Unknown' && 'text-ink-3')}>{p.float}</td>

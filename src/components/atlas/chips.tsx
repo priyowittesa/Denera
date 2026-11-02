@@ -5,7 +5,7 @@ import type { Authority, Health, Wave } from '../../data/types'
 import { Tip } from '../ui/tooltip'
 import { Pop } from '../ui/popover'
 
-const chip = 'inline-flex items-center gap-1 whitespace-nowrap rounded-sm px-1.5 py-0.5 text-[11.5px] font-medium leading-4'
+const chip = 'inline-flex items-center gap-1 whitespace-nowrap rounded-sm px-1.5 py-0.5 text-[12px] font-medium leading-4'
 
 const WAVE_TIP: Record<Wave, string> = {
   W1: 'Wave 1: runs on documents and checklists available today.',
@@ -149,7 +149,7 @@ export function ConfidenceBadge({ value = 91 }: { value?: number }) {
           <div className="mt-1 h-1.5 rounded-full bg-sunken"><div className="h-full rounded-full bg-atlas-600" style={{ width: `${v}%` }} /></div>
         </div>
       ))}
-      <p className="mt-3 text-[11.5px] text-ink-3">Weights are illustrative.</p>
+      <p className="mt-3 text-[12px] text-ink-3">Weights are illustrative.</p>
     </Pop>
   )
 }

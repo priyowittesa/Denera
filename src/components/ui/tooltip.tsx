@@ -16,7 +16,7 @@ export function Tip({ content, children, side = 'top', className }: { content: R
           sideOffset={6}
           collisionPadding={12}
           className={cn(
-            'z-[80] max-w-[300px] origin-[var(--radix-tooltip-content-transform-origin)] animate-pop rounded-md bg-atlas-950 px-3 py-2 text-[12.5px] leading-snug text-white',
+            'z-[80] max-w-[300px] origin-[var(--radix-tooltip-content-transform-origin)] animate-pop rounded-md bg-atlas-950 px-3 py-2 text-[13px] leading-snug text-white',
             className,
           )}
         >

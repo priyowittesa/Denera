@@ -78,9 +78,9 @@ export function S09Progress() {
                 items={SCENARIOS.map((s) => ({ value: s.id, label: <span>{s.short} <span className="tnum text-ink-4">+{s.days}</span></span> }))}
               />
               <ScenarioCard id={sc.id} />
-              <ol className="mt-4 grid gap-x-6 gap-y-1.5 text-[12.5px] text-ink-3 md:grid-cols-2">
+              <ol className="mt-4 grid gap-x-6 gap-y-1.5 text-[13px] text-ink-3 md:grid-cols-2">
                 {EVENT_PINS.map((p) => (
-                  <li key={p.n} className="flex gap-2"><span className="tnum grid size-[18px] shrink-0 place-items-center rounded-full bg-ink text-[10.5px] font-semibold text-white">{p.n}</span>{p.text}</li>
+                  <li key={p.n} className="flex gap-2"><span className="tnum grid size-[18px] shrink-0 place-items-center rounded-full bg-ink text-[12px] font-semibold text-white">{p.n}</span>{p.text}</li>
                 ))}
               </ol>
             </div>
@@ -101,7 +101,7 @@ export function S09Progress() {
           </AtlasCard>
           <Card className="p-5">
             <h3 className="text-[13px] font-semibold text-ink">Reported and verified, always apart</h3>
-            <p className="mt-1 text-[12.5px] leading-relaxed text-ink-3">Reported is what the contractor claims. Verified is what ATLAS has checked against quantities and inspection records. A gap of 5 points or more carries a flag.</p>
+            <p className="mt-1 text-[13px] leading-relaxed text-ink-3">Reported is what the contractor claims. Verified is what ATLAS has checked against quantities and inspection records. A gap of 5 points or more carries a flag.</p>
             <div className="mt-3 flex items-end gap-6">
               <div><div className="text-[12px] text-ink-3">Reported</div><div className="tnum text-[22px] font-semibold text-ink-3">42%</div></div>
               <div><div className="text-[12px] text-ink-3">Verified</div><div className="tnum text-[22px] font-semibold text-series-verified">39%</div></div>
@@ -196,7 +196,7 @@ function ProgressChart({ scenario }: { scenario: ScenarioId }) {
         <LegendItem color="var(--color-series-reported)" weight={1.5} label="Reported" />
         <LegendItem color="var(--color-series-verified)" weight={3} label="Verified" />
         <LegendItem color={sc.color} dash={scenario === 'current' ? '2 5' : '7 5'} weight={2.5} label={`Forecast, ${sc.short.toLowerCase()} (advisory)`} />
-        <span className="inline-flex items-center gap-2 text-[12.5px] text-ink-2"><span className="h-2.5 w-5 rounded-sm bg-series-envelope" />Range from best recovery to no intervention</span>
+        <span className="inline-flex items-center gap-2 text-[13px] text-ink-2"><span className="h-2.5 w-5 rounded-sm bg-series-envelope" />Range from best recovery to no intervention</span>
       </div>
     </div>
   )
@@ -210,7 +210,7 @@ function ScenarioCard({ id }: { id: ScenarioId }) {
       <Metric label="Forecast COD" value={s.cod} note={`${s.days} days late`} tone={s.days > 60 ? 'bad' : undefined} />
       <Metric label="Incremental cost" value={s.incremental === null ? 'n/a' : `Rp${s.incremental} bn`} />
       <Metric label="Contingency remaining" value={`Rp${s.remaining} bn`} note={`${s.remainingPct}% of reserve`} tone={s.remaining < 20 ? 'bad' : undefined} />
-      <div><div className="text-[12.5px] font-medium text-ink-3">Overall rating</div><div className="mt-1.5"><StatusChip h={h} label={s.rating === 'Yellow, escalation' ? 'Yellow, escalation' : s.rating} /></div></div>
+      <div><div className="text-[13px] font-medium text-ink-3">Overall rating</div><div className="mt-1.5"><StatusChip h={h} label={s.rating === 'Yellow, escalation' ? 'Yellow, escalation' : s.rating} /></div></div>
     </div>
   )
 }
@@ -227,13 +227,13 @@ function CostChart() {
     <div>
       <div className="h-[380px]" role="img" aria-label="Cost curve. Incurred and committed Rp1,456 bn at the data date; forecast reaches management EAC Rp2,910 bn against approved CAPEX Rp2,800 bn.">
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={data} margin={{ top: 24, right: 24, bottom: 4, left: 8 }}>
+          <ComposedChart data={data} margin={{ top: 24, right: 104, bottom: 4, left: 8 }}>
             <CartesianGrid vertical={false} stroke="var(--color-line-soft)" />
             <XAxis dataKey="x" type="number" scale="time" domain={[START, END]} ticks={TICKS} tickFormatter={fmtMonth} tick={AXIS} axisLine={{ stroke: 'var(--color-line)' }} tickLine={false} />
             <YAxis domain={[0, 3200]} ticks={[0, 800, 1600, 2400, 3200]} tickFormatter={(v) => `${v.toLocaleString('en-US')}`} tick={AXIS} axisLine={false} tickLine={false} width={52} label={{ value: 'Rp bn', angle: -90, position: 'insideLeft', fill: 'var(--color-ink-3)', fontSize: 11 }} />
-            <ReferenceArea x1={t('2028-08-11')} x2={END} y1={2846} y2={2918} fill="var(--color-warn-bg)" stroke="var(--color-warn)" strokeOpacity={0.4} label={{ value: 'EAC range 2,846 to 2,918', position: 'insideTopRight', fontSize: 10.5, fill: 'var(--color-warn)' }} />
-            <ReferenceLine y={2800} stroke="var(--color-ink)" label={{ value: 'Approved CAPEX Rp2,800 bn', position: 'insideBottomLeft', fontSize: 11.5, fill: 'var(--color-ink)', fontWeight: 600 }} />
-            <ReferenceLine y={2976} stroke="var(--color-ink-3)" strokeDasharray="2 4" label={{ value: 'CAPEX plus contingency reserve Rp2,976 bn (illustrative)', position: 'insideTopLeft', fontSize: 11, fill: 'var(--color-ink-3)' }} />
+            <ReferenceArea x1={t('2028-08-11')} x2={END} y1={2846} y2={2918} fill="var(--color-warn-bg)" stroke="var(--color-warn)" strokeOpacity={0.4} />
+            <ReferenceLine y={2800} stroke="var(--color-ink)" label={{ value: 'CAPEX 2,800', position: 'right', offset: 8, dy: 9, fontSize: 11.5, fill: 'var(--color-ink)', fontWeight: 600 }} />
+            <ReferenceLine y={2976} stroke="var(--color-ink-3)" strokeDasharray="2 4" label={{ value: 'Reserve 2,976', position: 'right', offset: 8, dy: -8, fontSize: 11, fill: 'var(--color-ink-3)' }} />
             <ReferenceLine x={DD} stroke="var(--color-ink)" strokeWidth={1.25} label={{ value: 'Today', position: 'top', fill: 'var(--color-ink)', fontSize: 11.5, fontWeight: 600 }} />
             <Line dataKey="plan" stroke="var(--color-series-planned)" strokeDasharray="6 5" strokeWidth={2} dot={false} isAnimationActive={false} connectNulls />
             <Line dataKey="cash" stroke="var(--color-info)" strokeWidth={1.5} dot={false} isAnimationActive={false} />
@@ -259,6 +259,9 @@ function CostChart() {
         <LegendItem color="var(--color-warn)" label="Actual plus open commitments" />
         <LegendItem color="var(--color-info)" weight={1.5} label="Cash paid" />
         <LegendItem color="var(--color-series-forecast)" dash="2 5" weight={2.5} label="Forecast cost (advisory)" />
+        <LegendItem color="var(--color-ink)" weight={1} label="Approved CAPEX Rp2,800 bn" />
+        <LegendItem color="var(--color-ink-3)" dash="2 4" weight={1} label="CAPEX plus contingency reserve Rp2,976 bn (illustrative)" />
+        <span className="inline-flex items-center gap-2 text-[13px] text-ink-2"><span className="h-2.5 w-5 rounded-[2px] border border-warn/40 bg-warn-bg" />Management EAC range Rp2,846 to 2,918 bn</span>
       </div>
     </div>
   )
@@ -296,7 +299,7 @@ function EvChart({ analyst }: { analyst: boolean }) {
         <LegendItem color="var(--color-series-planned)" dash="6 5" label={L.pv} />
         <LegendItem color="var(--color-series-verified)" weight={3} label={L.ev} />
         <LegendItem color="var(--color-warn)" label={L.ac} />
-        <span className="text-[12.5px] text-ink-3">Management EAC Rp2,910 bn at forecast COD, 11 Aug 2028</span>
+        <span className="text-[13px] text-ink-3">Management EAC Rp2,910 bn at forecast COD, 11 Aug 2028</span>
         {analyst && (
           <span className="ml-auto flex gap-5">
             <Gauge label="SPI" v={0.85} />
@@ -310,7 +313,7 @@ function EvChart({ analyst }: { analyst: boolean }) {
 
 function Gauge({ label, v }: { label: string; v: number }) {
   return (
-    <span className="inline-flex items-center gap-2 text-[12.5px]">
+    <span className="inline-flex items-center gap-2 text-[13px]">
       <span className="font-medium text-ink-2">{label}</span>
       <span className="relative h-1.5 w-20 rounded-full bg-sunken">
         <span className="absolute inset-y-0 left-0 rounded-full bg-warn" style={{ width: `${v * 100}%` }} />
@@ -329,7 +332,7 @@ function GapBar() {
         <div className="absolute inset-y-0 bg-atlas-300" style={{ left: '39%', width: `${13 * 0.71}%` }} />
         <div className="absolute inset-y-0 bg-bad" style={{ left: `${39 + 13 * 0.71}%`, width: `${13 * 0.29}%` }} />
       </div>
-      <div className="mt-1.5 flex justify-between text-[11.5px] text-ink-3">
+      <div className="mt-1.5 flex justify-between text-[12px] text-ink-3">
         <span>Verified 39%</span>
         <span className="inline-flex items-center gap-1"><span className="size-2 rounded-[2px] bg-bad" />Rp106 bn at risk</span>
         <span>Committed 52%</span>
@@ -376,12 +379,12 @@ function WbsList() {
         <li key={w.name}>
           {w.link ? (
             <button onClick={() => nav(w.link!)} className="press group flex w-full items-center justify-between gap-3 rounded-md px-3 py-2.5 text-left hover:bg-atlas-50">
-              <span className="flex items-center gap-2 text-[13.5px] font-medium text-ink"><Flag className="size-3.5 text-bad" />{w.name}</span>
-              <span className="flex items-center gap-3"><PlainStatus s={w.status} /><span className="text-[12.5px] text-atlas-700 group-hover:underline">Open root cause</span><ArrowRight className="size-4 text-atlas-700" /></span>
+              <span className="flex items-center gap-2 text-[14px] font-medium text-ink"><Flag className="size-3.5 text-bad" />{w.name}</span>
+              <span className="flex items-center gap-3"><PlainStatus s={w.status} /><span className="text-[13px] text-atlas-700 group-hover:underline">Open root cause</span><ArrowRight className="size-4 text-atlas-700" /></span>
             </button>
           ) : (
             <div className="flex items-center justify-between gap-3 px-3 py-2.5">
-              <span className="text-[13.5px] text-ink">{w.name}</span>
+              <span className="text-[14px] text-ink">{w.name}</span>
               <PlainStatus s={w.status} />
             </div>
           )}
@@ -397,7 +400,7 @@ const td = 'px-3 py-2.5 text-[13px]'
 function Flagged({ r, v }: { r: number; v: number }) {
   const flag = r - v >= 5
   return flag ? (
-    <span className="inline-flex items-center gap-1 rounded-sm bg-bad-bg px-1.5 py-0.5 text-[11.5px] font-medium text-bad"><Flag className="size-3" />{r - v} pt gap</span>
+    <span className="inline-flex items-center gap-1 rounded-sm bg-bad-bg px-1.5 py-0.5 text-[12px] font-medium text-bad"><Flag className="size-3" />{r - v} pt gap</span>
   ) : <span className="text-[12px] text-ink-4">within 5 pts</span>
 }
 

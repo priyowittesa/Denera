@@ -1,0 +1,299 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e5]:
+        - generic [ref=f1e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=f1e11] [cursor=pointer]
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: Your tenant
+          - generic [ref=f1e24]: Denera
+          - generic [ref=f1e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]: Leading use cases
+            - list [ref=f1e29]:
+              - listitem [ref=f1e30]:
+                - link "Portfolio 1" [ref=f1e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=f1e37]: Portfolio
+                  - generic [ref=f1e38]: "1"
+              - listitem [ref=f1e39]:
+                - link "Cockpit 8" [ref=f1e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=f1e44]: Cockpit
+                  - generic [ref=f1e45]: "8"
+              - listitem [ref=f1e46]:
+                - link "Progress and S-curve 9" [ref=f1e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=f1e51]: Progress and S-curve
+                  - generic [ref=f1e52]: "9"
+              - listitem [ref=f1e53]:
+                - link "Critical path 10" [ref=f1e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=f1e59]: Critical path
+                  - generic [ref=f1e60]: "10"
+              - listitem [ref=f1e61]:
+                - link "Procurement 11" [ref=f1e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=f1e67]: Procurement
+                  - generic [ref=f1e68]: "11"
+              - listitem [ref=f1e69]:
+                - link "Cost and investment 12" [ref=f1e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=f1e74]: Cost and investment
+                  - generic [ref=f1e75]: "12"
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Enabling, Wave 1
+            - list [ref=f1e78]:
+              - listitem [ref=f1e79]:
+                - link "Phase II gates 2" [ref=f1e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=f1e84]: Phase II gates
+                  - generic [ref=f1e85]: "2"
+              - listitem [ref=f1e86]:
+                - link "Notices and obligations 3" [ref=f1e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=f1e92]: Notices and obligations
+                  - generic [ref=f1e93]: "3"
+              - listitem [ref=f1e94]:
+                - link "Partner data and rights 4" [ref=f1e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=f1e99]: Partner data and rights
+                  - generic [ref=f1e100]: "4"
+              - listitem [ref=f1e101]:
+                - link "Meetings and actions 5" [ref=f1e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=f1e107]: Meetings and actions
+                  - generic [ref=f1e108]: "5"
+              - listitem [ref=f1e109]:
+                - link "Ask ATLAS 6" [ref=f1e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=f1e113]: Ask ATLAS
+                  - generic [ref=f1e114]: "6"
+              - listitem [ref=f1e115]:
+                - link "Governance packs 7" [ref=f1e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=f1e121]: Governance packs
+                  - generic [ref=f1e122]: "7"
+          - generic [ref=f1e123]:
+            - generic [ref=f1e124]: Decisions and platform
+            - list [ref=f1e125]:
+              - listitem [ref=f1e126]:
+                - link "Decision room 13" [ref=f1e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=f1e132]: Decision room
+                  - generic [ref=f1e133]: "13"
+              - listitem [ref=f1e134]:
+                - link "Orchestration Console 14" [ref=f1e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=f1e140]: Orchestration Console
+                  - generic [ref=f1e141]: "14"
+        - generic [ref=f1e143]:
+          - generic [ref=f1e144]:
+            - generic [ref=f1e145]: Synthetic demo data
+            - generic [ref=f1e146]: 30 Jun 2027
+          - paragraph [ref=f1e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=f1e148]:
+            - button "Definitions" [ref=f1e149] [cursor=pointer]
+            - button "Reset demo" [ref=f1e152] [cursor=pointer]
+      - generic [ref=f1e156]:
+        - banner [ref=f1e157]:
+          - navigation "Breadcrumb" [ref=f1e158]:
+            - generic [ref=f1e159]: Denera
+            - generic [ref=f1e162]: Enabling, Wave 1
+            - generic [ref=f1e165]: Notice and Obligation Calendar
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - text: Data date
+              - generic [ref=f1e169]: 30 Jun 2027
+              - generic [ref=f1e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=f1e171] [cursor=pointer]
+            - button "Audit log" [ref=f1e176] [cursor=pointer]
+            - button "Switch role" [ref=f1e182] [cursor=pointer]:
+              - generic [ref=f1e183]: CE
+              - generic [ref=f1e184]:
+                - generic [ref=f1e185]: Denera CEO
+                - generic [ref=f1e186]: Shareholder executive
+        - main [ref=f1e189]:
+          - generic [ref=f1e2627]:
+            - generic [ref=f1e2628]:
+              - generic [ref=f1e2629]:
+                - generic [ref=f1e2630]: UC03
+                - generic [aria-hidden] [ref=f1e2631]: /
+                - generic [ref=f1e2632]: PSEL Cakrawala Raya
+              - generic [ref=f1e2633]:
+                - generic [ref=f1e2634]: W1
+                - generic [ref=f1e2635]: Tier 1
+                - button "Data needed" [ref=f1e2636] [cursor=pointer]
+                - button "Confidence 91%" [ref=f1e2641] [cursor=pointer]:
+                  - text: Confidence
+                  - generic [ref=f1e2642]: 91%
+            - generic [ref=f1e2644]:
+              - 'heading "One confirmed notice deadline falls within seven days: the EPC notice for PSEL Cakrawala Raya, due Tuesday 6 July 2027." [level=1] [ref=f1e2645]'
+              - generic [ref=f1e2646]:
+                - generic [ref=f1e2647]: 6 days left
+                - paragraph [ref=f1e2650]: Alerts rely only on confirmed deadlines.
+              - button "Draft the 6 July notice" [ref=f1e2652] [cursor=pointer]
+            - generic [ref=f1e2656]:
+              - generic [ref=f1e2657]:
+                - radiogroup "View" [ref=f1e2658]:
+                  - radio "List" [checked] [ref=f1e2659] [cursor=pointer]
+                  - radio "Calendar" [ref=f1e2662] [cursor=pointer]
+                - radiogroup "Project" [ref=f1e2666]:
+                  - radio "All" [checked] [ref=f1e2667] [cursor=pointer]
+                  - radio "Cakrawala" [ref=f1e2668] [cursor=pointer]
+                  - radio "Nusa Bahari" [ref=f1e2669] [cursor=pointer]
+                  - radio "P2-06" [ref=f1e2670] [cursor=pointer]
+                  - radio "P2-07" [ref=f1e2671] [cursor=pointer]
+                - radiogroup "Authority" [ref=f1e2672]:
+                  - radio "All" [checked] [ref=f1e2673] [cursor=pointer]
+                  - radio "Joint" [ref=f1e2674] [cursor=pointer]
+                  - radio "Project company" [ref=f1e2675] [cursor=pointer]
+                  - radio "Shareholder (Denera)" [ref=f1e2676] [cursor=pointer]
+              - generic [ref=f1e2677]:
+                - table [ref=f1e2678]:
+                  - rowgroup [ref=f1e2679]:
+                    - row [ref=f1e2680]:
+                      - columnheader "Obligation" [ref=f1e2681]
+                      - columnheader "Source clause" [ref=f1e2682]
+                      - columnheader "Due" [ref=f1e2683]
+                      - columnheader "Days" [ref=f1e2684]
+                      - columnheader "Owner" [ref=f1e2685]
+                      - columnheader "Authority" [ref=f1e2686]
+                      - columnheader "Evidence pack" [ref=f1e2687]
+                      - columnheader "Status" [ref=f1e2688]
+                  - rowgroup [ref=f1e2689]:
+                    - row [ref=f1e2690]:
+                      - cell "EPC notice of delay event Cakrawala" [ref=f1e2691]:
+                        - generic [ref=f1e2692]: EPC notice of delay event
+                        - generic [ref=f1e2693]: Cakrawala
+                      - cell [ref=f1e2694]:
+                        - button "EPC cl. 14.2" [ref=f1e2695] [cursor=pointer]
+                      - cell "Tue 6 Jul 2027" [ref=f1e2699]
+                      - cell "6" [ref=f1e2700]
+                      - cell "Commercial and Legal Lead" [ref=f1e2701]
+                      - cell "Joint" [ref=f1e2702]
+                      - cell "In progress" [ref=f1e2704]
+                      - cell "Confirmed by Commercial and Legal Lead, 29 Jun 2027" [ref=f1e2705]
+                    - row [ref=f1e2711]:
+                      - cell "Response to contractor correspondence on interface Cakrawala" [ref=f1e2712]:
+                        - generic [ref=f1e2713]: Response to contractor correspondence on interface
+                        - generic [ref=f1e2714]: Cakrawala
+                      - cell [ref=f1e2715]:
+                        - button "EPC cl. 8.4" [ref=f1e2716] [cursor=pointer]
+                      - cell "9 Jul 2027" [ref=f1e2720]
+                      - cell "9" [ref=f1e2721]
+                      - cell "Technical Director" [ref=f1e2722]
+                      - cell "Project company" [ref=f1e2723]
+                      - cell "Not started" [ref=f1e2725]
+                      - cell [ref=f1e2726]:
+                        - generic [ref=f1e2727]:
+                          - generic [ref=f1e2728]: Extracted by ATLAS
+                          - generic [ref=f1e2738]:
+                            - button "Reject" [disabled]
+                            - button "Confirm" [disabled]
+                    - row [ref=f1e2739]:
+                      - cell "PPA delay notification to PLN Cakrawala" [ref=f1e2740]:
+                        - generic [ref=f1e2741]: PPA delay notification to PLN
+                        - generic [ref=f1e2742]: Cakrawala
+                      - cell [ref=f1e2743]:
+                        - button "PPA cl. 6.3" [ref=f1e2744] [cursor=pointer]
+                      - cell "30 Jul 2027" [ref=f1e2748]
+                      - cell "30" [ref=f1e2749]
+                      - cell "Commercial and Legal Lead" [ref=f1e2750]
+                      - cell "Joint" [ref=f1e2751]
+                      - cell "Not started" [ref=f1e2753]
+                      - cell [ref=f1e2754]:
+                        - generic [ref=f1e2755]:
+                          - generic [ref=f1e2756]: Extracted by ATLAS
+                          - generic [ref=f1e2766]:
+                            - button "Reject" [disabled]
+                            - button "Confirm" [disabled]
+                    - row [ref=f1e2767]:
+                      - cell "Lender quarterly report Cakrawala" [ref=f1e2768]:
+                        - generic [ref=f1e2769]: Lender quarterly report
+                        - generic [ref=f1e2770]: Cakrawala
+                      - cell [ref=f1e2771]:
+                        - button "Facility cl. 12.1" [ref=f1e2772] [cursor=pointer]
+                      - cell "15 Jul 2027" [ref=f1e2776]
+                      - cell "15" [ref=f1e2777]
+                      - cell "Finance Lead" [ref=f1e2778]
+                      - cell "Joint" [ref=f1e2779]
+                      - cell "In progress" [ref=f1e2781]
+                      - cell "Confirmed by Lender liaison, 25 Jun 2027" [ref=f1e2782]
+                    - row [ref=f1e2788]:
+                      - cell "Shareholder information request for waste supply feed Cakrawala" [ref=f1e2789]:
+                        - generic [ref=f1e2790]: Shareholder information request for waste supply feed
+                        - generic [ref=f1e2791]: Cakrawala
+                      - cell [ref=f1e2792]:
+                        - button "SHA cl. 9.1" [ref=f1e2793] [cursor=pointer]
+                      - cell "12 Jul 2027" [ref=f1e2797]
+                      - cell "12" [ref=f1e2798]
+                      - cell "PMO Director" [ref=f1e2799]
+                      - cell "Shareholder (Denera)" [ref=f1e2800]
+                      - cell "Not started" [ref=f1e2802]
+                      - cell [ref=f1e2803]:
+                        - generic [ref=f1e2804]:
+                          - generic [ref=f1e2805]: Extracted by ATLAS
+                          - generic [ref=f1e2815]:
+                            - button "Reject" [disabled]
+                            - button "Confirm" [disabled]
+                    - row [ref=f1e2816]:
+                      - cell "EPC notice for imported equipment delay event Nusa Bahari" [ref=f1e2817]:
+                        - generic [ref=f1e2818]: EPC notice for imported equipment delay event
+                        - generic [ref=f1e2819]: Nusa Bahari
+                      - cell [ref=f1e2820]:
+                        - button "EPC cl. 14.2" [ref=f1e2821] [cursor=pointer]
+                      - cell "21 Jul 2027" [ref=f1e2825]
+                      - cell "21" [ref=f1e2826]
+                      - cell "Commercial and Legal Lead" [ref=f1e2827]
+                      - cell "Joint" [ref=f1e2828]
+                      - cell "Not started" [ref=f1e2830]
+                      - cell "Confirmed by Commercial and Legal Lead, 24 Jun 2027" [ref=f1e2831]
+                    - row [ref=f1e2837]:
+                      - cell "Permit approval clock, two months P2-06" [ref=f1e2838]:
+                        - generic [ref=f1e2839]: Permit approval clock, two months
+                        - generic [ref=f1e2840]: P2-06
+                      - cell [ref=f1e2841]:
+                        - button "Permit register" [ref=f1e2842] [cursor=pointer]
+                      - cell "28 Jul 2027" [ref=f1e2846]
+                      - cell "28" [ref=f1e2847]
+                      - cell "Investment and legal lead" [ref=f1e2848]
+                      - cell "Shareholder (Denera)" [ref=f1e2849]
+                      - cell "n/a" [ref=f1e2851]
+                      - cell "Confirmed by Investment and legal lead, 21 Jun 2027" [ref=f1e2852]
+                    - row [ref=f1e2858]:
+                      - cell "Permit approval clock, two months P2-07" [ref=f1e2859]:
+                        - generic [ref=f1e2860]: Permit approval clock, two months
+                        - generic [ref=f1e2861]: P2-07
+                      - cell [ref=f1e2862]:
+                        - button "Permit register" [ref=f1e2863] [cursor=pointer]
+                      - cell "4 Aug 2027" [ref=f1e2867]
+                      - cell "35" [ref=f1e2868]
+                      - cell "Investment and legal lead" [ref=f1e2869]
+                      - cell "Shareholder (Denera)" [ref=f1e2870]
+                      - cell "n/a" [ref=f1e2872]
+                      - cell "Confirmed by Investment and legal lead, 21 Jun 2027" [ref=f1e2873]
+                - paragraph [ref=f1e2879]: Switch to the Commercial and Legal Lead persona to confirm or reject extracted deadlines.
+              - generic [ref=f1e2880]:
+                - generic [ref=f1e2881]:
+                  - heading "Ask about a clause" [level=2] [ref=f1e2882]
+                  - paragraph [ref=f1e2883]: Cited answers from executed agreements.
+                  - button "What does the EPC contract say about the notice period for delay events?" [ref=f1e2884] [cursor=pointer]
+                - generic [ref=f1e2885]:
+                  - heading "Requests to the project company" [level=2] [ref=f1e2886]
+                  - paragraph [ref=f1e2887]: Denera cannot issue the EPC notice; the project company board does.
+                  - generic [ref=f1e2888]:
+                    - button "Request project company board to issue notice" [ref=f1e2889] [cursor=pointer]
+                    - generic [ref=f1e2893]: Deadline Tue 6 Jul 2027
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=f1e479] [cursor=pointer]':
+            - generic [ref=f1e483]: Action register
+            - generic [ref=f1e484]:
+              - generic [ref=f1e485]: 6 open
+              - generic [ref=f1e486]:
+                - generic [ref=f1e489]: "2"
+                - text: overdue
+              - generic [ref=f1e490]: 4 due this week
+            - generic [ref=f1e491]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=f1e492]: 0%

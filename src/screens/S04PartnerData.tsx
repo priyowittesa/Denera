@@ -59,13 +59,13 @@ export function S04PartnerData() {
                   )
                 })}
               </ul>
-              <p className="mt-4 text-[12.5px] text-ink-3">Press first: PSEL Sinar Lestari (2 of 4). Its Green health covers schedule and cost only.</p>
+              <p className="mt-4 text-[13px] text-ink-3">Press first: PSEL Sinar Lestari (2 of 4). Its Green health covers schedule and cost only.</p>
             </Card>
           ) : (
             <Card className="mt-4 overflow-x-auto">
               <div className="flex flex-wrap items-baseline justify-between gap-2 px-5 pt-4">
                 <h2 className="text-[15px] font-semibold text-ink">{P.project}: <span className="tnum">{agreed} of {P.required}</span> feeds agreed</h2>
-                <button onClick={() => openEv('sha-9')} className="press text-[12.5px] font-medium text-atlas-700 hover:underline">Right granted by {P.clause}</button>
+                <button onClick={() => openEv('sha-9')} className="press text-[13px] font-medium text-atlas-700 hover:underline">Right granted by {P.clause}</button>
               </div>
               <table className="mt-3 w-full min-w-[820px] text-[13px]">
                 <thead className="border-y border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Required feed</th><th className="px-3 py-2.5 font-medium">Agreed</th><th className="px-3 py-2.5 font-medium">Template</th><th className="px-3 py-2.5 font-medium">Latest submission</th><th className="px-5 py-2.5 font-medium">Validation</th></tr></thead>
@@ -82,7 +82,7 @@ export function S04PartnerData() {
                         {!f.agreed && proj === 'cakrawala' && f.name.startsWith('Waste') && (
                           <div className="flex flex-col items-start gap-1">
                             <Button size="sm" disabled={requests.includes('waste-feed') || isPcu} onClick={requestFeed}><Send />{requests.includes('waste-feed') ? 'Request raised' : 'Request project company to provide missing feed'}</Button>
-                            <span className="text-[11.5px] text-ink-3">Route: Shareholder (Denera) request to the project company board</span>
+                            <span className="text-[12px] text-ink-3">Route: Shareholder (Denera) request to the project company board</span>
                           </div>
                         )}
                         {!f.agreed && !(proj === 'cakrawala' && f.name.startsWith('Waste')) && <span className="text-ink-4">n/a</span>}
@@ -118,7 +118,7 @@ export function S04PartnerData() {
                 <li key={d.wave} className="flex items-start gap-3"><WaveTag wave={d.wave} /><span className="text-[13px] text-ink-2">{d.items.join(', ')}</span></li>
               ))}
             </ul>
-            <p className="mt-4 text-[12.5px] text-ink-3">Data arrives through agreed templates and exports first, connectors later. A data contract per partner comes before any connector.</p>
+            <p className="mt-4 text-[13px] text-ink-3">Data arrives through agreed templates and exports first, connectors later. A data contract per partner comes before any connector.</p>
           </Card>
         </section>
         <section>
@@ -130,7 +130,7 @@ export function S04PartnerData() {
                 return <div key={t as string} className="rounded-md bg-sunken p-3"><Icon className="size-4 text-atlas-700" /><div className="mt-1.5 text-[13px] font-medium text-ink">{t as string}</div><div className="text-[12px] text-ink-3">{d as string}</div></div>
               })}
             </div>
-            <div className="mt-3 flex flex-wrap gap-1.5 text-[11.5px]">
+            <div className="mt-3 flex flex-wrap gap-1.5 text-[12px]">
               {['Public', 'Internal', 'Confidential', 'Restricted'].map((c) => <span key={c} className="rounded-sm border border-line px-1.5 py-0.5 text-ink-2">{c}</span>)}
               <span className="text-ink-3">classification labels, illustrative</span>
             </div>
@@ -149,11 +149,11 @@ export function S04PartnerData() {
             <tbody><tr className="font-mono text-ink-2">{['CKR', 'BI-03.2', '2027-06-30', '412.5', 't', 'INS-0612'].map((c) => <td key={c} className="px-2.5 py-2">{c}</td>)}</tr></tbody>
           </table>
         </div>
-        <p className="mt-3 text-[12.5px] text-ink-3">Files that fail schema checks are rejected with reasons. No partner data loads before access control and the audit log are in place.</p>
+        <p className="mt-3 text-[13px] text-ink-3">Files that fail schema checks are rejected with reasons. No partner data loads before access control and the audit log are in place.</p>
       </Sheet>
 
       <Modal open={!!rej} onOpenChange={(v) => !v && setRej(null)} title="Submission rejected" description={`${rej?.name ?? ''} · ${rej?.last ?? ''}`} footer={<><Button variant="ghost" onClick={() => setRej(null)}>Close</Button><Button onClick={() => { addRequest('resubmit', 'Corrected procurement submission'); setRej(null) }} disabled={requests.includes('resubmit')}><Send />Request corrected submission</Button></>}>
-        <ul className="space-y-2">{rej?.reasons?.map((r) => <li key={r} className="flex gap-2 text-[13.5px] text-ink"><XCircle className="mt-0.5 size-4 shrink-0 text-bad" />{r}</li>)}</ul>
+        <ul className="space-y-2">{rej?.reasons?.map((r) => <li key={r} className="flex gap-2 text-[14px] text-ink"><XCircle className="mt-0.5 size-4 shrink-0 text-bad" />{r}</li>)}</ul>
       </Modal>
     </ScreenFrame>
   )

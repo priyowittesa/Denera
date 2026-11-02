@@ -23,7 +23,7 @@ export function Topbar() {
   return (
     <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center gap-2 border-b border-line bg-surface/95 px-3 backdrop-blur-[2px] sm:gap-4 sm:px-6">
       <button onClick={() => setNavOpen(true)} className="press grid size-10 shrink-0 place-items-center rounded-md text-ink-2 hover:bg-sunken lg:hidden" aria-label="Open navigation"><Menu className="size-5" /></button>
-      <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-1.5 text-[13.5px] text-ink-3">
+      <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-1.5 text-[14px] text-ink-3">
         <span className="hidden md:inline">Denera</span>
         <ChevronRight className="hidden size-3.5 text-ink-4 md:block" />
         <span className="hidden truncate xl:inline">{group?.label ?? 'Workspace'}</span>
@@ -50,7 +50,7 @@ export function Topbar() {
               <span className="grid size-8 place-items-center rounded-full bg-atlas-100 text-[12px] font-semibold text-atlas-800">{persona.initials}</span>
               <span className="hidden text-left leading-tight lg:block">
                 <span className="block whitespace-nowrap text-[13px] font-medium text-ink">{persona.name}</span>
-                <span className="block whitespace-nowrap text-[11.5px] text-ink-3">{persona.role}</span>
+                <span className="block whitespace-nowrap text-[12px] text-ink-3">{persona.role}</span>
               </span>
               <ChevronDown className="hidden size-4 text-ink-3 sm:block" />
             </button>
@@ -70,7 +70,7 @@ export function Topbar() {
                     }}
                     className="flex cursor-pointer gap-3 rounded-md px-2.5 py-2 outline-none data-[highlighted]:bg-sunken"
                   >
-                    <span className={cn('mt-0.5 grid size-7 shrink-0 place-items-center rounded-full text-[11px] font-semibold', active ? 'bg-atlas-700 text-white' : 'bg-atlas-100 text-atlas-800')}>{p.initials}</span>
+                    <span className={cn('mt-0.5 grid size-7 shrink-0 place-items-center rounded-full text-[12px] font-semibold', active ? 'bg-atlas-700 text-white' : 'bg-atlas-100 text-atlas-800')}>{p.initials}</span>
                     <span className="min-w-0 flex-1">
                       <span className="flex items-center justify-between text-[13px] font-medium text-ink">{p.name}{active && <Check className="size-4 text-atlas-700" />}</span>
                       <span className="block text-[12px] leading-snug text-ink-3">{p.actsAs}</span>

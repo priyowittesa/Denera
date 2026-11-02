@@ -68,7 +68,7 @@ export function S14Orchestration() {
       <Card className="mt-5 overflow-x-auto">
         <div className="flex flex-wrap items-baseline justify-between gap-2 px-5 pt-4">
           <h2 className="text-[15px] font-semibold text-ink">Run board</h2>
-          <span className="tnum text-[12.5px] text-ink-3">{runs.length} jobs · {completed} completed · {waiting} waiting for human · {blocked} blocked</span>
+          <span className="tnum text-[13px] text-ink-3">{runs.length} jobs · {completed} completed · {waiting} waiting for human · {blocked} blocked</span>
         </div>
         <table className="mt-3 w-full min-w-[1060px] text-[13px]">
           <thead className="border-y border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Job</th><th className="px-3 py-2.5 font-medium">Use case</th><th className="px-3 py-2.5 font-medium">Mode</th><th className="px-3 py-2.5 font-medium">Lane</th><th className="px-3 py-2.5 font-medium">Trigger</th><th className="px-3 py-2.5 font-medium">State</th><th className="px-3 py-2.5 font-medium">Waiting on</th><th className="px-5 py-2.5 font-medium">Output</th></tr></thead>
@@ -79,11 +79,11 @@ export function S14Orchestration() {
                 <tr key={r.id} onClick={() => setTrace(r)} className="cursor-pointer hover:bg-atlas-50/50">
                   <td className="px-5 py-3"><button className="press text-left font-medium text-ink hover:text-atlas-700"><span className="tnum text-ink-3">{r.id}</span> {r.job}</button></td>
                   <td className="px-3 py-3 text-ink-2">{r.uc}</td>
-                  <td className="px-3 py-3"><span className={cn('rounded-sm px-1.5 py-0.5 text-[11.5px] font-medium', r.mode === 'Assistant' ? 'bg-info-bg text-info' : 'bg-sunken text-ink-2')}>{r.mode}</span></td>
+                  <td className="px-3 py-3"><span className={cn('rounded-sm px-1.5 py-0.5 text-[12px] font-medium', r.mode === 'Assistant' ? 'bg-info-bg text-info' : 'bg-sunken text-ink-2')}>{r.mode}</span></td>
                   <td className="px-3 py-3 text-ink-2">{r.lane}</td>
                   <td className="px-3 py-3 text-ink-2">{r.trigger}</td>
                   <td className="px-3 py-3"><span className={cn('inline-flex items-center gap-1 font-medium', S.c)}><S.I className="size-3.5" />{r.state === 'Blocked' ? 'Blocked: feed not agreed' : r.state}</span></td>
-                  <td className="px-3 py-3 text-[12.5px] text-ink-2">{r.waiting}</td>
+                  <td className="px-3 py-3 text-[13px] text-ink-2">{r.waiting}</td>
                   <td className="px-5 py-3"><button onClick={(e) => { e.stopPropagation(); nav(r.to) }} className="press inline-flex items-center gap-1 whitespace-nowrap font-medium text-atlas-700 hover:underline">{r.output}<ArrowRight className="size-3.5" /></button></td>
                 </tr>
               )
@@ -110,14 +110,14 @@ export function S14Orchestration() {
         <Card className="p-5">
           <h3 className="text-[14px] font-semibold text-ink">Guardrails, across every run</h3>
           <ol className="mt-3 space-y-2">
-            {GUARDRAILS.map((g, i) => <li key={g} className="flex gap-2.5 text-[12.5px] leading-snug text-ink-2"><ShieldCheck className={cn('mt-0.5 size-3.5 shrink-0', i < 2 ? 'text-atlas-700' : 'text-ink-3')} />{g}</li>)}
+            {GUARDRAILS.map((g, i) => <li key={g} className="flex gap-2.5 text-[13px] leading-snug text-ink-2"><ShieldCheck className={cn('mt-0.5 size-3.5 shrink-0', i < 2 ? 'text-atlas-700' : 'text-ink-3')} />{g}</li>)}
           </ol>
         </Card>
         <Card className="p-5">
           <h3 className="text-[14px] font-semibold text-ink">Data freshness, PSEL Cakrawala Raya</h3>
           <ul className="mt-3 space-y-2.5">
             {FEEDS.cakrawala.feeds.map((f) => (
-              <li key={f.name} className="text-[12.5px]">
+              <li key={f.name} className="text-[13px]">
                 <div className="font-medium text-ink">{f.name}</div>
                 <div className={cn('flex items-center gap-1.5', f.result === 'Accepted' ? 'text-ok' : f.result === 'Rejected' ? 'text-bad' : 'text-bad')}>
                   {f.agreed ? `${f.last}, ${f.result?.toLowerCase()}` : <button onClick={() => nav('/partner-data')} className="press inline-flex items-center gap-1 font-medium hover:underline"><Ban className="size-3.5" />Blocked: feed not agreed</button>}
@@ -125,7 +125,7 @@ export function S14Orchestration() {
               </li>
             ))}
           </ul>
-          <p className="tnum mt-3 border-t border-line-soft pt-3 text-[12.5px] text-ink-2">Data confidence <b className="text-ink">91%</b></p>
+          <p className="tnum mt-3 border-t border-line-soft pt-3 text-[13px] text-ink-2">Data confidence <b className="text-ink">91%</b></p>
         </Card>
       </div>
 
@@ -141,9 +141,9 @@ export function S14Orchestration() {
               ['Where it appears', trace.output],
             ].map(([k, v], i) => (
               <li key={k} className="relative mb-5 animate-rise" style={{ animationDelay: `${i * 40}ms` }}>
-                <span className="tnum absolute -left-[35px] top-0 grid size-5 place-items-center rounded-full bg-atlas-700 text-[10.5px] font-semibold text-white">{i + 1}</span>
+                <span className="tnum absolute -left-[35px] top-0 grid size-5 place-items-center rounded-full bg-atlas-700 text-[12px] font-semibold text-white">{i + 1}</span>
                 <div className="text-[12px] font-medium text-ink-3">{k}</div>
-                <div className="text-[13.5px] leading-relaxed text-ink">{v}</div>
+                <div className="text-[14px] leading-relaxed text-ink">{v}</div>
               </li>
             ))}
           </ol>

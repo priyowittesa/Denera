@@ -13,7 +13,7 @@ export const HEALTH_RULES: [string, string][] = [
 
 export function HealthRuleBody({ signals }: { signals?: string[] }) {
   return (
-    <div className="text-[12.5px]">
+    <div className="text-[13px]">
       {signals && (
         <>
           <p className="font-semibold text-ink">Signals that drove this rating</p>

@@ -30,7 +30,7 @@ export function AssistantPanel() {
         <header className="flex h-16 shrink-0 items-center gap-1 border-b border-line bg-surface pl-4 pr-2">
           <div className="min-w-0 flex-1 leading-tight">
             <div className="text-[14px] font-semibold text-ink">Ask ATLAS</div>
-            <div className="truncate text-[11.5px] text-ink-3">On {meta?.short ?? 'this screen'}</div>
+            <div className="truncate text-[12px] text-ink-3">On {meta?.short ?? 'this screen'}</div>
           </div>
           <Tip content="New chat"><button onClick={newChat} className="press grid size-9 place-items-center rounded-md text-ink-3 hover:bg-sunken hover:text-ink" aria-label="New chat"><SquarePen className="size-4" /></button></Tip>
           <Pop

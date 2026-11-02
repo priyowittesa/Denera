@@ -1,0 +1,397 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - complementary [ref=e5]:
+        - generic [ref=e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=e11] [cursor=pointer]
+        - generic [ref=e22]:
+          - generic [ref=e23]: Your tenant
+          - generic [ref=e24]: Denera
+          - generic [ref=e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]: Leading use cases
+            - list [ref=e29]:
+              - listitem [ref=e30]:
+                - link "Portfolio 1" [ref=e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=e37]: Portfolio
+                  - generic [ref=e38]: "1"
+              - listitem [ref=e39]:
+                - link "Cockpit 8" [ref=e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=e44]: Cockpit
+                  - generic [ref=e45]: "8"
+              - listitem [ref=e46]:
+                - link "Progress and S-curve 9" [ref=e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=e51]: Progress and S-curve
+                  - generic [ref=e52]: "9"
+              - listitem [ref=e53]:
+                - link "Critical path 10" [ref=e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=e59]: Critical path
+                  - generic [ref=e60]: "10"
+              - listitem [ref=e61]:
+                - link "Procurement 11" [ref=e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=e67]: Procurement
+                  - generic [ref=e68]: "11"
+              - listitem [ref=e69]:
+                - link "Cost and investment 12" [ref=e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=e74]: Cost and investment
+                  - generic [ref=e75]: "12"
+          - generic [ref=e76]:
+            - generic [ref=e77]: Enabling, Wave 1
+            - list [ref=e78]:
+              - listitem [ref=e79]:
+                - link "Phase II gates 2" [ref=e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=e84]: Phase II gates
+                  - generic [ref=e85]: "2"
+              - listitem [ref=e86]:
+                - link "Notices and obligations 3" [ref=e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=e92]: Notices and obligations
+                  - generic [ref=e93]: "3"
+              - listitem [ref=e94]:
+                - link "Partner data and rights 4" [ref=e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=e99]: Partner data and rights
+                  - generic [ref=e100]: "4"
+              - listitem [ref=e101]:
+                - link "Meetings and actions 5" [ref=e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=e107]: Meetings and actions
+                  - generic [ref=e108]: "5"
+              - listitem [ref=e109]:
+                - link "Ask ATLAS 6" [ref=e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=e113]: Ask ATLAS
+                  - generic [ref=e114]: "6"
+              - listitem [ref=e115]:
+                - link "Governance packs 7" [ref=e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=e121]: Governance packs
+                  - generic [ref=e122]: "7"
+          - generic [ref=e123]:
+            - generic [ref=e124]: Decisions and platform
+            - list [ref=e125]:
+              - listitem [ref=e126]:
+                - link "Decision room 13" [ref=e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=e132]: Decision room
+                  - generic [ref=e133]: "13"
+              - listitem [ref=e134]:
+                - link "Orchestration Console 14" [ref=e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=e140]: Orchestration Console
+                  - generic [ref=e141]: "14"
+        - generic [ref=e143]:
+          - generic [ref=e144]:
+            - generic [ref=e145]: Synthetic demo data
+            - generic [ref=e146]: 30 Jun 2027
+          - paragraph [ref=e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=e148]:
+            - button "Definitions" [ref=e149] [cursor=pointer]
+            - button "Reset demo" [ref=e152] [cursor=pointer]
+      - generic [ref=e156]:
+        - banner [ref=e157]:
+          - navigation "Breadcrumb" [ref=e158]:
+            - generic [ref=e159]: Denera
+            - generic [ref=e162]: Leading use cases
+            - generic [ref=e165]: Progress, S-curve and Earned Value
+          - generic [ref=e166]:
+            - generic [ref=e167]:
+              - text: Data date
+              - generic [ref=e169]: 30 Jun 2027
+              - generic [ref=e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=e171] [cursor=pointer]
+            - button "Audit log" [ref=e176] [cursor=pointer]
+            - button "Switch role" [ref=e182] [cursor=pointer]:
+              - generic [ref=e183]: CE
+              - generic [ref=e184]:
+                - generic [ref=e185]: Denera CEO
+                - generic [ref=e186]: Shareholder executive
+        - main [ref=e189]:
+          - generic [ref=e836]:
+            - generic [ref=e837]:
+              - generic [ref=e838]:
+                - generic [ref=e839]: UC08 · UC09
+                - generic [aria-hidden] [ref=e840]: /
+                - generic [ref=e841]: PSEL Cakrawala Raya
+              - generic [ref=e842]:
+                - generic [ref=e843]: Leading use case
+                - generic [ref=e846]:
+                  - text: W2
+                  - generic [ref=e847]: target
+                - generic [ref=e848]: Tier 1
+                - button "Data needed" [ref=e849] [cursor=pointer]
+                - button "Confidence 91%" [ref=e854] [cursor=pointer]:
+                  - text: Confidence
+                  - generic [ref=e855]: 91%
+            - generic [ref=e856]:
+              - generic [ref=e857]:
+                - heading "Only 39% of the reported 42% progress is verified, and at this pace commercial operation slips 42 days to 11 Aug 2028." [level=1] [ref=e858]
+                - generic [ref=e859]:
+                  - generic [ref=e860]: Schedule forecast breaches target
+                  - paragraph [ref=e863]: 7.0 points behind plan on verified work.
+                - generic [ref=e865] [cursor=pointer]:
+                  - switch "Analyst view" [ref=e866]
+                  - text: Analyst view
+              - generic [ref=e868]:
+                - generic [ref=e869]: Verified progress
+                - generic [ref=e870]: 39%
+                - generic [ref=e871]: Reported 42%, planned 46%. The 3-point gap is about Rp84 bn of work at Rp28 bn a point.
+            - generic [ref=e872]:
+              - generic [ref=e873]:
+                - generic [ref=e874]:
+                  - generic [ref=e875]:
+                    - radiogroup "Chart" [ref=e876]:
+                      - radio "Physical progress" [checked] [ref=e877] [cursor=pointer]
+                      - radio "Cost and commitment" [ref=e878] [cursor=pointer]
+                      - radio "Earned value" [ref=e879] [cursor=pointer]
+                    - generic [ref=e880]: Hover any month to read every series
+                  - generic [ref=e882]:
+                    - img "S-curve. Planned 46%, reported 42%, verified 39% at 30 June 2027. Forecast COD 11 Aug 2028, 42 days after target." [ref=e883]:
+                      - application [ref=e886]:
+                        - generic [ref=e925]:
+                          - generic [ref=e926]:
+                            - generic [ref=e927]: Aug 26
+                            - generic [ref=e929]: Nov 26
+                            - generic [ref=e931]: Feb 27
+                            - generic [ref=e933]: May 27
+                            - generic [ref=e935]: Aug 27
+                            - generic [ref=e937]: Nov 27
+                            - generic [ref=e939]: Feb 28
+                            - generic [ref=e941]: May 28
+                            - generic [ref=e943]: Aug 28
+                          - generic [ref=e945]:
+                            - generic [ref=e946]: 0%
+                            - generic [ref=e948]: 20%
+                            - generic [ref=e950]: 40%
+                            - generic [ref=e952]: 60%
+                            - generic [ref=e954]: 80%
+                            - generic [ref=e956]: 100%
+                          - generic [ref=e958]: Today, 30 Jun 2027
+                          - generic [ref=e959]: 7.0 points behind plan
+                          - generic [ref=e960]: Target COD
+                          - generic [ref=e961]: 42 days
+                          - generic [ref=e962]: Planned 46%
+                          - generic [ref=e963]: Reported 42%
+                          - generic [ref=e964]: Verified 39%
+                          - generic [ref=e965]: "1"
+                          - generic [ref=e966]: "2"
+                          - generic [ref=e967]: "3"
+                          - generic [ref=e968]: "4"
+                    - generic [ref=e969]:
+                      - generic [ref=e970]: Planned (baseline)
+                      - generic [ref=e972]: Reported
+                      - generic [ref=e974]: Verified
+                      - generic [ref=e976]: Forecast, current plan (advisory)
+                      - generic [ref=e978]: Range from best recovery to no intervention
+                  - generic [ref=e980]:
+                    - generic [ref=e981]:
+                      - generic [ref=e982]: Recovery scenario · advisory forecast, assumptions listed
+                      - button "See cost of this scenario" [ref=e983] [cursor=pointer]
+                    - radiogroup "Recovery scenario" [ref=e986]:
+                      - radio "Current plan +42" [checked] [ref=e987] [cursor=pointer]:
+                        - generic [ref=e988]:
+                          - text: Current plan
+                          - generic [ref=e989]: "+42"
+                      - radio "No intervention +64" [ref=e990] [cursor=pointer]:
+                        - generic [ref=e991]:
+                          - text: No intervention
+                          - generic [ref=e992]: "+64"
+                      - radio "Expedite only +34" [ref=e993] [cursor=pointer]:
+                        - generic [ref=e994]:
+                          - text: Expedite only
+                          - generic [ref=e995]: "+34"
+                      - radio "Resequence only +27" [ref=e996] [cursor=pointer]:
+                        - generic [ref=e997]:
+                          - text: Resequence only
+                          - generic [ref=e998]: "+27"
+                      - radio "Expedite and resequence +12" [ref=e999] [cursor=pointer]:
+                        - generic [ref=e1000]:
+                          - text: Expedite and resequence
+                          - generic [ref=e1001]: "+12"
+                    - generic [ref=e1002]:
+                      - generic [ref=e1003]:
+                        - generic [ref=e1004]: Forecast COD
+                        - generic [ref=e1005]: 11 Aug 2028
+                        - generic [ref=e1006]: 42 days late
+                      - generic [ref=e1007]:
+                        - generic [ref=e1008]: Incremental cost
+                        - generic [ref=e1009]: n/a
+                      - generic [ref=e1010]:
+                        - generic [ref=e1011]: Contingency remaining
+                        - generic [ref=e1012]: Rp111 bn
+                        - generic [ref=e1013]: 63% of reserve
+                      - generic [ref=e1014]:
+                        - generic [ref=e1015]: Overall rating
+                        - generic [ref=e1016]: Yellow, escalation
+                    - list [ref=e1020]:
+                      - listitem [ref=e1021]:
+                        - generic [ref=e1022]: "1"
+                        - text: Groundbreaking, 3 Aug 2026
+                      - listitem [ref=e1023]:
+                        - generic [ref=e1024]: "2"
+                        - text: Earlier gap driven by structural steel productivity (Mar to Apr 2027)
+                      - listitem [ref=e1025]:
+                        - generic [ref=e1026]: "3"
+                        - text: Boiler vendor technical submittal due 12 Jun 2027, now 18 days overdue
+                      - listitem [ref=e1027]:
+                        - generic [ref=e1028]: "4"
+                        - text: Contractual notice due 6 Jul 2027
+                - generic [ref=e1029]:
+                  - generic [ref=e1030]:
+                    - heading "Committed money against verified work" [level=3] [ref=e1036]
+                    - generic [ref=e1037]:
+                      - paragraph [ref=e1038]: The project has incurred and committed 52% of CAPEX while verified physical progress is 39%. The 13-point gap is Rp364 billion. Part of this is normal for long-lead procurement, but Rp106 billion of it (29%) is linked to packages with delayed manufacturing or unverified installation readiness.
+                      - generic [ref=e1044]:
+                        - generic [ref=e1045]: Verified 39%
+                        - generic [ref=e1046]: Rp106 bn at risk
+                        - generic [ref=e1048]: Committed 52%
+                    - generic [ref=e1049]:
+                      - button "2 sources" [ref=e1050] [cursor=pointer]
+                      - generic [ref=e1054]: 30 Jun 2027 08:30
+                      - generic [ref=e1058]: Confidence High
+                      - generic [ref=e1059]: Verified
+                  - generic [ref=e1060]:
+                    - heading "Reported and verified, always apart" [level=3] [ref=e1061]
+                    - paragraph [ref=e1062]: Reported is what the contractor claims. Verified is what ATLAS has checked against quantities and inspection records. A gap of 5 points or more carries a flag.
+                    - generic [ref=e1063]:
+                      - generic [ref=e1064]:
+                        - generic [ref=e1065]: Reported
+                        - generic [ref=e1066]: 42%
+                      - generic [ref=e1067]:
+                        - generic [ref=e1068]: Verified
+                        - generic [ref=e1069]: 39%
+                      - generic [ref=e1070]:
+                        - generic [ref=e1071]: Planned
+                        - generic [ref=e1072]: 46%
+              - generic [ref=e1073]:
+                - generic [ref=e1074]:
+                  - heading "Indicators at 30 Jun 2027" [level=2] [ref=e1075]
+                  - button "Definitions" [ref=e1076] [cursor=pointer]
+                - generic [ref=e1079]:
+                  - generic [ref=e1081]:
+                    - generic [ref=e1082]: Schedule efficiency
+                    - generic [ref=e1083]: "0.85"
+                    - generic [ref=e1084]: SPI
+                  - generic [ref=e1086]:
+                    - generic [ref=e1087]: Cost efficiency
+                    - generic [ref=e1088]: "0.96"
+                    - generic [ref=e1089]: CPI
+                  - generic [ref=e1091]:
+                    - generic [ref=e1092]: Progress gap
+                    - generic [ref=e1093]: −7.0 pts
+                    - generic [ref=e1094]: Progress variance
+                  - generic [ref=e1096]:
+                    - generic [ref=e1097]: Cost gap
+                    - generic [ref=e1098]: −Rp46 bn
+                    - generic [ref=e1099]: CV
+                  - generic [ref=e1101]:
+                    - generic [ref=e1102]: Forecast delay
+                    - generic [ref=e1103]: 42 days
+                    - generic [ref=e1104]: COD variance
+                  - generic [ref=e1106]:
+                    - generic [ref=e1107]: Forecast overrun
+                    - generic [ref=e1108]: +Rp110 bn
+                    - generic [ref=e1109]: EAC Rp2,910 bn; range 2,846 to 2,918
+                  - generic [ref=e1111]:
+                    - generic [ref=e1112]: Contingency remaining
+                    - generic [ref=e1113]: 63%
+                    - generic [ref=e1114]: Rp111 bn of Rp176 bn
+              - generic [ref=e1115]:
+                - heading "Where the gap sits" [level=2] [ref=e1117]
+                - generic [ref=e1119]:
+                  - tablist [ref=e1120]:
+                    - tab "By WBS" [selected] [ref=e1121] [cursor=pointer]
+                    - tab "By discipline" [ref=e1122] [cursor=pointer]
+                    - tab "By contractor" [ref=e1123] [cursor=pointer]
+                    - tab "By work package" [ref=e1124] [cursor=pointer]
+                  - tabpanel "By WBS" [ref=e1125]:
+                    - list [ref=e1126]:
+                      - listitem [ref=e1127]:
+                        - generic [ref=e1128]:
+                          - generic [ref=e1129]: Civil and foundations
+                          - generic [ref=e1130]: Green
+                      - listitem [ref=e1134]:
+                        - generic [ref=e1135]:
+                          - generic [ref=e1136]: Waste receiving system
+                          - generic [ref=e1137]: Red
+                      - listitem [ref=e1140]:
+                        - button "Boiler island Red Open root cause" [ref=e1141] [cursor=pointer]:
+                          - generic [ref=e1142]: Boiler island
+                          - generic [ref=e1145]:
+                            - generic [ref=e1146]: Red
+                            - generic [ref=e1149]: Open root cause
+                      - listitem [ref=e1152]:
+                        - generic [ref=e1153]:
+                          - generic [ref=e1154]: Turbine-generator
+                          - generic [ref=e1155]: Yellow
+                      - listitem [ref=e1158]:
+                        - generic [ref=e1159]:
+                          - generic [ref=e1160]: Balance of plant
+                          - generic [ref=e1161]: Yellow
+                      - listitem [ref=e1164]:
+                        - generic [ref=e1165]:
+                          - generic [ref=e1166]: Grid interconnection
+                          - generic [ref=e1167]: Yellow
+                      - listitem [ref=e1170]:
+                        - generic [ref=e1171]:
+                          - generic [ref=e1172]: Utilities and water treatment
+                          - generic [ref=e1173]: Green
+                      - listitem [ref=e1177]:
+                        - generic [ref=e1178]:
+                          - generic [ref=e1179]: Commissioning and performance testing
+                          - generic [ref=e1180]: Not started
+              - region [ref=e1182]:
+                - generic [ref=e1183]:
+                  - heading "Value at stake" [level=2] [ref=e1184]
+                  - generic [ref=e1185]: Sensitivities from public figures, tagged (A). Not an investment case. No payback shown.
+                - generic [ref=e1186]:
+                  - generic [ref=e1187]:
+                    - generic [ref=e1188]:
+                      - generic [ref=e1189]: UC08
+                      - generic [ref=e1190]: Verified progress, S-curve and EVM
+                      - generic [ref=e1191]: Progress points verified before payment
+                    - generic [ref=e1192]:
+                      - generic [ref=e1193]: Master range (A)
+                      - generic [ref=e1194]: Rp25 to 30 bn per progress point, one plant
+                    - generic [ref=e1195]:
+                      - generic [ref=e1196]: This project
+                      - generic [ref=e1197]: Rp28 bn per point
+                      - generic [ref=e1198]: Inside the range
+                    - generic [ref=e1202]:
+                      - generic [ref=e1203]: Gate to proceed. Proceed when a shared WBS and progress rules are agreed with one Phase I partner and three months of monthly files have been received (A).
+                      - generic [ref=e1207]: "Measure and baseline (captured in Phase 0). Gap between reported and verified progress; forecast error. Baseline: the first three monthly reports."
+                  - generic [ref=e1215]:
+                    - generic [ref=e1216]:
+                      - generic [ref=e1217]: UC09
+                      - generic [ref=e1218]: Cost, commitment and EAC forecasting
+                      - generic [ref=e1219]: Capex overrun seen and decided earlier
+                    - generic [ref=e1220]:
+                      - generic [ref=e1221]: Master range (A)
+                      - generic [ref=e1222]: Rp25 to 30 bn per 1% of capex, one plant; Denera share Rp7.5 to 9 bn
+                    - generic [ref=e1223]:
+                      - generic [ref=e1224]: This project
+                      - generic [ref=e1225]: Rp28 bn per 1%; Denera share Rp8.4 bn
+                      - generic [ref=e1226]: Inside the range
+                    - generic [ref=e1230]:
+                      - generic [ref=e1231]: Gate to proceed. Proceed when cost code mapping and the contingency definition are agreed for one Phase I project (A).
+                      - generic [ref=e1235]: "Measure and baseline (captured in Phase 0). EAC error at 25, 50 and 75 percent progress; days from first variance signal to decision. Baseline: Phase I reporting history."
+                - paragraph [ref=e1243]: Public figures. PPA delay and deemed-commissioning terms are not public, so exposure may be lower or deferred. Revenue is project company revenue, not Denera profit. UC07 and UC10 overlap and are never added together. Each row stays a sensitivity until the Phase 0 baseline is captured.
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=e491] [cursor=pointer]':
+            - generic [ref=e495]: Action register
+            - generic [ref=e496]:
+              - generic [ref=e497]: 6 open
+              - generic [ref=e498]:
+                - generic [ref=e501]: "2"
+                - text: overdue
+              - generic [ref=e502]: 4 due this week
+            - generic [ref=e503]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=e1244]: 0%

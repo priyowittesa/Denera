@@ -69,13 +69,13 @@ function ThinkingSteps({ msg }: { msg: ChatMsg }) {
 
   return (
     <div>
-      <button onClick={() => setOpen((v) => !v)} aria-expanded={open} className="press -ml-1 inline-flex items-center gap-1.5 rounded-md px-1 py-0.5 text-[12.5px] text-ink-3 hover:bg-sunken hover:text-ink-2">
+      <button onClick={() => setOpen((v) => !v)} aria-expanded={open} className="press -ml-1 inline-flex items-center gap-1.5 rounded-md px-1 py-0.5 text-[13px] text-ink-3 hover:bg-sunken hover:text-ink-2">
         <SearchCheck className="size-3.5" />
         {sources ? `Checked ${sources} source${sources > 1 ? 's' : ''}` : 'Checked scope'}
         {open ? <ChevronDown className="size-3.5" /> : <ChevronRight className="size-3.5" />}
       </button>
       {open && (
-        <ol className="mt-1.5 animate-rise space-y-1 border-l border-line pl-3.5 text-[12.5px] text-ink-3">
+        <ol className="mt-1.5 animate-rise space-y-1 border-l border-line pl-3.5 text-[13px] text-ink-3">
           {steps.map((s) => <li key={s} className="flex items-center gap-1.5"><Check className="size-3 text-ok" />{s}</li>)}
         </ol>
       )}
@@ -110,7 +110,7 @@ function UserMessage({ msg, compact }: { msg: ChatMsg; compact?: boolean }) {
   const { copied, copy } = useCopy()
   return (
     <div className="group flex animate-rise flex-col items-end">
-      <div className={cn('max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-br-md bg-atlas-100/70 px-4 py-2.5 leading-relaxed text-ink', compact ? 'text-[13.5px]' : 'text-[14.5px]')}>{msg.text}</div>
+      <div className={cn('max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-br-md bg-atlas-100/70 px-4 py-2.5 leading-relaxed text-ink', compact ? 'text-[14px]' : 'text-[14px]')}>{msg.text}</div>
       <div className="mt-1 flex opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
         <IconAction label={copied ? 'Copied' : 'Copy'} onClick={() => copy(msg.text ?? '')}>{copied ? <Check /> : <Copy />}</IconAction>
         <IconAction label="Edit and ask again" onClick={() => { setDraft(msg.text ?? ''); document.getElementById('atlas-input')?.focus() }}><Pencil /></IconAction>
@@ -260,7 +260,7 @@ export function Composer({ autoFocus, compact, defaultScope = 'cakrawala' }: { a
               >
                 <Sparkles className="size-3.5 shrink-0 text-atlas-600" />
                 <span className="min-w-0 flex-1 truncate">{m.q}</span>
-                <span className="text-[11px] text-ink-4">{m.wave}</span>
+                <span className="text-[12px] text-ink-4">{m.wave}</span>
               </button>
             </li>
           ))}
@@ -299,7 +299,7 @@ export function Composer({ autoFocus, compact, defaultScope = 'cakrawala' }: { a
         <div className="mt-1 flex items-center gap-2">
           <ScopePicker scope={scope} setScope={setScope} isPcu={isPcu} />
           <span className="ml-auto" />
-          <span className={cn('hidden whitespace-nowrap text-[11.5px] text-ink-4', !compact && 'sm:inline')}>{busy ? 'Esc to stop' : 'Enter to send, Shift + Enter for a new line'}</span>
+          <span className={cn('hidden whitespace-nowrap text-[12px] text-ink-4', !compact && 'sm:inline')}>{busy ? 'Esc to stop' : 'Enter to send, Shift + Enter for a new line'}</span>
           {busy ? (
             <button type="button" onClick={stop} className="press grid size-9 place-items-center rounded-full bg-ink text-white hover:bg-ink-2" aria-label="Stop answering">
               <Square className="size-3.5 fill-current" />
@@ -311,7 +311,7 @@ export function Composer({ autoFocus, compact, defaultScope = 'cakrawala' }: { a
           )}
         </div>
       </form>
-      <p className="mt-2 text-center text-[11.5px] text-ink-3">ATLAS recommends; people decide. Every answer cites governed sources. Scripted demo answers.</p>
+      <p className="mt-2 text-center text-[12px] text-ink-3">ATLAS recommends; people decide. Every answer cites governed sources. Scripted demo answers.</p>
     </div>
   )
 }
@@ -323,12 +323,12 @@ function ScopePicker({ scope, setScope, isPcu }: { scope: Scope; setScope: (s: S
       side="top"
       className="w-[280px] p-1.5"
       trigger={
-        <button type="button" className="press inline-flex h-8 min-w-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-line px-3 text-[12.5px] font-medium text-ink-2 hover:bg-sunken">
+        <button type="button" className="press inline-flex h-8 min-w-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-line px-3 text-[13px] font-medium text-ink-2 hover:bg-sunken">
           <FolderClosed className="size-3.5 text-atlas-600" />{label}<ChevronDown className="size-3.5 text-ink-3" />
         </button>
       }
     >
-      <div className="px-2 pb-1 pt-1 text-[11.5px] font-medium text-ink-3">Answer from</div>
+      <div className="px-2 pb-1 pt-1 text-[12px] font-medium text-ink-3">Answer from</div>
       {([['cakrawala', 'PSEL Cakrawala Raya', 'One project, all modules'], ['portfolio', 'Denera portfolio', 'Eleven projects, both lanes']] as const).map(([v, l, d]) => {
         const locked = isPcu && v === 'portfolio'
         return (
@@ -353,12 +353,12 @@ export function ThreadList({ onPick }: { onPick?: () => void }) {
     ['Today', threads.filter((t) => t.when === 'Today')],
     ['Previous 7 days', threads.filter((t) => t.when !== 'Today')],
   ] as const
-  if (!threads.length) return <p className="px-3 py-2 text-[12.5px] text-ink-3">No conversations yet.</p>
+  if (!threads.length) return <p className="px-3 py-2 text-[13px] text-ink-3">No conversations yet.</p>
   return (
     <div className="space-y-4">
       {groups.map(([label, list]) => list.length > 0 && (
         <div key={label}>
-          <div className="px-3 pb-1 text-[11.5px] font-medium text-ink-3">{label}</div>
+          <div className="px-3 pb-1 text-[12px] font-medium text-ink-3">{label}</div>
           <ul className="space-y-px">
             {list.map((t) => (
               <li key={t.id} className="group relative">
@@ -404,7 +404,7 @@ export function SuggestionCard({ id, onPick, dashed }: { id: string; onPick: (id
       className={cn('press group flex w-full items-start gap-3 rounded-xl border bg-surface px-3.5 py-3 text-left transition-colors hover:border-atlas-300 hover:bg-atlas-50/40', dashed ? 'border-dashed border-ink-4/50' : 'border-line')}
     >
       {dashed ? <FileText className="mt-0.5 size-4 shrink-0 text-ink-4" /> : <Sparkles className="mt-0.5 size-4 shrink-0 text-atlas-600" />}
-      <span className="min-w-0 flex-1 text-[13.5px] leading-snug text-ink-2 group-hover:text-ink">{a.q}</span>
+      <span className="min-w-0 flex-1 text-[14px] leading-snug text-ink-2 group-hover:text-ink">{a.q}</span>
     </button>
   )
 }

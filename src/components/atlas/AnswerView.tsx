@@ -35,7 +35,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
   const text = streaming ? all.slice(0, Math.max(1, words)).join(' ') : a.direct
   const cited = (a.sources ?? []).map((s, i) => ({ ...s, n: i + 1 }))
   const lead = (
-    <p className={cn('leading-[1.65] text-ink', compact ? 'text-[14px]' : 'text-[15.5px]')}>
+    <p className={cn('leading-[1.65] text-ink', compact ? 'text-[14px]' : 'text-[15px]')}>
       {text}
       {streaming && !stopped && <span className="ml-0.5 inline-block h-[1.05em] w-[7px] translate-y-[3px] animate-pulse rounded-[1px] bg-atlas-500" aria-hidden />}
       {!streaming && cited.filter((s) => s.doc).slice(0, 3).map((s) => <Cite key={s.n} n={s.n} label={s.label} onOpen={() => openEvidence(s.doc!)} />)}
@@ -46,7 +46,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
     return (
       <div className="space-y-3">
         {lead}
-        {stopped && <p className="text-[12.5px] text-ink-3">You stopped this answer. Regenerate to see the full answer with figures, actions and sources.</p>}
+        {stopped && <p className="text-[13px] text-ink-3">You stopped this answer. Regenerate to see the full answer with figures, actions and sources.</p>}
       </div>
     )
   }
@@ -113,7 +113,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
           <dl className={cn('grid gap-px overflow-hidden rounded-lg border border-line bg-line', !compact && 'sm:grid-cols-3')}>
             {(['delivery', 'capex', 'commercial'] as const).map((k) => (
               <div key={k} className="bg-surface px-3 py-2.5">
-                <dt className="text-[11.5px] font-medium text-ink-3">{k === 'capex' ? 'CAPEX' : k === 'delivery' ? 'Delivery' : 'Commercial'}</dt>
+                <dt className="text-[12px] font-medium text-ink-3">{k === 'capex' ? 'CAPEX' : k === 'delivery' ? 'Delivery' : 'Commercial'}</dt>
                 <dd className="mt-0.5 text-[13px] leading-snug text-ink">{a.impact![k]}</dd>
               </div>
             ))}
@@ -122,7 +122,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
       )}
       {a.table && (
         <div className="overflow-x-auto rounded-lg border border-line">
-          <table className="w-full min-w-[520px] text-[12.5px]">
+          <table className="w-full min-w-[520px] text-[13px]">
             <thead className="bg-sunken/60 text-left text-ink-3"><tr><th className="px-3 py-2 font-medium">Action</th><th className="px-3 py-2 font-medium">Owner</th><th className="px-3 py-2 font-medium">Due</th><th className="px-3 py-2 font-medium">Authority</th></tr></thead>
             <tbody className="divide-y divide-line-soft">
               {BUNDLE.map((b) => <tr key={b.n}><td className="px-3 py-2 text-ink">{b.text}</td><td className="px-3 py-2">{b.owner}</td><td className="tnum px-3 py-2">{b.due}</td><td className="px-3 py-2"><AuthorityLabel a={b.authority} /></td></tr>)}
@@ -138,9 +138,9 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
               const done = proposals.includes(x.text)
               return (
                 <li key={x.text} className="flex gap-3 rounded-lg border border-line bg-surface p-3">
-                  <span className="tnum mt-px grid size-5 shrink-0 place-items-center rounded-full bg-sunken text-[11px] font-semibold text-ink-2">{i + 1}</span>
+                  <span className="tnum mt-px grid size-5 shrink-0 place-items-center rounded-full bg-sunken text-[12px] font-semibold text-ink-2">{i + 1}</span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[13.5px] leading-snug text-ink">{x.text}</p>
+                    <p className="text-[14px] leading-snug text-ink">{x.text}</p>
                     <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
                       <AuthorityLabel a={x.authority} />
                       <Button size="sm" variant={done ? 'ghost' : 'outline'} disabled={done} onClick={() => propose(x.text)}>
@@ -166,17 +166,17 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
                     onClick={() => s.doc && openEvidence(s.doc)}
                     className="press flex w-full items-start gap-2.5 rounded-lg border border-line bg-surface px-3 py-2 text-left enabled:hover:border-atlas-300 enabled:hover:bg-atlas-50/50 disabled:cursor-default"
                   >
-                    <span className="tnum mt-px grid size-[18px] shrink-0 place-items-center rounded bg-atlas-100 text-[10.5px] font-semibold text-atlas-800">{s.n}</span>
+                    <span className="tnum mt-px grid size-[18px] shrink-0 place-items-center rounded bg-atlas-100 text-[12px] font-semibold text-atlas-800">{s.n}</span>
                     <span className="min-w-0">
-                      <span className="block truncate text-[12.5px] font-medium text-ink">{s.label}</span>
-                      <span className="block truncate text-[11.5px] text-ink-3">{doc ? `${doc.system} · ${doc.location}` : 'ATLAS register'}</span>
+                      <span className="block truncate text-[13px] font-medium text-ink">{s.label}</span>
+                      <span className="block truncate text-[12px] text-ink-3">{doc ? `${doc.system} · ${doc.location}` : 'ATLAS register'}</span>
                     </span>
                   </button>
                 </li>
               )
             })}
           </ul>
-          <p className="mt-2 text-[11.5px] text-ink-3">Data date 30 Jun 2027, refreshed 08:30 WIB{a.confidence ? ` · Confidence ${a.confidence}` : ''}</p>
+          <p className="mt-2 text-[12px] text-ink-3">Data date 30 Jun 2027, refreshed 08:30 WIB{a.confidence ? ` · Confidence ${a.confidence}` : ''}</p>
         </Section>
       )}
       {a.followups && a.followups.length > 0 && onFollow && (
@@ -197,7 +197,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
 
 function Cite({ n, label, onOpen }: { n: number; label: string; onOpen: () => void }) {
   return (
-    <button onClick={onOpen} title={label} aria-label={`Source ${n}: ${label}`} className="press ml-1 inline-grid h-[18px] min-w-[18px] translate-y-[-2px] place-items-center rounded bg-atlas-100 px-1 align-middle text-[10.5px] font-semibold text-atlas-800 hover:bg-atlas-200">
+    <button onClick={onOpen} title={label} aria-label={`Source ${n}: ${label}`} className="press ml-1 inline-grid h-[18px] min-w-[18px] translate-y-[-2px] place-items-center rounded bg-atlas-100 px-1 align-middle text-[12px] font-semibold text-atlas-800 hover:bg-atlas-200">
       {n}
     </button>
   )

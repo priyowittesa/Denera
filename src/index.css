@@ -7,8 +7,6 @@
 @theme {
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
-  /* Verdict headlines read like the conclusion of a board paper */
-  --font-display: "Newsreader", "Source Serif 4", Georgia, serif;
 
   /* ATLAS violet: chrome and primary actions */
   --color-atlas-950: #1d0f47;
@@ -122,17 +120,13 @@
 }
 
 @utility display {
-  font-family: var(--font-display);
-  font-optical-sizing: auto;
-  font-weight: 500;
-  letter-spacing: -0.012em;
+  font-weight: 600;
+  letter-spacing: -0.022em;
 }
 
 @utility eyebrow {
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: var(--color-ink-3);
 }
 

@@ -1,0 +1,304 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e5]:
+        - generic [ref=f1e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=f1e11] [cursor=pointer]
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: Your tenant
+          - generic [ref=f1e24]: Denera
+          - generic [ref=f1e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]: Leading use cases
+            - list [ref=f1e29]:
+              - listitem [ref=f1e30]:
+                - link "Portfolio 1" [ref=f1e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=f1e37]: Portfolio
+                  - generic [ref=f1e38]: "1"
+              - listitem [ref=f1e39]:
+                - link "Cockpit 8" [ref=f1e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=f1e44]: Cockpit
+                  - generic [ref=f1e45]: "8"
+              - listitem [ref=f1e46]:
+                - link "Progress and S-curve 9" [ref=f1e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=f1e51]: Progress and S-curve
+                  - generic [ref=f1e52]: "9"
+              - listitem [ref=f1e53]:
+                - link "Critical path 10" [ref=f1e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=f1e59]: Critical path
+                  - generic [ref=f1e60]: "10"
+              - listitem [ref=f1e61]:
+                - link "Procurement 11" [ref=f1e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=f1e67]: Procurement
+                  - generic [ref=f1e68]: "11"
+              - listitem [ref=f1e69]:
+                - link "Cost and investment 12" [ref=f1e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=f1e74]: Cost and investment
+                  - generic [ref=f1e75]: "12"
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Enabling, Wave 1
+            - list [ref=f1e78]:
+              - listitem [ref=f1e79]:
+                - link "Phase II gates 2" [ref=f1e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=f1e84]: Phase II gates
+                  - generic [ref=f1e85]: "2"
+              - listitem [ref=f1e86]:
+                - link "Notices and obligations 3" [ref=f1e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=f1e92]: Notices and obligations
+                  - generic [ref=f1e93]: "3"
+              - listitem [ref=f1e94]:
+                - link "Partner data and rights 4" [ref=f1e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=f1e99]: Partner data and rights
+                  - generic [ref=f1e100]: "4"
+              - listitem [ref=f1e101]:
+                - link "Meetings and actions 5" [ref=f1e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=f1e107]: Meetings and actions
+                  - generic [ref=f1e108]: "5"
+              - listitem [ref=f1e109]:
+                - link "Ask ATLAS 6" [ref=f1e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=f1e113]: Ask ATLAS
+                  - generic [ref=f1e114]: "6"
+              - listitem [ref=f1e115]:
+                - link "Governance packs 7" [ref=f1e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=f1e121]: Governance packs
+                  - generic [ref=f1e122]: "7"
+          - generic [ref=f1e123]:
+            - generic [ref=f1e124]: Decisions and platform
+            - list [ref=f1e125]:
+              - listitem [ref=f1e126]:
+                - link "Decision room 13" [ref=f1e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=f1e132]: Decision room
+                  - generic [ref=f1e133]: "13"
+              - listitem [ref=f1e134]:
+                - link "Orchestration Console 14" [ref=f1e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=f1e140]: Orchestration Console
+                  - generic [ref=f1e141]: "14"
+        - generic [ref=f1e143]:
+          - generic [ref=f1e144]:
+            - generic [ref=f1e145]: Synthetic demo data
+            - generic [ref=f1e146]: 30 Jun 2027
+          - paragraph [ref=f1e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=f1e148]:
+            - button "Definitions" [ref=f1e149] [cursor=pointer]
+            - button "Reset demo" [ref=f1e152] [cursor=pointer]
+      - generic [ref=f1e156]:
+        - banner [ref=f1e157]:
+          - navigation "Breadcrumb" [ref=f1e158]:
+            - generic [ref=f1e159]: Denera
+            - generic [ref=f1e162]: Leading use cases
+            - generic [ref=f1e165]: Portfolio Command Centre
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - text: Data date
+              - generic [ref=f1e169]: 30 Jun 2027
+              - generic [ref=f1e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=f1e171] [cursor=pointer]
+            - button "Audit log" [ref=f1e176] [cursor=pointer]
+            - button "Switch role" [ref=f1e182] [cursor=pointer]:
+              - generic [ref=f1e183]: CE
+              - generic [ref=f1e184]:
+                - generic [ref=f1e185]: Denera CEO
+                - generic [ref=f1e186]: Shareholder executive
+        - main [ref=f1e189]:
+          - generic [ref=f1e1147]:
+            - generic [ref=f1e1148]:
+              - generic [ref=f1e1149]:
+                - generic [ref=f1e1150]: UC01
+                - generic [aria-hidden] [ref=f1e1151]: /
+                - generic [ref=f1e1152]: Denera portfolio, 11 projects
+              - generic [ref=f1e1153]:
+                - generic [ref=f1e1154]: Leading use case
+                - generic [ref=f1e1157]: W1
+                - generic [ref=f1e1158]:
+                  - text: W2
+                  - generic [ref=f1e1159]: target
+                - generic [ref=f1e1160]: Tier 1
+                - button "Data needed" [ref=f1e1161] [cursor=pointer]
+                - button "Confidence 91%" [ref=f1e1166] [cursor=pointer]:
+                  - text: Confidence
+                  - generic [ref=f1e1167]: 91%
+            - generic [ref=f1e1168]:
+              - generic [ref=f1e1169]:
+                - 'heading "Cakrawala Raya needs escalation this week: three decisions are due and a formal notice deadline falls in six days." [level=1] [ref=f1e1170]'
+                - generic [ref=f1e1171]: Escalation required on one project
+                - button "How Denera controls delivery" [ref=f1e1176] [cursor=pointer]
+              - generic [ref=f1e1179]:
+                - generic [ref=f1e1180]: Needs escalation
+                - generic [ref=f1e1181]: 1 of 3
+                - generic [ref=f1e1182]: PSEL Cakrawala Raya, 42 days of COD exposure. Nusa Bahari is Yellow, Sinar Lestari Green.
+            - generic [ref=f1e1183]:
+              - generic [ref=f1e1184]:
+                - generic [ref=f1e1185]:
+                  - generic [ref=f1e1186]:
+                    - heading "Where the programme stands" [level=2] [ref=f1e1187]
+                    - radiogroup "Lane" [ref=f1e1188]:
+                      - radio "In construction (3)" [checked] [ref=f1e1189] [cursor=pointer]
+                      - radio "Pre-investment gates (8)" [ref=f1e1190] [cursor=pointer]
+                  - generic [ref=f1e1191]:
+                    - img "Map of Indonesia with project markers" [ref=f1e1192]:
+                      - button "PSEL Cakrawala Raya, Yellow, escalation required" [ref=f1e1207] [cursor=pointer]:
+                        - generic [ref=f1e1213]: Cakrawala Raya
+                        - generic [ref=f1e1214]: Yellow, escalation required
+                      - button "PSEL Nusa Bahari, Yellow" [ref=f1e1215] [cursor=pointer]:
+                        - generic [ref=f1e1220]: Nusa Bahari
+                        - generic [ref=f1e1221]: Yellow
+                      - button "PSEL Sinar Lestari, Green" [ref=f1e1222] [cursor=pointer]:
+                        - generic [ref=f1e1228]: Sinar Lestari
+                        - generic [ref=f1e1229]: Green
+                    - generic [ref=f1e1230]:
+                      - generic [ref=f1e1231]: "Circle: project in construction, icon and word show health"
+                      - generic [ref=f1e1232]: "Dashed ring: escalation required"
+                - generic [ref=f1e1233]:
+                  - generic [ref=f1e1234]:
+                    - heading "Delivery" [level=3] [ref=f1e1235]
+                    - generic [ref=f1e1236]:
+                      - generic [ref=f1e1237]:
+                        - generic [ref=f1e1238]: Approved CAPEX in construction
+                        - generic [ref=f1e1239]: Rp7,250 bn
+                        - generic [ref=f1e1240]: 3 Phase I plants
+                      - generic [ref=f1e1241]:
+                        - generic [ref=f1e1242]: Largest COD exposure
+                        - generic [ref=f1e1243]: 42 days
+                        - generic [ref=f1e1244]: PSEL Cakrawala Raya
+                      - generic [ref=f1e1245]:
+                        - generic [ref=f1e1246]: Projects by health
+                        - generic [ref=f1e1248]:
+                          - generic [ref=f1e1249]: 1 Green
+                          - generic [ref=f1e1250]: 2 Yellow
+                          - generic [ref=f1e1251]: 0 Red
+                        - generic [ref=f1e1252]: Construction lane
+                      - generic [ref=f1e1253]:
+                        - generic [ref=f1e1254]: Contingency forecast use
+                        - generic [ref=f1e1255]: 37% · 18% · n/a
+                        - generic [ref=f1e1257]: Cakrawala · Nusa Bahari · Sinar Lestari (no data)
+                  - generic [ref=f1e1258]:
+                    - heading "Governance" [level=3] [ref=f1e1259]
+                    - generic [ref=f1e1260]:
+                      - generic [ref=f1e1261]:
+                        - generic [ref=f1e1262]: Long-lead packages above 14 days
+                        - generic [ref=f1e1263]: "2"
+                        - generic [ref=f1e1264]: Boiler island, flue-gas treatment
+                      - generic [ref=f1e1265]:
+                        - generic [ref=f1e1266]: Decisions due this week
+                        - generic [ref=f1e1267]: "3"
+                        - generic [ref=f1e1268]: Two for the project company board
+                      - generic [ref=f1e1269]:
+                        - generic [ref=f1e1270]: Information-rights coverage
+                        - generic [ref=f1e1271]: 9 of 12
+                        - generic [ref=f1e1272]: 75% of required feeds agreed
+                      - generic [ref=f1e1273]:
+                        - generic [ref=f1e1274]: Pre-investment gates at risk
+                        - generic [ref=f1e1275]: "2"
+                        - generic [ref=f1e1276]: P2-06, P2-07 permits
+              - generic [ref=f1e1277]:
+                - generic [ref=f1e1278]:
+                  - generic [ref=f1e1279]:
+                    - article [ref=f1e1280]:
+                      - button "Java · EPC execution PSEL Cakrawala Raya" [ref=f1e1281] [cursor=pointer]:
+                        - generic [ref=f1e1282]: Java · EPC execution
+                        - generic [ref=f1e1288]: PSEL Cakrawala Raya
+                      - button "Why Yellow, escalation required" [ref=f1e1290] [cursor=pointer]:
+                        - generic [ref=f1e1291]: Yellow, escalation required
+                      - generic [ref=f1e1294]:
+                        - generic [ref=f1e1295]:
+                          - term [ref=f1e1296]: CAPEX
+                          - definition [ref=f1e1297]: Rp2,800 bn
+                        - generic [ref=f1e1298]:
+                          - term [ref=f1e1299]: COD target
+                          - definition [ref=f1e1300]: 30 Jun 2028
+                      - generic [ref=f1e1301]:
+                        - button "Information rights 3 of 4" [ref=f1e1302] [cursor=pointer]
+                        - button "Notice due 6 Jul 2027 (6 days)" [ref=f1e1307] [cursor=pointer]
+                    - article [ref=f1e1310]:
+                      - button "Sumatra · EPC execution PSEL Nusa Bahari" [disabled] [ref=f1e1311]:
+                        - generic [ref=f1e1312]: Sumatra · EPC execution
+                        - generic [ref=f1e1318]: PSEL Nusa Bahari
+                      - button "Why Yellow" [ref=f1e1320] [cursor=pointer]:
+                        - generic [ref=f1e1321]: Yellow
+                      - generic [ref=f1e1324]:
+                        - generic [ref=f1e1325]:
+                          - term [ref=f1e1326]: CAPEX
+                          - definition [ref=f1e1327]: Rp2,350 bn
+                        - generic [ref=f1e1328]:
+                          - term [ref=f1e1329]: COD target
+                          - definition [ref=f1e1330]: 15 May 2028
+                      - generic [ref=f1e1331]:
+                        - button "Information rights 4 of 4" [ref=f1e1332] [cursor=pointer]
+                        - button "Imported crane shipment risk, 12-day exposure" [disabled] [ref=f1e1337]
+                    - article [ref=f1e1340]:
+                      - button "Sulawesi · EPC execution PSEL Sinar Lestari" [disabled] [ref=f1e1341]:
+                        - generic [ref=f1e1342]: Sulawesi · EPC execution
+                        - generic [ref=f1e1348]: PSEL Sinar Lestari
+                      - generic [ref=f1e1349]:
+                        - button "Why Green" [ref=f1e1350] [cursor=pointer]:
+                          - generic [ref=f1e1351]: Green
+                        - generic [ref=f1e1355]: Data confidence 74%
+                      - generic [ref=f1e1356]:
+                        - generic [ref=f1e1357]:
+                          - term [ref=f1e1358]: CAPEX
+                          - definition [ref=f1e1359]: Rp2,100 bn
+                        - generic [ref=f1e1360]:
+                          - term [ref=f1e1361]: COD target
+                          - definition [ref=f1e1362]: 30 Apr 2028
+                      - generic [ref=f1e1363]:
+                        - button "Information rights 2 of 4" [ref=f1e1364] [cursor=pointer]
+                        - button "Two data feeds not yet agreed" [ref=f1e1369] [cursor=pointer]
+                  - paragraph [ref=f1e1372]: "Coverage: 11 projects shown. Health is computed only where a status feed exists. Synthetic data."
+                - generic [ref=f1e1373]:
+                  - heading "ATLAS weekly brief" [level=3] [ref=f1e1378]
+                  - list [ref=f1e1380]:
+                    - listitem [ref=f1e1381]:
+                      - button "Three decisions need executive attention, two of them for the project company board." [ref=f1e1382] [cursor=pointer]
+                    - listitem [ref=f1e1386]:
+                      - button "Two projects have emerging schedule exposure from imported equipment." [ref=f1e1387] [cursor=pointer]
+                    - listitem [ref=f1e1391]:
+                      - button "One project has a notice deadline within seven days." [ref=f1e1392] [cursor=pointer]
+                    - listitem [ref=f1e1396]:
+                      - button "Two pre-investment projects have a gate date at risk." [ref=f1e1397] [cursor=pointer]
+                  - generic [ref=f1e1401]:
+                    - button "3 sources" [ref=f1e1402] [cursor=pointer]
+                    - generic [ref=f1e1406]: 30 Jun 2027 08:30
+                    - generic [ref=f1e1410]: Confidence High
+                    - generic [ref=f1e1411]: Advisory
+              - region [ref=f1e1412]:
+                - generic [ref=f1e1413]:
+                  - heading "Value at stake" [level=2] [ref=f1e1414]
+                  - button "More information" [ref=f1e1415] [cursor=pointer]
+                  - generic [ref=f1e1418]: Sensitivity, not an investment case
+                - group [ref=f1e1420]:
+                  - generic "UC01 · Portfolio health and early warning Range USD 114k to 132k a day, Denera share, if three Phase I plants slip (A) USD 123,012 a day Inside the range Gate and baseline" [ref=f1e1421] [cursor=pointer]:
+                    - generic [ref=f1e1422]:
+                      - generic [ref=f1e1423]:
+                        - generic [ref=f1e1424]: UC01 ·
+                        - text: Portfolio health and early warning
+                      - generic [ref=f1e1425]: Range USD 114k to 132k a day, Denera share, if three Phase I plants slip (A)
+                    - generic [ref=f1e1426]:
+                      - generic [ref=f1e1427]: USD 123,012 a day
+                      - generic [ref=f1e1428]: Inside the range
+                      - generic [ref=f1e1432]: Gate and baseline
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=f1e479] [cursor=pointer]':
+            - generic [ref=f1e483]: Action register
+            - generic [ref=f1e484]:
+              - generic [ref=f1e485]: 6 open
+              - generic [ref=f1e486]:
+                - generic [ref=f1e489]: "2"
+                - text: overdue
+              - generic [ref=f1e490]: 4 due this week
+            - generic [ref=f1e491]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=f1e492]: 0%

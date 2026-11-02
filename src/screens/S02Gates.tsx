@@ -44,11 +44,11 @@ export function S02Gates() {
     >
       <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_320px]">
         <Card className="overflow-x-auto">
-          <table className="w-full min-w-[740px] text-[12.5px]">
+          <table className="w-full min-w-[740px] text-[13px]">
             <thead>
               <tr className="border-b border-line">
                 <th className="sticky left-0 bg-surface px-4 py-3 text-left text-[12px] font-medium text-ink-3">Project</th>
-                {GATES.map((g) => <th key={g} className="px-1 py-3 text-center align-bottom text-[11px] font-medium leading-tight text-ink-3"><span className="mx-auto block max-w-[68px]">{g}</span></th>)}
+                {GATES.map((g) => <th key={g} className="px-1 py-3 text-center align-bottom text-[12px] font-medium leading-tight text-ink-3"><span className="mx-auto block max-w-[68px]">{g}</span></th>)}
               </tr>
             </thead>
             <tbody>
@@ -57,7 +57,7 @@ export function S02Gates() {
                   <td className="sticky left-0 bg-inherit px-4 py-2.5">
                     <button className="press text-left" aria-pressed={sel === p.id}>
                       <span className="block font-semibold text-ink">{p.id}</span>
-                      <span className="flex items-center gap-1.5 text-[11.5px] text-ink-3">{p.island}{p.floa && <span className="rounded-sm bg-ok-bg px-1 text-[10.5px] font-medium text-ok">FLOA</span>}</span>
+                      <span className="flex items-center gap-1.5 text-[12px] text-ink-3">{p.island}{p.floa && <span className="rounded-sm bg-ok-bg px-1 text-[12px] font-medium text-ok">FLOA</span>}</span>
                     </button>
                   </td>
                   {GATES.map((g, i) => {
@@ -87,12 +87,12 @@ export function S02Gates() {
               <span className="text-[12px] text-ink-3">FID target {project.fidTarget}</span>
             </div>
             <MiniTimeline pid={sel} state={state} />
-            <h3 className="mt-4 text-[12.5px] font-semibold text-ink-2">{open.length} open condition{open.length === 1 ? '' : 's'}</h3>
+            <h3 className="mt-4 text-[13px] font-semibold text-ink-2">{open.length} open condition{open.length === 1 ? '' : 's'}</h3>
             <ul className="mt-2 space-y-1">
               {open.map(({ g, i, s }) => (
                 <li key={g}>
                   <button onClick={() => setCond(i)} className={cn('press flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-[13px] hover:bg-sunken', cond === i && 'bg-sunken')}>
-                    <GateIcon s={s} /><span className="flex-1 text-ink">{g}</span><span className="text-[11.5px] text-ink-3">{LABEL[s]}</span>
+                    <GateIcon s={s} /><span className="flex-1 text-ink">{g}</span><span className="text-[12px] text-ink-3">{LABEL[s]}</span>
                   </button>
                 </li>
               ))}
@@ -100,7 +100,7 @@ export function S02Gates() {
             {cond !== null && (
               <div key={cond} className="mt-3 animate-rise rounded-md border border-line p-3.5">
                 <div className="text-[13px] font-semibold text-ink">{GATES[cond]}</div>
-                <dl className="mt-2 grid grid-cols-[72px_1fr] gap-y-1 text-[12.5px]">
+                <dl className="mt-2 grid grid-cols-[72px_1fr] gap-y-1 text-[13px]">
                   <dt className="text-ink-3">Owner</dt><dd className="text-ink">{OWNERS[cond]}</dd>
                   <dt className="text-ink-3">Due</dt><dd className="tnum text-ink">{sel === 'P2-08' && cond === 1 ? '15 Jul 2027' : project.date}</dd>
                   <dt className="text-ink-3">Evidence</dt>
@@ -118,7 +118,7 @@ export function S02Gates() {
                     ) : (
                       <Tip content="Evidence required"><span><Button size="sm" disabled><Check />Confirm condition</Button></span></Tip>
                     )}
-                  <p className="mt-2 text-[11.5px] text-ink-3">A condition is met only with a linked evidence document and a named confirmer.</p>
+                  <p className="mt-2 text-[12px] text-ink-3">A condition is met only with a linked evidence document and a named confirmer.</p>
                 </div>
               </div>
             )}
@@ -126,7 +126,7 @@ export function S02Gates() {
 
           <AtlasCard title="ATLAS alert" sources={[{ label: 'Permit register', doc: 'permit-register' }, { label: 'Gate checklists', doc: 'gate-checklist' }]} classification="Forecast" confidence="Medium">
             <p className="font-medium text-ink">Two projects have a permit dependency that puts the FID date at risk by three weeks.</p>
-            <ul className="mt-3 space-y-2 text-[12.5px]">
+            <ul className="mt-3 space-y-2 text-[13px]">
               {[['P2-06', '28 Jul 2027', '15 Dec 2027', '5 Jan 2028'], ['P2-07', '4 Aug 2027', '31 Jan 2028', '21 Feb 2028']].map(([p, clock, t, f]) => (
                 <li key={p} className="rounded-md bg-sunken px-3 py-2">
                   <div className="flex items-center justify-between"><b className="text-ink">{p}</b><StatusChip h="Yellow" label="At risk" /></div>
@@ -166,7 +166,7 @@ function MiniTimeline({ pid, state }: { pid: string; state: (p: string, i: numbe
           )
         })}
       </div>
-      <div className="mt-1 flex justify-between text-[10.5px] text-ink-4"><span>Feasibility</span><span>FLOA</span><span>FID</span></div>
+      <div className="mt-1 flex justify-between text-[12px] text-ink-4"><span>Feasibility</span><span>FLOA</span><span>FID</span></div>
     </div>
   )
 }

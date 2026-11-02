@@ -34,7 +34,7 @@ export function S06Ask() {
           <Button variant="outline" className="w-full justify-start" onClick={newChat}><SquarePen />New chat</Button>
         </div>
         <div className="min-h-0 flex-1 overflow-y-auto px-2 pb-4"><ThreadList /></div>
-        <div className="border-t border-line-soft px-4 py-3 text-[11.5px] leading-snug text-ink-3">Conversations stay in this browser tab. Answers are scripted for the demo.</div>
+        <div className="border-t border-line-soft px-4 py-3 text-[12px] leading-snug text-ink-3">Conversations stay in this browser tab. Answers are scripted for the demo.</div>
       </aside>
 
       {/* Conversation */}
@@ -91,7 +91,7 @@ function Starters({ onPick, isPcu }: { onPick: (id: string) => void; isPcu: bool
             role="tab"
             aria-selected={wave === x.wave}
             onClick={() => setWave(x.wave)}
-            className={cn('press rounded-full border px-3 py-1.5 text-[12.5px] font-medium', wave === x.wave ? 'border-atlas-300 bg-atlas-50 text-atlas-800' : 'border-line bg-surface text-ink-3 hover:text-ink')}
+            className={cn('press rounded-full border px-3 py-1.5 text-[13px] font-medium', wave === x.wave ? 'border-atlas-300 bg-atlas-50 text-atlas-800' : 'border-line bg-surface text-ink-3 hover:text-ink')}
           >
             {x.label}
           </button>

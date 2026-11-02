@@ -59,7 +59,7 @@ function Layout() {
         <Topbar />
         <main ref={main} className={cn('relative min-h-0 flex-1', isAsk ? 'flex flex-col overflow-hidden' : 'overflow-y-auto')}>
           {isPcu && (
-            <div className="flex items-center gap-2 border-b border-line bg-sunken px-4 py-2 sm:px-6 text-[12.5px] text-ink-2">
+            <div className="flex items-center gap-2 border-b border-line bg-sunken px-4 py-2 sm:px-6 text-[13px] text-ink-2">
               <EyeOff className="size-3.5" />Project company view. Denera-only content is hidden.
             </div>
           )}

@@ -1,0 +1,257 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e5]:
+        - generic [ref=f1e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=f1e11] [cursor=pointer]
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: Your tenant
+          - generic [ref=f1e24]: Denera
+          - generic [ref=f1e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]: Leading use cases
+            - list [ref=f1e29]:
+              - listitem [ref=f1e30]:
+                - link "Portfolio 1" [ref=f1e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=f1e37]: Portfolio
+                  - generic [ref=f1e38]: "1"
+              - listitem [ref=f1e39]:
+                - link "Cockpit 8" [ref=f1e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=f1e44]: Cockpit
+                  - generic [ref=f1e45]: "8"
+              - listitem [ref=f1e46]:
+                - link "Progress and S-curve 9" [ref=f1e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=f1e51]: Progress and S-curve
+                  - generic [ref=f1e52]: "9"
+              - listitem [ref=f1e53]:
+                - link "Critical path 10" [ref=f1e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=f1e59]: Critical path
+                  - generic [ref=f1e60]: "10"
+              - listitem [ref=f1e61]:
+                - link "Procurement 11" [ref=f1e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=f1e67]: Procurement
+                  - generic [ref=f1e68]: "11"
+              - listitem [ref=f1e69]:
+                - link "Cost and investment 12" [ref=f1e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=f1e74]: Cost and investment
+                  - generic [ref=f1e75]: "12"
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Enabling, Wave 1
+            - list [ref=f1e78]:
+              - listitem [ref=f1e79]:
+                - link "Phase II gates 2" [ref=f1e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=f1e84]: Phase II gates
+                  - generic [ref=f1e85]: "2"
+              - listitem [ref=f1e86]:
+                - link "Notices and obligations 3" [ref=f1e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=f1e92]: Notices and obligations
+                  - generic [ref=f1e93]: "3"
+              - listitem [ref=f1e94]:
+                - link "Partner data and rights 4" [ref=f1e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=f1e99]: Partner data and rights
+                  - generic [ref=f1e100]: "4"
+              - listitem [ref=f1e101]:
+                - link "Meetings and actions 5" [ref=f1e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=f1e107]: Meetings and actions
+                  - generic [ref=f1e108]: "5"
+              - listitem [ref=f1e109]:
+                - link "Ask ATLAS 6" [ref=f1e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=f1e113]: Ask ATLAS
+                  - generic [ref=f1e114]: "6"
+              - listitem [ref=f1e115]:
+                - link "Governance packs 7" [ref=f1e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=f1e121]: Governance packs
+                  - generic [ref=f1e122]: "7"
+          - generic [ref=f1e123]:
+            - generic [ref=f1e124]: Decisions and platform
+            - list [ref=f1e125]:
+              - listitem [ref=f1e126]:
+                - link "Decision room 13" [ref=f1e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=f1e132]: Decision room
+                  - generic [ref=f1e133]: "13"
+              - listitem [ref=f1e134]:
+                - link "Orchestration Console 14" [ref=f1e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=f1e140]: Orchestration Console
+                  - generic [ref=f1e141]: "14"
+        - generic [ref=f1e143]:
+          - generic [ref=f1e144]:
+            - generic [ref=f1e145]: Synthetic demo data
+            - generic [ref=f1e146]: 30 Jun 2027
+          - paragraph [ref=f1e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=f1e148]:
+            - button "Definitions" [ref=f1e149] [cursor=pointer]
+            - button "Reset demo" [ref=f1e152] [cursor=pointer]
+      - generic [ref=f1e156]:
+        - banner [ref=f1e157]:
+          - navigation "Breadcrumb" [ref=f1e158]:
+            - generic [ref=f1e159]: Denera
+            - generic [ref=f1e162]: Enabling, Wave 1
+            - generic [ref=f1e165]: Partner Data and Information Rights
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - text: Data date
+              - generic [ref=f1e169]: 30 Jun 2027
+              - generic [ref=f1e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=f1e171] [cursor=pointer]
+            - button "Audit log" [ref=f1e176] [cursor=pointer]
+            - button "Switch role" [ref=f1e182] [cursor=pointer]:
+              - generic [ref=f1e183]: CE
+              - generic [ref=f1e184]:
+                - generic [ref=f1e185]: Denera CEO
+                - generic [ref=f1e186]: Shareholder executive
+        - main [ref=f1e189]:
+          - generic [ref=f1e4412]:
+            - generic [ref=f1e4413]:
+              - generic [ref=f1e4414]:
+                - generic [ref=f1e4415]: E1
+                - generic [aria-hidden] [ref=f1e4416]: /
+                - generic [ref=f1e4417]: PSEL Cakrawala Raya
+              - generic [ref=f1e4418]:
+                - generic [ref=f1e4419]: W1
+                - generic [ref=f1e4420]: Tier 1 (enabler)
+                - button "Data needed" [ref=f1e4421] [cursor=pointer]
+                - button "Confidence 91%" [ref=f1e4426] [cursor=pointer]:
+                  - text: Confidence
+                  - generic [ref=f1e4427]: 91%
+            - generic [ref=f1e4429]:
+              - heading "Denera sees what its shareholder agreement entitles it to see. PSEL Cakrawala Raya has 3 of 4 required data feeds agreed." [level=1] [ref=f1e4430]
+              - generic [ref=f1e4431]: Coverage 9 of 12 feeds
+            - generic [ref=f1e4435]:
+              - generic [ref=f1e4436]:
+                - tablist [ref=f1e4437]:
+                  - tab "Construction projects" [selected] [ref=f1e4438] [cursor=pointer]
+                  - tab "Phase II agreements" [ref=f1e4439] [cursor=pointer]
+                - tabpanel "Construction projects" [ref=f1e4440]:
+                  - generic [ref=f1e4441]:
+                    - radiogroup "Project" [ref=f1e4442]:
+                      - radio "Cakrawala Raya · 3 of 4" [checked] [ref=f1e4443] [cursor=pointer]
+                      - radio "Nusa Bahari · 4 of 4" [ref=f1e4444] [cursor=pointer]
+                      - radio "Sinar Lestari · 2 of 4" [ref=f1e4445] [cursor=pointer]
+                    - button "Compare coverage" [ref=f1e4446] [cursor=pointer]
+                  - generic [ref=f1e4447]:
+                    - generic [ref=f1e4448]:
+                      - 'heading "PSEL Cakrawala Raya: 3 of 4 feeds agreed" [level=2] [ref=f1e4449]':
+                        - text: "PSEL Cakrawala Raya:"
+                        - generic [ref=f1e4450]: 3 of 4
+                        - text: feeds agreed
+                      - button "Right granted by SHA cl. 9.1 to 9.3" [ref=f1e4451] [cursor=pointer]
+                    - table [ref=f1e4452]:
+                      - rowgroup [ref=f1e4453]:
+                        - row [ref=f1e4454]:
+                          - columnheader "Required feed" [ref=f1e4455]
+                          - columnheader "Agreed" [ref=f1e4456]
+                          - columnheader "Template" [ref=f1e4457]
+                          - columnheader "Latest submission" [ref=f1e4458]
+                          - columnheader "Validation" [ref=f1e4459]
+                      - rowgroup [ref=f1e4460]:
+                        - row [ref=f1e4461]:
+                          - cell "Schedule and progress" [ref=f1e4462]
+                          - cell "Agreed" [ref=f1e4463]
+                          - cell [ref=f1e4468]:
+                            - button "v1.2" [ref=f1e4469] [cursor=pointer]
+                          - cell "28 Jun 2027" [ref=f1e4473]
+                          - cell "Accepted" [ref=f1e4474]
+                        - row [ref=f1e4479]:
+                          - cell "Cost and commitments" [ref=f1e4480]
+                          - cell "Agreed" [ref=f1e4481]
+                          - cell [ref=f1e4486]:
+                            - button "v1.1" [ref=f1e4487] [cursor=pointer]
+                          - cell "28 Jun 2027" [ref=f1e4491]
+                          - cell "Accepted" [ref=f1e4492]
+                        - row [ref=f1e4497]:
+                          - cell "Procurement, engineering transmittals and correspondence" [ref=f1e4498]
+                          - cell "Agreed" [ref=f1e4499]
+                          - cell [ref=f1e4504]:
+                            - button "v1.0" [ref=f1e4505] [cursor=pointer]
+                          - cell "25 Jun 2027" [ref=f1e4509]
+                          - cell [ref=f1e4510]:
+                            - button "Rejected, see reasons" [ref=f1e4511] [cursor=pointer]
+                        - row [ref=f1e4516]:
+                          - cell "Waste supply and regional reports" [ref=f1e4517]
+                          - cell "Not yet agreed" [ref=f1e4518]
+                          - cell "No template" [ref=f1e4529]
+                          - cell "n/a" [ref=f1e4530]
+                          - 'cell "Request project company to provide missing feed Route: Shareholder (Denera) request to the project company board" [ref=f1e4531]':
+                            - generic [ref=f1e4532]:
+                              - button "Request project company to provide missing feed" [ref=f1e4533] [cursor=pointer]
+                              - generic [ref=f1e4537]: "Route: Shareholder (Denera) request to the project company board"
+              - generic [ref=f1e4538]:
+                - generic [ref=f1e4539]:
+                  - heading "Where data comes from" [level=2] [ref=f1e4541]
+                  - generic [ref=f1e4542]:
+                    - list [ref=f1e4543]:
+                      - listitem [ref=f1e4544]:
+                        - generic [ref=f1e4545]: W1
+                        - generic [ref=f1e4546]: Contracts, Governance, Permits, Financing
+                      - listitem [ref=f1e4547]:
+                        - generic [ref=f1e4548]:
+                          - text: W2
+                          - generic [ref=f1e4549]: target
+                        - generic [ref=f1e4550]: Schedule, Cost, Procurement, Progress, Engineering, Offtake
+                      - listitem [ref=f1e4551]:
+                        - generic [ref=f1e4552]:
+                          - text: W3
+                          - generic [ref=f1e4553]: target
+                        - generic [ref=f1e4554]: Waste supply, HSE and quality, Visual evidence
+                    - paragraph [ref=f1e4555]: Data arrives through agreed templates and exports first, connectors later. A data contract per partner comes before any connector.
+                - generic [ref=f1e4556]:
+                  - generic [ref=f1e4557]:
+                    - heading "Access and audit" [level=2] [ref=f1e4558]
+                    - button "Full audit log" [ref=f1e4559] [cursor=pointer]
+                  - generic [ref=f1e4560]:
+                    - generic [ref=f1e4561]:
+                      - generic [ref=f1e4562]:
+                        - generic [ref=f1e4566]: Role-based views
+                        - generic [ref=f1e4567]: Five roles demonstrated through the persona switcher
+                      - generic [ref=f1e4568]:
+                        - generic [ref=f1e4572]: Partner separation
+                        - generic [ref=f1e4573]: A project company sees only its own project
+                    - generic [ref=f1e4574]:
+                      - generic [ref=f1e4575]: Public
+                      - generic [ref=f1e4576]: Internal
+                      - generic [ref=f1e4577]: Confidential
+                      - generic [ref=f1e4578]: Restricted
+                      - generic [ref=f1e4579]: classification labels, illustrative
+                    - list [ref=f1e4580]:
+                      - listitem [ref=f1e4581]:
+                        - generic [ref=f1e4582]: 30 Jun 2027 08:30
+                        - generic [ref=f1e4583]: Data refresh All feeds
+                      - listitem [ref=f1e4584]:
+                        - generic [ref=f1e4585]: 30 Jun 2027 08:31
+                        - generic [ref=f1e4586]: Health computed PSEL Cakrawala Raya
+                      - listitem [ref=f1e4587]:
+                        - generic [ref=f1e4588]: 29 Jun 2027 17:05
+                        - generic [ref=f1e4589]: Confirmed deadline EPC cl. 14.2 notice
+                      - listitem [ref=f1e4590]:
+                        - generic [ref=f1e4591]: 29 Jun 2027 16:40
+                        - generic [ref=f1e4592]: Meeting items proposed Steering committee 29 Jun
+                      - listitem [ref=f1e4593]:
+                        - generic [ref=f1e4594]: 28 Jun 2027 18:12
+                        - generic [ref=f1e4595]: Submission rejected Procurement feed v1.0
+                    - paragraph [ref=f1e4596]: "Design intent for the target product: Zero Trust, Microsoft Entra ID, least privilege. Not built in this prototype."
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=f1e479] [cursor=pointer]':
+            - generic [ref=f1e483]: Action register
+            - generic [ref=f1e484]:
+              - generic [ref=f1e485]: 6 open
+              - generic [ref=f1e486]:
+                - generic [ref=f1e489]: "2"
+                - text: overdue
+              - generic [ref=f1e490]: 4 due this week
+            - generic [ref=f1e491]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=f1e492]: 0%

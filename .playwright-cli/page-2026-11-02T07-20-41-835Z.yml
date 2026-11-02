@@ -1,0 +1,472 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e5]:
+        - generic [ref=f1e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=f1e11] [cursor=pointer]
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: Your tenant
+          - generic [ref=f1e24]: Denera
+          - generic [ref=f1e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]: Leading use cases
+            - list [ref=f1e29]:
+              - listitem [ref=f1e30]:
+                - link "Portfolio 1" [ref=f1e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=f1e37]: Portfolio
+                  - generic [ref=f1e38]: "1"
+              - listitem [ref=f1e39]:
+                - link "Cockpit 8" [ref=f1e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=f1e44]: Cockpit
+                  - generic [ref=f1e45]: "8"
+              - listitem [ref=f1e46]:
+                - link "Progress and S-curve 9" [ref=f1e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=f1e51]: Progress and S-curve
+                  - generic [ref=f1e52]: "9"
+              - listitem [ref=f1e53]:
+                - link "Critical path 10" [ref=f1e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=f1e59]: Critical path
+                  - generic [ref=f1e60]: "10"
+              - listitem [ref=f1e61]:
+                - link "Procurement 11" [ref=f1e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=f1e67]: Procurement
+                  - generic [ref=f1e68]: "11"
+              - listitem [ref=f1e69]:
+                - link "Cost and investment 12" [ref=f1e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=f1e74]: Cost and investment
+                  - generic [ref=f1e75]: "12"
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Enabling, Wave 1
+            - list [ref=f1e78]:
+              - listitem [ref=f1e79]:
+                - link "Phase II gates 2" [ref=f1e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=f1e84]: Phase II gates
+                  - generic [ref=f1e85]: "2"
+              - listitem [ref=f1e86]:
+                - link "Notices and obligations 3" [ref=f1e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=f1e92]: Notices and obligations
+                  - generic [ref=f1e93]: "3"
+              - listitem [ref=f1e94]:
+                - link "Partner data and rights 4" [ref=f1e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=f1e99]: Partner data and rights
+                  - generic [ref=f1e100]: "4"
+              - listitem [ref=f1e101]:
+                - link "Meetings and actions 5" [ref=f1e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=f1e107]: Meetings and actions
+                  - generic [ref=f1e108]: "5"
+              - listitem [ref=f1e109]:
+                - link "Ask ATLAS 6" [ref=f1e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=f1e113]: Ask ATLAS
+                  - generic [ref=f1e114]: "6"
+              - listitem [ref=f1e115]:
+                - link "Governance packs 7" [ref=f1e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=f1e121]: Governance packs
+                  - generic [ref=f1e122]: "7"
+          - generic [ref=f1e123]:
+            - generic [ref=f1e124]: Decisions and platform
+            - list [ref=f1e125]:
+              - listitem [ref=f1e126]:
+                - link "Decision room 13" [ref=f1e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=f1e132]: Decision room
+                  - generic [ref=f1e133]: "13"
+              - listitem [ref=f1e134]:
+                - link "Orchestration Console 14" [ref=f1e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=f1e140]: Orchestration Console
+                  - generic [ref=f1e141]: "14"
+        - generic [ref=f1e143]:
+          - generic [ref=f1e144]:
+            - generic [ref=f1e145]: Synthetic demo data
+            - generic [ref=f1e146]: 30 Jun 2027
+          - paragraph [ref=f1e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=f1e148]:
+            - button "Definitions" [ref=f1e149] [cursor=pointer]
+            - button "Reset demo" [ref=f1e152] [cursor=pointer]
+      - generic [ref=f1e156]:
+        - banner [ref=f1e157]:
+          - navigation "Breadcrumb" [ref=f1e158]:
+            - generic [ref=f1e159]: Denera
+            - generic [ref=f1e162]: Enabling, Wave 1
+            - generic [ref=f1e165]: Phase II Stage-Gate Readiness
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - text: Data date
+              - generic [ref=f1e169]: 30 Jun 2027
+              - generic [ref=f1e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=f1e171] [cursor=pointer]
+            - button "Audit log" [ref=f1e176] [cursor=pointer]
+            - button "Switch role" [ref=f1e182] [cursor=pointer]:
+              - generic [ref=f1e183]: CE
+              - generic [ref=f1e184]:
+                - generic [ref=f1e185]: Denera CEO
+                - generic [ref=f1e186]: Shareholder executive
+        - main [ref=f1e189]:
+          - generic [ref=f1e3791]:
+            - generic [ref=f1e3792]:
+              - generic [ref=f1e3793]:
+                - generic [ref=f1e3794]: UC02
+                - generic [aria-hidden] [ref=f1e3795]: /
+                - generic [ref=f1e3796]: Phase II, 8 pre-investment projects
+              - generic [ref=f1e3797]:
+                - generic [ref=f1e3798]: W1
+                - generic [ref=f1e3799]: Tier 1
+                - button "Data needed" [ref=f1e3800] [cursor=pointer]
+                - button "Confidence 91%" [ref=f1e3805] [cursor=pointer]:
+                  - text: Confidence
+                  - generic [ref=f1e3806]: 91%
+            - generic [ref=f1e3808]:
+              - heading "Three of eight Phase II projects can reach final investment decision by 30 September 2027; two have a permit dependency that puts FID at risk by three weeks." [level=1] [ref=f1e3809]
+              - generic [ref=f1e3810]: Two gates at risk
+              - button "Which can reach FID by 30 Sep 2027?" [ref=f1e3815] [cursor=pointer]
+            - generic [ref=f1e3820]:
+              - generic [ref=f1e3821]:
+                - table [ref=f1e3822]:
+                  - rowgroup [ref=f1e3823]:
+                    - row [ref=f1e3824]:
+                      - columnheader "Project" [ref=f1e3825]
+                      - columnheader "Feasibility study" [ref=f1e3826]
+                      - columnheader "Basic engineering design" [ref=f1e3828]
+                      - columnheader "Environmental approval and permits" [ref=f1e3830]
+                      - columnheader "Land and regional cooperation agreement" [ref=f1e3832]
+                      - columnheader "Waste supply commitment" [ref=f1e3834]
+                      - columnheader "Shareholder agreement" [ref=f1e3836]
+                      - columnheader "PPA readiness" [ref=f1e3838]
+                      - columnheader "Lender conditions precedent" [ref=f1e3840]
+                      - columnheader "FLOA" [ref=f1e3842]
+                      - columnheader "FID" [ref=f1e3844]
+                  - rowgroup [ref=f1e3846]:
+                    - row [ref=f1e3847] [cursor=pointer]:
+                      - cell [ref=f1e3848]:
+                        - button "P2-01 Java FLOA" [ref=f1e3849]:
+                          - generic [ref=f1e3850]: P2-01
+                          - generic [ref=f1e3851]:
+                            - text: Java
+                            - generic [ref=f1e3852]: FLOA
+                      - cell [ref=f1e3853]:
+                        - img "Met" [ref=f1e3855]
+                      - cell [ref=f1e3858]:
+                        - img "Met" [ref=f1e3860]
+                      - cell [ref=f1e3863]:
+                        - img "Met" [ref=f1e3865]
+                      - cell [ref=f1e3868]:
+                        - img "Met" [ref=f1e3870]
+                      - cell [ref=f1e3873]:
+                        - img "Met" [ref=f1e3875]
+                      - cell [ref=f1e3878]:
+                        - img "Met" [ref=f1e3880]
+                      - cell [ref=f1e3883]:
+                        - img "Met" [ref=f1e3885]
+                      - cell [ref=f1e3888]:
+                        - img "Met" [ref=f1e3890]
+                      - cell [ref=f1e3893]:
+                        - img "Met" [ref=f1e3895]
+                      - cell [ref=f1e3898]:
+                        - img "In progress" [ref=f1e3900]
+                    - row [ref=f1e3903] [cursor=pointer]:
+                      - cell [ref=f1e3904]:
+                        - button "P2-02 Java FLOA" [ref=f1e3905]:
+                          - generic [ref=f1e3906]: P2-02
+                          - generic [ref=f1e3907]:
+                            - text: Java
+                            - generic [ref=f1e3908]: FLOA
+                      - cell [ref=f1e3909]:
+                        - img "Met" [ref=f1e3911]
+                      - cell [ref=f1e3914]:
+                        - img "Met" [ref=f1e3916]
+                      - cell [ref=f1e3919]:
+                        - img "Met" [ref=f1e3921]
+                      - cell [ref=f1e3924]:
+                        - img "Met" [ref=f1e3926]
+                      - cell [ref=f1e3929]:
+                        - img "Met" [ref=f1e3931]
+                      - cell [ref=f1e3934]:
+                        - img "Met" [ref=f1e3936]
+                      - cell [ref=f1e3939]:
+                        - img "Met" [ref=f1e3941]
+                      - cell [ref=f1e3944]:
+                        - img "Met" [ref=f1e3946]
+                      - cell [ref=f1e3949]:
+                        - img "Met" [ref=f1e3951]
+                      - cell [ref=f1e3954]:
+                        - img "In progress" [ref=f1e3956]
+                    - row [ref=f1e3959] [cursor=pointer]:
+                      - cell [ref=f1e3960]:
+                        - button "P2-03 Java FLOA" [ref=f1e3961]:
+                          - generic [ref=f1e3962]: P2-03
+                          - generic [ref=f1e3963]:
+                            - text: Java
+                            - generic [ref=f1e3964]: FLOA
+                      - cell [ref=f1e3965]:
+                        - img "Met" [ref=f1e3967]
+                      - cell [ref=f1e3970]:
+                        - img "Met" [ref=f1e3972]
+                      - cell [ref=f1e3975]:
+                        - img "Met" [ref=f1e3977]
+                      - cell [ref=f1e3980]:
+                        - img "Met" [ref=f1e3982]
+                      - cell [ref=f1e3985]:
+                        - img "Met" [ref=f1e3987]
+                      - cell [ref=f1e3990]:
+                        - img "Met" [ref=f1e3992]
+                      - cell [ref=f1e3995]:
+                        - img "Met" [ref=f1e3997]
+                      - cell [ref=f1e4000]:
+                        - img "Met" [ref=f1e4002]
+                      - cell [ref=f1e4005]:
+                        - img "Met" [ref=f1e4007]
+                      - cell [ref=f1e4010]:
+                        - img "In progress" [ref=f1e4012]
+                    - row [ref=f1e4015] [cursor=pointer]:
+                      - cell [ref=f1e4016]:
+                        - button "P2-04 Sumatra FLOA" [ref=f1e4017]:
+                          - generic [ref=f1e4018]: P2-04
+                          - generic [ref=f1e4019]:
+                            - text: Sumatra
+                            - generic [ref=f1e4020]: FLOA
+                      - cell [ref=f1e4021]:
+                        - img "Met" [ref=f1e4023]
+                      - cell [ref=f1e4026]:
+                        - img "Met" [ref=f1e4028]
+                      - cell [ref=f1e4031]:
+                        - img "Met" [ref=f1e4033]
+                      - cell [ref=f1e4036]:
+                        - img "Met" [ref=f1e4038]
+                      - cell [ref=f1e4041]:
+                        - img "Met" [ref=f1e4043]
+                      - cell [ref=f1e4046]:
+                        - img "Met" [ref=f1e4048]
+                      - cell [ref=f1e4051]:
+                        - img "Met" [ref=f1e4053]
+                      - cell [ref=f1e4056]:
+                        - img "Met" [ref=f1e4058]
+                      - cell [ref=f1e4061]:
+                        - img "Met" [ref=f1e4063]
+                      - cell [ref=f1e4066]:
+                        - img "In progress" [ref=f1e4068]
+                    - row [ref=f1e4071] [cursor=pointer]:
+                      - cell [ref=f1e4072]:
+                        - button "P2-05 Sumatra FLOA" [ref=f1e4073]:
+                          - generic [ref=f1e4074]: P2-05
+                          - generic [ref=f1e4075]:
+                            - text: Sumatra
+                            - generic [ref=f1e4076]: FLOA
+                      - cell [ref=f1e4077]:
+                        - img "Met" [ref=f1e4079]
+                      - cell [ref=f1e4082]:
+                        - img "Met" [ref=f1e4084]
+                      - cell [ref=f1e4087]:
+                        - img "Met" [ref=f1e4089]
+                      - cell [ref=f1e4092]:
+                        - img "Met" [ref=f1e4094]
+                      - cell [ref=f1e4097]:
+                        - img "Met" [ref=f1e4099]
+                      - cell [ref=f1e4102]:
+                        - img "Met" [ref=f1e4104]
+                      - cell [ref=f1e4107]:
+                        - img "Met" [ref=f1e4109]
+                      - cell [ref=f1e4112]:
+                        - img "Met" [ref=f1e4114]
+                      - cell [ref=f1e4117]:
+                        - img "Met" [ref=f1e4119]
+                      - cell [ref=f1e4122]:
+                        - img "In progress" [ref=f1e4124]
+                    - row [ref=f1e4127] [cursor=pointer]:
+                      - cell [ref=f1e4128]:
+                        - button "P2-06 Kalimantan" [ref=f1e4129]:
+                          - generic [ref=f1e4130]: P2-06
+                          - generic [ref=f1e4131]: Kalimantan
+                      - cell [ref=f1e4132]:
+                        - img "Met" [ref=f1e4134]
+                      - cell [ref=f1e4137]:
+                        - img "Met" [ref=f1e4139]
+                      - cell [ref=f1e4142]:
+                        - img "At risk" [ref=f1e4144]
+                      - cell [ref=f1e4146]:
+                        - img "Met" [ref=f1e4148]
+                      - cell [ref=f1e4151]:
+                        - img "Met" [ref=f1e4153]
+                      - cell [ref=f1e4156]:
+                        - img "In progress" [ref=f1e4158]
+                      - cell [ref=f1e4161]:
+                        - img "Not started" [ref=f1e4163]
+                      - cell [ref=f1e4164]:
+                        - img "Not started" [ref=f1e4166]
+                      - cell [ref=f1e4167]:
+                        - img "Not started" [ref=f1e4169]
+                      - cell [ref=f1e4170]:
+                        - img "Not started" [ref=f1e4172]
+                    - row [ref=f1e4173] [cursor=pointer]:
+                      - cell [ref=f1e4174]:
+                        - button "P2-07 Sulawesi" [ref=f1e4175]:
+                          - generic [ref=f1e4176]: P2-07
+                          - generic [ref=f1e4177]: Sulawesi
+                      - cell [ref=f1e4178]:
+                        - img "Met" [ref=f1e4180]
+                      - cell [ref=f1e4183]:
+                        - img "Met" [ref=f1e4185]
+                      - cell [ref=f1e4188]:
+                        - img "At risk" [ref=f1e4190]
+                      - cell [ref=f1e4192]:
+                        - img "In progress" [ref=f1e4194]
+                      - cell [ref=f1e4197]:
+                        - img "Met" [ref=f1e4199]
+                      - cell [ref=f1e4202]:
+                        - img "In progress" [ref=f1e4204]
+                      - cell [ref=f1e4207]:
+                        - img "Not started" [ref=f1e4209]
+                      - cell [ref=f1e4210]:
+                        - img "Not started" [ref=f1e4212]
+                      - cell [ref=f1e4213]:
+                        - img "Not started" [ref=f1e4215]
+                      - cell [ref=f1e4216]:
+                        - img "Not started" [ref=f1e4218]
+                    - row [ref=f1e4219] [cursor=pointer]:
+                      - cell [ref=f1e4220]:
+                        - button "P2-08 Bali-Nusa Tenggara" [pressed] [ref=f1e4221]:
+                          - generic [ref=f1e4222]: P2-08
+                          - generic [ref=f1e4223]: Bali-Nusa Tenggara
+                      - cell [ref=f1e4224]:
+                        - img "Met" [ref=f1e4226]
+                      - cell [ref=f1e4229]:
+                        - img "Evidence linked, awaiting confirmation" [ref=f1e4231]
+                      - cell [ref=f1e4234]:
+                        - img "Not started" [ref=f1e4236]
+                      - cell [ref=f1e4237]:
+                        - img "Not started" [ref=f1e4239]
+                      - cell [ref=f1e4240]:
+                        - img "Not started" [ref=f1e4242]
+                      - cell [ref=f1e4243]:
+                        - img "Not started" [ref=f1e4245]
+                      - cell [ref=f1e4246]:
+                        - img "Not started" [ref=f1e4248]
+                      - cell [ref=f1e4249]:
+                        - img "Not started" [ref=f1e4251]
+                      - cell [ref=f1e4252]:
+                        - img "Not started" [ref=f1e4254]
+                      - cell [ref=f1e4255]:
+                        - img "Not started" [ref=f1e4257]
+                - generic [ref=f1e4258]:
+                  - generic [ref=f1e4259]:
+                    - img "Met" [ref=f1e4260]
+                    - text: Met
+                  - generic [ref=f1e4263]:
+                    - img "In progress" [ref=f1e4264]
+                    - text: In progress
+                  - generic [ref=f1e4267]:
+                    - img "At risk" [ref=f1e4268]
+                    - text: At risk
+                  - generic [ref=f1e4270]:
+                    - img "Not started" [ref=f1e4271]
+                    - text: Not started
+                  - generic [ref=f1e4272]:
+                    - img "Evidence linked, awaiting confirmation" [ref=f1e4273]
+                    - text: Evidence linked, awaiting confirmation
+                  - generic [ref=f1e4276]: Gate sequence is illustrative, to be confirmed in workshop W4.
+              - generic [ref=f1e4277]:
+                - generic [ref=f1e4278]:
+                  - generic [ref=f1e4279]:
+                    - heading "P2-08 · Bali-Nusa Tenggara" [level=2] [ref=f1e4280]
+                    - generic [ref=f1e4281]: FID target To be set
+                  - generic [ref=f1e4282]:
+                    - generic [ref=f1e4283]: Critical path to FID
+                    - generic [ref=f1e4314]:
+                      - generic [ref=f1e4315]: Feasibility
+                      - generic [ref=f1e4316]: FLOA
+                      - generic [ref=f1e4317]: FID
+                  - heading "9 open conditions" [level=3] [ref=f1e4318]
+                  - list [ref=f1e4319]:
+                    - listitem [ref=f1e4320]:
+                      - button "Evidence linked, awaiting confirmation Basic engineering design Evidence linked, awaiting confirmation" [ref=f1e4321] [cursor=pointer]:
+                        - img "Evidence linked, awaiting confirmation" [ref=f1e4322]
+                        - generic [ref=f1e4325]: Basic engineering design
+                        - generic [ref=f1e4326]: Evidence linked, awaiting confirmation
+                    - listitem [ref=f1e4327]:
+                      - button "Not started Environmental approval and permits Not started" [ref=f1e4328] [cursor=pointer]:
+                        - img "Not started" [ref=f1e4329]
+                        - generic [ref=f1e4330]: Environmental approval and permits
+                        - generic [ref=f1e4331]: Not started
+                    - listitem [ref=f1e4332]:
+                      - button "Not started Land and regional cooperation agreement Not started" [ref=f1e4333] [cursor=pointer]:
+                        - img "Not started" [ref=f1e4334]
+                        - generic [ref=f1e4335]: Land and regional cooperation agreement
+                        - generic [ref=f1e4336]: Not started
+                    - listitem [ref=f1e4337]:
+                      - button "Not started Waste supply commitment Not started" [ref=f1e4338] [cursor=pointer]:
+                        - img "Not started" [ref=f1e4339]
+                        - generic [ref=f1e4340]: Waste supply commitment
+                        - generic [ref=f1e4341]: Not started
+                    - listitem [ref=f1e4342]:
+                      - button "Not started Shareholder agreement Not started" [ref=f1e4343] [cursor=pointer]:
+                        - img "Not started" [ref=f1e4344]
+                        - generic [ref=f1e4345]: Shareholder agreement
+                        - generic [ref=f1e4346]: Not started
+                    - listitem [ref=f1e4347]:
+                      - button "Not started PPA readiness Not started" [ref=f1e4348] [cursor=pointer]:
+                        - img "Not started" [ref=f1e4349]
+                        - generic [ref=f1e4350]: PPA readiness
+                        - generic [ref=f1e4351]: Not started
+                    - listitem [ref=f1e4352]:
+                      - button "Not started Lender conditions precedent Not started" [ref=f1e4353] [cursor=pointer]:
+                        - img "Not started" [ref=f1e4354]
+                        - generic [ref=f1e4355]: Lender conditions precedent
+                        - generic [ref=f1e4356]: Not started
+                    - listitem [ref=f1e4357]:
+                      - button "Not started FLOA Not started" [ref=f1e4358] [cursor=pointer]:
+                        - img "Not started" [ref=f1e4359]
+                        - generic [ref=f1e4360]: FLOA
+                        - generic [ref=f1e4361]: Not started
+                    - listitem [ref=f1e4362]:
+                      - button "Not started FID Not started" [ref=f1e4363] [cursor=pointer]:
+                        - img "Not started" [ref=f1e4364]
+                        - generic [ref=f1e4365]: FID
+                        - generic [ref=f1e4366]: Not started
+                - generic [ref=f1e4367]:
+                  - heading "ATLAS alert" [level=3] [ref=f1e4372]
+                  - generic [ref=f1e4373]:
+                    - paragraph [ref=f1e4374]: Two projects have a permit dependency that puts the FID date at risk by three weeks.
+                    - list [ref=f1e4375]:
+                      - listitem [ref=f1e4376]:
+                        - generic [ref=f1e4377]:
+                          - generic [ref=f1e4378]: P2-06
+                          - generic [ref=f1e4379]: At risk
+                        - generic [ref=f1e4382]: Two-month approval clock ends 28 Jul 2027. FID 15 Dec 2027, forecast 5 Jan 2028.
+                      - listitem [ref=f1e4383]:
+                        - generic [ref=f1e4384]:
+                          - generic [ref=f1e4385]: P2-07
+                          - generic [ref=f1e4386]: At risk
+                        - generic [ref=f1e4389]: Two-month approval clock ends 4 Aug 2027. FID 31 Jan 2028, forecast 21 Feb 2028.
+                  - generic [ref=f1e4390]:
+                    - button "2 sources" [ref=f1e4391] [cursor=pointer]
+                    - generic [ref=f1e4395]: 30 Jun 2027 08:30
+                    - generic [ref=f1e4399]: Confidence Medium
+                    - generic [ref=f1e4400]: Forecast
+                - generic [ref=f1e4401]:
+                  - heading "Shareholder (Denera) actions" [level=3] [ref=f1e4402]
+                  - generic [ref=f1e4403]:
+                    - button "Escalate slipping gate (P2-08)" [ref=f1e4404] [cursor=pointer]
+                    - button "Request agreement change" [ref=f1e4407] [cursor=pointer]
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=f1e479] [cursor=pointer]':
+            - generic [ref=f1e483]: Action register
+            - generic [ref=f1e484]:
+              - generic [ref=f1e485]: 6 open
+              - generic [ref=f1e486]:
+                - generic [ref=f1e489]: "2"
+                - text: overdue
+              - generic [ref=f1e490]: 4 due this week
+            - generic [ref=f1e491]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=f1e492]: 0%

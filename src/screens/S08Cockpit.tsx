@@ -1,4 +1,4 @@
-import { ArrowUpRight, ChevronRight, FileText, Gavel, MessageSquare, Sparkles, TriangleAlert } from 'lucide-react'
+import { ArrowUpRight, ChevronRight, FileText, Gavel, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { HEALTH_ICON, StatusChip, WaveTag } from '../components/atlas/chips'
@@ -7,7 +7,6 @@ import { HealthRulePop } from '../components/atlas/HealthRule'
 import { ValuePanel } from '../components/atlas/ValuePanel'
 import { Button } from '../components/ui/button'
 import { Sheet } from '../components/ui/sheet'
-import { Tip } from '../components/ui/tooltip'
 import { NARRATIVE, PROJECT, SCORECARDS, WEEKLY_MOVEMENT, type Scorecard } from '../data/cakrawala'
 import { ANSWERS } from '../data/answers'
 import { cn } from '../lib/cn'
@@ -39,8 +38,8 @@ export function S08Cockpit() {
       <div className="mt-8 grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
         <section aria-labelledby="dims">
           <div className="mb-3 flex items-center justify-between">
-            <h2 id="dims" className="text-[17px] font-semibold tracking-[-0.012em] text-ink">Twelve health dimensions</h2>
-            <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-bad"><TriangleAlert className="size-3.5" />Escalation flag: 4 of 12 Red</span>
+            <h2 id="dims" className="text-[18px] font-semibold tracking-[-0.012em] text-ink">Twelve health dimensions</h2>
+            <span className="text-[13px] text-ink-3">Computed by ATLAS. Comment, not edit. <span className="font-medium text-bad">4 of 12 Red</span></span>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {SCORECARDS.map((c, i) => (
@@ -51,13 +50,13 @@ export function S08Cockpit() {
         <div className="flex flex-col gap-5">
           <AtlasCard title="ATLAS summary this week" tone="violet" sources={[{ label: 'Schedule update 28 Jun', doc: 'epc-schedule' }, { label: 'Transmittal log', doc: 'transmittal-boiler' }, { label: 'Cost report', doc: 'cost-report' }]} classification="Advisory" confidence="Medium">
             <p>{WEEKLY_MOVEMENT}</p>
-            <div className="mt-3 flex items-center gap-2 rounded-md bg-surface px-3 py-2 text-[12.5px] text-ink-2">
+            <div className="mt-3 flex items-center gap-2 rounded-md bg-surface px-3 py-2 text-[13px] text-ink-2">
               <Gavel className="size-4 shrink-0 text-[#8a3b12]" />2 of 6 recommended actions are Joint and need a project company board decision.
             </div>
           </AtlasCard>
           <section className="rounded-xl border border-line bg-surface p-5">
             <h3 className="text-[13px] font-semibold text-ink">Why this matters</h3>
-            <p className="mt-2 text-[13.5px] leading-relaxed text-ink-2">{NARRATIVE}</p>
+            <p className="mt-2 text-[14px] leading-relaxed text-ink-2">{NARRATIVE}</p>
           </section>
         </div>
       </div>
@@ -76,10 +75,10 @@ export function S08Cockpit() {
                   ? [['Inspection and test plan tracker', 'ITP completion 38% against verified work 39%.'], ['Hold-point register', 'No hold point released without signature.']]
                   : [['Permit register', 'Utilities tie-in permit amendment awaiting regional approval; 9 days float.'], ['Stakeholder log', 'Community consultation minutes filed for June.']]
               ).map(([t, x]) => (
-                <div key={t} className="rounded-md border border-line p-3"><div className="text-[12px] font-medium text-atlas-700">Evidence</div><div className="text-[13px] font-medium text-ink">{t}</div><div className="text-[12.5px] text-ink-3">{x}</div></div>
+                <div key={t} className="rounded-md border border-line p-3"><div className="text-[12px] font-medium text-atlas-700">Evidence</div><div className="text-[13px] font-medium text-ink">{t}</div><div className="text-[13px] text-ink-3">{x}</div></div>
               ))}
             </div>
-            <p className="text-[12.5px] text-ink-3">Data needed: {panel.wave === 'W3' ? 'HSE and quality records from the project company (Wave 3).' : 'Permit register and stakeholder log (Wave 1).'}</p>
+            <p className="text-[13px] text-ink-3">Data needed: {panel.wave === 'W3' ? 'HSE and quality records from the project company (Wave 3).' : 'Permit register and stakeholder log (Wave 1).'}</p>
           </div>
         )}
       </Sheet>
@@ -111,11 +110,11 @@ function HeaderStrip() {
       {items.map((i) => (
         <div key={i.label} className="bg-surface px-5 py-4">
           <div className="text-[12px] font-medium text-ink-3">{i.label}</div>
-          <div className="tnum mt-1 text-[17px] font-semibold tracking-[-0.01em] text-ink">{i.value}</div>
+          <div className="tnum mt-1 text-[18px] font-semibold tracking-[-0.01em] text-ink">{i.value}</div>
           {i.note && <div className="text-[12px] text-ink-3">{i.note}</div>}
         </div>
       ))}
-      <div className="bg-surface px-5 py-4 text-[12.5px] text-ink-2">
+      <div className="bg-surface px-5 py-4 text-[13px] text-ink-2">
         <div><span className="text-ink-3">Data date </span><span className="tnum font-medium text-ink">30 Jun 2027</span> <span className="text-ink-3">08:30 WIB</span></div>
         <div className="mt-1"><span className="text-ink-3">Confidence </span><span className="tnum font-medium text-ink">91%</span></div>
         <a href="#/partner-data" className="mt-1 inline-flex items-center gap-0.5 font-medium text-atlas-700 hover:underline">Information rights 3 of 4<ChevronRight className="size-3.5" /></a>
@@ -130,19 +129,16 @@ function ScoreTile({ c, i, onOpen }: { c: Scorecard; i: number; onOpen: () => vo
     <button
       onClick={onOpen}
       style={{ animationDelay: `${i * 30}ms` }}
-      className={'press group flex animate-rise flex-col rounded-xl border border-line bg-surface p-4 text-left transition-colors hover:border-atlas-300'}
+      className="press group flex animate-rise flex-col rounded-xl border border-line bg-surface px-4 pb-3 pt-3.5 text-left transition-colors hover:border-atlas-300"
     >
       <div className="flex items-center justify-between gap-2">
-        <span className="text-[13.5px] font-semibold text-ink">{c.name}</span>
+        <span className="text-[14px] font-semibold text-ink">{c.name}</span>
         <span className={cn('inline-flex items-center gap-1 text-[12px] font-semibold', c.status === 'Red' ? 'text-bad' : c.status === 'Yellow' ? 'text-warn' : 'text-ok')}>
           <Icon className="size-3.5" strokeWidth={2.4} />{c.status}
         </span>
       </div>
-      <p className={cn('mt-1.5 flex-1 text-[13px] leading-snug', c.status === 'Red' ? 'text-ink' : 'text-ink-3')}>{c.text}</p>
-      <div className="mt-3 flex items-center justify-between border-t border-line-soft pt-2.5 text-[12px] text-ink-3">
-        <span className="inline-flex items-center gap-1"><MessageSquare className="size-3.5" />Comment only</span>
-        <Tip content="Open the module behind this signal"><span className="inline-flex items-center gap-0.5 font-medium text-atlas-700 opacity-80 group-hover:opacity-100">Open<ArrowUpRight className="size-3.5" /></span></Tip>
-      </div>
+      <p className="mt-1 flex-1 text-[13px] leading-snug text-ink-3">{c.text}</p>
+      <span className="mt-2 inline-flex items-center gap-0.5 text-[12px] font-medium text-atlas-700 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">Open<ArrowUpRight className="size-3.5" /></span>
     </button>
   )
 }

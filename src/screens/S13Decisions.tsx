@@ -74,7 +74,7 @@ export function S13Decisions() {
               <li key={b.n} className="grid gap-2 px-5 py-3.5 sm:grid-cols-[28px_1fr_auto]">
                 <span className="tnum grid size-6 place-items-center rounded-full bg-sunken text-[12px] font-semibold text-ink-2">{b.n}</span>
                 <div className="min-w-0">
-                  <p className="text-[13.5px] font-medium leading-snug text-ink">{b.text}</p>
+                  <p className="text-[14px] font-medium leading-snug text-ink">{b.text}</p>
                   <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-ink-3">
                     <span>{b.owner}</span><span className="tnum">Due {b.due}</span>
                     {b.links && <span>Links to {b.links}</span>}
@@ -107,9 +107,9 @@ export function S13Decisions() {
           {pid === 'bn' && (
             <Card className="border-atlas-300 p-5">
               <h3 className="text-[14px] font-semibold text-ink">Information needed to vote</h3>
-              <p className="mt-1 text-[12.5px] text-ink-3">Joint items go to the project company board, where you vote.</p>
+              <p className="mt-1 text-[13px] text-ink-3">Joint items go to the project company board, where you vote.</p>
               {BUNDLE.filter((b) => b.authority === 'Joint').map((b) => (
-                <div key={b.n} className="mt-3 rounded-md bg-sunken p-3 text-[12.5px]">
+                <div key={b.n} className="mt-3 rounded-md bg-sunken p-3 text-[13px]">
                   <div className="font-medium text-ink">Action {b.n}</div>
                   <div className="mt-1 text-ink-2"><span className="text-ink-3">Available: </span>{b.n === 1 ? 'EPC cl. 14.2, transmittal log, steering minute' : 'Logistics risk note, CO-02 draft'}</div>
                   <div className="text-ink-2"><span className="text-ink-3">Gaps: </span>{b.n === 1 ? 'Contractor response to the interface comment' : 'Cost-sharing position and freight quotes'}</div>
@@ -124,7 +124,7 @@ export function S13Decisions() {
             <h3 className="text-[13px] font-semibold text-ink">Action register</h3>
             <ul className="mt-2 space-y-2">
               {actions.filter((a) => !isPcu || a.authority !== 'Shareholder (Denera)').slice(0, 8).map((a) => (
-                <li key={a.id} className="text-[12.5px]">
+                <li key={a.id} className="text-[13px]">
                   <div className="font-medium text-ink">{a.title}</div>
                   <div className="flex flex-wrap items-center gap-x-2 text-ink-3"><span>{a.owner}</span><span className={cn('tnum', isOverdue(a) && 'font-medium text-bad')}>{isOverdue(a) ? 'Overdue' : 'Due'} {a.due}</span><span>{a.status}</span></div>
                 </li>
@@ -185,12 +185,12 @@ export function S13Decisions() {
       </section>
 
       <Modal open={defer} onOpenChange={setDefer} title="Reject or defer" description="A reason is required before the decision is recorded." footer={<><Button variant="ghost" onClick={() => setDefer(false)}>Cancel</Button><Button disabled={!reason.trim()} onClick={() => { respond('Deferred', reason.trim()); setDefer(false) }}><Send />Record decision</Button></>}>
-        <label htmlFor="dr" className="text-[12.5px] font-medium text-ink-2">Reason</label>
-        <textarea id="dr" rows={3} value={reason} onChange={(e) => setReason(e.target.value)} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[13.5px] outline-none focus:border-atlas-500" />
+        <label htmlFor="dr" className="text-[13px] font-medium text-ink-2">Reason</label>
+        <textarea id="dr" rows={3} value={reason} onChange={(e) => setReason(e.target.value)} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500" />
       </Modal>
       <Modal open={!!assign} onOpenChange={(v) => !v && setAssign(null)} title={`Assign owner, ${assign}`} description={RISKS.find((r) => r.id === assign)?.risk} footer={<><Button variant="ghost" onClick={() => setAssign(null)}>Cancel</Button><Button onClick={() => { assignRisk(assign!, owner); setAssign(null) }}><UserPlus />Assign</Button></>}>
-        <label htmlFor="ow" className="text-[12.5px] font-medium text-ink-2">Owner</label>
-        <select id="ow" value={owner} onChange={(e) => setOwner(e.target.value)} className="mt-1 block w-full rounded-md border border-line bg-sunken px-3 py-2 text-[13.5px] outline-none focus:border-atlas-500">
+        <label htmlFor="ow" className="text-[13px] font-medium text-ink-2">Owner</label>
+        <select id="ow" value={owner} onChange={(e) => setOwner(e.target.value)} className="mt-1 block w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500">
           {['Project Director', 'Technical Director', 'Procurement Lead', 'PMO Director', 'Grid interface lead'].map((o) => <option key={o}>{o}</option>)}
         </select>
       </Modal>
@@ -208,7 +208,7 @@ function Monitoring() {
         {[42, 42, 42, 42].map((v, i) => <span key={i} className={cn('w-6 rounded-t-sm', i === 3 ? 'bg-warn' : 'bg-atlas-200')} style={{ height: `${v}px` }} />)}
         <span className="tnum ml-2 text-[13px] text-ink-2"><b className="text-[18px] font-semibold text-ink">42</b> days today; target after plan +12</span>
       </div>
-      <ul className="mt-3 space-y-1.5 text-[12.5px]">
+      <ul className="mt-3 space-y-1.5 text-[13px]">
         {linked.map((a) => <li key={a.id} className="flex justify-between gap-3"><span className="truncate text-ink">{a.title}</span><span className="shrink-0 text-ink-3">{a.status}</span></li>)}
       </ul>
     </Card>

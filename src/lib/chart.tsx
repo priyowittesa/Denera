@@ -23,7 +23,7 @@ export function ChartTooltip({ active, payload, label, rows }: { active?: boolea
   const visible = rows.filter((r) => typeof map.get(r.key) === 'number')
   if (!visible.length) return null
   return (
-    <div className="float min-w-[200px] rounded-md bg-surface px-3 py-2.5 text-[12.5px]">
+    <div className="float min-w-[200px] rounded-md bg-surface px-3 py-2.5 text-[13px]">
       <div className="mb-1.5 font-semibold text-ink">{label ? fmtDay(label) : ''}</div>
       {visible.map((r) => (
         <div key={r.key} className="flex items-center justify-between gap-6 py-0.5">
@@ -37,7 +37,7 @@ export function ChartTooltip({ active, payload, label, rows }: { active?: boolea
 
 export function LegendItem({ color, label, dash, weight = 2 }: { color: string; label: ReactNode; dash?: string; weight?: number }) {
   return (
-    <span className="inline-flex items-center gap-2 text-[12.5px] text-ink-2">
+    <span className="inline-flex items-center gap-2 text-[13px] text-ink-2">
       <svg width="22" height="8" aria-hidden>
         <line x1="1" y1="4" x2="21" y2="4" stroke={color} strokeWidth={weight} strokeDasharray={dash} strokeLinecap="round" />
       </svg>

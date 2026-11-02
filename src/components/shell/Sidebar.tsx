@@ -40,7 +40,7 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
     >
       <div className={cn('flex h-16 items-center gap-2.5', collapsed ? 'justify-center px-0' : 'px-5')}>
         <AtlasMark className="size-7 shrink-0" />
-        {!collapsed && <span className="text-[17px] font-semibold tracking-[-0.01em]">ATLAS <span className="font-normal text-atlas-200">Altimeda</span></span>}
+        {!collapsed && <span className="text-[18px] font-semibold tracking-[-0.01em]">ATLAS <span className="font-normal text-atlas-200">Altimeda</span></span>}
       </div>
       {!drawer && !narrow && <button
         onClick={() => setCollapsed(!collapsed)}
@@ -55,9 +55,9 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
           <span className="grid size-9 shrink-0 place-items-center rounded-md bg-white text-atlas-900"><Building2 className="size-5" /></span>
           {!collapsed && (
             <div className="min-w-0 leading-tight">
-              <div className="text-[11.5px] text-atlas-200">Your tenant</div>
+              <div className="text-[12px] text-atlas-200">Your tenant</div>
               <div className="truncate text-[14px] font-semibold">Denera</div>
-              <div className="truncate text-[11px] text-atlas-300/80">PT Daya Energi Bersih Nusantara</div>
+              <div className="truncate text-[12px] text-atlas-300/80">PT Daya Energi Bersih Nusantara</div>
             </div>
           )}
         </div>
@@ -65,9 +65,9 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
 
       <nav className="mt-4 min-h-0 flex-1 overflow-y-auto px-3 pb-3 [scrollbar-color:rgb(255_255_255/0.15)_transparent]" aria-label="Screens">
         {GROUPS.map((g) => (
-          <div key={g.id} className="mb-4">
+          <div key={g.id} className="mb-3">
             {!collapsed ? (
-              <div className="px-2.5 pb-1.5 text-[11.5px] font-medium text-atlas-300/90">{g.label}</div>
+              <div className="px-2.5 pb-1.5 text-[12px] font-medium text-atlas-300/90">{g.label}</div>
             ) : (
               <div className="mx-auto mb-2 h-px w-6 bg-white/15" />
             )}
@@ -82,7 +82,7 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
                     onClick={() => drawer && setNavOpen(false)}
                     className={({ isActive }) =>
                       cn(
-                        'press flex items-center gap-3 rounded-md py-2 text-[13.5px] text-atlas-100/85 hover:bg-white/[0.07] hover:text-white',
+                        'press flex items-center gap-3 rounded-md py-[7px] text-[13px] text-atlas-100/85 hover:bg-white/[0.07] hover:text-white',
                         collapsed ? 'justify-center px-0' : 'px-2.5',
                         isActive && 'bg-atlas-600 font-medium text-white hover:bg-atlas-600',
                       )
@@ -92,7 +92,7 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
                     {!collapsed && (
                       <>
                         <span className="min-w-0 flex-1 truncate">{s.short}</span>
-                        <span className="tnum text-[11px] text-atlas-300/70">{s.n}</span>
+                        <span className="tnum text-[12px] text-atlas-300/70">{s.n}</span>
                       </>
                     )}
                   </NavLink>
@@ -109,10 +109,10 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
           <div className="rounded-xl border border-white/12 bg-white/[0.06] p-3.5">
             <div className="flex items-baseline justify-between">
               <span className="text-[13px] font-semibold">Synthetic demo data</span>
-              <span className="tnum text-[11.5px] text-atlas-200">30 Jun 2027</span>
+              <span className="tnum text-[12px] text-atlas-200">30 Jun 2027</span>
             </div>
-            <p className="mt-1 text-[11.5px] leading-snug text-atlas-200/90">All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.</p>
-            <div className="mt-3 grid grid-cols-2 gap-2">
+            <p className="mt-0.5 text-[12px] leading-snug text-atlas-200/90">All figures are illustrative.</p>
+            <div className="mt-2.5 grid grid-cols-2 gap-2">
               <button onClick={() => setDefs(true)} className="press inline-flex items-center justify-center gap-1.5 rounded-md bg-white/10 py-1.5 text-[12px] font-medium hover:bg-white/15">
                 <BookOpen className="size-3.5" />Definitions
               </button>

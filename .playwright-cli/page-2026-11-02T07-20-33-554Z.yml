@@ -1,0 +1,337 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e5]:
+        - generic [ref=f1e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=f1e11] [cursor=pointer]
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: Your tenant
+          - generic [ref=f1e24]: Denera
+          - generic [ref=f1e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]: Leading use cases
+            - list [ref=f1e29]:
+              - listitem [ref=f1e30]:
+                - link "Portfolio 1" [ref=f1e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=f1e37]: Portfolio
+                  - generic [ref=f1e38]: "1"
+              - listitem [ref=f1e39]:
+                - link "Cockpit 8" [ref=f1e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=f1e44]: Cockpit
+                  - generic [ref=f1e45]: "8"
+              - listitem [ref=f1e46]:
+                - link "Progress and S-curve 9" [ref=f1e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=f1e51]: Progress and S-curve
+                  - generic [ref=f1e52]: "9"
+              - listitem [ref=f1e53]:
+                - link "Critical path 10" [ref=f1e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=f1e59]: Critical path
+                  - generic [ref=f1e60]: "10"
+              - listitem [ref=f1e61]:
+                - link "Procurement 11" [ref=f1e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=f1e67]: Procurement
+                  - generic [ref=f1e68]: "11"
+              - listitem [ref=f1e69]:
+                - link "Cost and investment 12" [ref=f1e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=f1e74]: Cost and investment
+                  - generic [ref=f1e75]: "12"
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Enabling, Wave 1
+            - list [ref=f1e78]:
+              - listitem [ref=f1e79]:
+                - link "Phase II gates 2" [ref=f1e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=f1e84]: Phase II gates
+                  - generic [ref=f1e85]: "2"
+              - listitem [ref=f1e86]:
+                - link "Notices and obligations 3" [ref=f1e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=f1e92]: Notices and obligations
+                  - generic [ref=f1e93]: "3"
+              - listitem [ref=f1e94]:
+                - link "Partner data and rights 4" [ref=f1e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=f1e99]: Partner data and rights
+                  - generic [ref=f1e100]: "4"
+              - listitem [ref=f1e101]:
+                - link "Meetings and actions 5" [ref=f1e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=f1e107]: Meetings and actions
+                  - generic [ref=f1e108]: "5"
+              - listitem [ref=f1e109]:
+                - link "Ask ATLAS 6" [ref=f1e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=f1e113]: Ask ATLAS
+                  - generic [ref=f1e114]: "6"
+              - listitem [ref=f1e115]:
+                - link "Governance packs 7" [ref=f1e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=f1e121]: Governance packs
+                  - generic [ref=f1e122]: "7"
+          - generic [ref=f1e123]:
+            - generic [ref=f1e124]: Decisions and platform
+            - list [ref=f1e125]:
+              - listitem [ref=f1e126]:
+                - link "Decision room 13" [ref=f1e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=f1e132]: Decision room
+                  - generic [ref=f1e133]: "13"
+              - listitem [ref=f1e134]:
+                - link "Orchestration Console 14" [ref=f1e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=f1e140]: Orchestration Console
+                  - generic [ref=f1e141]: "14"
+        - generic [ref=f1e143]:
+          - generic [ref=f1e144]:
+            - generic [ref=f1e145]: Synthetic demo data
+            - generic [ref=f1e146]: 30 Jun 2027
+          - paragraph [ref=f1e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=f1e148]:
+            - button "Definitions" [ref=f1e149] [cursor=pointer]
+            - button "Reset demo" [ref=f1e152] [cursor=pointer]
+      - generic [ref=f1e156]:
+        - banner [ref=f1e157]:
+          - navigation "Breadcrumb" [ref=f1e158]:
+            - generic [ref=f1e159]: Denera
+            - generic [ref=f1e162]: Decisions and platform
+            - generic [ref=f1e165]: "Decision Room: Risk, Change and Claims"
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - text: Data date
+              - generic [ref=f1e169]: 30 Jun 2027
+              - generic [ref=f1e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=f1e171] [cursor=pointer]
+            - button "Audit log" [ref=f1e176] [cursor=pointer]
+            - button "Switch role" [ref=f1e182] [cursor=pointer]:
+              - generic [ref=f1e183]: CE
+              - generic [ref=f1e184]:
+                - generic [ref=f1e185]: Denera CEO
+                - generic [ref=f1e186]: Shareholder executive
+        - main [ref=f1e189]:
+          - generic [ref=f1e3110]:
+            - generic [ref=f1e3111]:
+              - generic [ref=f1e3112]:
+                - generic [ref=f1e3113]: UC12 · UC03 · UC06
+                - generic [aria-hidden] [ref=f1e3114]: /
+                - generic [ref=f1e3115]: PSEL Cakrawala Raya
+              - generic [ref=f1e3116]:
+                - generic [ref=f1e3117]:
+                  - text: W2
+                  - generic [ref=f1e3118]: target
+                - generic [ref=f1e3119]:
+                  - text: W3
+                  - generic [ref=f1e3120]: target
+                - generic [ref=f1e3121]: UC03 Tier 1 · UC12, UC06 Tier 2
+                - button "Data needed" [ref=f1e3122] [cursor=pointer]
+                - button "Confidence 91%" [ref=f1e3127] [cursor=pointer]:
+                  - text: Confidence
+                  - generic [ref=f1e3128]: 91%
+            - generic [ref=f1e3130]:
+              - 'heading "One decision is needed now: the Boiler Island Recovery Strategy." [level=1] [ref=f1e3131]'
+              - generic [ref=f1e3132]:
+                - generic [ref=f1e3133]: Decide this week
+                - paragraph [ref=f1e3136]: "Why now: the forecast creates a 42-day COD exposure, a contractual notice deadline falls on 6 July 2027 and the EPC recovery programme is incomplete."
+            - generic [ref=f1e3137]:
+              - generic [ref=f1e3138]:
+                - generic [ref=f1e3139]:
+                  - generic [ref=f1e3140]:
+                    - heading "Recommended action bundle" [level=2] [ref=f1e3141]
+                    - generic [ref=f1e3146]: ATLAS recommends; a person decides. Advisory.
+                  - list [ref=f1e3147]:
+                    - listitem [ref=f1e3148]:
+                      - generic [ref=f1e3149]: "1"
+                      - generic [ref=f1e3150]:
+                        - paragraph [ref=f1e3151]: Request the project company board to issue formal notice to the EPC contractor by 5 PM Friday 2 July 2027.
+                        - generic [ref=f1e3152]:
+                          - generic [ref=f1e3153]: Commercial Lead
+                          - generic [ref=f1e3154]: Due 2 Jul 2027
+                          - generic [ref=f1e3155]: Links to A-01
+                          - button "Evidence" [ref=f1e3156] [cursor=pointer]
+                      - generic [ref=f1e3160]: Joint
+                    - listitem [ref=f1e3162]:
+                      - generic [ref=f1e3163]: "2"
+                      - generic [ref=f1e3164]:
+                        - paragraph [ref=f1e3165]: Require a revised recovery programme within three working days.
+                        - generic [ref=f1e3166]:
+                          - generic [ref=f1e3167]: Project Director
+                          - generic [ref=f1e3168]: Due 5 Jul 2027
+                          - button "Evidence" [ref=f1e3169] [cursor=pointer]
+                      - generic [ref=f1e3173]: Project company
+                    - listitem [ref=f1e3175]:
+                      - generic [ref=f1e3176]: "3"
+                      - generic [ref=f1e3177]:
+                        - paragraph [ref=f1e3178]: Approve a technical task force to close the interface decision within 48 hours.
+                        - generic [ref=f1e3179]:
+                          - generic [ref=f1e3180]: Technical Director
+                          - generic [ref=f1e3181]: Due 2 Jul 2027
+                          - generic [ref=f1e3182]: Links to A-02
+                          - button "Evidence" [ref=f1e3183] [cursor=pointer]
+                      - generic [ref=f1e3187]: Project company
+                    - listitem [ref=f1e3189]:
+                      - generic [ref=f1e3190]: "4"
+                      - generic [ref=f1e3191]:
+                        - paragraph [ref=f1e3192]: Request the vendor factory recovery plan and weekly manufacturing evidence.
+                        - generic [ref=f1e3193]:
+                          - generic [ref=f1e3194]: Procurement Lead
+                          - generic [ref=f1e3195]: Due 5 Jul 2027
+                          - generic [ref=f1e3196]: Links to A-03
+                          - button "Evidence" [ref=f1e3197] [cursor=pointer]
+                      - generic [ref=f1e3201]: Project company
+                    - listitem [ref=f1e3203]:
+                      - generic [ref=f1e3204]: "5"
+                      - generic [ref=f1e3205]:
+                        - paragraph [ref=f1e3206]: Assess the alternative logistics route and cost-sharing position.
+                        - generic [ref=f1e3207]:
+                          - generic [ref=f1e3208]: Procurement Lead
+                          - generic [ref=f1e3209]: Due 6 Jul 2027
+                          - button "Evidence" [ref=f1e3210] [cursor=pointer]
+                      - generic [ref=f1e3214]: Joint
+                    - listitem [ref=f1e3216]:
+                      - generic [ref=f1e3217]: "6"
+                      - generic [ref=f1e3218]:
+                        - paragraph [ref=f1e3219]: Escalate to the Denera Project Steering Committee and, if needed, the Investment Committee.
+                        - generic [ref=f1e3220]:
+                          - generic [ref=f1e3221]: PMO Director
+                          - generic [ref=f1e3222]: Due 6 Jul 2027
+                          - button "Evidence" [ref=f1e3223] [cursor=pointer]
+                      - generic [ref=f1e3227]: Shareholder (Denera)
+                  - generic [ref=f1e3230]:
+                    - button "Approve the recommended action plan" [ref=f1e3231] [cursor=pointer]
+                    - button "Request further analysis" [ref=f1e3238] [cursor=pointer]
+                    - button "Assign to the Project Director" [ref=f1e3239] [cursor=pointer]
+                    - button "Route to the project company board (request)" [ref=f1e3240] [cursor=pointer]
+                    - button "Escalate to the Investment Committee" [ref=f1e3241] [cursor=pointer]
+                    - button "Reject or defer with a recorded reason" [ref=f1e3242] [cursor=pointer]
+                - generic [ref=f1e3244]:
+                  - heading "Action register" [level=3] [ref=f1e3245]
+                  - list [ref=f1e3246]:
+                    - listitem [ref=f1e3247]:
+                      - generic [ref=f1e3248]: Issue EPC notice
+                      - generic [ref=f1e3249]:
+                        - generic [ref=f1e3250]: Commercial Lead
+                        - generic [ref=f1e3251]: Due 2 Jul 2027
+                        - generic [ref=f1e3252]: In progress
+                    - listitem [ref=f1e3253]:
+                      - generic [ref=f1e3254]: Close engineering interface
+                      - generic [ref=f1e3255]:
+                        - generic [ref=f1e3256]: Technical Director
+                        - generic [ref=f1e3257]: Due 2 Jul 2027
+                        - generic [ref=f1e3258]: Not started
+                    - listitem [ref=f1e3259]:
+                      - generic [ref=f1e3260]: Obtain vendor recovery programme
+                      - generic [ref=f1e3261]:
+                        - generic [ref=f1e3262]: Procurement Lead
+                        - generic [ref=f1e3263]: Due 5 Jul 2027
+                        - generic [ref=f1e3264]: In progress
+                    - listitem [ref=f1e3265]:
+                      - generic [ref=f1e3266]: Update cashflow forecast
+                      - generic [ref=f1e3267]:
+                        - generic [ref=f1e3268]: Finance Lead
+                        - generic [ref=f1e3269]: Due 5 Jul 2027
+                        - generic [ref=f1e3270]: Not started
+                    - listitem [ref=f1e3271]:
+                      - generic [ref=f1e3272]: Confirm cashflow data template with project company
+                      - generic [ref=f1e3273]:
+                        - generic [ref=f1e3274]: Finance Lead
+                        - generic [ref=f1e3275]: Overdue 18 Jun 2027
+                        - generic [ref=f1e3276]: Not started
+                    - listitem [ref=f1e3277]:
+                      - generic [ref=f1e3278]: Update permit register for P2-06
+                      - generic [ref=f1e3279]:
+                        - generic [ref=f1e3280]: Investment and legal lead
+                        - generic [ref=f1e3281]: Overdue 24 Jun 2027
+                        - generic [ref=f1e3282]: Not started
+              - generic [ref=f1e3283]:
+                - heading "Risk, change and claims" [level=2] [ref=f1e3285]
+                - generic [ref=f1e3287]:
+                  - tablist [ref=f1e3288]:
+                    - tab "Risk register" [selected] [ref=f1e3289] [cursor=pointer]
+                    - tab "Change orders and variations" [ref=f1e3290] [cursor=pointer]
+                    - tab "Notices and claims" [ref=f1e3291] [cursor=pointer]
+                  - tabpanel "Risk register" [ref=f1e3292]:
+                    - table [ref=f1e3293]:
+                      - rowgroup [ref=f1e3294]:
+                        - row [ref=f1e3295]:
+                          - columnheader "Risk" [ref=f1e3296]
+                          - columnheader "Probability" [ref=f1e3297]
+                          - columnheader "Impact" [ref=f1e3298]
+                          - columnheader "Owner" [ref=f1e3299]
+                          - columnheader "Mitigation" [ref=f1e3300]
+                          - columnheader "Package" [ref=f1e3301]
+                      - rowgroup [ref=f1e3302]:
+                        - row [ref=f1e3303]:
+                          - cell "R-01 Boiler island late delivery" [ref=f1e3304]
+                          - cell "High" [ref=f1e3305]
+                          - cell "High" [ref=f1e3306]
+                          - cell "Procurement Lead" [ref=f1e3307]
+                          - cell "In progress" [ref=f1e3308]
+                          - cell "Boiler island" [ref=f1e3309]
+                        - row [ref=f1e3310]:
+                          - cell "R-02 Unresolved boiler and waste-receiving interface" [ref=f1e3311]
+                          - cell "High" [ref=f1e3312]
+                          - cell "High" [ref=f1e3313]
+                          - cell "Technical Director" [ref=f1e3314]
+                          - cell "In progress" [ref=f1e3315]
+                          - cell "Boiler island" [ref=f1e3316]
+                        - row [ref=f1e3317]:
+                          - cell "R-03 EPC recovery programme not credible" [ref=f1e3318]
+                          - cell "High" [ref=f1e3319]
+                          - cell "High" [ref=f1e3320]
+                          - cell [ref=f1e3321]:
+                            - 'button "No effective owner: assign" [ref=f1e3322] [cursor=pointer]'
+                          - cell "Not started" [ref=f1e3326]
+                          - cell "All" [ref=f1e3327]
+                        - row [ref=f1e3328]:
+                          - cell "R-04 FX exposure on imported equipment" [ref=f1e3329]
+                          - cell "Medium" [ref=f1e3330]
+                          - cell "High" [ref=f1e3331]
+                          - cell "Finance Lead" [ref=f1e3332]
+                          - cell "In progress" [ref=f1e3333]
+                          - cell "All" [ref=f1e3334]
+                        - row [ref=f1e3335]:
+                          - cell "R-05 Port and logistics transit" [ref=f1e3336]
+                          - cell "Medium" [ref=f1e3337]
+                          - cell "Medium" [ref=f1e3338]
+                          - cell "Procurement Lead" [ref=f1e3339]
+                          - cell "Not started" [ref=f1e3340]
+                          - cell "Boiler island" [ref=f1e3341]
+                        - row [ref=f1e3342]:
+                          - cell "R-06 Grid connection date unconfirmed" [ref=f1e3343]
+                          - cell "Medium" [ref=f1e3344]
+                          - cell "High" [ref=f1e3345]
+                          - cell [ref=f1e3346]:
+                            - 'button "No effective owner: assign" [ref=f1e3347] [cursor=pointer]'
+                          - cell "Not started" [ref=f1e3351]
+                          - cell "Grid switchgear" [ref=f1e3352]
+                        - row [ref=f1e3353]:
+                          - cell "R-07 Collection fleet plan not evidenced" [ref=f1e3354]
+                          - cell "Medium" [ref=f1e3355]
+                          - cell "Medium" [ref=f1e3356]
+                          - cell "Regional government liaison" [ref=f1e3357]
+                          - cell "In progress" [ref=f1e3358]
+                          - cell "Waste supply" [ref=f1e3359]
+                        - row [ref=f1e3360]:
+                          - cell "R-08 One approval at risk of delay" [ref=f1e3361]
+                          - cell "Low" [ref=f1e3362]
+                          - cell "Medium" [ref=f1e3363]
+                          - cell "Permits lead" [ref=f1e3364]
+                          - cell "In progress" [ref=f1e3365]
+                          - cell "Utilities" [ref=f1e3366]
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=f1e479] [cursor=pointer]':
+            - generic [ref=f1e483]: Action register
+            - generic [ref=f1e484]:
+              - generic [ref=f1e485]: 6 open
+              - generic [ref=f1e486]:
+                - generic [ref=f1e489]: "2"
+                - text: overdue
+              - generic [ref=f1e490]: 4 due this week
+            - generic [ref=f1e491]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=f1e492]: 0%

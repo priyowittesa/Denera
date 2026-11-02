@@ -38,12 +38,12 @@ export function EvidenceDrawer() {
               <div className="flex items-center gap-2 text-[12px] text-ink-3"><FileText className="size-4" />{doc.system} · placeholder preview</div>
               <div className="mt-4 space-y-2">
                 <div className="text-[15px] font-semibold text-ink">{doc.title}</div>
-                <div className="text-[12.5px] text-ink-3">{doc.location}</div>
+                <div className="text-[13px] text-ink-3">{doc.location}</div>
                 {[90, 96, 72, 88, 60].map((w, i) => <div key={i} className="h-2 rounded bg-sunken" style={{ width: `${w}%` }} />)}
                 <p className="rounded-sm bg-[#fff6c9] px-1 py-0.5 text-[13px] text-ink">{doc.extract}</p>
                 {[94, 80, 66].map((w, i) => <div key={i} className="h-2 rounded bg-sunken" style={{ width: `${w}%` }} />)}
               </div>
-              <p className="mt-4 text-[11.5px] text-ink-4">Synthetic document for the demonstration. Clause numbers are placeholders.</p>
+              <p className="mt-4 text-[12px] text-ink-4">Synthetic document for the demonstration. Clause numbers are placeholders.</p>
             </div>
           )}
         </div>
@@ -68,10 +68,10 @@ export function RegisterSheet() {
         {list.map((a) => (
           <li key={a.id} className="grid gap-1 px-4 py-3">
             <div className="flex items-start justify-between gap-3">
-              <span className="text-[13.5px] font-medium text-ink">{a.title}</span>
+              <span className="text-[14px] font-medium text-ink">{a.title}</span>
               <AuthorityLabel a={a.authority} />
             </div>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12.5px] text-ink-3">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-ink-3">
               <span>{a.owner}</span>
               <span className={cn('tnum inline-flex items-center gap-1', isOverdue(a) && 'font-medium text-bad')}>
                 {isOverdue(a) ? <AlertCircle className="size-3.5" /> : <CalendarClock className="size-3.5" />}
@@ -100,12 +100,12 @@ export function DefinitionsSheet() {
         {FIN_DEFS.map((d) => (
           <div key={d.term} className="py-2.5">
             <dt className="text-[13px] font-medium text-ink">{d.plain} <span className="font-normal text-ink-3">· {d.term}</span></dt>
-            <dd className="mt-0.5 text-[12.5px] leading-relaxed text-ink-2">{d.def}</dd>
+            <dd className="mt-0.5 text-[13px] leading-relaxed text-ink-2">{d.def}</dd>
           </div>
         ))}
       </dl>
       <h3 className="mt-6 text-[13px] font-semibold text-ink">Programme and platform terms</h3>
-      <dl className="mt-2 grid grid-cols-[130px_1fr] gap-x-4 gap-y-2 text-[12.5px]">
+      <dl className="mt-2 grid grid-cols-[130px_1fr] gap-x-4 gap-y-2 text-[13px]">
         {PROGRAM_TERMS.map((t) => (
           <div key={t.term} className="contents">
             <dt className="font-medium text-ink">{t.term}</dt>
@@ -125,7 +125,7 @@ export function AuditSheet() {
     <Sheet open={open} onOpenChange={setOpen} title="Audit log" description="Read-only. Every state change is recorded with persona and time.">
       <ol className="space-y-0">
         {audit.map((l, i) => (
-          <li key={i} className="grid grid-cols-[112px_1fr] gap-3 border-b border-line-soft py-2.5 text-[12.5px] last:border-0">
+          <li key={i} className="grid grid-cols-[112px_1fr] gap-3 border-b border-line-soft py-2.5 text-[13px] last:border-0">
             <span className="tnum text-ink-3">{l.t}</span>
             <span><span className="font-medium text-ink">{l.action}</span> <span className="text-ink-2">{l.object}</span><span className="block text-ink-3">{l.persona}</span></span>
           </li>

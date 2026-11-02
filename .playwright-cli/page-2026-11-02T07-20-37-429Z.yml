@@ -1,0 +1,371 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e5]:
+        - generic [ref=f1e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=f1e11] [cursor=pointer]
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: Your tenant
+          - generic [ref=f1e24]: Denera
+          - generic [ref=f1e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]: Leading use cases
+            - list [ref=f1e29]:
+              - listitem [ref=f1e30]:
+                - link "Portfolio 1" [ref=f1e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=f1e37]: Portfolio
+                  - generic [ref=f1e38]: "1"
+              - listitem [ref=f1e39]:
+                - link "Cockpit 8" [ref=f1e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=f1e44]: Cockpit
+                  - generic [ref=f1e45]: "8"
+              - listitem [ref=f1e46]:
+                - link "Progress and S-curve 9" [ref=f1e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=f1e51]: Progress and S-curve
+                  - generic [ref=f1e52]: "9"
+              - listitem [ref=f1e53]:
+                - link "Critical path 10" [ref=f1e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=f1e59]: Critical path
+                  - generic [ref=f1e60]: "10"
+              - listitem [ref=f1e61]:
+                - link "Procurement 11" [ref=f1e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=f1e67]: Procurement
+                  - generic [ref=f1e68]: "11"
+              - listitem [ref=f1e69]:
+                - link "Cost and investment 12" [ref=f1e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=f1e74]: Cost and investment
+                  - generic [ref=f1e75]: "12"
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Enabling, Wave 1
+            - list [ref=f1e78]:
+              - listitem [ref=f1e79]:
+                - link "Phase II gates 2" [ref=f1e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=f1e84]: Phase II gates
+                  - generic [ref=f1e85]: "2"
+              - listitem [ref=f1e86]:
+                - link "Notices and obligations 3" [ref=f1e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=f1e92]: Notices and obligations
+                  - generic [ref=f1e93]: "3"
+              - listitem [ref=f1e94]:
+                - link "Partner data and rights 4" [ref=f1e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=f1e99]: Partner data and rights
+                  - generic [ref=f1e100]: "4"
+              - listitem [ref=f1e101]:
+                - link "Meetings and actions 5" [ref=f1e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=f1e107]: Meetings and actions
+                  - generic [ref=f1e108]: "5"
+              - listitem [ref=f1e109]:
+                - link "Ask ATLAS 6" [ref=f1e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=f1e113]: Ask ATLAS
+                  - generic [ref=f1e114]: "6"
+              - listitem [ref=f1e115]:
+                - link "Governance packs 7" [ref=f1e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=f1e121]: Governance packs
+                  - generic [ref=f1e122]: "7"
+          - generic [ref=f1e123]:
+            - generic [ref=f1e124]: Decisions and platform
+            - list [ref=f1e125]:
+              - listitem [ref=f1e126]:
+                - link "Decision room 13" [ref=f1e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=f1e132]: Decision room
+                  - generic [ref=f1e133]: "13"
+              - listitem [ref=f1e134]:
+                - link "Orchestration Console 14" [ref=f1e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=f1e140]: Orchestration Console
+                  - generic [ref=f1e141]: "14"
+        - generic [ref=f1e143]:
+          - generic [ref=f1e144]:
+            - generic [ref=f1e145]: Synthetic demo data
+            - generic [ref=f1e146]: 30 Jun 2027
+          - paragraph [ref=f1e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=f1e148]:
+            - button "Definitions" [ref=f1e149] [cursor=pointer]
+            - button "Reset demo" [ref=f1e152] [cursor=pointer]
+      - generic [ref=f1e156]:
+        - banner [ref=f1e157]:
+          - navigation "Breadcrumb" [ref=f1e158]:
+            - generic [ref=f1e159]: Denera
+            - generic [ref=f1e162]: Decisions and platform
+            - generic [ref=f1e165]: Orchestration Console
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - text: Data date
+              - generic [ref=f1e169]: 30 Jun 2027
+              - generic [ref=f1e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=f1e171] [cursor=pointer]
+            - button "Audit log" [ref=f1e176] [cursor=pointer]
+            - button "Switch role" [ref=f1e182] [cursor=pointer]:
+              - generic [ref=f1e183]: CE
+              - generic [ref=f1e184]:
+                - generic [ref=f1e185]: Denera CEO
+                - generic [ref=f1e186]: Shareholder executive
+        - main [ref=f1e189]:
+          - generic [ref=f1e3368]:
+            - generic [ref=f1e3369]:
+              - generic [ref=f1e3370]:
+                - generic [ref=f1e3371]: View of E1, UC01 to UC12
+                - generic [aria-hidden] [ref=f1e3372]: /
+                - generic [ref=f1e3373]: PSEL Cakrawala Raya
+              - button "Data needed" [ref=f1e3375] [cursor=pointer]
+            - generic [ref=f1e3381]:
+              - 'heading "ATLAS ran 11 jobs this week: 5 completed, 5 are waiting for a person, 1 is blocked for missing data." [level=1] [ref=f1e3382]'
+              - generic [ref=f1e3383]:
+                - generic [ref=f1e3384]: 5 waiting for a person
+                - paragraph [ref=f1e3387]: A view of the two ATLAS modes at work. Orchestration jobs run on rules and schedules; Assistant jobs run when a person asks. It adds no use case.
+            - generic [ref=f1e3388]:
+              - generic [ref=f1e3389]:
+                - generic [ref=f1e3390]:
+                  - generic [ref=f1e3391]:
+                    - generic [ref=f1e3392]:
+                      - text: Connect
+                      - generic [ref=f1e3395]: "2"
+                    - paragraph [ref=f1e3396]: Agreed templates and exports, schema validation
+                  - generic [ref=f1e3402]:
+                    - generic [ref=f1e3403]:
+                      - text: Identify
+                      - generic [ref=f1e3407]: "5"
+                    - paragraph [ref=f1e3408]: Deadlines, gates, progress, health, procurement
+                  - generic [ref=f1e3417]:
+                    - generic [ref=f1e3418]:
+                      - text: Explain
+                      - generic [ref=f1e3422]: "2"
+                    - paragraph [ref=f1e3423]: Root cause, scenarios, Ask ATLAS on demand
+                  - generic [ref=f1e3429]:
+                    - generic [ref=f1e3430]:
+                      - text: Act and track
+                      - generic [ref=f1e3438]: "2"
+                    - paragraph [ref=f1e3439]: Meeting capture, packs, decisions, register
+                - generic [ref=f1e3443]:
+                  - generic [ref=f1e3447]: Human approval gates
+                  - generic [ref=f1e3448]: Deadlines
+                  - generic [ref=f1e3450]: Meeting items
+                  - generic [ref=f1e3452]: Interface conflict
+                  - generic [ref=f1e3454]: Pack release
+                  - generic [ref=f1e3456]: Notice draft
+                  - generic [ref=f1e3458]: Gate condition
+              - generic [ref=f1e3460]:
+                - generic [ref=f1e3461]:
+                  - heading "Run board" [level=2] [ref=f1e3462]
+                  - generic [ref=f1e3463]: 11 jobs · 5 completed · 5 waiting for human · 1 blocked
+                - table [ref=f1e3464]:
+                  - rowgroup [ref=f1e3465]:
+                    - row [ref=f1e3466]:
+                      - columnheader "Job" [ref=f1e3467]
+                      - columnheader "Use case" [ref=f1e3468]
+                      - columnheader "Mode" [ref=f1e3469]
+                      - columnheader "Lane" [ref=f1e3470]
+                      - columnheader "Trigger" [ref=f1e3471]
+                      - columnheader "State" [ref=f1e3472]
+                      - columnheader "Waiting on" [ref=f1e3473]
+                      - columnheader "Output" [ref=f1e3474]
+                  - rowgroup [ref=f1e3475]:
+                    - row [ref=f1e3476] [cursor=pointer]:
+                      - cell [ref=f1e3477]:
+                        - button "R1 Feed validation" [ref=f1e3478]
+                      - cell "E1" [ref=f1e3479]
+                      - cell "Orchestration" [ref=f1e3480]
+                      - cell "Connect" [ref=f1e3481]
+                      - cell "Submissions received 28 Jun" [ref=f1e3482]
+                      - cell "Completed with exceptions" [ref=f1e3483]
+                      - cell "n/a" [ref=f1e3488]
+                      - cell [ref=f1e3489]:
+                        - button "Screen 4" [ref=f1e3490]
+                    - row [ref=f1e3493] [cursor=pointer]:
+                      - cell [ref=f1e3494]:
+                        - button "R2 Deadline and clause extraction" [ref=f1e3495]
+                      - cell "UC03" [ref=f1e3496]
+                      - cell "Orchestration" [ref=f1e3497]
+                      - cell "Identify" [ref=f1e3498]
+                      - cell "New contract documents" [ref=f1e3499]
+                      - cell "Waiting for human" [ref=f1e3500]
+                      - cell "Commercial and Legal Lead (3 deadlines)" [ref=f1e3505]
+                      - cell [ref=f1e3506]:
+                        - button "Screen 3" [ref=f1e3507]
+                    - row [ref=f1e3510] [cursor=pointer]:
+                      - cell [ref=f1e3511]:
+                        - button "R3 Gate evidence check" [ref=f1e3512]
+                      - cell "UC02" [ref=f1e3513]
+                      - cell "Orchestration" [ref=f1e3514]
+                      - cell "Identify" [ref=f1e3515]
+                      - cell "Weekly" [ref=f1e3516]
+                      - cell "Waiting for human" [ref=f1e3517]
+                      - cell "Investment and legal lead (1 condition)" [ref=f1e3522]
+                      - cell [ref=f1e3523]:
+                        - button "Screen 2" [ref=f1e3524]
+                    - row [ref=f1e3527] [cursor=pointer]:
+                      - cell [ref=f1e3528]:
+                        - button "R4 Progress verification" [ref=f1e3529]
+                      - cell "UC08" [ref=f1e3530]
+                      - cell "Orchestration" [ref=f1e3531]
+                      - cell "Identify" [ref=f1e3532]
+                      - cell "Schedule update 28 Jun" [ref=f1e3533]
+                      - cell "Completed" [ref=f1e3534]
+                      - cell "n/a" [ref=f1e3539]
+                      - cell [ref=f1e3540]:
+                        - button "Screen 9" [ref=f1e3541]
+                    - row [ref=f1e3544] [cursor=pointer]:
+                      - cell [ref=f1e3545]:
+                        - button "R5 Health computation" [ref=f1e3546]
+                      - cell "UC01" [ref=f1e3547]
+                      - cell "Orchestration" [ref=f1e3548]
+                      - cell "Identify" [ref=f1e3549]
+                      - cell "Data refresh 08:30" [ref=f1e3550]
+                      - cell "Completed" [ref=f1e3551]
+                      - cell "n/a" [ref=f1e3556]
+                      - cell [ref=f1e3557]:
+                        - button "Screens 1 and 8" [ref=f1e3558]
+                    - row [ref=f1e3561] [cursor=pointer]:
+                      - cell [ref=f1e3562]:
+                        - button "R6 Procurement watch" [ref=f1e3563]
+                      - cell "UC07" [ref=f1e3564]
+                      - cell "Orchestration" [ref=f1e3565]
+                      - cell "Identify" [ref=f1e3566]
+                      - cell "Weekly" [ref=f1e3567]
+                      - cell "Completed" [ref=f1e3568]
+                      - cell "n/a" [ref=f1e3573]
+                      - cell [ref=f1e3574]:
+                        - button "Screen 11" [ref=f1e3575]
+                    - row [ref=f1e3578] [cursor=pointer]:
+                      - cell [ref=f1e3579]:
+                        - button "R7 Root-cause trace" [ref=f1e3580]
+                      - cell "UC10 to UC12" [ref=f1e3581]
+                      - cell "Orchestration" [ref=f1e3582]
+                      - cell "Explain" [ref=f1e3583]
+                      - cell "Critical-path change" [ref=f1e3584]
+                      - cell "Waiting for human" [ref=f1e3585]
+                      - cell "Technical Director (interface conflict)" [ref=f1e3590]
+                      - cell [ref=f1e3591]:
+                        - button "Screen 10" [ref=f1e3592]
+                    - row [ref=f1e3595] [cursor=pointer]:
+                      - cell [ref=f1e3596]:
+                        - button "R8 Scenario run" [ref=f1e3597]
+                      - cell "UC09" [ref=f1e3598]
+                      - cell "Assistant" [ref=f1e3599]
+                      - cell "Explain" [ref=f1e3600]
+                      - cell "Request from Screen 9 or 12" [ref=f1e3601]
+                      - cell "Completed" [ref=f1e3602]
+                      - cell "n/a" [ref=f1e3607]
+                      - cell [ref=f1e3608]:
+                        - button "Screens 9 and 12" [ref=f1e3609]
+                    - row [ref=f1e3612] [cursor=pointer]:
+                      - cell [ref=f1e3613]:
+                        - button "R9 Meeting capture" [ref=f1e3614]
+                      - cell "UC06" [ref=f1e3615]
+                      - cell "Orchestration" [ref=f1e3616]
+                      - cell "Act and track" [ref=f1e3617]
+                      - cell "Steering meeting 29 Jun" [ref=f1e3618]
+                      - cell "Waiting for human" [ref=f1e3619]
+                      - cell "PMO Director as chair (6 items)" [ref=f1e3624]
+                      - cell [ref=f1e3625]:
+                        - button "Screen 5" [ref=f1e3626]
+                    - row [ref=f1e3629] [cursor=pointer]:
+                      - cell [ref=f1e3630]:
+                        - button "R10 Weekly pack assembly" [ref=f1e3631]
+                      - cell "UC04" [ref=f1e3632]
+                      - cell "Assistant" [ref=f1e3633]
+                      - cell "Act and track" [ref=f1e3634]
+                      - cell "On request, weekly cycle" [ref=f1e3635]
+                      - cell "Waiting for human" [ref=f1e3636]
+                      - cell "PMO lead as reviewer" [ref=f1e3641]
+                      - cell [ref=f1e3642]:
+                        - button "Screen 7" [ref=f1e3643]
+                    - row [ref=f1e3646] [cursor=pointer]:
+                      - cell [ref=f1e3647]:
+                        - button "R11 Waste supply feed ingestion" [ref=f1e3648]
+                      - cell "E1" [ref=f1e3649]
+                      - cell "Orchestration" [ref=f1e3650]
+                      - cell "Connect" [ref=f1e3651]
+                      - cell "Not started" [ref=f1e3652]
+                      - 'cell "Blocked: feed not agreed" [ref=f1e3653]'
+                      - cell "Project company (request raised on Screen 4)" [ref=f1e3658]
+                      - cell [ref=f1e3659]:
+                        - button "Screen 4" [ref=f1e3660]
+              - generic [ref=f1e3663]:
+                - generic [ref=f1e3664]:
+                  - heading "Approval queue" [level=3] [ref=f1e3665]
+                  - list [ref=f1e3666]:
+                    - listitem [ref=f1e3667]:
+                      - button "Confirm 3 extracted deadlines Commercial and Legal Lead" [ref=f1e3668] [cursor=pointer]:
+                        - generic [ref=f1e3672]:
+                          - generic [ref=f1e3673]: Confirm 3 extracted deadlines
+                          - generic [ref=f1e3674]: Commercial and Legal Lead
+                    - listitem [ref=f1e3677]:
+                      - button "Chair to confirm 6 proposed meeting items PMO Director" [ref=f1e3678] [cursor=pointer]:
+                        - generic [ref=f1e3682]:
+                          - generic [ref=f1e3683]: Chair to confirm 6 proposed meeting items
+                          - generic [ref=f1e3684]: PMO Director
+                    - listitem [ref=f1e3687]:
+                      - button "Interface owner to confirm AI-detected conflict Technical Director" [ref=f1e3688] [cursor=pointer]:
+                        - generic [ref=f1e3692]:
+                          - generic [ref=f1e3693]: Interface owner to confirm AI-detected conflict
+                          - generic [ref=f1e3694]: Technical Director
+                    - listitem [ref=f1e3697]:
+                      - button "Reviewer to approve weekly pack PMO lead" [ref=f1e3698] [cursor=pointer]:
+                        - generic [ref=f1e3702]:
+                          - generic [ref=f1e3703]: Reviewer to approve weekly pack
+                          - generic [ref=f1e3704]: PMO lead
+                    - listitem [ref=f1e3707]:
+                      - button "Lawyer to review AI notice draft Commercial and Legal Lead" [ref=f1e3708] [cursor=pointer]:
+                        - generic [ref=f1e3712]:
+                          - generic [ref=f1e3713]: Lawyer to review AI notice draft
+                          - generic [ref=f1e3714]: Commercial and Legal Lead
+                    - listitem [ref=f1e3717]:
+                      - button "Confirm gate condition for P2-08 Investment and legal lead" [ref=f1e3718] [cursor=pointer]:
+                        - generic [ref=f1e3722]:
+                          - generic [ref=f1e3723]: Confirm gate condition for P2-08
+                          - generic [ref=f1e3724]: Investment and legal lead
+                - generic [ref=f1e3727]:
+                  - heading "Guardrails, across every run" [level=3] [ref=f1e3728]
+                  - list [ref=f1e3729]:
+                    - listitem [ref=f1e3730]: AI recommends and people decide
+                    - listitem [ref=f1e3734]: Health ratings cannot be overwritten
+                    - listitem [ref=f1e3738]: ATLAS refuses when evidence is missing
+                    - listitem [ref=f1e3742]: Forecasts are advisory with assumptions
+                    - listitem [ref=f1e3746]: Every change is written to the audit log
+                    - listitem [ref=f1e3750]: Partner separation between project companies
+                    - listitem [ref=f1e3754]: Rules and thresholds are published and agreed with partners
+                    - listitem [ref=f1e3758]: Model and prompt change log; the PMO lead reviews a sample of AI outputs each week
+                    - listitem [ref=f1e3762]: A named business owner and one weekly review slot for each use case
+                    - listitem [ref=f1e3766]: Zero Trust access (Entra ID, conditional access, least privilege); Denera and partner data stay in Denera's tenant, separate from Altimeda IP
+                - generic [ref=f1e3770]:
+                  - heading "Data freshness, PSEL Cakrawala Raya" [level=3] [ref=f1e3771]
+                  - list [ref=f1e3772]:
+                    - listitem [ref=f1e3773]:
+                      - generic [ref=f1e3774]: Schedule and progress
+                      - generic [ref=f1e3775]: 28 Jun 2027, accepted
+                    - listitem [ref=f1e3776]:
+                      - generic [ref=f1e3777]: Cost and commitments
+                      - generic [ref=f1e3778]: 28 Jun 2027, accepted
+                    - listitem [ref=f1e3779]:
+                      - generic [ref=f1e3780]: Procurement, engineering transmittals and correspondence
+                      - generic [ref=f1e3781]: 25 Jun 2027, rejected
+                    - listitem [ref=f1e3782]:
+                      - generic [ref=f1e3783]: Waste supply and regional reports
+                      - 'button "Blocked: feed not agreed" [ref=f1e3785] [cursor=pointer]'
+                  - paragraph [ref=f1e3789]: Data confidence 91%
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=f1e479] [cursor=pointer]':
+            - generic [ref=f1e483]: Action register
+            - generic [ref=f1e484]:
+              - generic [ref=f1e485]: 6 open
+              - generic [ref=f1e486]:
+                - generic [ref=f1e489]: "2"
+                - text: overdue
+              - generic [ref=f1e490]: 4 due this week
+            - generic [ref=f1e491]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=f1e492]: 0%

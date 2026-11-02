@@ -1,0 +1,342 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e5]:
+        - generic [ref=f1e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=f1e11] [cursor=pointer]
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: Your tenant
+          - generic [ref=f1e24]: Denera
+          - generic [ref=f1e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]: Leading use cases
+            - list [ref=f1e29]:
+              - listitem [ref=f1e30]:
+                - link "Portfolio 1" [ref=f1e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=f1e37]: Portfolio
+                  - generic [ref=f1e38]: "1"
+              - listitem [ref=f1e39]:
+                - link "Cockpit 8" [ref=f1e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=f1e44]: Cockpit
+                  - generic [ref=f1e45]: "8"
+              - listitem [ref=f1e46]:
+                - link "Progress and S-curve 9" [ref=f1e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=f1e51]: Progress and S-curve
+                  - generic [ref=f1e52]: "9"
+              - listitem [ref=f1e53]:
+                - link "Critical path 10" [ref=f1e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=f1e59]: Critical path
+                  - generic [ref=f1e60]: "10"
+              - listitem [ref=f1e61]:
+                - link "Procurement 11" [ref=f1e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=f1e67]: Procurement
+                  - generic [ref=f1e68]: "11"
+              - listitem [ref=f1e69]:
+                - link "Cost and investment 12" [ref=f1e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=f1e74]: Cost and investment
+                  - generic [ref=f1e75]: "12"
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Enabling, Wave 1
+            - list [ref=f1e78]:
+              - listitem [ref=f1e79]:
+                - link "Phase II gates 2" [ref=f1e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=f1e84]: Phase II gates
+                  - generic [ref=f1e85]: "2"
+              - listitem [ref=f1e86]:
+                - link "Notices and obligations 3" [ref=f1e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=f1e92]: Notices and obligations
+                  - generic [ref=f1e93]: "3"
+              - listitem [ref=f1e94]:
+                - link "Partner data and rights 4" [ref=f1e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=f1e99]: Partner data and rights
+                  - generic [ref=f1e100]: "4"
+              - listitem [ref=f1e101]:
+                - link "Meetings and actions 5" [ref=f1e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=f1e107]: Meetings and actions
+                  - generic [ref=f1e108]: "5"
+              - listitem [ref=f1e109]:
+                - link "Ask ATLAS 6" [ref=f1e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=f1e113]: Ask ATLAS
+                  - generic [ref=f1e114]: "6"
+              - listitem [ref=f1e115]:
+                - link "Governance packs 7" [ref=f1e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=f1e121]: Governance packs
+                  - generic [ref=f1e122]: "7"
+          - generic [ref=f1e123]:
+            - generic [ref=f1e124]: Decisions and platform
+            - list [ref=f1e125]:
+              - listitem [ref=f1e126]:
+                - link "Decision room 13" [ref=f1e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=f1e132]: Decision room
+                  - generic [ref=f1e133]: "13"
+              - listitem [ref=f1e134]:
+                - link "Orchestration Console 14" [ref=f1e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=f1e140]: Orchestration Console
+                  - generic [ref=f1e141]: "14"
+        - generic [ref=f1e143]:
+          - generic [ref=f1e144]:
+            - generic [ref=f1e145]: Synthetic demo data
+            - generic [ref=f1e146]: 30 Jun 2027
+          - paragraph [ref=f1e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=f1e148]:
+            - button "Definitions" [ref=f1e149] [cursor=pointer]
+            - button "Reset demo" [ref=f1e152] [cursor=pointer]
+      - generic [ref=f1e156]:
+        - banner [ref=f1e157]:
+          - navigation "Breadcrumb" [ref=f1e158]:
+            - generic [ref=f1e159]: Denera
+            - generic [ref=f1e162]: Leading use cases
+            - generic [ref=f1e165]: Critical Path and Root Cause
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - text: Data date
+              - generic [ref=f1e169]: 30 Jun 2027
+              - generic [ref=f1e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=f1e171] [cursor=pointer]
+            - button "Audit log" [ref=f1e176] [cursor=pointer]
+            - button "Switch role" [ref=f1e182] [cursor=pointer]:
+              - generic [ref=f1e183]: CE
+              - generic [ref=f1e184]:
+                - generic [ref=f1e185]: Denera CEO
+                - generic [ref=f1e186]: Shareholder executive
+        - main [ref=f1e189]:
+          - generic [ref=f1e1436]:
+            - generic [ref=f1e1437]:
+              - generic [ref=f1e1438]:
+                - generic [ref=f1e1439]: UC10 · UC11 · UC12
+                - generic [aria-hidden] [ref=f1e1440]: /
+                - generic [ref=f1e1441]: PSEL Cakrawala Raya
+              - generic [ref=f1e1442]:
+                - generic [ref=f1e1443]: Leading use case
+                - generic [ref=f1e1446]:
+                  - text: W2
+                  - generic [ref=f1e1447]: target
+                - generic [ref=f1e1448]:
+                  - text: W3
+                  - generic [ref=f1e1449]: target
+                - generic [ref=f1e1450]: Tier 2
+                - button "Data needed" [ref=f1e1451] [cursor=pointer]
+                - button "Confidence 91%" [ref=f1e1456] [cursor=pointer]:
+                  - text: Confidence
+                  - generic [ref=f1e1457]: 91%
+            - generic [ref=f1e1458]:
+              - generic [ref=f1e1459]:
+                - 'heading "In the next six weeks the boiler island chain moves COD: the interface freeze sits at zero float and drives the 42-day exposure." [level=1] [ref=f1e1460]'
+                - generic [ref=f1e1461]: Schedule Red
+                - generic [ref=f1e1465]:
+                  - button "Show impacted activities" [ref=f1e1466] [cursor=pointer]
+                  - button "View correspondence chain" [ref=f1e1470] [cursor=pointer]
+                  - button "Recovery options" [ref=f1e1474] [cursor=pointer]
+              - generic [ref=f1e1477]:
+                - generic [ref=f1e1478]: Under 5 days of float
+                - generic [ref=f1e1479]: 4 of 8
+                - generic [ref=f1e1480]: Look-ahead activities to 11 Aug 2027. Interface freeze has none.
+            - generic [ref=f1e1481]:
+              - generic [ref=f1e1482]:
+                - generic [ref=f1e1483]: "Schedule quality: Amber"
+                - generic [ref=f1e1487]:
+                  - generic [ref=f1e1488]:
+                    - term [ref=f1e1489]: Logic completeness
+                    - definition [ref=f1e1490]: 88%
+                  - generic [ref=f1e1491]:
+                    - term [ref=f1e1492]: Open ends
+                    - definition [ref=f1e1493]: "41"
+                  - generic [ref=f1e1494]:
+                    - term [ref=f1e1495]: Negative float activities
+                    - definition [ref=f1e1496]: "23"
+                - paragraph [ref=f1e1497]: Poor schedule logic produces a warning, not a confident answer.
+              - generic [ref=f1e1498]:
+                - tablist [ref=f1e1499]:
+                  - tab "Root cause" [selected] [ref=f1e1500] [cursor=pointer]
+                  - tab "Look-ahead, next six weeks" [ref=f1e1501] [cursor=pointer]
+                - tabpanel "Root cause" [ref=f1e1502]:
+                  - generic [ref=f1e1503]:
+                    - generic [ref=f1e1504]:
+                      - generic [ref=f1e1505]:
+                        - heading "Critical-path story" [level=2] [ref=f1e1506]
+                        - generic [ref=f1e1507]:
+                          - generic [ref=f1e1508]: 5 Red
+                          - text: ·
+                          - generic [ref=f1e1509]: 3 Yellow
+                      - paragraph [ref=f1e1510]: Select a step to trace its evidence.
+                      - list [ref=f1e1511]:
+                        - listitem [ref=f1e1512]:
+                          - generic [ref=f1e1513]: Engineering
+                        - listitem [ref=f1e1514]:
+                          - button "1 Late vendor technical submittal Red Due 12 Jun 2027, 18 days overdue" [ref=f1e1516] [cursor=pointer]:
+                            - generic [ref=f1e1517]: "1"
+                            - generic [ref=f1e1518]:
+                              - generic [ref=f1e1519]:
+                                - generic [ref=f1e1520]: Late vendor technical submittal
+                                - generic [ref=f1e1521]: Red
+                              - generic [ref=f1e1524]: Due 12 Jun 2027, 18 days overdue
+                        - listitem [ref=f1e1525]:
+                          - button "2 Delayed engineering approval Red Review comment open since 19 Jun" [ref=f1e1527] [cursor=pointer]:
+                            - generic [ref=f1e1528]: "2"
+                            - generic [ref=f1e1529]:
+                              - generic [ref=f1e1530]:
+                                - generic [ref=f1e1531]: Delayed engineering approval
+                                - generic [ref=f1e1532]: Red
+                              - generic [ref=f1e1535]: Review comment open since 19 Jun
+                        - listitem [ref=f1e1536]:
+                          - button "3 Manufacturing release delayed Red Completion revised 12 Jul to 3 Aug 2027" [ref=f1e1538] [cursor=pointer]:
+                            - generic [ref=f1e1539]: "3"
+                            - generic [ref=f1e1540]:
+                              - generic [ref=f1e1541]:
+                                - generic [ref=f1e1542]: Manufacturing release delayed
+                                - generic [ref=f1e1543]: Red
+                              - generic [ref=f1e1546]: Completion revised 12 Jul to 3 Aug 2027
+                        - listitem [ref=f1e1547]:
+                          - generic [ref=f1e1549]: Supply and logistics
+                        - listitem [ref=f1e1550]:
+                          - button "4 Shipment window missed Yellow Booking not confirmed" [ref=f1e1552] [cursor=pointer]:
+                            - generic [ref=f1e1553]: "4"
+                            - generic [ref=f1e1554]:
+                              - generic [ref=f1e1555]:
+                                - generic [ref=f1e1556]: Shipment window missed
+                                - generic [ref=f1e1557]: Yellow
+                              - generic [ref=f1e1560]: Booking not confirmed
+                        - listitem [ref=f1e1561]:
+                          - button "5 Equipment arrival delayed Red Forecast 25 Sep vs required 14 Aug 2027" [ref=f1e1563] [cursor=pointer]:
+                            - generic [ref=f1e1564]: "5"
+                            - generic [ref=f1e1565]:
+                              - generic [ref=f1e1566]:
+                                - generic [ref=f1e1567]: Equipment arrival delayed
+                                - generic [ref=f1e1568]: Red
+                              - generic [ref=f1e1571]: Forecast 25 Sep vs required 14 Aug 2027
+                        - listitem [ref=f1e1572]:
+                          - generic [ref=f1e1574]: Site and completion
+                        - listitem [ref=f1e1575]:
+                          - button "6 Installation start delayed Yellow No recovery logic in EPC update" [ref=f1e1577] [cursor=pointer]:
+                            - generic [ref=f1e1578]: "6"
+                            - generic [ref=f1e1579]:
+                              - generic [ref=f1e1580]:
+                                - generic [ref=f1e1581]: Installation start delayed
+                                - generic [ref=f1e1582]: Yellow
+                              - generic [ref=f1e1585]: No recovery logic in EPC update
+                        - listitem [ref=f1e1586]:
+                          - button "7 Mechanical completion delayed Yellow Contractor correspondence awaits decision" [ref=f1e1588] [cursor=pointer]:
+                            - generic [ref=f1e1589]: "7"
+                            - generic [ref=f1e1590]:
+                              - generic [ref=f1e1591]:
+                                - generic [ref=f1e1592]: Mechanical completion delayed
+                                - generic [ref=f1e1593]: Yellow
+                              - generic [ref=f1e1596]: Contractor correspondence awaits decision
+                        - listitem [ref=f1e1597]:
+                          - button "8 Commissioning and COD exposure Red COD 11 Aug 2028, plus 42 days" [ref=f1e1599] [cursor=pointer]:
+                            - generic [ref=f1e1600]: "8"
+                            - generic [ref=f1e1601]:
+                              - generic [ref=f1e1602]:
+                                - generic [ref=f1e1603]: Commissioning and COD exposure
+                                - generic [ref=f1e1604]: Red
+                              - generic [ref=f1e1607]: COD 11 Aug 2028, plus 42 days
+                    - generic [ref=f1e1608]:
+                      - generic [ref=f1e1609]:
+                        - generic [ref=f1e1610]:
+                          - heading "Evidence behind the chain" [level=3] [ref=f1e1611]
+                          - generic [ref=f1e1612]: Select a step to trace it
+                        - list [ref=f1e1613]:
+                          - listitem [ref=f1e1614]:
+                            - button "Technical submittal overdue by 18 days at the data date Document control (EPC) · TR-BI-0412 Verified" [ref=f1e1615] [cursor=pointer]:
+                              - generic [ref=f1e1619]:
+                                - generic [ref=f1e1620]: Technical submittal overdue by 18 days at the data date
+                                - generic [ref=f1e1621]: Document control (EPC) · TR-BI-0412
+                              - generic [ref=f1e1622]: Verified
+                          - listitem [ref=f1e1623]:
+                            - button "Engineering review comment unresolved Document control (owner engineer) · RC-0193, 19 Jun 2027 Verified" [ref=f1e1624] [cursor=pointer]:
+                              - generic [ref=f1e1628]:
+                                - generic [ref=f1e1629]: Engineering review comment unresolved
+                                - generic [ref=f1e1630]: Document control (owner engineer) · RC-0193, 19 Jun 2027
+                              - generic [ref=f1e1631]: Verified
+                          - listitem [ref=f1e1632]:
+                            - button "Vendor manufacturing completion revised from 12 July to 3 August 2027; shipment booking not yet confirmed Correspondence register · 28 Jun 2027, 16:12 Reported" [ref=f1e1633] [cursor=pointer]:
+                              - generic [ref=f1e1637]:
+                                - generic [ref=f1e1638]: Vendor manufacturing completion revised from 12 July to 3 August 2027; shipment booking not yet confirmed
+                                - generic [ref=f1e1639]: Correspondence register · 28 Jun 2027, 16:12
+                              - generic [ref=f1e1640]: Reported
+                          - listitem [ref=f1e1641]:
+                            - button "Port and logistics transit risk elevated Procurement tracker · Port and transit, week 26 Reported" [ref=f1e1642] [cursor=pointer]:
+                              - generic [ref=f1e1646]:
+                                - generic [ref=f1e1647]: Port and logistics transit risk elevated
+                                - generic [ref=f1e1648]: Procurement tracker · Port and transit, week 26
+                              - generic [ref=f1e1649]: Reported
+                          - listitem [ref=f1e1650]:
+                            - button "EPC schedule update has no credible recovery logic Primavera P6 export · Recovery programme section Reported" [ref=f1e1651] [cursor=pointer]:
+                              - generic [ref=f1e1655]:
+                                - generic [ref=f1e1656]: EPC schedule update has no credible recovery logic
+                                - generic [ref=f1e1657]: Primavera P6 export · Recovery programme section
+                              - generic [ref=f1e1658]: Reported
+                          - listitem [ref=f1e1659]:
+                            - button "Contractor correspondence requires a decision Correspondence register · 25 Jun 2027 Reported" [ref=f1e1660] [cursor=pointer]:
+                              - generic [ref=f1e1664]:
+                                - generic [ref=f1e1665]: Contractor correspondence requires a decision
+                                - generic [ref=f1e1666]: Correspondence register · 25 Jun 2027
+                              - generic [ref=f1e1667]: Reported
+                          - listitem [ref=f1e1668]:
+                            - button "Contractual notice or response deadline 6 July 2027 Contract repository · Clause 14.2, Notice of delay events, page 61 Confirmed" [ref=f1e1669] [cursor=pointer]:
+                              - generic [ref=f1e1673]:
+                                - generic [ref=f1e1674]: Contractual notice or response deadline 6 July 2027
+                                - generic [ref=f1e1675]: Contract repository · Clause 14.2, Notice of delay events, page 61
+                              - generic [ref=f1e1676]: Confirmed
+                      - generic [ref=f1e1677]:
+                        - heading "ATLAS explanation" [level=3] [ref=f1e1682]
+                        - generic [ref=f1e1683]:
+                          - paragraph [ref=f1e1684]: The package delay is not solely a supplier problem. The late release originated from an unresolved engineering interface between the waste-receiving system and the boiler feed arrangement. The current recovery programme does not include parallel pre-assembly or alternate logistics routing.
+                          - paragraph [ref=f1e1685]: "Assumptions: schedule logic as exported on 28 Jun; vendor revised date taken as reported; transit 28 days."
+                        - generic [ref=f1e1686]:
+                          - button "3 sources" [ref=f1e1687] [cursor=pointer]
+                          - generic [ref=f1e1691]: 30 Jun 2027 08:30
+                          - generic [ref=f1e1695]: Confidence Medium
+                          - generic [ref=f1e1696]: Advisory
+                      - generic [ref=f1e1697]:
+                        - generic [ref=f1e1698]:
+                          - generic [ref=f1e1699]:
+                            - generic [ref=f1e1700]: AI-detected interface conflict
+                            - generic [ref=f1e1701]: Waste-receiving system and boiler feed arrangement
+                            - generic [ref=f1e1702]: Extracted by ATLAS
+                          - generic [ref=f1e1713]:
+                            - button "Reject" [disabled]
+                            - button "Confirm conflict" [disabled]
+                        - paragraph [ref=f1e1714]: Only the interface owner (Technical Director, project company) or the PMO Director can confirm. Switch persona to try it.
+              - region [ref=f1e1715]:
+                - generic [ref=f1e1716]:
+                  - heading "Value at stake" [level=2] [ref=f1e1717]
+                  - button "More information" [ref=f1e1718] [cursor=pointer]
+                  - generic [ref=f1e1721]: Sensitivity, not an investment case
+                - group [ref=f1e1723]:
+                  - generic "UC10 · Critical path, look-ahead and delay indicators Range USD 0.89m to 1.03m per avoided week, one plant (A) USD 0.96m per week Inside the range Gate and baseline" [ref=f1e1724] [cursor=pointer]:
+                    - generic [ref=f1e1725]:
+                      - generic [ref=f1e1726]:
+                        - generic [ref=f1e1727]: UC10 ·
+                        - text: Critical path, look-ahead and delay indicators
+                      - generic [ref=f1e1728]: Range USD 0.89m to 1.03m per avoided week, one plant (A)
+                    - generic [ref=f1e1729]:
+                      - generic [ref=f1e1730]: USD 0.96m per week
+                      - generic [ref=f1e1731]: Inside the range
+                      - generic [ref=f1e1735]: Gate and baseline
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=f1e479] [cursor=pointer]':
+            - generic [ref=f1e483]: Action register
+            - generic [ref=f1e484]:
+              - generic [ref=f1e485]: 6 open
+              - generic [ref=f1e486]:
+                - generic [ref=f1e489]: "2"
+                - text: overdue
+              - generic [ref=f1e490]: 4 due this week
+            - generic [ref=f1e491]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=f1e492]: 0%

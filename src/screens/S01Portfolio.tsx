@@ -28,7 +28,7 @@ export function S01Portfolio() {
         <Pop
           align="end"
           className="w-[380px]"
-          trigger={<button className="press inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-[12.5px] font-medium text-ink-2 hover:bg-sunken"><Info className="size-4" />How Denera controls delivery</button>}
+          trigger={<button className="press inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-[13px] font-medium text-ink-2 hover:bg-sunken"><Info className="size-4" />How Denera controls delivery</button>}
         >
           <p className="font-semibold text-ink">Control by contract, not ownership</p>
           <p className="mt-1.5 leading-relaxed">{CONTROL_MODEL}</p>
@@ -49,7 +49,7 @@ export function S01Portfolio() {
           <KpiGroup title="Delivery" items={[
             ['Approved CAPEX in construction', 'Rp7,250 bn', '3 Phase I plants'],
             ['Largest COD exposure', `${K.largestExposure} days`, 'PSEL Cakrawala Raya', 'bad'],
-            ['Projects by health', <span key="h" className="flex flex-wrap gap-x-3 whitespace-nowrap text-[17px]"><span className="text-ok">1 Green</span><span className="text-warn">2 Yellow</span><span className="text-ink-3">0 Red</span></span>, 'Construction lane'],
+            ['Projects by health', <span key="h" className="flex flex-wrap gap-x-3 whitespace-nowrap text-[18px]"><span className="text-ok">1 Green</span><span className="text-warn">2 Yellow</span><span className="text-ink-3">0 Red</span></span>, 'Construction lane'],
             ['Contingency forecast use', <span key="c" className="text-[18px]">37% · 18% · <span className="text-ink-4">n/a</span></span>, 'Cakrawala · Nusa Bahari · Sinar Lestari (no data)'],
           ]} />
           <KpiGroup title="Governance" items={[
@@ -71,11 +71,11 @@ export function S01Portfolio() {
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {PRE_INVESTMENT.map((p, i) => (
                 <button key={p.id} onClick={() => nav(`/gates?project=${p.id}`)} style={{ animationDelay: `${i * 30}ms` }} className={cn('press animate-rise rounded-xl border bg-surface p-4 text-left hover:border-atlas-300', p.atRisk ? 'border-warn/40' : 'border-line')}>
-                  <div className="flex items-center justify-between"><span className="text-[14px] font-semibold text-ink">{p.id}</span>{p.floa && <span className="rounded-sm bg-ok-bg px-1.5 py-0.5 text-[11px] font-medium text-ok">FLOA held</span>}</div>
+                  <div className="flex items-center justify-between"><span className="text-[14px] font-semibold text-ink">{p.id}</span>{p.floa && <span className="rounded-sm bg-ok-bg px-1.5 py-0.5 text-[12px] font-medium text-ok">FLOA held</span>}</div>
                   <div className="text-[12px] text-ink-3">{p.island}</div>
                   <div className="mt-3 text-[12px] text-ink-3">Next gate</div>
                   <div className="text-[13px] font-medium leading-snug text-ink">{p.nextGate}</div>
-                  <div className="tnum text-[12.5px] text-ink-2">{p.date}</div>
+                  <div className="tnum text-[13px] text-ink-2">{p.date}</div>
                   <div className="mt-2 flex items-center justify-between text-[12px]">
                     <span className="text-ink-3">{p.open} open condition{p.open > 1 ? 's' : ''}</span>
                     {p.atRisk && <StatusChip h="Yellow" label="Gate at risk" />}
@@ -109,12 +109,12 @@ export function S01Portfolio() {
 function KpiGroup({ title, items }: { title: string; items: [string, React.ReactNode, string, ('bad' | 'warn')?][] }) {
   return (
     <section className="rounded-xl border border-line bg-surface px-5 py-4">
-      <h3 className="text-[12.5px] font-semibold text-ink-2">{title}</h3>
+      <h3 className="text-[13px] font-semibold text-ink-2">{title}</h3>
       <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-4">
         {items.map(([l, v, n, tone]) => (
           <div key={l}>
             <div className="text-[12px] font-medium text-ink-3">{l}</div>
-            <div className={cn('tnum mt-0.5 text-[24px] font-semibold leading-8 tracking-[-0.01em] text-ink', tone === 'bad' && 'text-bad', tone === 'warn' && 'text-warn')}>{v}</div>
+            <div className={cn('tnum mt-0.5 text-[22px] font-semibold leading-8 tracking-[-0.01em] text-ink', tone === 'bad' && 'text-bad', tone === 'warn' && 'text-warn')}>{v}</div>
             <div className="text-[12px] leading-snug text-ink-3">{n}</div>
           </div>
         ))}
@@ -133,15 +133,15 @@ function ConstructionCard({ p, i }: { p: (typeof CONSTRUCTION)[number]; i: numbe
       </button>
       <div className="px-4">
         <HealthRulePop signals={p.signals} trigger={<button className="press" aria-label={`Why ${p.healthLabel}`}><StatusChip h={p.health} label={p.healthLabel} /></button>} />
-        {p.confidence && <span className="ml-2 text-[11.5px] text-ink-3">Data confidence {p.confidence}%</span>}
+        {p.confidence && <span className="ml-2 text-[12px] text-ink-3">Data confidence {p.confidence}%</span>}
       </div>
-      <dl className="tnum mt-3 grid grid-cols-2 gap-2 px-4 text-[12.5px]">
-        <div><dt className="text-ink-3">CAPEX</dt><dd className="font-medium text-ink">Rp{p.capex.toLocaleString('en-US')} bn</dd></div>
-        <div><dt className="text-ink-3">COD target</dt><dd className="font-medium text-ink">{p.cod}</dd></div>
+      <dl className="tnum mt-3 grid grid-cols-2 gap-2 px-4 text-[13px]">
+        <div><dt className="text-ink-3">CAPEX</dt><dd className="whitespace-nowrap font-medium text-ink">Rp{p.capex.toLocaleString('en-US')} bn</dd></div>
+        <div><dt className="text-ink-3">COD target</dt><dd className="whitespace-nowrap font-medium text-ink">{p.cod}</dd></div>
       </dl>
       <div className="mt-auto space-y-1 border-t border-line-soft p-3 pt-2.5">
-        <button onClick={() => nav('/partner-data')} className="press flex w-full items-center gap-1.5 rounded px-1 py-1 text-[12.5px] text-ink-2 hover:bg-sunken"><KeyRound className="size-3.5 text-ink-3" />Information rights <b className="tnum font-semibold text-ink">{p.rights}</b></button>
-        <button onClick={() => p.alertTo && nav(p.alertTo)} disabled={!p.alertTo} className="press flex w-full items-start gap-1.5 rounded px-1 py-1 text-left text-[12.5px] text-ink enabled:hover:bg-sunken">
+        <button onClick={() => nav('/partner-data')} className="press flex w-full items-center gap-1.5 rounded px-1 py-1 text-[13px] text-ink-2 hover:bg-sunken"><KeyRound className="size-3.5 shrink-0 text-ink-3" /><span className="whitespace-nowrap">Information rights <b className="tnum font-semibold text-ink">{p.rights}</b></span></button>
+        <button onClick={() => p.alertTo && nav(p.alertTo)} disabled={!p.alertTo} className="press flex w-full items-start gap-1.5 rounded px-1 py-1 text-left text-[13px] text-ink enabled:hover:bg-sunken">
           <Flag className={cn('mt-0.5 size-3.5 shrink-0', p.health === 'Green' ? 'text-ink-3' : 'text-bad')} />{p.alert}
         </button>
       </div>
@@ -200,13 +200,13 @@ function IndonesiaMap({ lane, onOpen }: { lane: Lane; onOpen: (to: string) => vo
             ))}
       </svg>
       {hover && (
-        <div className="pointer-events-none absolute left-5 top-2 animate-fade rounded-md bg-atlas-950 px-3 py-2 text-[12.5px] text-white">
+        <div className="pointer-events-none absolute left-5 top-2 animate-fade rounded-md bg-atlas-950 px-3 py-2 text-[13px] text-white">
           {lane === 'construction'
             ? (() => { const p = CONSTRUCTION.find((x) => x.id === hover)!; return <><b>{p.name}</b><div className="text-atlas-200">{p.alert}</div></> })()
             : (() => { const p = PRE_INVESTMENT.find((x) => x.id === hover)!; return <><b>{p.id} · {p.island}</b><div className="text-atlas-200">Next gate {p.nextGate}, {p.date}{p.atRisk ? ', at risk' : ''}</div></> })()}
         </div>
       )}
-      <div className="flex flex-wrap gap-x-4 gap-y-1 px-2 text-[11.5px] text-ink-3">
+      <div className="flex flex-wrap gap-x-4 gap-y-1 px-2 text-[12px] text-ink-3">
         {lane === 'construction' ? (
           <><span>Circle: project in construction, icon and word show health</span><span>Dashed ring: escalation required</span></>
         ) : (

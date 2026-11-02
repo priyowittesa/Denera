@@ -150,7 +150,7 @@ export function S12Cost() {
         <Card className="mt-5">
           <CardHeader title="Funding drawdown forecast" sub="Next quarter" />
           <CardBody className="grid gap-5 md:grid-cols-[220px_1fr]">
-            <div><div className="text-[12px] text-ink-3">Requirement</div><div className="tnum text-[26px] font-semibold text-ink">Rp312 bn</div><div className="text-[12px] text-ink-3">Synthetic input from the cashflow forecast</div></div>
+            <div><div className="text-[12px] text-ink-3">Requirement</div><div className="tnum text-[22px] font-semibold text-ink">Rp312 bn</div><div className="text-[12px] text-ink-3">Synthetic input from the cashflow forecast</div></div>
             <ul className="space-y-2 text-[13px]">
               {[['CP-1', 'Updated insurance certificates'], ['CP-2', "Independent engineer's progress certificate"]].map(([k, v]) => (
                 <li key={k} className="flex items-center justify-between rounded-md bg-sunken px-3 py-2"><span><b className="font-semibold text-ink">{k}</b> {v}</span><StatusChip h="Yellow" label="Open" /></li>
@@ -172,13 +172,13 @@ export function S12Cost() {
 function Group({ title, items, note }: { title: string; note?: string; items: [string, string, string?, ('bad' | 'warn')?][] }) {
   return (
     <section className="rounded-xl border border-line bg-surface px-5 py-4">
-      <div className="flex items-baseline justify-between gap-2"><h3 className="eyebrow">{title}</h3>{note && <span className="text-[11px] text-ink-3">{note}</span>}</div>
+      <div className="flex items-baseline justify-between gap-2"><h3 className="eyebrow">{title}</h3>{note && <span className="text-[12px] text-ink-3">{note}</span>}</div>
       <div className="mt-3 grid grid-cols-2 gap-x-5 gap-y-4 md:grid-cols-4 2xl:grid-cols-2">
         {items.map(([l, v, n, tone]) => (
           <div key={l} className="min-w-0">
             <div className="text-[12px] font-medium text-ink-3">{l}</div>
-            <div className={cn('tnum mt-0.5 whitespace-nowrap text-[19px] font-semibold tracking-[-0.01em] text-ink', tone === 'bad' && 'text-bad')}>{v}</div>
-            {n && <div className="text-[11.5px] leading-snug text-ink-3">{n}</div>}
+            <div className={cn('tnum mt-0.5 whitespace-nowrap text-[18px] font-semibold tracking-[-0.01em] text-ink', tone === 'bad' && 'text-bad')}>{v}</div>
+            {n && <div className="text-[12px] leading-snug text-ink-3">{n}</div>}
           </div>
         ))}
       </div>
@@ -199,14 +199,14 @@ function Waterfall({ pcu }: { pcu: boolean }) {
     <div className="space-y-3">
       {steps.map((s) => (
         <div key={s.l}>
-          <div className="flex justify-between text-[12.5px]"><span className="text-ink-2">{s.l}</span><span className="tnum font-semibold text-ink">{s.v}</span></div>
+          <div className="flex justify-between text-[13px]"><span className="text-ink-2">{s.l}</span><span className="tnum font-semibold text-ink">{s.v}</span></div>
           <div className="relative mt-1 h-5 rounded-sm bg-sunken">
             <div className={cn('absolute inset-y-0 rounded-sm', s.c)} style={{ left: `${x(s.from)}%`, width: `${x(s.to) - x(s.from)}%` }} />
             <div className="absolute inset-y-[-3px] w-px bg-ink" style={{ left: `${x(2800)}%` }} />
           </div>
         </div>
       ))}
-      <div className="tnum flex justify-between text-[11px] text-ink-4"><span>2,700</span><span>2,800</span><span>2,950</span></div>
+      <div className="tnum flex justify-between text-[12px] text-ink-4"><span>2,700</span><span>2,800</span><span>2,950</span></div>
     </div>
   )
 }
@@ -218,14 +218,14 @@ function HBars({ rows, total, tone }: { rows: { name: string; v: number }[]; tot
     <div>
       <ul className="space-y-2">
         {rows.map((r, i) => (
-          <li key={r.name} className="grid grid-cols-[minmax(0,190px)_1fr_44px] items-center gap-3 text-[12.5px]">
+          <li key={r.name} className="grid grid-cols-[minmax(0,190px)_1fr_44px] items-center gap-3 text-[13px]">
             <span className="truncate text-ink-2" title={r.name}>{r.name}</span>
             <span className="h-3.5 rounded-sm bg-sunken"><span className={cn('block h-full rounded-sm', tone === 'warn' ? 'bg-warn/80' : i < 2 ? 'bg-series-verified' : 'bg-atlas-300')} style={{ width: `${(r.v / max) * 100}%` }} /></span>
             <span className="tnum text-right font-medium text-ink">{r.v}</span>
           </li>
         ))}
       </ul>
-      {total && <div className="tnum mt-3 flex justify-between border-t border-line-soft pt-2 text-[12.5px] font-semibold text-ink"><span>Total</span><span>Rp{sum} bn {sum === total && <CheckCircle2 className="inline size-3.5 text-ok" />}</span></div>}
+      {total && <div className="tnum mt-3 flex justify-between border-t border-line-soft pt-2 text-[13px] font-semibold text-ink"><span>Total</span><span>Rp{sum} bn {sum === total && <CheckCircle2 className="inline size-3.5 text-ok" />}</span></div>}
     </div>
   )
 }
@@ -244,7 +244,7 @@ function Row({ cells, rating, route, active, onClick }: { cells: string[]; ratin
       <td className="px-3 py-3 text-right">{cells[2]}</td>
       <td className={cn('px-3 py-3 text-right', cells[3].startsWith('Rp19') && 'font-semibold text-bad')}>{cells[3]}</td>
       <td className="px-3 py-3"><StatusChip h={h} label={rating} /></td>
-      <td className="px-5 py-3">{route === 'Joint' || route === 'Project company' || route === 'Shareholder (Denera)' ? <AuthorityLabel a={route} /> : <span className="text-[12.5px] text-ink-3">{route}</span>}</td>
+      <td className="px-5 py-3">{route === 'Joint' || route === 'Project company' || route === 'Shareholder (Denera)' ? <AuthorityLabel a={route} /> : <span className="text-[13px] text-ink-3">{route}</span>}</td>
     </tr>
   )
 }
@@ -255,15 +255,15 @@ function ContingencyGauge({ remaining, rating }: { remaining: number | null; rat
   return (
     <Card className="p-5">
       <h3 className="text-[13px] font-semibold text-ink">Contingency after scenario</h3>
-      <div className="tnum mt-3 text-[30px] font-semibold leading-none text-ink">{remaining === null ? 'To be confirmed' : `Rp${remaining} bn`}</div>
-      <div className="mt-1 text-[12.5px] text-ink-3">{pct === null ? 'Range crosses the 60-day line' : `${Math.round(pct)}% of the Rp176 bn reserve`}</div>
+      <div className="tnum mt-3 text-[28px] font-semibold leading-none text-ink">{remaining === null ? 'To be confirmed' : `Rp${remaining} bn`}</div>
+      <div className="mt-1 text-[13px] text-ink-3">{pct === null ? 'Range crosses the 60-day line' : `${Math.round(pct)}% of the Rp176 bn reserve`}</div>
       <div className="relative mt-4 h-3 rounded-full bg-sunken">
         {pct !== null && <div className={cn('h-full rounded-full transition-[width] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]', near ? 'bg-bad' : 'bg-series-verified')} style={{ width: `${pct}%` }} />}
         <div className="absolute -top-1 h-5 w-0.5 bg-bad" style={{ left: '10%' }} />
       </div>
-      <div className="mt-1.5 text-[11.5px] text-bad">Alert threshold Rp17.6 bn (10%)</div>
-      <div className="mt-4 flex items-center gap-2 text-[12.5px] text-ink-2">Overall rating <StatusChip h={rating.startsWith('Red') ? 'Red' : 'Yellow'} label={rating} /></div>
-      {near && <p className="mt-3 flex gap-1.5 text-[12.5px] text-bad"><TriangleAlert className="mt-0.5 size-3.5 shrink-0" />Within Rp1.4 bn of the alert threshold. Any further cost risk would breach it.</p>}
+      <div className="mt-1.5 text-[12px] text-bad">Alert threshold Rp17.6 bn (10%)</div>
+      <div className="mt-4 flex items-center gap-2 text-[13px] text-ink-2">Overall rating <StatusChip h={rating.startsWith('Red') ? 'Red' : 'Yellow'} label={rating} /></div>
+      {near && <p className="mt-3 flex gap-1.5 text-[13px] text-bad"><TriangleAlert className="mt-0.5 size-3.5 shrink-0" />Within Rp1.4 bn of the alert threshold. Any further cost risk would breach it.</p>}
     </Card>
   )
 }
@@ -309,7 +309,7 @@ function Calculator({ days, setDays, pcu }: { days: number; setDays: (n: number)
               const r = res(d)
               return (
                 <tr key={d} className={cn(d === days && 'font-semibold')}>
-                  <td className="py-2.5">{d} days{d === days && <span className="ml-1.5 rounded-sm bg-atlas-100 px-1 py-0.5 text-[11px] font-medium text-atlas-700">input</span>}</td>
+                  <td className="py-2.5">{d} days{d === days && <span className="ml-1.5 rounded-sm bg-atlas-100 px-1 py-0.5 text-[12px] font-medium text-atlas-700">input</span>}</td>
                   <td className="py-2.5 text-right text-ink">USD {r.usd} m <span className="text-ink-3">(Rp{r.rp} bn)</span></td>
                   {!pcu && <td className="py-2.5 text-right text-ink">Rp{r.share} bn</td>}
                 </tr>

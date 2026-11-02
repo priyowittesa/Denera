@@ -47,13 +47,13 @@ export function S10CriticalPath() {
       }
     >
       <section className="flex flex-wrap items-center gap-x-8 gap-y-3 rounded-xl border border-warn/30 bg-warn-bg/50 px-5 py-3.5">
-        <div className="flex items-center gap-2"><TriangleAlert className="size-4 text-warn" /><span className="text-[13.5px] font-semibold text-ink">Schedule quality: Amber</span></div>
+        <div className="flex items-center gap-2"><TriangleAlert className="size-4 text-warn" /><span className="text-[14px] font-semibold text-ink">Schedule quality: Amber</span></div>
         <dl className="tnum flex flex-wrap gap-x-6 gap-y-1 text-[13px]">
           <div><dt className="inline text-ink-3">Logic completeness </dt><dd className="inline font-semibold text-ink">{Q.logic}%</dd></div>
           <div><dt className="inline text-ink-3">Open ends </dt><dd className="inline font-semibold text-ink">{Q.openEnds}</dd></div>
           <div><dt className="inline text-ink-3">Negative float activities </dt><dd className="inline font-semibold text-ink">{Q.negativeFloat}</dd></div>
         </dl>
-        <p className="text-[12.5px] text-ink-2">Poor schedule logic produces a warning, not a confident answer.</p>
+        <p className="text-[13px] text-ink-2">Poor schedule logic produces a warning, not a confident answer.</p>
       </section>
 
       <Tabs defaultValue="root" className="mt-6">
@@ -77,7 +77,7 @@ export function S10CriticalPath() {
                         <button onClick={() => open(e.doc)} className={cn('press group flex w-full items-start gap-3 px-5 py-3 text-left transition-[opacity,background-color] hover:bg-sunken/70', lit && 'bg-atlas-50/80', step && !lit && 'opacity-40')}>
                           <FileText className={cn('mt-0.5 size-4 shrink-0', lit ? 'text-atlas-600' : 'text-ink-4')} />
                           <span className="min-w-0 flex-1">
-                            <span className="block text-[13.5px] leading-snug text-ink">{e.title}</span>
+                            <span className="block text-[14px] leading-snug text-ink">{e.title}</span>
                             {doc && <span className="mt-0.5 block truncate text-[12px] text-ink-3">{doc.system} · {doc.location}</span>}
                           </span>
                           {doc?.classification && <ClassChip c={doc.classification} />}
@@ -90,7 +90,7 @@ export function S10CriticalPath() {
 
               <AtlasCard title="ATLAS explanation" sources={[{ label: 'Review comment RC-0193', doc: 'review-comment' }, { label: 'Vendor email 28 Jun', doc: 'vendor-email' }, { label: 'EPC schedule update', doc: 'epc-schedule' }]} classification="Advisory" confidence="Medium">
                 <p>{EXPLANATION}</p>
-                <p className="mt-2 text-[12.5px] text-ink-3">Assumptions: schedule logic as exported on 28 Jun; vendor revised date taken as reported; transit 28 days.</p>
+                <p className="mt-2 text-[13px] text-ink-3">Assumptions: schedule logic as exported on 28 Jun; vendor revised date taken as reported; transit 28 days.</p>
               </AtlasCard>
 
               <section className={cn('rounded-xl border p-5', confirmed ? 'border-ok/30 bg-ok-bg/40' : rejected ? 'border-line bg-sunken' : 'border-atlas-300 bg-atlas-50')}>
@@ -99,7 +99,7 @@ export function S10CriticalPath() {
                     <div className="text-[12px] font-medium text-ink-3">AI-detected interface conflict</div>
                     <div className="mt-0.5 text-[15px] font-semibold text-ink">Waste-receiving system and boiler feed arrangement</div>
                     <div className="mt-2">
-                      {confirmed ? <Stamp kind="confirmed" who={`${confirmed.by} (interface owner)`} when={confirmed.at} /> : rejected ? <span className="text-[12.5px] text-ink-3">Rejected: {rejected}</span> : <Stamp kind="extracted" />}
+                      {confirmed ? <Stamp kind="confirmed" who={`${confirmed.by} (interface owner)`} when={confirmed.at} /> : rejected ? <span className="text-[13px] text-ink-3">Rejected: {rejected}</span> : <Stamp kind="extracted" />}
                     </div>
                   </div>
                   {!confirmed && !rejected && (
@@ -128,7 +128,7 @@ export function S10CriticalPath() {
                       <td className="px-3 py-3 text-ink-2">{l.constraint}</td>
                       <td className="px-3 py-3 text-ink-2">{l.owner}</td>
                       <td className={cn('tnum px-3 py-3 text-right font-semibold', low ? 'text-warn' : 'text-ink')}>{l.float === null ? 'Unknown' : `${l.float} days`}</td>
-                      <td className="px-5 py-3">{low ? <button onClick={() => open(l.evidence)} className="press inline-flex items-center gap-1 text-[12.5px] font-medium text-atlas-700 hover:underline"><FileText className="size-3.5" />Open</button> : <span className="text-ink-4">n/a</span>}</td>
+                      <td className="px-5 py-3">{low ? <button onClick={() => open(l.evidence)} className="press inline-flex items-center gap-1 text-[13px] font-medium text-atlas-700 hover:underline"><FileText className="size-3.5" />Open</button> : <span className="text-ink-4">n/a</span>}</td>
                     </tr>
                   )
                 })}
@@ -147,7 +147,7 @@ export function S10CriticalPath() {
             <li key={c.date} className="relative mb-6">
               <span className="absolute -left-[26px] top-1.5 size-2.5 rounded-full bg-atlas-600 ring-4 ring-surface" />
               <div className="tnum text-[12px] font-medium text-ink-3">{c.date} · {c.kind}</div>
-              <div className="text-[13.5px] font-medium text-ink">{c.who}</div>
+              <div className="text-[14px] font-medium text-ink">{c.who}</div>
               <div className="text-[13px] text-ink-2">{c.what}</div>
             </li>
           ))}
@@ -155,8 +155,8 @@ export function S10CriticalPath() {
       </Sheet>
 
       <Modal open={rejectOpen} onOpenChange={setRejectOpen} title="Reject the AI-detected conflict" description="A reason is required and is written to the audit log." footer={<><Button variant="ghost" onClick={() => setRejectOpen(false)}>Cancel</Button><Button disabled={!reason.trim()} onClick={() => { reject(KEY, reason.trim(), 'Interface conflict'); setRejectOpen(false) }}>Reject with reason</Button></>}>
-        <label className="block text-[12.5px] font-medium text-ink-2" htmlFor="reason">Reason</label>
-        <textarea id="reason" value={reason} onChange={(e) => setReason(e.target.value)} rows={3} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[13.5px] outline-none focus:border-atlas-500" />
+        <label className="block text-[13px] font-medium text-ink-2" htmlFor="reason">Reason</label>
+        <textarea id="reason" value={reason} onChange={(e) => setReason(e.target.value)} rows={3} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500" />
       </Modal>
     </ScreenFrame>
   )
@@ -179,7 +179,7 @@ function ChainStory({ step, setStep, impacted }: { step: string | null; setStep:
         <h2 className="text-[15px] font-semibold tracking-[-0.01em] text-ink">Critical-path story</h2>
         <span className="tnum text-[12px] text-ink-3"><span className="text-bad">{reds} Red</span> · <span className="text-warn">{CHAIN.length - reds} Yellow</span></span>
       </div>
-      <p className="mt-0.5 px-2 text-[12.5px] text-ink-3">Select a step to trace its evidence.</p>
+      <p className="mt-0.5 px-2 text-[13px] text-ink-3">Select a step to trace its evidence.</p>
       <ol className="mt-3">
         {rows.map((r, i) => {
           const first = i === 1
@@ -207,17 +207,17 @@ function ChainStory({ step, setStep, impacted }: { step: string | null; setStep:
                 className={cn('press relative flex w-full items-start gap-3 rounded-lg px-2 py-2.5 text-left transition-colors hover:bg-sunken/80', sel && 'bg-atlas-50 hover:bg-atlas-50')}
               >
                 <span className={cn(
-                  'tnum grid size-6 shrink-0 place-items-center rounded-full text-[11px] font-semibold ring-4 ring-surface',
+                  'tnum grid size-6 shrink-0 place-items-center rounded-full text-[12px] font-semibold ring-4 ring-surface',
                   outcome ? 'bg-bad text-white' : c.status === 'Red' ? 'bg-bad-bg text-bad' : 'bg-warn-bg text-warn',
                   sel && 'ring-atlas-200',
                 )}>{n}</span>
                 <span className="min-w-0 flex-1 pt-px">
                   <span className="flex items-start justify-between gap-2">
-                    <span className={cn('text-[13.5px] leading-snug text-ink', outcome ? 'font-semibold' : 'font-medium')}>{c.title}</span>
-                    <span className={cn('mt-px inline-flex shrink-0 items-center gap-1 text-[11.5px] font-medium', c.status === 'Red' ? 'text-bad' : 'text-warn')}><Icon className="size-3" strokeWidth={2.4} />{c.status}</span>
+                    <span className={cn('text-[14px] leading-snug text-ink', outcome ? 'font-semibold' : 'font-medium')}>{c.title}</span>
+                    <span className={cn('mt-px inline-flex shrink-0 items-center gap-1 text-[12px] font-medium', c.status === 'Red' ? 'text-bad' : 'text-warn')}><Icon className="size-3" strokeWidth={2.4} />{c.status}</span>
                   </span>
-                  <span className={cn('mt-0.5 block text-[12.5px] leading-snug', outcome ? 'font-medium text-bad' : 'text-ink-3')}>{c.date}</span>
-                  {hit && <span className="mt-1.5 inline-flex rounded-sm bg-bad-bg px-1.5 py-0.5 text-[11px] font-medium text-bad">Impacted activity</span>}
+                  <span className={cn('mt-0.5 block text-[13px] leading-snug', outcome ? 'font-medium text-bad' : 'text-ink-3')}>{c.date}</span>
+                  {hit && <span className="mt-1.5 inline-flex rounded-sm bg-bad-bg px-1.5 py-0.5 text-[12px] font-medium text-bad">Impacted activity</span>}
                 </span>
               </button>
             </li>

@@ -104,7 +104,7 @@ export function S03Notices() {
       <div className="mt-6 grid gap-5 lg:grid-cols-2">
         <Card className="p-5">
           <h2 className="text-[15px] font-semibold text-ink">Ask about a clause</h2>
-          <p className="mt-1 text-[12.5px] text-ink-3">Cited answers from executed agreements.</p>
+          <p className="mt-1 text-[13px] text-ink-3">Cited answers from executed agreements.</p>
           {!qa ? (
             <button onClick={() => setQa(true)} className="press mt-3 w-full rounded-md border border-atlas-200 bg-atlas-50 px-3 py-2.5 text-left text-[13px] text-atlas-800 hover:border-atlas-300">
               What does the EPC contract say about the notice period for delay events?
@@ -113,7 +113,7 @@ export function S03Notices() {
         </Card>
         <Card className="p-5">
           <h2 className="text-[15px] font-semibold text-ink">Requests to the project company</h2>
-          <p className="mt-1 text-[12.5px] text-ink-3">Denera cannot issue the EPC notice; the project company board does.</p>
+          <p className="mt-1 text-[13px] text-ink-3">Denera cannot issue the EPC notice; the project company board does.</p>
           <div className="mt-4 flex flex-col items-start gap-2">
             <Button variant="outline" disabled={requests.includes('board-notice') || isPcu} onClick={() => addRequest('board-notice', 'Issue EPC notice', { title: 'Project company board to issue EPC notice (cl. 14.2)', owner: 'Project company board', authority: 'Joint', due: '2 Jul 2027', dueIso: '2027-07-02', status: 'Not started', linked: 'Contractual entitlement', source: 'Notice calendar' })}>
               <Send />{requests.includes('board-notice') ? 'Request sent to the board' : 'Request project company board to issue notice'}
@@ -126,8 +126,8 @@ export function S03Notices() {
       <DraftNotice open={draft} onOpenChange={setDraft} />
 
       <Modal open={!!rejecting} onOpenChange={(v) => !v && setRejecting(null)} title="Reject extracted deadline" description={rejecting ? `${rejecting.clause}, ${rejecting.obligation}` : ''} footer={<><Button variant="ghost" onClick={() => setRejecting(null)}>Cancel</Button><Button disabled={!reason.trim()} onClick={() => { reject(`notice-${rejecting!.id}`, reason.trim(), rejecting!.clause); setRejecting(null); setReason('') }}>Reject with reason</Button></>}>
-        <label htmlFor="r" className="text-[12.5px] font-medium text-ink-2">Reason</label>
-        <textarea id="r" rows={3} value={reason} onChange={(e) => setReason(e.target.value)} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[13.5px] outline-none focus:border-atlas-500" />
+        <label htmlFor="r" className="text-[13px] font-medium text-ink-2">Reason</label>
+        <textarea id="r" rows={3} value={reason} onChange={(e) => setReason(e.target.value)} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500" />
       </Modal>
     </ScreenFrame>
   )
@@ -140,7 +140,7 @@ function CalendarView({ rows, badge }: { rows: Notice[]; badge: (n: Notice) => s
       {months.map((mo, mi) => (
         <Card key={mo.m} className="p-4">
           <h3 className="text-[13px] font-semibold text-ink">{mo.m === 'Jul' ? 'July' : 'August'} {mo.y}</h3>
-          <div className="mt-2 grid grid-cols-7 gap-1 text-center text-[11px] text-ink-3">{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => <div key={d}>{d}</div>)}</div>
+          <div className="mt-2 grid grid-cols-7 gap-1 text-center text-[12px] text-ink-3">{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => <div key={d}>{d}</div>)}</div>
           <div className="mt-1 grid grid-cols-7 gap-1">
             {Array.from({ length: mo.start }).map((_, i) => <div key={`e${i}`} />)}
             {Array.from({ length: mo.days }).map((_, i) => {
@@ -148,9 +148,9 @@ function CalendarView({ rows, badge }: { rows: Notice[]; badge: (n: Notice) => s
               const hits = rows.filter((n) => n.dueIso === iso)
               return (
                 <div key={i} className={cn('min-h-[54px] rounded-md border border-line-soft p-1 text-left', hits.length && 'border-atlas-200 bg-atlas-50')}>
-                  <div className="tnum text-[11px] text-ink-3">{i + 1}</div>
+                  <div className="tnum text-[12px] text-ink-3">{i + 1}</div>
                   {hits.map((h) => (
-                    <div key={h.id} className={cn('mt-0.5 truncate rounded px-1 text-[10.5px] font-medium', h.id === 'N1' ? 'bg-bad text-white' : badge(h) === 'Confirmed' ? 'bg-atlas-700 text-white' : 'border border-dashed border-ink-4 text-ink-2')} title={`${h.obligation} (${badge(h)})`}>
+                    <div key={h.id} className={cn('mt-0.5 truncate rounded px-1 text-[12px] font-medium', h.id === 'N1' ? 'bg-bad text-white' : badge(h) === 'Confirmed' ? 'bg-atlas-700 text-white' : 'border border-dashed border-ink-4 text-ink-2')} title={`${h.obligation} (${badge(h)})`}>
                       {h.id === 'N1' ? '6 days' : h.clause}
                     </div>
                   ))}
@@ -184,7 +184,7 @@ function DraftNotice({ open, onOpenChange }: { open: boolean; onOpenChange: (v: 
       }
     >
       <div className="mb-4 flex items-center gap-2"><Stamp kind="draft" /><span className="text-[12px] text-ink-3">AI draft, lawyer sends</span></div>
-      <article className="space-y-3 rounded-xl border border-line bg-surface p-6 text-[13.5px] leading-relaxed text-ink">
+      <article className="space-y-3 rounded-xl border border-line bg-surface p-6 text-[14px] leading-relaxed text-ink">
         <p className="text-ink-3">To: The EPC Contractor<br />From: BUPP Cakrawala Raya<br />Date: [to be dated on issue]</p>
         <p className="font-semibold">Notice of delay event under Clause 14.2</p>
         <p>We give notice of a delay event affecting the boiler island package. The vendor technical submittal BI-TS-07, due on 12 June 2027, remained outstanding at 30 June 2027, and the related engineering review comment RC-0193 remains unresolved.</p>

@@ -93,7 +93,7 @@ export function S07Packs() {
             <header className="flex flex-wrap items-start justify-between gap-3 border-b border-line-soft pb-5">
               <div>
                 <div className="text-[12px] font-medium text-ink-3">Weekly pack · week ending 30 Jun 2027 · Confidential</div>
-                <h2 className="mt-1 text-[20px] font-semibold tracking-[-0.01em] text-ink">PSEL Cakrawala Raya</h2>
+                <h2 className="mt-1 text-[18px] font-semibold tracking-[-0.01em] text-ink">PSEL Cakrawala Raya</h2>
               </div>
               {approved ? <Stamp kind="approved" who="PMO lead" when="30 Jun 2027" /> : <Stamp kind="draft" />}
             </header>
@@ -103,8 +103,8 @@ export function S07Packs() {
                   <div className="min-w-0">
                     <h3 className="text-[14px] font-semibold text-ink">{s.title}</h3>
                     {s.id === '1' && simple ? (
-                      <div className="mt-1.5 rounded-md bg-info-bg/60 p-3"><Stamp kind="draft" /><p className="mt-1.5 text-[13.5px] leading-relaxed text-ink">{ANSWERS['A-14'].direct}</p></div>
-                    ) : <p className="mt-1 text-[13.5px] leading-relaxed text-ink-2">{s.line}</p>}
+                      <div className="mt-1.5 rounded-md bg-info-bg/60 p-3"><Stamp kind="draft" /><p className="mt-1.5 text-[14px] leading-relaxed text-ink">{ANSWERS['A-14'].direct}</p></div>
+                    ) : <p className="mt-1 text-[14px] leading-relaxed text-ink-2">{s.line}</p>}
                     {s.chart && <MiniCurve />}
                   </div>
                   {s.figure && (
@@ -128,7 +128,7 @@ export function S07Packs() {
                 const cur = i === idx && !approved
                 return (
                   <li key={st} className="flex items-center gap-3 text-[13px]">
-                    <span className={cn('grid size-6 place-items-center rounded-full border text-[11px] font-semibold', done ? 'border-ok bg-ok text-white' : cur ? 'border-atlas-600 text-atlas-700' : 'border-line text-ink-4')}>{done ? <Check className="size-3.5" /> : i + 1}</span>
+                    <span className={cn('grid size-6 place-items-center rounded-full border text-[12px] font-semibold', done ? 'border-ok bg-ok text-white' : cur ? 'border-atlas-600 text-atlas-700' : 'border-line text-ink-4')}>{done ? <Check className="size-3.5" /> : i + 1}</span>
                     <span className={cn(cur ? 'font-medium text-ink' : 'text-ink-2')}>{st === 'Approved' ? 'Approved by named reviewer' : st}</span>
                   </li>
                 )
@@ -137,14 +137,14 @@ export function S07Packs() {
             <div className="mt-4 space-y-2">
               {stage === 'Draft' && <Button className="w-full" variant="outline" onClick={() => setStage('In review')}><FileText />Send to reviewer (PMO lead)</Button>}
               {stage === 'In review' && <Button className="w-full" onClick={() => { setStage('Approved'); toast.success('Approved by PMO lead', { description: 'Export is now enabled.' }) }}><ShieldCheck />Approve as PMO lead</Button>}
-              {approved && <p className="text-[12.5px] text-ok">Approved. Export is enabled.</p>}
+              {approved && <p className="text-[13px] text-ok">Approved. Export is enabled.</p>}
             </div>
             <p className="mt-3 text-[12px] text-ink-3">Numbers come only from the governed layer. A named reviewer approves release.</p>
           </Card>
           <Card className="p-5">
             <h3 className="text-[13px] font-semibold text-ink">Headline status</h3>
             <div className="mt-2"><StatusChip h="Yellow" label="Yellow, escalation required" /></div>
-            <p className="mt-2 text-[12.5px] text-ink-3">Same rating as the Cockpit; computed, never typed.</p>
+            <p className="mt-2 text-[13px] text-ink-3">Same rating as the Cockpit; computed, never typed.</p>
           </Card>
         </aside>
       </div>

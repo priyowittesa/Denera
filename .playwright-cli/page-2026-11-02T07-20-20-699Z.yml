@@ -1,0 +1,529 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - complementary [ref=f1e5]:
+        - generic [ref=f1e6]: ATLAS Altimeda
+        - button "Collapse navigation" [ref=f1e11] [cursor=pointer]
+        - generic [ref=f1e22]:
+          - generic [ref=f1e23]: Your tenant
+          - generic [ref=f1e24]: Denera
+          - generic [ref=f1e25]: PT Daya Energi Bersih Nusantara
+        - navigation "Screens" [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]: Leading use cases
+            - list [ref=f1e29]:
+              - listitem [ref=f1e30]:
+                - link "Portfolio 1" [ref=f1e31] [cursor=pointer]:
+                  - /url: "#/portfolio"
+                  - generic [ref=f1e37]: Portfolio
+                  - generic [ref=f1e38]: "1"
+              - listitem [ref=f1e39]:
+                - link "Cockpit 8" [ref=f1e40] [cursor=pointer]:
+                  - /url: "#/cockpit"
+                  - generic [ref=f1e44]: Cockpit
+                  - generic [ref=f1e45]: "8"
+              - listitem [ref=f1e46]:
+                - link "Progress and S-curve 9" [ref=f1e47] [cursor=pointer]:
+                  - /url: "#/progress"
+                  - generic [ref=f1e51]: Progress and S-curve
+                  - generic [ref=f1e52]: "9"
+              - listitem [ref=f1e53]:
+                - link "Critical path 10" [ref=f1e54] [cursor=pointer]:
+                  - /url: "#/critical-path"
+                  - generic [ref=f1e59]: Critical path
+                  - generic [ref=f1e60]: "10"
+              - listitem [ref=f1e61]:
+                - link "Procurement 11" [ref=f1e62] [cursor=pointer]:
+                  - /url: "#/procurement"
+                  - generic [ref=f1e67]: Procurement
+                  - generic [ref=f1e68]: "11"
+              - listitem [ref=f1e69]:
+                - link "Cost and investment 12" [ref=f1e70] [cursor=pointer]:
+                  - /url: "#/cost"
+                  - generic [ref=f1e74]: Cost and investment
+                  - generic [ref=f1e75]: "12"
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Enabling, Wave 1
+            - list [ref=f1e78]:
+              - listitem [ref=f1e79]:
+                - link "Phase II gates 2" [ref=f1e80] [cursor=pointer]:
+                  - /url: "#/gates"
+                  - generic [ref=f1e84]: Phase II gates
+                  - generic [ref=f1e85]: "2"
+              - listitem [ref=f1e86]:
+                - link "Notices and obligations 3" [ref=f1e87] [cursor=pointer]:
+                  - /url: "#/notices"
+                  - generic [ref=f1e92]: Notices and obligations
+                  - generic [ref=f1e93]: "3"
+              - listitem [ref=f1e94]:
+                - link "Partner data and rights 4" [ref=f1e95] [cursor=pointer]:
+                  - /url: "#/partner-data"
+                  - generic [ref=f1e99]: Partner data and rights
+                  - generic [ref=f1e100]: "4"
+              - listitem [ref=f1e101]:
+                - link "Meetings and actions 5" [ref=f1e102] [cursor=pointer]:
+                  - /url: "#/meetings"
+                  - generic [ref=f1e107]: Meetings and actions
+                  - generic [ref=f1e108]: "5"
+              - listitem [ref=f1e109]:
+                - link "Ask ATLAS 6" [ref=f1e110] [cursor=pointer]:
+                  - /url: "#/ask"
+                  - generic [ref=f1e113]: Ask ATLAS
+                  - generic [ref=f1e114]: "6"
+              - listitem [ref=f1e115]:
+                - link "Governance packs 7" [ref=f1e116] [cursor=pointer]:
+                  - /url: "#/packs"
+                  - generic [ref=f1e121]: Governance packs
+                  - generic [ref=f1e122]: "7"
+          - generic [ref=f1e123]:
+            - generic [ref=f1e124]: Decisions and platform
+            - list [ref=f1e125]:
+              - listitem [ref=f1e126]:
+                - link "Decision room 13" [ref=f1e127] [cursor=pointer]:
+                  - /url: "#/decisions"
+                  - generic [ref=f1e132]: Decision room
+                  - generic [ref=f1e133]: "13"
+              - listitem [ref=f1e134]:
+                - link "Orchestration Console 14" [ref=f1e135] [cursor=pointer]:
+                  - /url: "#/orchestration"
+                  - generic [ref=f1e140]: Orchestration Console
+                  - generic [ref=f1e141]: "14"
+        - generic [ref=f1e143]:
+          - generic [ref=f1e144]:
+            - generic [ref=f1e145]: Synthetic demo data
+            - generic [ref=f1e146]: 30 Jun 2027
+          - paragraph [ref=f1e147]: All projects, partners and figures are illustrative. Data date 30 Jun 2027, refreshed 08:30 WIB.
+          - generic [ref=f1e148]:
+            - button "Definitions" [ref=f1e149] [cursor=pointer]
+            - button "Reset demo" [ref=f1e152] [cursor=pointer]
+      - generic [ref=f1e156]:
+        - banner [ref=f1e157]:
+          - navigation "Breadcrumb" [ref=f1e158]:
+            - generic [ref=f1e159]: Denera
+            - generic [ref=f1e162]: Leading use cases
+            - generic [ref=f1e165]: Cost, Cashflow and Investment Protection
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]:
+              - text: Data date
+              - generic [ref=f1e169]: 30 Jun 2027
+              - generic [ref=f1e170]: · 08:30 WIB
+            - button "Ask ATLAS" [ref=f1e171] [cursor=pointer]
+            - button "Audit log" [ref=f1e176] [cursor=pointer]
+            - button "Switch role" [ref=f1e182] [cursor=pointer]:
+              - generic [ref=f1e183]: CE
+              - generic [ref=f1e184]:
+                - generic [ref=f1e185]: Denera CEO
+                - generic [ref=f1e186]: Shareholder executive
+        - main [ref=f1e189]:
+          - generic [ref=f1e1964]:
+            - generic [ref=f1e1965]:
+              - generic [ref=f1e1966]:
+                - generic [ref=f1e1967]: UC09
+                - generic [aria-hidden] [ref=f1e1968]: /
+                - generic [ref=f1e1969]: PSEL Cakrawala Raya
+              - generic [ref=f1e1970]:
+                - generic [ref=f1e1971]: Leading use case
+                - generic [ref=f1e1974]:
+                  - text: W2
+                  - generic [ref=f1e1975]: target
+                - generic [ref=f1e1976]: Tier 1
+                - button "Data needed" [ref=f1e1977] [cursor=pointer]
+                - button "Confidence 91%" [ref=f1e1982] [cursor=pointer]:
+                  - text: Confidence
+                  - generic [ref=f1e1983]: 91%
+            - generic [ref=f1e1984]:
+              - generic [ref=f1e1985]:
+                - heading "The project stays within total contingency, but Rp45 billion of forecast cost needs shareholder funding approval." [level=1] [ref=f1e1986]
+                - generic [ref=f1e1987]:
+                  - generic [ref=f1e1988]: Cost dimension Red
+                  - paragraph [ref=f1e1991]: Management EAC Rp2,910 bn against approved CAPEX Rp2,800 bn.
+              - generic [ref=f1e1992]:
+                - generic [ref=f1e1993]: Needs shareholder approval
+                - generic [ref=f1e1994]: Rp45 bn
+                - generic [ref=f1e1995]: Of a Rp110 bn forecast overrun. Contingency covers Rp65 bn.
+            - generic [ref=f1e1996]:
+              - generic [ref=f1e1997]:
+                - generic [ref=f1e1998]:
+                  - heading "Forecast" [level=3] [ref=f1e2000]
+                  - generic [ref=f1e2001]:
+                    - generic [ref=f1e2002]:
+                      - generic [ref=f1e2003]: Approved CAPEX
+                      - generic [ref=f1e2004]: Rp2,800 bn
+                    - generic [ref=f1e2005]:
+                      - generic [ref=f1e2006]: Management EAC
+                      - generic [ref=f1e2007]: Rp2,910 bn
+                      - generic [ref=f1e2008]: "Range Rp2,846 to 2,918 bn: (a) remaining work at budget, (b) CPI trend"
+                    - generic [ref=f1e2009]:
+                      - generic [ref=f1e2010]: Forecast variance
+                      - generic [ref=f1e2011]: +Rp110 bn
+                      - generic [ref=f1e2012]: Rp65 bn contingency, Rp45 bn shareholder funding
+                    - generic [ref=f1e2013]:
+                      - generic [ref=f1e2014]: Delay-linked revenue deferred
+                      - generic [ref=f1e2015]: USD 5.7 m
+                      - generic [ref=f1e2016]: 42 days, from the calculator below
+                - generic [ref=f1e2017]:
+                  - generic [ref=f1e2018]:
+                    - heading "Contingency" [level=3] [ref=f1e2019]
+                    - generic [ref=f1e2020]: Illustrative until Denera finance confirms
+                  - generic [ref=f1e2021]:
+                    - generic [ref=f1e2022]:
+                      - generic [ref=f1e2023]: Contingency available
+                      - generic [ref=f1e2024]: Rp176 bn
+                      - generic [ref=f1e2025]: 6.3% of CAPEX, outside approved CAPEX
+                    - generic [ref=f1e2026]:
+                      - generic [ref=f1e2027]: Forecast use
+                      - generic [ref=f1e2028]: Rp65 bn
+                    - generic [ref=f1e2029]:
+                      - generic [ref=f1e2030]: Remaining
+                      - generic [ref=f1e2031]: Rp111 bn
+                      - generic [ref=f1e2032]: 63% of reserve
+                    - generic [ref=f1e2033]:
+                      - generic [ref=f1e2034]: Alert threshold
+                      - generic [ref=f1e2035]: Rp17.6 bn
+                      - generic [ref=f1e2036]: 10% of reserve
+                - generic [ref=f1e2037]:
+                  - heading "Cash" [level=3] [ref=f1e2039]
+                  - generic [ref=f1e2040]:
+                    - generic [ref=f1e2041]:
+                      - generic [ref=f1e2042]: Actual cost
+                      - generic [ref=f1e2043]: Rp1,138 bn
+                    - generic [ref=f1e2044]:
+                      - generic [ref=f1e2045]: Open commitments
+                      - generic [ref=f1e2046]: Rp318 bn
+                    - generic [ref=f1e2047]:
+                      - generic [ref=f1e2048]: Cash paid
+                      - generic [ref=f1e2049]: Rp1,190 bn
+                      - generic [ref=f1e2050]: Includes Rp52 bn vendor advances
+                    - generic [ref=f1e2051]:
+                      - generic [ref=f1e2052]: Next-quarter funding
+                      - generic [ref=f1e2053]: Rp312 bn
+                      - generic [ref=f1e2054]: Synthetic input from the cashflow forecast
+              - generic [ref=f1e2055]:
+                - generic [ref=f1e2056]:
+                  - generic [ref=f1e2058]:
+                    - heading "Approved to forecast CAPEX" [level=3] [ref=f1e2059]
+                    - paragraph [ref=f1e2060]: Axis starts at Rp2,700 bn so the steps are visible
+                  - generic [ref=f1e2062]:
+                    - generic [ref=f1e2064]:
+                      - generic [ref=f1e2065]: Approved CAPEX
+                      - generic [ref=f1e2066]: Rp2,800 bn
+                    - generic [ref=f1e2071]:
+                      - generic [ref=f1e2072]: Funded from contingency
+                      - generic [ref=f1e2073]: +Rp65 bn
+                    - generic [ref=f1e2078]:
+                      - generic [ref=f1e2079]: Shareholder funding (FX Rp30 bn, owner’s cost Rp15 bn)
+                      - generic [ref=f1e2080]: +Rp45 bn
+                    - generic [ref=f1e2085]:
+                      - generic [ref=f1e2086]: Management EAC
+                      - generic [ref=f1e2087]: Rp2,910 bn
+                    - generic [ref=f1e2091]:
+                      - generic [ref=f1e2092]: 2,700
+                      - generic [ref=f1e2093]: 2,800
+                      - generic [ref=f1e2094]: 2,950
+                - generic [ref=f1e2095]:
+                  - generic [ref=f1e2097]:
+                    - heading "Where the Rp110 bn comes from" [level=3] [ref=f1e2098]
+                    - paragraph [ref=f1e2099]: Cost drivers, Rp bn
+                  - generic [ref=f1e2101]:
+                    - list [ref=f1e2102]:
+                      - listitem [ref=f1e2103]:
+                        - generic "Foreign-exchange exposure" [ref=f1e2104]
+                        - generic [ref=f1e2107]: "30"
+                      - listitem [ref=f1e2108]:
+                        - generic "Acceleration and recovery" [ref=f1e2109]
+                        - generic [ref=f1e2112]: "22"
+                      - listitem [ref=f1e2113]:
+                        - generic "Owner's cost and project management" [ref=f1e2114]
+                        - generic [ref=f1e2117]: "15"
+                      - listitem [ref=f1e2118]:
+                        - generic "Extended preliminaries" [ref=f1e2119]
+                        - generic [ref=f1e2122]: "14"
+                      - listitem [ref=f1e2123]:
+                        - generic "Freight and alternative shipping" [ref=f1e2124]
+                        - generic [ref=f1e2127]: "12"
+                      - listitem [ref=f1e2128]:
+                        - generic "Design change and interface rework" [ref=f1e2129]
+                        - generic [ref=f1e2132]: "11"
+                      - listitem [ref=f1e2133]:
+                        - generic "Claims and variation position" [ref=f1e2134]
+                        - generic [ref=f1e2137]: "6"
+                    - generic [ref=f1e2138]:
+                      - generic [ref=f1e2139]: Total
+                      - generic [ref=f1e2140]: Rp110 bn
+              - generic [ref=f1e2144]:
+                - generic [ref=f1e2146]:
+                  - heading "Delay-linked revenue calculator" [level=3] [ref=f1e2147]
+                  - paragraph [ref=f1e2148]: Revenue deferred, not necessarily lost. Depends on PPA delay and deemed-commissioning terms and on EPC liquidated damages. Illustrative until those terms are loaded.
+                - generic [ref=f1e2149]:
+                  - generic [ref=f1e2150]:
+                    - generic [ref=f1e2151]:
+                      - generic [ref=f1e2152]:
+                        - text: Net capacity
+                        - generic [ref=f1e2153]:
+                          - spinbutton "Net capacity MW" [ref=f1e2154]: "33.5"
+                          - generic [ref=f1e2155]: MW
+                      - generic [ref=f1e2156]:
+                        - text: Availability
+                        - generic [ref=f1e2157]:
+                          - spinbutton "Availability %" [ref=f1e2158]: "85"
+                          - generic [ref=f1e2159]: "%"
+                      - generic [ref=f1e2160]:
+                        - text: Tariff (fixed 30 years)
+                        - generic [ref=f1e2161]:
+                          - spinbutton "Tariff (fixed 30 years) USD/kWh" [ref=f1e2162]: "0.2"
+                          - generic [ref=f1e2163]: USD/kWh
+                      - generic [ref=f1e2164]:
+                        - text: Exchange rate
+                        - generic [ref=f1e2165]:
+                          - spinbutton "Exchange rate Rp/USD" [ref=f1e2166]: "16500"
+                          - generic [ref=f1e2167]: Rp/USD
+                      - generic [ref=f1e2168]:
+                        - text: Days of delay
+                        - generic [ref=f1e2169]:
+                          - spinbutton "Days of delay days" [ref=f1e2170]: "42"
+                          - generic [ref=f1e2171]: days
+                    - paragraph [ref=f1e2172]: capacity × 8,760 × availability × 1,000 × tariff ÷ 365 = USD 136,680 per day
+                  - table [ref=f1e2173]:
+                    - rowgroup [ref=f1e2174]:
+                      - row [ref=f1e2175]:
+                        - columnheader "Delay" [ref=f1e2176]
+                        - columnheader "Revenue deferred" [ref=f1e2177]
+                        - columnheader "Denera 30% share" [ref=f1e2178]
+                    - rowgroup [ref=f1e2179]:
+                      - row [ref=f1e2180]:
+                        - cell "42 daysinput" [ref=f1e2181]
+                        - cell "USD 5.7 m (Rp95 bn)" [ref=f1e2182]:
+                          - text: USD 5.7 m
+                          - generic [ref=f1e2183]: (Rp95 bn)
+                        - cell "Rp28 bn" [ref=f1e2184]
+                      - row [ref=f1e2185]:
+                        - cell "64 days" [ref=f1e2186]
+                        - cell "USD 8.7 m (Rp144 bn)" [ref=f1e2187]:
+                          - text: USD 8.7 m
+                          - generic [ref=f1e2188]: (Rp144 bn)
+                        - cell "Rp43 bn" [ref=f1e2189]
+              - generic [ref=f1e2190]:
+                - generic [ref=f1e2191]:
+                  - heading "What-if scenarios against remaining contingency" [level=2] [ref=f1e2192]
+                  - generic [ref=f1e2193]: Advisory. Selecting a scenario also updates the S-curve forecast on Screen 9.
+                - generic [ref=f1e2194]:
+                  - generic [ref=f1e2195]:
+                    - table [ref=f1e2196]:
+                      - rowgroup [ref=f1e2197]:
+                        - row [ref=f1e2198]:
+                          - columnheader "Scenario" [ref=f1e2199]
+                          - columnheader "COD delay" [ref=f1e2200]
+                          - columnheader "Incremental cost" [ref=f1e2201]
+                          - columnheader "Contingency remaining" [ref=f1e2202]
+                          - columnheader "Rating" [ref=f1e2203]
+                          - columnheader "Approval route" [ref=f1e2204]
+                      - rowgroup [ref=f1e2205]:
+                        - row [ref=f1e2206] [cursor=pointer]:
+                          - cell [ref=f1e2207]:
+                            - button "Current plan" [pressed] [ref=f1e2208]
+                          - cell "plus 42 days" [ref=f1e2211]
+                          - cell "n/a" [ref=f1e2212]
+                          - cell "Rp111 bn (63%)" [ref=f1e2213]
+                          - cell "Yellow, escalation" [ref=f1e2214]
+                          - cell "n/a" [ref=f1e2218]
+                        - row [ref=f1e2219] [cursor=pointer]:
+                          - cell [ref=f1e2220]:
+                            - button "No intervention" [ref=f1e2221]
+                          - cell "plus 64 days" [ref=f1e2223]
+                          - cell "Rp92 bn" [ref=f1e2224]
+                          - cell "Rp19 bn (11%)" [ref=f1e2225]
+                          - cell "Red" [ref=f1e2226]
+                          - cell "n/a" [ref=f1e2230]
+                        - row [ref=f1e2231] [cursor=pointer]:
+                          - cell [ref=f1e2232]:
+                            - button "Expedite vendor only" [ref=f1e2233]
+                          - cell "plus 34 days" [ref=f1e2235]
+                          - cell "Rp29 bn" [ref=f1e2236]
+                          - cell "Rp82 bn (47%)" [ref=f1e2237]
+                          - cell "Yellow" [ref=f1e2238]
+                          - cell "Project company" [ref=f1e2242]
+                        - row [ref=f1e2244] [cursor=pointer]:
+                          - cell [ref=f1e2245]:
+                            - button "Resequence works only" [ref=f1e2246]
+                          - cell "plus 27 days" [ref=f1e2248]
+                          - cell "Rp18 bn" [ref=f1e2249]
+                          - cell "Rp93 bn (53%)" [ref=f1e2250]
+                          - cell "Yellow" [ref=f1e2251]
+                          - cell "Project company" [ref=f1e2255]
+                        - row [ref=f1e2257] [cursor=pointer]:
+                          - cell [ref=f1e2258]:
+                            - button "Expedite and resequence" [ref=f1e2259]
+                          - cell "plus 12 days" [ref=f1e2261]
+                          - cell "Rp47 bn" [ref=f1e2262]
+                          - cell "Rp64 bn (36%)" [ref=f1e2263]
+                          - cell "Yellow" [ref=f1e2264]
+                          - cell "Project company, with Denera board approval" [ref=f1e2268]
+                        - row [ref=f1e2269] [cursor=pointer]:
+                          - cell [ref=f1e2270]:
+                            - button "Alternative supplier" [ref=f1e2271]
+                          - cell "plus 45 to 90 days" [ref=f1e2273]
+                          - cell "To be confirmed" [ref=f1e2274]
+                          - cell "To be confirmed" [ref=f1e2275]
+                          - cell "Yellow to Red" [ref=f1e2276]
+                          - cell "Joint" [ref=f1e2280]
+                    - paragraph [ref=f1e2282]: "Remaining contingency before scenario cost: Rp111 bn. Assumptions: acceleration and freight rates from vendor quotes; FX at Rp16,500 per USD; no change to EPC liquidated damages."
+                  - generic [ref=f1e2283]:
+                    - heading "Contingency after scenario" [level=3] [ref=f1e2284]
+                    - generic [ref=f1e2285]: Rp111 bn
+                    - generic [ref=f1e2286]: 63% of the Rp176 bn reserve
+                    - generic [ref=f1e2290]: Alert threshold Rp17.6 bn (10%)
+                    - generic [ref=f1e2291]:
+                      - text: Overall rating
+                      - generic [ref=f1e2292]: Yellow, escalation
+              - generic [ref=f1e2295]:
+                - generic [ref=f1e2296]:
+                  - generic [ref=f1e2298]:
+                    - heading "Cost variance by package" [level=3] [ref=f1e2299]
+                    - paragraph [ref=f1e2300]: Forecast, Rp bn, sums to 110
+                  - generic [ref=f1e2302]:
+                    - list [ref=f1e2303]:
+                      - listitem [ref=f1e2304]:
+                        - generic "Boiler island" [ref=f1e2305]
+                        - generic [ref=f1e2308]: "47"
+                      - listitem [ref=f1e2309]:
+                        - generic "Waste receiving system" [ref=f1e2310]
+                        - generic [ref=f1e2313]: "28"
+                      - listitem [ref=f1e2314]:
+                        - generic "Owner's cost" [ref=f1e2315]
+                        - generic [ref=f1e2318]: "15"
+                      - listitem [ref=f1e2319]:
+                        - generic "Balance of plant" [ref=f1e2320]
+                        - generic [ref=f1e2323]: "6"
+                      - listitem [ref=f1e2324]:
+                        - generic "Grid interconnection" [ref=f1e2325]
+                        - generic [ref=f1e2328]: "5"
+                      - listitem [ref=f1e2329]:
+                        - generic "Turbine-generator" [ref=f1e2330]
+                        - generic [ref=f1e2333]: "4"
+                      - listitem [ref=f1e2334]:
+                        - generic "Civil and foundations" [ref=f1e2335]
+                        - generic [ref=f1e2338]: "3"
+                      - listitem [ref=f1e2339]:
+                        - generic "Utilities and water treatment" [ref=f1e2340]
+                        - generic [ref=f1e2343]: "2"
+                    - generic [ref=f1e2344]:
+                      - generic [ref=f1e2345]: Total
+                      - generic [ref=f1e2346]: Rp110 bn
+                - generic [ref=f1e2350]:
+                  - generic [ref=f1e2352]:
+                    - heading "Planned against actual monthly spend" [level=3] [ref=f1e2353]
+                    - paragraph [ref=f1e2354]: Rp bn, derived from the cumulative S-curve series
+                  - generic [ref=f1e2355]:
+                    - application [ref=f1e2359]:
+                      - generic [ref=f1e2436]:
+                        - generic [ref=f1e2437]:
+                          - generic [ref=f1e2438]: Aug 26
+                          - generic [ref=f1e2440]: Oct 26
+                          - generic [ref=f1e2442]: Dec 26
+                          - generic [ref=f1e2444]: Feb 27
+                          - generic [ref=f1e2446]: Apr 27
+                          - generic [ref=f1e2448]: Jun 27
+                        - generic [ref=f1e2450]:
+                          - generic [ref=f1e2451]: "0"
+                          - generic [ref=f1e2453]: "45"
+                          - generic [ref=f1e2455]: "90"
+                          - generic [ref=f1e2457]: "135"
+                          - generic [ref=f1e2459]: "180"
+                    - generic [ref=f1e2461]:
+                      - generic [ref=f1e2462]: Planned
+                      - generic [ref=f1e2464]: Actual
+                - generic [ref=f1e2466]:
+                  - generic [ref=f1e2468]:
+                    - heading "Contingency drawdown" [level=3] [ref=f1e2469]
+                    - paragraph [ref=f1e2470]: Cumulative use, Rp bn, against the alert line
+                  - generic [ref=f1e2471]:
+                    - application [ref=f1e2475]:
+                      - generic [ref=f1e2500]:
+                        - generic [ref=f1e2501]:
+                          - generic [ref=f1e2502]: Jun 27
+                          - generic [ref=f1e2504]: Sep 27
+                          - generic [ref=f1e2506]: Dec 27
+                          - generic [ref=f1e2508]: Mar 28
+                          - generic [ref=f1e2510]: Jun 28
+                          - generic [ref=f1e2512]: Aug 28
+                        - generic [ref=f1e2514]:
+                          - generic [ref=f1e2515]: "0"
+                          - generic [ref=f1e2517]: "60"
+                          - generic [ref=f1e2519]: "120"
+                          - generic [ref=f1e2521]: "176"
+                        - generic [ref=f1e2523]: "Alert: Rp17.6 bn left"
+                        - generic [ref=f1e2524]: Reserve Rp176 bn
+                    - generic [ref=f1e2525]:
+                      - generic [ref=f1e2526]: Current plan
+                      - generic [ref=f1e2528]: No intervention
+                - generic [ref=f1e2530]:
+                  - generic [ref=f1e2532]:
+                    - heading "Top five cost risks" [level=3] [ref=f1e2533]
+                    - paragraph [ref=f1e2534]: Rp bn
+                  - list [ref=f1e2537]:
+                    - listitem [ref=f1e2538]:
+                      - generic "FX movement on imported equipment" [ref=f1e2539]
+                      - generic [ref=f1e2542]: "30"
+                    - listitem [ref=f1e2543]:
+                      - generic "Boiler acceleration" [ref=f1e2544]
+                      - generic [ref=f1e2547]: "22"
+                    - listitem [ref=f1e2548]:
+                      - generic "Extended preliminaries" [ref=f1e2549]
+                      - generic [ref=f1e2552]: "14"
+                    - listitem [ref=f1e2553]:
+                      - generic "Freight and alternative shipping" [ref=f1e2554]
+                      - generic [ref=f1e2557]: "12"
+                    - listitem [ref=f1e2558]:
+                      - generic "Design change and interface rework" [ref=f1e2559]
+                      - generic [ref=f1e2562]: "11"
+              - generic [ref=f1e2563]:
+                - generic [ref=f1e2565]:
+                  - heading "Funding drawdown forecast" [level=3] [ref=f1e2566]
+                  - paragraph [ref=f1e2567]: Next quarter
+                - generic [ref=f1e2568]:
+                  - generic [ref=f1e2569]:
+                    - generic [ref=f1e2570]: Requirement
+                    - generic [ref=f1e2571]: Rp312 bn
+                    - generic [ref=f1e2572]: Synthetic input from the cashflow forecast
+                  - list [ref=f1e2573]:
+                    - listitem [ref=f1e2574]:
+                      - generic [ref=f1e2575]: CP-1 Updated insurance certificates
+                      - generic [ref=f1e2576]: Open
+                    - listitem [ref=f1e2579]:
+                      - generic [ref=f1e2580]: CP-2 Independent engineer's progress certificate
+                      - generic [ref=f1e2581]: Open
+              - generic [ref=f1e2584]:
+                - heading "ATLAS insight" [level=3] [ref=f1e2589]
+                - paragraph [ref=f1e2591]: The project remains within total approved contingency, but the Rp45 billion of foreign-exchange and owner's cost needs shareholder funding approval. In the no-intervention case the reserve falls to Rp19 billion, which is within Rp1.4 billion of the Rp17.6 billion alert threshold, so any further cost risk would breach it.
+                - generic [ref=f1e2592]:
+                  - button "2 sources" [ref=f1e2593] [cursor=pointer]
+                  - generic [ref=f1e2597]: 30 Jun 2027 08:30
+                  - generic [ref=f1e2601]: Confidence Medium
+                  - generic [ref=f1e2602]: Advisory
+              - region [ref=f1e2603]:
+                - generic [ref=f1e2604]:
+                  - heading "Value at stake" [level=2] [ref=f1e2605]
+                  - button "More information" [ref=f1e2606] [cursor=pointer]
+                  - generic [ref=f1e2609]: Sensitivity, not an investment case
+                - group [ref=f1e2611]:
+                  - generic "UC09 · Cost, commitment and EAC forecasting Range Rp25 to 30 bn per 1% of capex, one plant; Denera share Rp7.5 to 9 bn (A) Rp28 bn per 1%; Denera share Rp8.4 bn Inside the range Gate and baseline" [ref=f1e2612] [cursor=pointer]:
+                    - generic [ref=f1e2613]:
+                      - generic [ref=f1e2614]:
+                        - generic [ref=f1e2615]: UC09 ·
+                        - text: Cost, commitment and EAC forecasting
+                      - generic [ref=f1e2616]: Range Rp25 to 30 bn per 1% of capex, one plant; Denera share Rp7.5 to 9 bn (A)
+                    - generic [ref=f1e2617]:
+                      - generic [ref=f1e2618]: Rp28 bn per 1%; Denera share Rp8.4 bn
+                      - generic [ref=f1e2619]: Inside the range
+                      - generic [ref=f1e2623]: Gate and baseline
+          - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=f1e479] [cursor=pointer]':
+            - generic [ref=f1e483]: Action register
+            - generic [ref=f1e484]:
+              - generic [ref=f1e485]: 6 open
+              - generic [ref=f1e486]:
+                - generic [ref=f1e489]: "2"
+                - text: overdue
+              - generic [ref=f1e490]: 4 due this week
+            - generic [ref=f1e491]: Open
+    - region "Notifications alt+T"
+  - generic [aria-hidden] [ref=f1e492]: 0%

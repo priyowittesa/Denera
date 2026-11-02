@@ -50,8 +50,8 @@ export function S05Meetings() {
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <Card className="p-6">
           <div className="text-[12px] font-medium text-ink-3">{MEETING_NOTE.date} · Chair: {MEETING_NOTE.chair}</div>
-          <h2 className="mt-1 text-[16px] font-semibold text-ink">{MEETING_NOTE.title}</h2>
-          <div className="mt-4 space-y-3 text-[13.5px] leading-relaxed text-ink-2">
+          <h2 className="mt-1 text-[15px] font-semibold text-ink">{MEETING_NOTE.title}</h2>
+          <div className="mt-4 space-y-3 text-[14px] leading-relaxed text-ink-2">
             {MEETING_NOTE.paragraphs.map((p, i) => (
               <p key={i} className={cn('rounded-md px-2 py-1 transition-colors', hover === i && 'bg-[#fff6c9] text-ink')}>{p}</p>
             ))}
@@ -72,12 +72,12 @@ export function S05Meetings() {
                 <li key={m.id} onMouseEnter={() => setHover(m.sentence)} onMouseLeave={() => setHover(null)} className={cn('rounded-xl border bg-surface p-4 transition-colors', c ? 'border-ok/30' : r ? 'border-line opacity-55' : 'border-line hover:border-atlas-300')}>
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div className="min-w-0">
-                      <div className="text-[11.5px] font-medium text-ink-3">{m.kind} · confidence <span className={CONF[m.confidence]}>{m.confidence}</span></div>
+                      <div className="text-[12px] font-medium text-ink-3">{m.kind} · confidence <span className={CONF[m.confidence]}>{m.confidence}</span></div>
                       <div className="text-[14px] font-medium text-ink">{m.title}</div>
                     </div>
                     <AuthorityLabel a={m.authority} />
                   </div>
-                  <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-ink-2">
+                  <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-ink-2">
                     <span><span className="text-ink-3">Owner </span>{m.owner === 'Unclear' ? <span className="font-medium text-bad">Unclear</span> : m.owner}</span>
                     <span className="tnum"><span className="text-ink-3">Due </span>{e ? <><s className="text-ink-4">{m.due}</s> {e.due}</> : m.due}</span>
                     <span><span className="text-ink-3">Linked </span>{m.linked}</span>
@@ -103,17 +103,17 @@ export function S05Meetings() {
 
       <section className="mt-6 grid items-start gap-4 md:grid-cols-3">
         <Card className="p-5">
-          <div className="text-[12.5px] font-medium text-ink-3">Overdue actions</div>
+          <div className="text-[13px] font-medium text-ink-3">Overdue actions</div>
           <div className="tnum text-[28px] font-semibold text-bad">{overdue.length}</div>
-          <ul className="mt-2 space-y-1.5 text-[12.5px]">{overdue.map((a) => <li key={a.id}><span className="text-ink">{a.title}</span><span className="block text-ink-3">{a.owner} · was due {a.due} · <AuthorityLabel a={a.authority} /></span></li>)}</ul>
+          <ul className="mt-2 space-y-1.5 text-[13px]">{overdue.map((a) => <li key={a.id}><span className="text-ink">{a.title}</span><span className="block text-ink-3">{a.owner} · was due {a.due} · <AuthorityLabel a={a.authority} /></span></li>)}</ul>
         </Card>
         <Card className="p-5">
-          <div className="text-[12.5px] font-medium text-ink-3">Deferred decisions</div>
+          <div className="text-[13px] font-medium text-ink-3">Deferred decisions</div>
           <div className="tnum text-[28px] font-semibold text-ink">1</div>
-          <p className="mt-2 text-[12.5px] text-ink-2">Boiler island recovery strategy. Reason: waiting for the revised recovery programme. Now in the Decision room.</p>
+          <p className="mt-2 text-[13px] text-ink-2">Boiler island recovery strategy. Reason: waiting for the revised recovery programme. Now in the Decision room.</p>
         </Card>
         <Card className="p-5">
-          <div className="text-[12.5px] font-medium text-ink-3">Action closure rate</div>
+          <div className="text-[13px] font-medium text-ink-3">Action closure rate</div>
           <div className="tnum text-[28px] font-semibold text-ink">71%</div>
           <div className="mt-2 h-2 rounded-full bg-sunken"><div className="h-full rounded-full bg-series-verified" style={{ width: '71%' }} /></div>
           <p className="mt-2 text-[12px] text-ink-3">Closed on time over the last eight weeks.</p>
@@ -121,14 +121,14 @@ export function S05Meetings() {
       </section>
 
       <Modal open={!!editing} onOpenChange={(v) => !v && setEditing(null)} title="Edit before confirming" description={editing?.title} footer={<><Button variant="ghost" onClick={() => setEditing(null)}>Cancel</Button><Button onClick={() => { const d = new Date(`${due}T00:00:00Z`); const label = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).replace(',', ''); setEdit(editing!.id, label, due); setEditing(null) }}>Save</Button></>}>
-        <label htmlFor="due" className="text-[12.5px] font-medium text-ink-2">Due date</label>
+        <label htmlFor="due" className="text-[13px] font-medium text-ink-2">Due date</label>
         <input id="due" type="date" value={due} onChange={(e) => setDue(e.target.value)} className="tnum mt-1 block w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500" />
-        {editing?.id === 'M3' && <p className="mt-2 text-[12.5px] text-ink-3">ATLAS proposed 4 Jul 2027, which is a Sunday. Tuesday 6 Jul 2027 is suggested.</p>}
+        {editing?.id === 'M3' && <p className="mt-2 text-[13px] text-ink-3">ATLAS proposed 4 Jul 2027, which is a Sunday. Tuesday 6 Jul 2027 is suggested.</p>}
       </Modal>
 
       <Modal open={!!rejecting} onOpenChange={(v) => !v && setRejecting(null)} title="Reject proposed item" description={rejecting?.title} footer={<><Button variant="ghost" onClick={() => setRejecting(null)}>Cancel</Button><Button disabled={!reason.trim()} onClick={() => { reject(`meet-${rejecting!.id}`, reason.trim(), rejecting!.title); setRejecting(null) }}>Reject with reason</Button></>}>
-        <label htmlFor="rr" className="text-[12.5px] font-medium text-ink-2">Reason</label>
-        <textarea id="rr" rows={3} value={reason} onChange={(e) => setReason(e.target.value)} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[13.5px] outline-none focus:border-atlas-500" />
+        <label htmlFor="rr" className="text-[13px] font-medium text-ink-2">Reason</label>
+        <textarea id="rr" rows={3} value={reason} onChange={(e) => setReason(e.target.value)} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500" />
       </Modal>
     </ScreenFrame>
   )
