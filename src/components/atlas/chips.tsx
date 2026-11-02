@@ -23,7 +23,7 @@ export function WaveTag({ wave }: { wave: Wave }) {
   )
 }
 
-export function DataNeeded({ sources, owner }: { sources: string[]; owner: string }) {
+export function DataNeeded({ sources, owner, note }: { sources: string[]; owner: string; note?: string }) {
   return (
     <Pop
       trigger={
@@ -40,6 +40,7 @@ export function DataNeeded({ sources, owner }: { sources: string[]; owner: strin
         ))}
       </ul>
       <p className="mt-3 border-t border-line-soft pt-3 text-[12px]"><span className="text-ink-3">Provided by </span><span className="font-medium text-ink">{owner}</span></p>
+      {note && <p className="mt-3 border-t border-line-soft pt-3 text-[12px] leading-relaxed text-ink-3">{note}</p>}
     </Pop>
   )
 }

@@ -1,6 +1,9 @@
 import type { ReactNode } from 'react'
 import { Pop } from '../ui/popover'
 
+/** How light status becomes computed health (shared by health and data-source popovers). */
+export const HEALTH_STATEMENT = 'Today ATLAS shows a light status from the weekly template. Computed health starts when the three partners in construction have submitted the weekly template for four consecutive weeks and the health rules are agreed with the PMO.'
+
 export const HEALTH_RULES: [string, string][] = [
   ['Dimension Red', 'A contractual or approved limit is forecast to be breached with the current plan'],
   ['Dimension Yellow', 'A limit is at risk, or a leading indicator has moved against plan, but no breach is forecast'],
@@ -29,7 +32,8 @@ export function HealthRuleBody({ signals }: { signals?: string[] }) {
           <div key={k}><dt className="inline font-medium text-ink">{k}. </dt><dd className="inline text-ink-2">{v}</dd></div>
         ))}
       </dl>
-      <p className="mt-3 text-ink-3">Computed from named signals. Ratings cannot be changed, only commented on. Health is computed once each partner has submitted the weekly template for four consecutive weeks.</p>
+      <p className="mt-3 text-ink-3">Computed from named signals. Ratings cannot be changed, only commented on.</p>
+      <p className="mt-2 text-ink-3">{HEALTH_STATEMENT}</p>
     </div>
   )
 }

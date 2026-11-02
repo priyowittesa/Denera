@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { DRIVERS, VARIANCE_BY_PACKAGE } from './cost'
+import { DRIVERS, VARIANCE_BY_PACKAGE, WHAT_IFS } from './cost'
+import { MAP_H, MAP_W, project } from './indonesiaMap'
+import { CONSTRUCTION, PRE_INVESTMENT, gateCell } from './portfolio'
 import { INITIAL_ACTIONS, MEETING_ITEMS, isDueThisWeek, isOverdue } from './registers'
 import { RUNS } from './runs'
 import { PACKAGES_COST, weighted } from './scurve'
@@ -42,5 +44,23 @@ describe('Denera synthetic data reconciles', () => {
     expect(counts(INITIAL_ACTIONS)).toEqual([6, 2, 4])
     const added = MEETING_ITEMS.filter((m) => m.kind === 'Action' && m.dueIso).map((m, i) => ({ ...INITIAL_ACTIONS[0], id: `x${i}`, dueIso: m.id === 'M3' ? '2027-07-06' : m.dueIso }))
     expect(counts([...INITIAL_ACTIONS, ...added])).toEqual([10, 2, 8])
+  })
+
+  it('what-if table holds the five scenarios only', () => {
+    expect(WHAT_IFS.map((w) => w.name)).toEqual(['No intervention', 'Expedite vendor only', 'Resequence works only', 'Expedite and resequence'])
+  })
+
+  it('every project lands inside the map', () => {
+    for (const p of [...CONSTRUCTION, ...PRE_INVESTMENT]) {
+      const [x, y] = project(p.geo.lon, p.geo.lat)
+      expect(x).toBeGreaterThan(0); expect(x).toBeLessThan(MAP_W)
+      expect(y).toBeGreaterThan(0); expect(y).toBeLessThan(MAP_H)
+    }
+  })
+
+  it('gate cells carry owner, due date and evidence', () => {
+    expect(gateCell('P2-08', 1)).toMatchObject({ owner: 'Technical lead', due: '15 Jul 2027', evidence: 'Design package v3 and review comments' })
+    expect(gateCell('P2-06', 2).due).toBe('28 Jul 2027')
+    expect(gateCell('P2-06', 9).due).toBe('Date to be set')
   })
 })

@@ -70,7 +70,6 @@ export const WHAT_IFS: WhatIf[] = [
   { id: 'expedite', name: 'Expedite vendor only', delay: 'plus 34 days', cost: 'Rp29 bn', remaining: 'Rp82 bn (47%)', remainingV: 82, rating: 'Yellow', route: 'Project company', scenario: 'expedite' },
   { id: 'resequence', name: 'Resequence works only', delay: 'plus 27 days', cost: 'Rp18 bn', remaining: 'Rp93 bn (53%)', remainingV: 93, rating: 'Yellow', route: 'Project company', scenario: 'resequence' },
   { id: 'both', name: 'Expedite and resequence', delay: 'plus 12 days', cost: 'Rp47 bn', remaining: 'Rp64 bn (36%)', remainingV: 64, rating: 'Yellow', route: 'Project company, with Denera board approval', scenario: 'both' },
-  { id: 'alt', name: 'Alternative supplier', delay: 'plus 45 to 90 days', cost: 'To be confirmed', remaining: 'To be confirmed', remainingV: null, rating: 'Yellow to Red', route: 'Joint' },
 ]
 
 export const COST_INSIGHT =

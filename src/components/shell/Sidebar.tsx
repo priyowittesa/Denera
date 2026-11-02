@@ -110,7 +110,7 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
               <span className="text-[13px] font-semibold">Demo workspace</span>
               <span className="tnum text-[12px] text-atlas-200">30 Jun 2027</span>
             </div>
-            <p className="mt-0.5 text-[12px] leading-snug text-atlas-200/90">Sample data for illustration.</p>
+            <p className="mt-0.5 text-[12px] leading-snug text-atlas-200/90">Demonstration data, data date 30 Jun 2027.</p>
             <div className="mt-2.5 grid grid-cols-2 gap-2">
               <button onClick={() => setDefs(true)} className="press inline-flex items-center justify-center gap-1.5 rounded-md bg-white/10 py-1.5 text-[12px] font-medium hover:bg-white/15">
                 <BookOpen className="size-3.5" />Definitions

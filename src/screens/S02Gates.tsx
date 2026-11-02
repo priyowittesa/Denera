@@ -7,14 +7,13 @@ import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
 import { Tip } from '../components/ui/tooltip'
 import { ANSWERS } from '../data/answers'
-import { GATES, GATE_MATRIX, PRE_INVESTMENT, type GateState } from '../data/portfolio'
+import { GATES, GATE_MATRIX, GATE_STATE_LABEL, PRE_INVESTMENT, gateCell, type GateState } from '../data/portfolio'
 import { cn } from '../lib/cn'
 import { useDemo, usePersona } from '../state/store'
 import { useUi } from '../state/ui'
 
-const LABEL: Record<GateState, string> = { M: 'Met', P: 'In progress', R: 'At risk', N: 'Not started', C: 'Evidence linked, awaiting confirmation' }
+const LABEL = GATE_STATE_LABEL
 
-const OWNERS = ['Investment and legal lead', 'Technical lead', 'Permits lead', 'Regional liaison', 'Regional liaison', 'Investment and legal lead', 'Commercial and Legal Lead', 'Finance Lead', 'Danantara', 'Investment Committee']
 
 export function S02Gates() {
   const [params] = useSearchParams()
@@ -64,7 +63,7 @@ export function S02Gates() {
                     const s = state(p.id, i)
                     return (
                       <td key={g} className="px-1 py-2.5 text-center">
-                        <Tip content={`${p.id} · ${g}: ${LABEL[s]}${confirmed[`gate-${p.id}-${i}`] ? ` (confirmed by ${confirmed[`gate-${p.id}-${i}`].by})` : ''}`}>
+                        <Tip content={<GateTip pid={p.id} gate={g} i={i} by={confirmed[`gate-${p.id}-${i}`]?.by} />}>
                           <span tabIndex={0} className={cn('inline-grid size-7 place-items-center rounded-md', s === 'R' && 'bg-warn-bg', s === 'C' && 'bg-atlas-100')}><GateIcon s={s} /></span>
                         </Tip>
                       </td>
@@ -101,8 +100,8 @@ export function S02Gates() {
               <div key={cond} className="mt-3 animate-rise rounded-md border border-line p-3.5">
                 <div className="text-[13px] font-semibold text-ink">{GATES[cond]}</div>
                 <dl className="mt-2 grid grid-cols-[72px_1fr] gap-y-1 text-[13px]">
-                  <dt className="text-ink-3">Owner</dt><dd className="text-ink">{OWNERS[cond]}</dd>
-                  <dt className="text-ink-3">Due</dt><dd className="tnum text-ink">{sel === 'P2-08' && cond === 1 ? '15 Jul 2027' : project.date}</dd>
+                  <dt className="text-ink-3">Owner</dt><dd className="text-ink">{gateCell(sel, cond, confirmed[`gate-${sel}-${cond}`]?.by).owner}</dd>
+                  <dt className="text-ink-3">Due</dt><dd className="tnum text-ink">{gateCell(sel, cond, confirmed[`gate-${sel}-${cond}`]?.by).due}</dd>
                   <dt className="text-ink-3">Evidence</dt>
                   <dd>{state(sel, cond) === 'C' || (sel === 'P2-08' && cond === 1)
                     ? <button onClick={() => openEv('gate-checklist')} className="press inline-flex items-center gap-1 font-medium text-atlas-700 hover:underline"><FileText className="size-3.5" />Design package v3 and review comments</button>
@@ -167,6 +166,19 @@ function MiniTimeline({ pid, state }: { pid: string; state: (p: string, i: numbe
         })}
       </div>
       <div className="mt-1 flex justify-between text-[12px] text-ink-4"><span>Feasibility</span><span>FLOA</span><span>FID</span></div>
+    </div>
+  )
+}
+
+function GateTip({ pid, gate, i, by }: { pid: string; gate: string; i: number; by?: string }) {
+  const c = gateCell(pid, i, by)
+  return (
+    <div className="space-y-0.5">
+      <div className="font-semibold">{pid} · {gate}</div>
+      <div>{c.status}</div>
+      <div><span className="opacity-70">Owner </span>{c.owner}</div>
+      <div><span className="opacity-70">Due </span>{c.due}</div>
+      <div><span className="opacity-70">Evidence </span>{c.evidence}</div>
     </div>
   )
 }

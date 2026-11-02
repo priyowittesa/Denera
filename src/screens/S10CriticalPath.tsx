@@ -34,8 +34,8 @@ export function S10CriticalPath() {
 
   return (
     <ScreenFrame
-      headline="In the next six weeks the boiler island chain moves COD: the interface freeze sits at zero float and drives the 42-day exposure."
-      answer={{ label: 'Under 5 days of float', value: '4 of 8', tone: 'bad', foot: 'Look-ahead activities to 11 Aug 2027. Interface freeze has none.', action: { label: 'See the six-week look-ahead', onClick: () => { setTab('look'); document.getElementById('s10-tabs')?.scrollIntoView({ behavior: 'smooth' }) } }, stake: ['UC10'] }}
+      headline="Boiler island delay is the primary driver of the 42-day COD exposure."
+      answer={{ label: 'Under 5 days of float', value: '4 of 8', tone: 'bad', foot: 'In the next six weeks the boiler island chain moves COD: the interface freeze sits at zero float and drives the 42-day exposure.', action: { label: 'See the six-week look-ahead', onClick: () => { setTab('look'); document.getElementById('s10-tabs')?.scrollIntoView({ behavior: 'smooth' }) } }, stake: ['UC10'] }}
       status="Red"
       statusLabel="Schedule Red"
       aside={

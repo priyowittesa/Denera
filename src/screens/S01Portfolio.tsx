@@ -8,6 +8,7 @@ import { Card } from '../components/ui/card'
 import { Pop } from '../components/ui/popover'
 import { Segmented } from '../components/ui/tabs'
 import { CONSTRUCTION, CONTROL_MODEL, PORTFOLIO_KPIS as K, PRE_INVESTMENT, WEEKLY_BRIEF } from '../data/portfolio'
+import { INDONESIA_PATH, MAP_H, MAP_W, NEIGHBOUR_PATHS, project } from '../data/indonesiaMap'
 import { cn } from '../lib/cn'
 
 type Lane = 'construction' | 'pre'
@@ -146,63 +147,64 @@ function ConstructionCard({ p, i }: { p: (typeof CONSTRUCTION)[number]; i: numbe
   )
 }
 
-/** Restrained flat map of Indonesia, island level only (synthetic locations). */
+/** Island-group names, placed in open water or on large land areas. */
+const ISLAND_LABELS: [string, number, number][] = [['Sumatra', 101.2, -0.2], ['Java', 112.6, -8.7], ['Kalimantan', 114, 0.9], ['Sulawesi', 121.3, -2.6], ['Maluku', 128.6, -3.9], ['Papua', 138.5, -4.3], ['Nusa Tenggara', 121.2, -10.3]]
+
+/** Pre-investment labels that would collide with a neighbour get a different side. */
+const PRE_LABEL_POS: Record<string, 'below' | 'above' | 'left' | 'right'> = { 'P2-05': 'left', 'P2-03': 'right' }
+const PRE_LABEL = {
+  below: { y: 24, textAnchor: 'middle' as const },
+  above: { y: -15, textAnchor: 'middle' as const },
+  left: { x: -14, y: 4, textAnchor: 'end' as const },
+  right: { x: 14, y: 4, textAnchor: 'start' as const },
+}
+
+/** Map of Indonesia from Natural Earth coastlines; project locations are representative cities. */
 function IndonesiaMap({ lane, onOpen }: { lane: Lane; onOpen: (to: string) => void }) {
   const [hover, setHover] = useState<string | null>(null)
   const [pinned, setPinned] = useState<string | null>(null)
   const shown = hover ?? (lane === 'construction' ? pinned : null)
   const pick = (id: string) => (id === 'cakrawala' ? onOpen('/cockpit') : setPinned((v) => (v === id ? null : id)))
-  const land = 'fill-[#ebe7f3]'
   return (
     <div className="relative px-3 pb-3">
-      <svg viewBox="0 0 640 340" className="h-auto w-full" role="img" aria-label="Map of Indonesia with project markers">
+      <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="h-auto w-full" role="img" aria-label="Map of Indonesia with project markers">
         <defs>
-          <pattern id="sea" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.9" fill="#e4e0ee" /></pattern>
+          <pattern id="sea" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.9" fill="#e6e2ef" /></pattern>
         </defs>
-        <rect width="640" height="340" fill="url(#sea)" />
-        <g className={land} stroke="#d9d2e8" strokeWidth="1" strokeLinejoin="round">
-          {/* Sumatra */}
-          <path d="M28 62 C46 50 70 56 88 74 C120 104 158 140 190 182 C208 206 228 226 232 242 C222 252 204 250 190 238 C160 212 126 180 98 150 C72 122 46 98 30 82 C22 74 22 66 28 62 Z" />
-          {/* Java */}
-          <path d="M212 250 C240 244 278 246 316 252 C356 258 398 262 432 270 C438 276 434 284 424 286 C388 288 346 282 304 278 C264 274 232 270 214 264 C204 260 204 254 212 250 Z" />
-          {/* Bali and Nusa Tenggara */}
-          <ellipse cx="447" cy="283" rx="9" ry="5" /><ellipse cx="476" cy="288" rx="14" ry="5" /><ellipse cx="510" cy="292" rx="16" ry="6" /><ellipse cx="546" cy="297" rx="12" ry="5" />
-          {/* Kalimantan */}
-          <path d="M262 112 C270 92 292 78 318 76 C346 74 372 82 388 98 C400 112 398 136 390 158 C382 184 362 204 334 210 C306 214 282 202 268 182 C256 162 254 134 262 112 Z" />
-          {/* Sulawesi */}
-          <path d="M444 120 C456 114 472 114 480 122 C484 132 474 140 466 146 C472 156 488 162 506 160 C516 162 516 174 506 178 C492 182 478 180 470 186 C476 198 478 214 470 232 C462 240 452 238 452 226 C456 212 452 198 444 190 C436 178 434 160 438 146 C440 136 438 126 444 120 Z" />
-          {/* Maluku */}
-          <ellipse cx="536" cy="150" rx="7" ry="14" /><ellipse cx="530" cy="206" rx="12" ry="6" />
-          {/* Papua */}
-          <path d="M548 160 C556 152 570 154 574 164 C570 172 558 174 550 170 Z" />
-          <path d="M566 176 C584 164 608 160 626 168 C640 176 644 196 640 220 C636 240 624 254 604 254 C588 252 580 236 574 222 C566 206 556 192 566 176 Z" />
+        <rect width={MAP_W} height={MAP_H} rx="10" fill="url(#sea)" />
+        <g fill="#f3f1f7" stroke="#e2ddeb" strokeWidth="0.6" strokeLinejoin="round">
+          {NEIGHBOUR_PATHS.map((d, i) => <path key={i} d={d} />)}
+        </g>
+        <path d={INDONESIA_PATH} fill="#e6e0f2" stroke="#c9bfe0" strokeWidth="0.7" strokeLinejoin="round" />
+        <g aria-hidden fontSize="11" fill="var(--color-ink-4)" letterSpacing="0.02em" className="pointer-events-none select-none">
+          {ISLAND_LABELS.map(([name, lon, lat]) => { const [x, y] = project(lon, lat); return <text key={name} x={x} y={y} textAnchor="middle">{name}</text> })}
         </g>
         {lane === 'construction'
           ? CONSTRUCTION.map((p) => {
               const Icon = HEALTH_ICON[p.health]
               const c = p.health === 'Green' ? 'var(--color-ok)' : p.health === 'Yellow' ? 'var(--color-warn)' : 'var(--color-bad)'
               return (
-                <g key={p.id} transform={`translate(${p.map.x},${p.map.y})`} className="cursor-pointer" onMouseEnter={() => setHover(p.id)} onMouseLeave={() => setHover(null)} onClick={() => pick(p.id)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p.id) } }} tabIndex={0} role="button" aria-expanded={p.id === 'cakrawala' ? undefined : pinned === p.id} aria-label={`${p.name}, ${p.healthLabel}${p.id === 'cakrawala' ? ', open cockpit' : ', show summary'}`}>
+                <g key={p.id} transform={`translate(${project(p.geo.lon, p.geo.lat).join(',')})`} className="cursor-pointer outline-none" onMouseEnter={() => setHover(p.id)} onMouseLeave={() => setHover(null)} onClick={() => pick(p.id)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p.id) } }} tabIndex={0} role="button" aria-expanded={p.id === 'cakrawala' ? undefined : pinned === p.id} aria-label={`${p.name}, ${p.healthLabel}${p.id === 'cakrawala' ? ', open cockpit' : ', show summary'}`}>
                   {p.escalation && <circle r="17" fill="none" stroke={c} strokeWidth="1.5" strokeDasharray="3 3" />}
                   <circle r="11" fill="white" stroke={c} strokeWidth="2.5" />
                   <foreignObject x="-7" y="-7" width="14" height="14"><Icon className="size-3.5" style={{ color: c }} strokeWidth={2.6} /></foreignObject>
-                  <text y="30" textAnchor="middle" fontSize="12" fontWeight="600" fill="var(--color-ink)">{p.name.replace('PSEL ', '')}</text>
-                  <text y="44" textAnchor="middle" fontSize="11" fill="var(--color-ink-3)">{p.healthLabel}</text>
+                  <text y="30" textAnchor="middle" fontSize="12" fontWeight="600" fill="var(--color-ink)" stroke="white" strokeWidth="3" paintOrder="stroke">{p.name.replace('PSEL ', '')}</text>
+                  <text y="44" textAnchor="middle" fontSize="11" fill="var(--color-ink-3)" stroke="white" strokeWidth="3" paintOrder="stroke">{p.healthLabel}</text>
                 </g>
               )
             })
           : PRE_INVESTMENT.map((p) => (
-              <g key={p.id} transform={`translate(${p.map.x},${p.map.y})`} className="cursor-pointer" onMouseEnter={() => setHover(p.id)} onMouseLeave={() => setHover(null)} onClick={() => onOpen(`/gates?project=${p.id}`)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen(`/gates?project=${p.id}`) } }} tabIndex={0} role="button" aria-label={`${p.id}, next gate ${p.nextGate}`}>
+              <g key={p.id} transform={`translate(${project(p.geo.lon, p.geo.lat).join(',')})`} className="cursor-pointer outline-none" onMouseEnter={() => setHover(p.id)} onMouseLeave={() => setHover(null)} onClick={() => onOpen(`/gates?project=${p.id}`)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen(`/gates?project=${p.id}`) } }} tabIndex={0} role="button" aria-label={`${p.id}, next gate ${p.nextGate}`}>
                 <rect x="-9" y="-9" width="18" height="18" rx="4" fill="white" stroke={p.atRisk ? 'var(--color-warn)' : p.floa ? 'var(--color-ok)' : 'var(--color-atlas-500)'} strokeWidth="2" />
                 <text y="4" textAnchor="middle" fontSize="11" fontWeight="700" fill="var(--color-ink)">{p.id.slice(-1)}</text>
-                <text y="24" textAnchor="middle" fontSize="11" fontWeight="600" fill="var(--color-ink-2)">{p.id}</text>
+                <text {...PRE_LABEL[PRE_LABEL_POS[p.id] ?? 'below']} fontSize="11" fontWeight="600" fill="var(--color-ink-2)" stroke="white" strokeWidth="3" paintOrder="stroke">{p.id}</text>
               </g>
             ))}
       </svg>
       {shown && (
-        <div role="status" className="pointer-events-none absolute left-5 top-2 max-w-[300px] animate-fade rounded-md bg-atlas-950 px-3 py-2 text-[13px] text-white">
+        <div role="status" className="pointer-events-none absolute bottom-12 left-6 max-w-[300px] animate-fade rounded-md bg-atlas-950 px-3 py-2 text-[13px] text-white">
           {lane === 'construction'
-            ? (() => { const p = CONSTRUCTION.find((x) => x.id === shown)!; return <><b>{p.name}</b><div className="text-atlas-200">{p.healthLabel}. {p.alert}. Information rights {p.rights}.</div><div className="mt-1 text-[12px] text-atlas-300">{p.id === 'cakrawala' ? 'Click to open the cockpit.' : 'The full cockpit is built for Cakrawala Raya in this prototype.'}</div></> })()
+            ? (() => { const p = CONSTRUCTION.find((x) => x.id === shown)!; return <><b>{p.name}</b><div className="text-atlas-200">{p.healthLabel}. {p.alert}. Information rights {p.rights}.</div><div className="mt-1 text-[12px] text-atlas-300">{p.id === 'cakrawala' ? 'Click to open the cockpit.' : 'A detailed cockpit is not yet connected for this project.'}</div></> })()
             : (() => { const p = PRE_INVESTMENT.find((x) => x.id === shown)!; return <><b>{p.id} · {p.island}</b><div className="text-atlas-200">Next gate {p.nextGate}, {p.date}{p.atRisk ? ', at risk' : ''}</div></> })()}
         </div>
       )}

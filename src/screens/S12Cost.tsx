@@ -16,14 +16,13 @@ export function S12Cost() {
   const { hash } = useLocation()
   const scenario = useDemo((s) => s.scenario)
   const setScenario = useDemo((s) => s.setScenario)
-  const [alt, setAlt] = useState(false)
   const [days, setDays] = useState(42)
 
   useEffect(() => {
     if (hash === '#scenarios') window.setTimeout(() => document.getElementById('scenarios')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120)
   }, [hash])
 
-  const selected = alt ? WHAT_IFS.find((w) => w.id === 'alt')! : WHAT_IFS.find((w) => w.scenario === scenario)
+  const selected = WHAT_IFS.find((w) => w.scenario === scenario)
   const remaining = selected?.remainingV ?? (scenario === 'current' ? 111 : null)
 
   return (
@@ -51,7 +50,7 @@ export function S12Cost() {
           ['Actual cost', 'Rp1,138 bn'],
           ['Open commitments', 'Rp318 bn'],
           ['Cash paid', 'Rp1,190 bn', 'Includes Rp52 bn vendor advances'],
-          ...(!isPcu ? [['Next-quarter funding', 'Rp312 bn', 'From the cashflow forecast'] as [string, string, string]] : []),
+          ...(!isPcu ? [['Next-quarter funding', 'Rp312 bn', 'Assumed input, from the cashflow forecast'] as [string, string, string]] : []),
         ]} />
       </div>
 
@@ -77,12 +76,12 @@ export function S12Cost() {
                 <tr><th className="px-5 py-2.5 font-medium">Scenario</th><th className="px-3 py-2.5 font-medium">COD delay</th><th className="px-3 py-2.5 text-right font-medium">Incremental cost</th><th className="px-3 py-2.5 text-right font-medium">Contingency remaining</th><th className="px-3 py-2.5 font-medium">Rating</th><th className="px-5 py-2.5 font-medium">Approval route</th></tr>
               </thead>
               <tbody className="tnum divide-y divide-line-soft">
-                <Row active={!alt && scenario === 'current'} onClick={() => { setAlt(false); setScenario('current', 'Cost') }} cells={['Current plan', 'plus 42 days', 'n/a', 'Rp111 bn (63%)']} rating="Yellow, escalation" route="n/a" />
+                <Row active={scenario === 'current'} onClick={() => setScenario('current', 'Cost')} cells={['Current plan', 'plus 42 days', 'n/a', 'Rp111 bn (63%)']} rating="Yellow, escalation" route="n/a" />
                 {WHAT_IFS.map((w) => (
                   <Row
                     key={w.id}
-                    active={w.id === 'alt' ? alt : !alt && scenario === w.scenario}
-                    onClick={() => { if (w.scenario) { setAlt(false); setScenario(w.scenario, 'Cost') } else setAlt(true) }}
+                    active={scenario === w.scenario}
+                    onClick={() => w.scenario && setScenario(w.scenario, 'Cost')}
                     cells={[w.name, w.delay, w.cost, w.remaining]}
                     rating={w.rating}
                     route={w.route}
@@ -149,7 +148,7 @@ export function S12Cost() {
         <Card className="mt-5">
           <CardHeader title="Funding drawdown forecast" sub="Next quarter" />
           <CardBody className="grid gap-5 md:grid-cols-[220px_1fr]">
-            <div><div className="text-[12px] text-ink-3">Requirement</div><div className="tnum text-[22px] font-semibold text-ink">Rp312 bn</div><div className="text-[12px] text-ink-3">From the cashflow forecast</div></div>
+            <div><div className="text-[12px] text-ink-3">Requirement</div><div className="tnum text-[22px] font-semibold text-ink">Rp312 bn</div><div className="text-[12px] text-ink-3">Assumed input, from the cashflow forecast</div></div>
             <ul className="space-y-2 text-[13px]">
               {[['CP-1', 'Updated insurance certificates'], ['CP-2', "Independent engineer's progress certificate"]].map(([k, v]) => (
                 <li key={k} className="flex items-center justify-between rounded-md bg-sunken px-3 py-2"><span><b className="font-semibold text-ink">{k}</b> {v}</span><StatusChip h="Yellow" label="Open" /></li>

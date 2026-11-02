@@ -7,6 +7,7 @@ import type { Health } from '../../data/types'
 import { useUi } from '../../state/ui'
 import { usePersona } from '../../state/store'
 import { projectValue, valueRowsFor } from './ValuePanel'
+import { HEALTH_STATEMENT } from './HealthRule'
 import { ClassChip, ConfidenceBadge, DataNeeded, StatusChip } from './chips'
 
 export type Answer = { label: ReactNode; value: ReactNode; foot?: ReactNode; tone?: 'bad' | 'warn' | 'ok' | 'ink'; action?: { label: string; onClick: () => void }; stake?: string[] }
@@ -41,7 +42,7 @@ export function ScreenFrame({
         <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2.5">
           <div className="eyebrow min-w-0">{project}</div>
           <div className="flex flex-wrap items-center gap-1">
-            <DataNeeded sources={meta.dataNeeded.sources} owner={meta.dataNeeded.owner} />
+            <DataNeeded sources={meta.dataNeeded.sources} owner={meta.dataNeeded.owner} note={meta.path === '/portfolio' || meta.path === '/cockpit' ? HEALTH_STATEMENT : undefined} />
             {confidence && <ConfidenceBadge />}
           </div>
         </div>
@@ -77,7 +78,7 @@ function AnswerFigure({ label, value, foot, tone = 'ink', action, stake }: Answe
       )}
       {rows.length > 0 && (
         <dl className="mt-3 space-y-0.5 rounded-lg bg-sunken px-3 py-2 text-[12px] leading-snug">
-          {rows.map((r) => <div key={r.uc} className="flex flex-wrap gap-x-1"><dt className="text-ink-3">{r.metric}</dt><dd className="tnum font-medium text-ink-2">{projectValue(r, isPcu)}</dd></div>)}
+          {rows.map((r) => <div key={r.uc}><div className="flex flex-wrap gap-x-1"><dt className="text-ink-3">{r.metric}</dt><dd className="tnum font-medium text-ink-2">{projectValue(r, isPcu)}</dd></div>{r.caption && <p className="mt-0.5 text-[12px] text-ink-3">{r.caption}</p>}</div>)}
         </dl>
       )}
     </div>

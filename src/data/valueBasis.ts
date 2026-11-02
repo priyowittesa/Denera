@@ -25,12 +25,15 @@ export interface ValueRow {
   gate: string
   /** product wording shown under the answer figure */
   metric: string
+  /** optional caveat shown under the value line */
+  caption?: string
   measure: string
 }
 
 export const VALUE_ROWS: Record<string, ValueRow> = {
   UC01: {
-    metric: 'Revenue at risk, Denera share',
+    metric: 'Revenue deferred per day of delay, Denera share',
+    caption: 'Project revenue, not profit. Deferred, not necessarily lost; depends on PPA terms.',
     uc: 'UC01', name: 'Portfolio health and early warning', lever: 'Days of COD delay seen earlier across Phase I',
     range: 'USD 114k to 132k a day, Denera share, if three Phase I plants slip', rangeLo: 114000, rangeHi: 132000,
     value: Math.round(3 * perDay * INPUTS.stake), valueLabel: `USD ${Math.round(3 * perDay * INPUTS.stake).toLocaleString('en-US')} a day`,
