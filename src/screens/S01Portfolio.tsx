@@ -61,25 +61,25 @@ export function S01Portfolio() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-5 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+      <div className="mt-6 grid gap-5 2xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
         <section>
           {lane === 'construction' ? (
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]">
               {CONSTRUCTION.map((p, i) => <ConstructionCard key={p.id} p={p} i={i} />)}
             </div>
           ) : (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(176px,1fr))]">
               {PRE_INVESTMENT.map((p, i) => (
-                <button key={p.id} onClick={() => nav(`/gates?project=${p.id}`)} style={{ animationDelay: `${i * 30}ms` }} className={cn('press animate-rise rounded-xl border bg-surface p-4 text-left hover:border-atlas-300', p.atRisk ? 'border-warn/40' : 'border-line')}>
-                  <div className="flex items-center justify-between"><span className="text-[14px] font-semibold text-ink">{p.id}</span>{p.floa && <span className="rounded-sm bg-ok-bg px-1.5 py-0.5 text-[12px] font-medium text-ok">FLOA held</span>}</div>
+                <button key={p.id} onClick={() => nav(`/gates?project=${p.id}`)} style={{ animationDelay: `${i * 30}ms` }} className={cn('press flex animate-rise flex-col rounded-xl border bg-surface p-4 text-left hover:border-atlas-300', p.atRisk ? 'border-warn/40' : 'border-line')}>
+                  <div className="flex h-6 items-center justify-between gap-2">
+                    <span className="text-[14px] font-semibold text-ink">{p.id}</span>
+                    {p.atRisk ? <StatusChip h="Yellow" label="At risk" /> : p.floa ? <span className="whitespace-nowrap rounded-sm bg-ok-bg px-1.5 py-0.5 text-[12px] font-medium text-ok">FLOA held</span> : null}
+                  </div>
                   <div className="text-[12px] text-ink-3">{p.island}</div>
                   <div className="mt-3 text-[12px] text-ink-3">Next gate</div>
                   <div className="text-[13px] font-medium leading-snug text-ink">{p.nextGate}</div>
                   <div className="tnum text-[13px] text-ink-2">{p.date}</div>
-                  <div className="mt-2 flex items-center justify-between text-[12px]">
-                    <span className="text-ink-3">{p.open} open condition{p.open > 1 ? 's' : ''}</span>
-                    {p.atRisk && <StatusChip h="Yellow" label="Gate at risk" />}
-                  </div>
+                  <div className={cn('mt-auto whitespace-nowrap pt-3 text-[12px]', p.atRisk ? 'font-medium text-warn' : 'text-ink-3')}>{p.open} open condition{p.open > 1 ? 's' : ''}</div>
                 </button>
               ))}
             </div>
@@ -125,13 +125,13 @@ function ConstructionCard({ p, i }: { p: (typeof CONSTRUCTION)[number]; i: numbe
   const nav = useNavigate()
   return (
     <article style={{ animationDelay: `${i * 40}ms` }} className={cn('flex animate-rise flex-col rounded-xl border bg-surface', p.escalation ? 'border-atlas-300 ring-1 ring-atlas-200' : 'border-line')}>
-      <button onClick={() => p.id === 'cakrawala' && nav('/cockpit')} className="press p-4 pb-3 text-left enabled:hover:bg-atlas-50/50" disabled={p.id !== 'cakrawala'}>
+      <button onClick={() => nav(p.id === 'cakrawala' ? '/cockpit' : `/partner-data?project=${p.id}`)} className="press rounded-t-xl p-4 pb-3 text-left hover:bg-atlas-50/50" aria-label={`${p.name}, ${p.id === 'cakrawala' ? 'open cockpit' : 'open data feeds'}`}>
         <div className="flex items-center gap-1.5 text-[12px] text-ink-3"><HardHat className="size-3.5" />{p.island} · EPC execution</div>
         <div className="mt-1 text-[15px] font-semibold leading-snug text-ink">{p.name}</div>
       </button>
       <div className="px-4">
-        <HealthRulePop signals={p.signals} trigger={<button className="press" aria-label={`Why ${p.healthLabel}`}><StatusChip h={p.health} label={p.healthLabel} /></button>} />
-        {p.confidence && <span className="ml-2 text-[12px] text-ink-3">Data confidence {p.confidence}%</span>}
+        <HealthRulePop signals={p.signals} trigger={<button className="press max-w-full text-left" aria-label={`Why ${p.healthLabel}`}><StatusChip h={p.health} label={p.healthLabel} className="whitespace-normal" /></button>} />
+        {p.confidence && <div className="mt-1 text-[12px] text-ink-3">Data confidence {p.confidence}%</div>}
       </div>
       <dl className="tnum mt-3 grid grid-cols-2 gap-2 px-4 text-[13px]">
         <div><dt className="text-ink-3">CAPEX</dt><dd className="whitespace-nowrap font-medium text-ink">Rp{p.capex.toLocaleString('en-US')} bn</dd></div>
@@ -162,11 +162,31 @@ const PRE_LABEL = {
 /** Map of Indonesia from Natural Earth coastlines; project locations are representative cities. */
 function IndonesiaMap({ lane, onOpen }: { lane: Lane; onOpen: (to: string) => void }) {
   const [hover, setHover] = useState<string | null>(null)
-  const [pinned, setPinned] = useState<string | null>(null)
-  const shown = hover ?? (lane === 'construction' ? pinned : null)
-  const pick = (id: string) => (id === 'cakrawala' ? onOpen('/cockpit') : setPinned((v) => (v === id ? null : id)))
+  // Cakrawala has the full cockpit; the other plants open on their data feeds and information rights.
+  const target = (id: string) => (id === 'cakrawala' ? '/cockpit' : `/partner-data?project=${id}`)
+  const markerProps = (id: string, to: string) => ({
+    className: 'cursor-pointer outline-none',
+    tabIndex: 0,
+    role: 'button',
+    onMouseEnter: () => setHover(id),
+    onMouseLeave: () => setHover(null),
+    onFocus: () => setHover(id),
+    onBlur: () => setHover(null),
+    onClick: () => onOpen(to),
+    onKeyDown: (e: React.KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen(to) } },
+  })
+  const tip = (() => {
+    if (!hover) return null
+    const c = lane === 'construction' ? CONSTRUCTION.find((x) => x.id === hover) : undefined
+    const p = lane === 'pre' ? PRE_INVESTMENT.find((x) => x.id === hover) : undefined
+    const g = c?.geo ?? p?.geo
+    if (!g) return null
+    const [x, y] = project(g.lon, g.lat)
+    return { c, p, left: (x / MAP_W) * 100, top: (y / MAP_H) * 100, flipX: x > MAP_W * 0.6, above: y > MAP_H * 0.5 }
+  })()
   return (
-    <div className="relative px-3 pb-3">
+    <div className="px-3 pb-3">
+      <div className="relative">
       <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className="h-auto w-full" role="img" aria-label="Map of Indonesia with project markers">
         <defs>
           <pattern id="sea" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.9" fill="#e6e2ef" /></pattern>
@@ -184,7 +204,7 @@ function IndonesiaMap({ lane, onOpen }: { lane: Lane; onOpen: (to: string) => vo
               const Icon = HEALTH_ICON[p.health]
               const c = p.health === 'Green' ? 'var(--color-ok)' : p.health === 'Yellow' ? 'var(--color-warn)' : 'var(--color-bad)'
               return (
-                <g key={p.id} transform={`translate(${project(p.geo.lon, p.geo.lat).join(',')})`} className="cursor-pointer outline-none" onMouseEnter={() => setHover(p.id)} onMouseLeave={() => setHover(null)} onClick={() => pick(p.id)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p.id) } }} tabIndex={0} role="button" aria-expanded={p.id === 'cakrawala' ? undefined : pinned === p.id} aria-label={`${p.name}, ${p.healthLabel}${p.id === 'cakrawala' ? ', open cockpit' : ', show summary'}`}>
+                <g key={p.id} transform={`translate(${project(p.geo.lon, p.geo.lat).join(',')})`} {...markerProps(p.id, target(p.id))} aria-label={`${p.name}, ${p.healthLabel}${p.id === 'cakrawala' ? ', open cockpit' : ', open data feeds'}`}>
                   {p.escalation && <circle r="17" fill="none" stroke={c} strokeWidth="1.5" strokeDasharray="3 3" />}
                   <circle r="11" fill="white" stroke={c} strokeWidth="2.5" />
                   <foreignObject x="-7" y="-7" width="14" height="14"><Icon className="size-3.5" style={{ color: c }} strokeWidth={2.6} /></foreignObject>
@@ -194,20 +214,39 @@ function IndonesiaMap({ lane, onOpen }: { lane: Lane; onOpen: (to: string) => vo
               )
             })
           : PRE_INVESTMENT.map((p) => (
-              <g key={p.id} transform={`translate(${project(p.geo.lon, p.geo.lat).join(',')})`} className="cursor-pointer outline-none" onMouseEnter={() => setHover(p.id)} onMouseLeave={() => setHover(null)} onClick={() => onOpen(`/gates?project=${p.id}`)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen(`/gates?project=${p.id}`) } }} tabIndex={0} role="button" aria-label={`${p.id}, next gate ${p.nextGate}`}>
+              <g key={p.id} transform={`translate(${project(p.geo.lon, p.geo.lat).join(',')})`} {...markerProps(p.id, `/gates?project=${p.id}`)} aria-label={`${p.id}, next gate ${p.nextGate}, open gate checklist`}>
                 <rect x="-9" y="-9" width="18" height="18" rx="4" fill="white" stroke={p.atRisk ? 'var(--color-warn)' : p.floa ? 'var(--color-ok)' : 'var(--color-atlas-500)'} strokeWidth="2" />
                 <text y="4" textAnchor="middle" fontSize="11" fontWeight="700" fill="var(--color-ink)">{p.id.slice(-1)}</text>
                 <text {...PRE_LABEL[PRE_LABEL_POS[p.id] ?? 'below']} fontSize="11" fontWeight="600" fill="var(--color-ink-2)" stroke="white" strokeWidth="3" paintOrder="stroke">{p.id}</text>
               </g>
             ))}
       </svg>
-      {shown && (
-        <div role="status" className="pointer-events-none absolute bottom-12 left-6 max-w-[300px] animate-fade rounded-md bg-atlas-950 px-3 py-2 text-[13px] text-white">
-          {lane === 'construction'
-            ? (() => { const p = CONSTRUCTION.find((x) => x.id === shown)!; return <><b>{p.name}</b><div className="text-atlas-200">{p.healthLabel}. {p.alert}. Information rights {p.rights}.</div><div className="mt-1 text-[12px] text-atlas-300">{p.id === 'cakrawala' ? 'Click to open the cockpit.' : 'A detailed cockpit is not yet connected for this project.'}</div></> })()
-            : (() => { const p = PRE_INVESTMENT.find((x) => x.id === shown)!; return <><b>{p.id} · {p.island}</b><div className="text-atlas-200">Next gate {p.nextGate}, {p.date}{p.atRisk ? ', at risk' : ''}</div></> })()}
+      {tip && (
+        <div
+          role="status"
+          style={{ left: `${tip.left}%`, top: `${tip.top}%` }}
+          className={cn(
+            'float pointer-events-none absolute z-10 w-max max-w-[260px] animate-fade rounded-md bg-atlas-950 px-3 py-2 text-[13px] leading-snug text-white',
+            tip.flipX ? '-translate-x-[calc(100%+18px)]' : 'translate-x-[18px]',
+            tip.above ? '-translate-y-[calc(100%-6px)]' : '-translate-y-[6px]',
+          )}
+        >
+          {tip.c ? (
+            <>
+              <b>{tip.c.name}</b>
+              <div className="text-atlas-200">{tip.c.healthLabel}. {tip.c.alert}. Information rights {tip.c.rights}.</div>
+              <div className="mt-1 text-[12px] text-atlas-300">{tip.c.id === 'cakrawala' ? 'Click to open the cockpit.' : 'Click to see its data feeds and information rights.'}</div>
+            </>
+          ) : tip.p ? (
+            <>
+              <b>{tip.p.id} · {tip.p.island}</b>
+              <div className="text-atlas-200">Next gate {tip.p.nextGate}, {tip.p.date}{tip.p.atRisk ? ', at risk' : ''}</div>
+              <div className="mt-1 text-[12px] text-atlas-300">Click to open the gate checklist.</div>
+            </>
+          ) : null}
         </div>
       )}
+      </div>
       <div className="flex flex-wrap gap-x-4 gap-y-1 px-2 text-[12px] text-ink-3">
         {lane === 'construction' ? (
           <><span>Circle: project in construction, icon and word show health</span><span>Dashed ring: escalation required</span></>

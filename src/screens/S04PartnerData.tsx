@@ -1,5 +1,6 @@
 import { CheckCircle2, CircleDashed, FileSpreadsheet, Lock, Send, ShieldCheck, XCircle } from 'lucide-react'
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { WaveTag } from '../components/atlas/chips'
 import { ScreenFrame, SectionTitle } from '../components/atlas/frame'
 import { Button } from '../components/ui/button'
@@ -14,7 +15,9 @@ import { useUi } from '../state/ui'
 export function S04PartnerData() {
   const { isPcu } = usePersona()
   const projects = isPcu ? ['cakrawala'] : ['cakrawala', 'nusa', 'sinar']
-  const [proj, setProj] = useState('cakrawala')
+  const [params] = useSearchParams()
+  const asked = params.get('project')
+  const [proj, setProj] = useState(asked && projects.includes(asked) ? asked : 'cakrawala')
   const [compare, setCompare] = useState(false)
   const [tpl, setTpl] = useState<Feed | null>(null)
   const [rej, setRej] = useState<Feed | null>(null)
