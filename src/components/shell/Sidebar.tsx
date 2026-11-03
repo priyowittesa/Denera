@@ -125,9 +125,13 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
         <div className="mt-2.5 rounded-xl border border-side-card-line bg-side-card px-3.5 pb-3.5 pt-4 text-center text-[13px] leading-[1.4] text-[#e2d9fb]">
           <b className="mb-1 block text-[16px] font-semibold text-white">Expand Your Platform</b>
           Discover and add new modules to unlock more capabilities.
-          <button onClick={() => toast('Opening the ATLAS module catalogue')} className="press mt-3 w-full rounded-lg bg-side-button py-2.5 text-[14px] font-medium text-white hover:bg-side-button-hover">
-            Explore Modules
-          </button>
+          <a href="https://atlas.altimeda.com/#platform"
+             className="press mt-3 flex w-full items-center justify-center rounded-lg bg-side-button py-2.5 text-[14px] font-medium text-white hover:bg-side-button-hover"
+             target="_blank"
+              rel="noopener noreferrer"
+          >
+  Explore Modules
+</a>
         </div>
       )}
     </aside>
