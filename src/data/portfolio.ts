@@ -17,6 +17,10 @@ export interface ConstructionProject {
   signals: string[]
   exposureDays: number
   contingencyUse: string
+  /** Contingency reserve and forecast use, Rp bn (Cakrawala from spec 1.9; the others from master data SYN-02) */
+  contingencyBn: number
+  forecastUseBn: number | null
+  netMw: number
   /** representative city on the project island, for the map only */
   geo: { lon: number; lat: number }
 }
@@ -24,19 +28,19 @@ export interface ConstructionProject {
 export const CONSTRUCTION: ConstructionProject[] = [
   {
     id: 'cakrawala', name: 'PSEL Cakrawala Raya', island: 'Java', capex: 2800, cod: '30 Jun 2028', health: 'Yellow', healthLabel: 'Yellow, escalation required', escalation: true,
-    rights: '3 of 4', rightsN: 3, alert: 'Notice due 6 Jul 2027 (6 days)', alertTo: '/notices', exposureDays: 42, contingencyUse: '37%',
+    rights: '3 of 4', rightsN: 3, alert: 'Notice due 6 Jul 2027 (6 days)', alertTo: '/notices', exposureDays: 42, contingencyUse: '37%', contingencyBn: 176, forecastUseBn: 65, netMw: 33.5,
     signals: ['Schedule Red: forecast COD slip of 42 days', 'Cost Red: Rp45 bn needs shareholder funding approval', 'Procurement Red: two critical packages late', 'Commercial Red: formal notice due in six days', 'Rule: no limit breached and exposure at or below 60 days, so overall Yellow. Four Red dimensions raise the escalation flag.'],
     geo: { lon: 107.61, lat: -6.91 },
   },
   {
     id: 'nusa', name: 'PSEL Nusa Bahari', island: 'Sumatra', capex: 2350, cod: '15 May 2028', health: 'Yellow', healthLabel: 'Yellow',
-    rights: '4 of 4', rightsN: 4, alert: 'Imported crane shipment risk, 12-day exposure', exposureDays: 12, contingencyUse: '18%',
+    rights: '4 of 4', rightsN: 4, alert: 'Imported crane shipment risk, 12-day exposure', exposureDays: 12, contingencyUse: '18%', contingencyBn: 148, forecastUseBn: 26.6, netMw: 31.0,
     signals: ['Procurement Yellow: imported crane shipment at risk', 'Schedule Yellow: 12-day exposure, no limit forecast to breach', 'Rule: two Yellow dimensions, so overall Yellow'],
     geo: { lon: 104.76, lat: -2.99 },
   },
   {
     id: 'sinar', name: 'PSEL Sinar Lestari', island: 'Sulawesi', capex: 2100, cod: '30 Apr 2028', health: 'Green', healthLabel: 'Green', confidence: 74,
-    rights: '2 of 4', rightsN: 2, alert: 'Two data feeds not yet agreed', alertTo: '/partner-data', exposureDays: 0, contingencyUse: 'No data',
+    rights: '2 of 4', rightsN: 2, alert: 'Two data feeds not yet agreed', alertTo: '/partner-data', exposureDays: 0, contingencyUse: 'No data', contingencyBn: 132, forecastUseBn: null, netMw: 31.0,
     signals: ['No adverse indicator on the feeds received', 'Data confidence 74%: only 2 of 4 feeds agreed, so health covers schedule and cost only'],
     geo: { lon: 119.43, lat: -5.14 },
   },
@@ -58,12 +62,12 @@ export interface PreInvestment {
 
 export const PRE_INVESTMENT: PreInvestment[] = [
   { id: 'P2-01', island: 'Java', nextGate: 'FID', date: '15 Sep 2027', open: 1, floa: true, fidTarget: '15 Sep 2027', geo: { lon: 106.85, lat: -6.21 } },
-  { id: 'P2-02', island: 'Java', nextGate: 'FID', date: '30 Sep 2027', open: 1, floa: true, fidTarget: '30 Sep 2027', geo: { lon: 110.42, lat: -6.97 } },
+  { id: 'P2-02', island: 'Sumatra', nextGate: 'FID', date: '30 Sep 2027', open: 1, floa: true, fidTarget: '30 Sep 2027', geo: { lon: 98.67, lat: 3.59 } },
   { id: 'P2-03', island: 'Java', nextGate: 'FID', date: '30 Sep 2027', open: 1, floa: true, fidTarget: '30 Sep 2027', geo: { lon: 112.75, lat: -7.25 } },
-  { id: 'P2-04', island: 'Sumatra', nextGate: 'FID', date: '31 Oct 2027', open: 1, floa: true, fidTarget: '31 Oct 2027', geo: { lon: 98.67, lat: 3.59 } },
-  { id: 'P2-05', island: 'Sumatra', nextGate: 'FID', date: '30 Nov 2027', open: 1, floa: true, fidTarget: '30 Nov 2027', geo: { lon: 105.26, lat: -5.43 } },
-  { id: 'P2-06', island: 'Kalimantan', nextGate: 'Permits', date: '28 Jul 2027', open: 6, atRisk: true, floa: false, fidTarget: '15 Dec 2027', fidForecast: '5 Jan 2028', geo: { lon: 116.83, lat: -1.27 } },
-  { id: 'P2-07', island: 'Sulawesi', nextGate: 'Permits', date: '4 Aug 2027', open: 7, atRisk: true, floa: false, fidTarget: '31 Jan 2028', fidForecast: '21 Feb 2028', geo: { lon: 124.84, lat: 1.47 } },
+  { id: 'P2-04', island: 'Kalimantan', nextGate: 'FID', date: '31 Oct 2027', open: 1, floa: true, fidTarget: '31 Oct 2027', geo: { lon: 116.83, lat: -1.27 } },
+  { id: 'P2-05', island: 'Sulawesi', nextGate: 'FID', date: '30 Nov 2027', open: 1, floa: true, fidTarget: '30 Nov 2027', geo: { lon: 124.84, lat: 1.47 } },
+  { id: 'P2-06', island: 'Java', nextGate: 'Permits', date: '28 Jul 2027', open: 6, atRisk: true, floa: false, fidTarget: '15 Dec 2027', fidForecast: '5 Jan 2028', geo: { lon: 110.42, lat: -6.97 } },
+  { id: 'P2-07', island: 'Sumatra', nextGate: 'Permits', date: '4 Aug 2027', open: 7, atRisk: true, floa: false, fidTarget: '31 Jan 2028', fidForecast: '21 Feb 2028', geo: { lon: 105.26, lat: -5.43 } },
   { id: 'P2-08', island: 'Bali-Nusa Tenggara', nextGate: 'Basic engineering design confirmation', date: '15 Jul 2027', open: 9, floa: false, fidTarget: 'To be set', geo: { lon: 116.1, lat: -8.58 } },
 ]
 
@@ -130,4 +134,4 @@ export const WEEKLY_BRIEF: { text: string; to: string }[] = [
 ]
 
 export const CONTROL_MODEL =
-  'Each PSEL is delivered by a project company (BUPP): Denera 30%, partner consortium 70%. The EPC contract and the PPA with PLN sit in the project company. Denera acts through board nominees, shareholder agreement rights, information and audit rights, funding approvals and escalation to Danantara.'
+  'Each PSEL is delivered by a project company (BUPP): Denera 30%, partner consortium 70%. The EPC contract and the PPA with the Offtaker sit in the project company. Denera acts through board nominees, shareholder agreement rights, information and audit rights, funding approvals and escalation to Danantara.'

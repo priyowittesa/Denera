@@ -43,7 +43,6 @@ export function S14Orchestration() {
       headline={`ATLAS ran ${runs.length} jobs this week: ${completed} completed, ${waiting} are waiting for a person, ${blocked} is blocked for missing data.`}
       status="Yellow"
       statusLabel={`${waiting} waiting for a person`}
-      sub="A view of the two ATLAS modes at work. Orchestration jobs run on rules and schedules; Assistant jobs run when a person asks."
       confidence={false}
     >
       <section className="overflow-hidden rounded-lg bg-atlas-950 text-white">
@@ -68,7 +67,7 @@ export function S14Orchestration() {
 
       <Card className="mt-5 overflow-x-auto">
         <div className="flex flex-wrap items-baseline justify-between gap-2 px-5 pt-4">
-          <h2 className="text-[15px] font-semibold text-ink">Run board</h2>
+          <h2 className="text-[16px] font-semibold text-ink">Run board</h2>
           <span className="tnum text-[13px] text-ink-3">{runs.length} jobs · {completed} completed · {waiting} waiting for human · {blocked} blocked</span>
         </div>
         <table className="mt-3 w-full min-w-[1060px] text-[13px]">
@@ -79,7 +78,7 @@ export function S14Orchestration() {
               return (
                 <tr key={r.id} onClick={() => setTrace(r)} className="cursor-pointer hover:bg-atlas-50/50">
                   <td className="px-5 py-3"><button className="press text-left font-medium text-ink hover:text-atlas-700"><span className="tnum text-ink-3">{r.id}</span> {r.job}</button></td>
-                  <td className="px-3 py-3"><span className={cn('rounded-sm px-1.5 py-0.5 text-[12px] font-medium', r.mode === 'Assistant' ? 'bg-info-bg text-info' : 'bg-sunken text-ink-2')}>{r.mode}</span></td>
+                  <td className="px-3 py-3"><span className={cn('rounded-full border px-2 py-0.5 text-[12px] font-medium', r.mode === 'Assistant' ? 'border-info-line bg-info-bg text-info' : 'border-line bg-sunken text-ink-2')}>{r.mode}</span></td>
                   <td className="px-3 py-3 text-ink-2">{r.lane}</td>
                   <td className="px-3 py-3 text-ink-2">{r.trigger}</td>
                   <td className="px-3 py-3"><span className={cn('inline-flex items-center gap-1 font-medium', S.c)}><S.I className="size-3.5" />{r.state === 'Blocked' ? 'Blocked: feed not agreed' : r.state}</span></td>
@@ -92,9 +91,9 @@ export function S14Orchestration() {
         </table>
       </Card>
 
-      <div className="mt-5 grid items-start gap-5 lg:grid-cols-3">
-        <Card className="p-5">
-          <h3 className="text-[14px] font-semibold text-ink">Approval queue</h3>
+      <div className="mt-5 grid gap-5 lg:grid-cols-3">
+        <Card className="px-[18px] py-4">
+          <h3 className="text-[16px] font-semibold text-ink">Approval queue</h3>
           <ul className="mt-3 space-y-1">
             {APPROVAL_QUEUE.filter((q) => !(isPcu && q.denaraOnly)).map((q) => (
               <li key={q.text}>
@@ -107,14 +106,14 @@ export function S14Orchestration() {
             ))}
           </ul>
         </Card>
-        <Card className="p-5">
-          <h3 className="text-[14px] font-semibold text-ink">Guardrails, across every run</h3>
+        <Card className="px-[18px] py-4">
+          <h3 className="text-[16px] font-semibold text-ink">Guardrails, across every run</h3>
           <ol className="mt-3 space-y-2">
             {GUARDRAILS.map((g, i) => <li key={g} className="flex gap-2.5 text-[13px] leading-snug text-ink-2"><ShieldCheck className={cn('mt-0.5 size-3.5 shrink-0', i < 2 ? 'text-atlas-700' : 'text-ink-3')} />{g}</li>)}
           </ol>
         </Card>
-        <Card className="p-5">
-          <h3 className="text-[14px] font-semibold text-ink">Data freshness, PSEL Cakrawala Raya</h3>
+        <Card className="px-[18px] py-4">
+          <h3 className="text-[16px] font-semibold text-ink">Data freshness, PSEL Cakrawala Raya</h3>
           <ul className="mt-3 space-y-2.5">
             {FEEDS.cakrawala.feeds.map((f) => (
               <li key={f.name} className="text-[13px]">

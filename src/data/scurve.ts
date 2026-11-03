@@ -122,14 +122,15 @@ export const CONTRACTORS = [
 ]
 
 export const PACKAGES_COST = [
-  { name: 'Civil and foundations', ac: 360, commit: 20 },
-  { name: 'Waste receiving system', ac: 175, commit: 70 },
-  { name: 'Boiler island', ac: 190, commit: 120 },
-  { name: 'Turbine-generator', ac: 130, commit: 40 },
-  { name: 'Balance of plant', ac: 95, commit: 30 },
-  { name: 'Grid interconnection', ac: 45, commit: 20 },
-  { name: 'Utilities and water treatment', ac: 75, commit: 10 },
-  { name: "Owner's cost and preliminaries", ac: 68, commit: 8 },
+  // budget: split of approved CAPEX Rp2,800 bn across the eight work packages (master data SYN-01)
+  { name: 'Civil and foundations', budget: 560, ac: 360, commit: 20 },
+  { name: 'Waste receiving system', budget: 330, ac: 175, commit: 70 },
+  { name: 'Boiler island', budget: 720, ac: 190, commit: 120 },
+  { name: 'Turbine-generator', budget: 420, ac: 130, commit: 40 },
+  { name: 'Balance of plant', budget: 280, ac: 95, commit: 30 },
+  { name: 'Grid interconnection', budget: 140, ac: 45, commit: 20 },
+  { name: 'Utilities and water treatment', budget: 170, ac: 75, commit: 10 },
+  { name: "Owner's cost and preliminaries", budget: 180, ac: 68, commit: 8 },
 ]
 
 export const weighted = (key: 'reported' | 'verified') =>

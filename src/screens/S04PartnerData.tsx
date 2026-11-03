@@ -10,9 +10,11 @@ import { Segmented, Tabs, TabsContent, TabsList } from '../components/ui/tabs'
 import { DATA_DOMAINS, FEEDS, PHASE2_RIGHTS, type Feed } from '../data/registers'
 import { cn } from '../lib/cn'
 import { useDemo, usePersona } from '../state/store'
+import { RequestModal, type RequestSpec } from '../components/atlas/RequestModal'
 import { useUi } from '../state/ui'
 
 export function S04PartnerData() {
+  const [req, setReq] = useState<RequestSpec | null>(null)
   const { isPcu } = usePersona()
   const projects = isPcu ? ['cakrawala'] : ['cakrawala', 'nusa', 'sinar']
   const [params] = useSearchParams()
@@ -30,7 +32,7 @@ export function S04PartnerData() {
   const agreed = P.feeds.filter((f) => f.agreed).length
 
   const requestFeed = () =>
-    addRequest('waste-feed', 'Waste supply feed', { title: 'Request project company to provide waste supply and regional reports feed', owner: 'PMO Director', authority: 'Shareholder (Denera)', due: '12 Jul 2027', dueIso: '2027-07-12', status: 'Not started', linked: 'Waste supply feed (SHA cl. 9.1)', source: 'Partner data and rights' })
+    setReq({ key: 'waste-feed', title: 'Request the missing data feed', to: 'Project company board, PSEL Cakrawala Raya', route: 'Shareholder (Denera) request to the project company board', authority: 'Shareholder (Denera)', subject: 'Request project company to provide waste supply and regional reports feed', message: 'Under SHA cl. 9.1 to 9.3, please agree a template for the waste supply and regional reports feed and send the first submission.', due: '2027-07-12', owner: 'PMO Director', linked: 'Waste supply feed (SHA cl. 9.1)', source: 'Partner data and rights' })
 
   return (
     <ScreenFrame
@@ -49,7 +51,7 @@ export function S04PartnerData() {
           </div>
 
           {compare ? (
-            <Card className="mt-4 p-5">
+            <Card className="mt-4 px-[18px] py-4">
               <ul className="space-y-3">
                 {['nusa', 'cakrawala', 'sinar'].map((k) => {
                   const n = FEEDS[k].feeds.filter((f) => f.agreed).length
@@ -67,7 +69,7 @@ export function S04PartnerData() {
           ) : (
             <Card className="mt-4 overflow-x-auto">
               <div className="flex flex-wrap items-baseline justify-between gap-2 px-5 pt-4">
-                <h2 className="text-[15px] font-semibold text-ink">{P.project}: <span className="tnum">{agreed} of {P.required}</span> feeds agreed</h2>
+                <h2 className="text-[16px] font-semibold text-ink">{P.project}: <span className="tnum">{agreed} of {P.required}</span> feeds agreed</h2>
                 <button onClick={() => openEv('sha-9')} className="press text-[13px] font-medium text-atlas-700 hover:underline">Right granted by {P.clause}</button>
               </div>
               <table className="mt-3 w-full min-w-[820px] text-[13px]">
@@ -115,27 +117,25 @@ export function S04PartnerData() {
       <div className="mt-8 grid gap-5 lg:grid-cols-2">
         <section>
           <SectionTitle>Where data comes from</SectionTitle>
-          <Card className="p-5">
+          <Card className="px-[18px] py-4">
             <ul className="space-y-3">
               {DATA_DOMAINS.map((d) => (
                 <li key={d.wave} className="flex items-start gap-3"><WaveTag wave={d.wave} /><span className="text-[13px] text-ink-2">{d.items.join(', ')}</span></li>
               ))}
             </ul>
-            <p className="mt-4 text-[13px] text-ink-3">Data arrives through agreed templates and exports first, connectors later. A data contract per partner comes before any connector.</p>
           </Card>
         </section>
         <section>
           <SectionTitle aside={<Button variant="link" size="sm" onClick={() => setAudit(true)}>Full audit log</Button>}>Access and audit</SectionTitle>
-          <Card className="p-5">
+          <Card className="px-[18px] py-4">
             <div className="grid gap-3 sm:grid-cols-2">
-              {[[ShieldCheck, 'Role-based views', 'Five roles demonstrated through the persona switcher'], [Lock, 'Partner separation', 'A project company sees only its own project']].map(([I, t, d]) => {
+              {[[ShieldCheck, 'Role-based views', 'Each role sees only what it is entitled to'], [Lock, 'Partner separation', 'A project company sees only its own project']].map(([I, t, d]) => {
                 const Icon = I as typeof Lock
                 return <div key={t as string} className="rounded-md bg-sunken p-3"><Icon className="size-4 text-atlas-700" /><div className="mt-1.5 text-[13px] font-medium text-ink">{t as string}</div><div className="text-[12px] text-ink-3">{d as string}</div></div>
               })}
             </div>
             <div className="mt-3 flex flex-wrap gap-1.5 text-[12px]">
-              {['Public', 'Internal', 'Confidential', 'Restricted'].map((c) => <span key={c} className="rounded-sm border border-line px-1.5 py-0.5 text-ink-2">{c}</span>)}
-              <span className="text-ink-3">classification labels, illustrative</span>
+              {['Public', 'Internal', 'Confidential', 'Restricted'].map((c) => <span key={c} className="rounded-md border border-line bg-surface px-2 py-0.5 text-[12px] text-ink-2">{c}</span>)}
             </div>
             <ol className="mt-4 space-y-1.5 text-[12px]">
               {audit.slice(0, 5).map((a, i) => <li key={i} className="flex gap-3"><span className="tnum w-[104px] shrink-0 text-ink-3">{a.t}</span><span className="text-ink-2"><b className="font-medium text-ink">{a.action}</b> {a.object}</span></li>)}
@@ -157,6 +157,7 @@ export function S04PartnerData() {
       <Modal open={!!rej} onOpenChange={(v) => !v && setRej(null)} title="Submission rejected" description={`${rej?.name ?? ''} · ${rej?.last ?? ''}`} footer={<><Button variant="ghost" onClick={() => setRej(null)}>Close</Button><Button onClick={() => { addRequest('resubmit', 'Corrected procurement submission'); setRej(null) }} disabled={requests.includes('resubmit')}><Send />Request corrected submission</Button></>}>
         <ul className="space-y-2">{rej?.reasons?.map((r) => <li key={r} className="flex gap-2 text-[14px] text-ink"><XCircle className="mt-0.5 size-4 shrink-0 text-bad" />{r}</li>)}</ul>
       </Modal>
+      <RequestModal spec={req} onClose={() => setReq(null)} />
     </ScreenFrame>
   )
 }

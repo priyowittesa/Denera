@@ -55,7 +55,6 @@ export function S09Progress() {
                 { value: 'ev', label: analyst ? 'Earned value (PV, EV, AC)' : 'Earned value' },
               ]}
             />
-            <span className="text-[12px] text-ink-3">Hover any month to read every series</span>
           </div>
           <div className="px-2 pt-2">
             {tab === 'progress' && <ProgressChart scenario={sc.id} />}
@@ -65,7 +64,7 @@ export function S09Progress() {
           {tab === 'progress' && (
             <div className="border-t border-line-soft px-5 py-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <span className="text-[13px] font-semibold text-ink">Recovery scenario <span className="font-normal text-ink-3">· advisory forecast, assumptions listed</span></span>
+                <span className="text-[13px] font-semibold text-ink">Recovery scenario</span>
                 <Button variant="link" size="sm" onClick={() => nav('/cost#scenarios')}>See cost of this scenario<ArrowRight /></Button>
               </div>
               <Segmented<ScenarioId>
@@ -98,8 +97,8 @@ export function S09Progress() {
             </p>
             <GapBar />
           </AtlasCard>
-          <Card className="p-5">
-            <h3 className="text-[13px] font-semibold text-ink">Reported and verified, always apart</h3>
+          <Card className="px-[18px] py-4">
+            <h3 className="text-[14px] font-semibold text-ink">Reported and verified, always apart</h3>
             <p className="mt-1 text-[13px] leading-relaxed text-ink-3">Reported is what the contractor claims. Verified is what ATLAS has checked against quantities and inspection records. A gap of 5 points or more carries a flag.</p>
             <div className="mt-3 flex items-end gap-6">
               <div><div className="text-[12px] text-ink-3">Reported</div><div className="tnum text-[22px] font-semibold text-ink-3">42%</div></div>
@@ -116,7 +115,7 @@ export function S09Progress() {
         <SectionTitle>Where the gap sits</SectionTitle>
         <Card>
           <Tabs defaultValue="wbs">
-            <TabsList className="px-4 pt-1" items={[{ value: 'wbs', label: 'By WBS' }, { value: 'discipline', label: 'By discipline' }, { value: 'contractor', label: 'By contractor' }, { value: 'package', label: 'By work package' }]} />
+            <TabsList className="px-[18px] pb-3 pt-4" items={[{ value: 'wbs', label: 'By WBS' }, { value: 'discipline', label: 'By discipline' }, { value: 'contractor', label: 'By contractor' }, { value: 'package', label: 'By work package' }]} />
             <TabsContent value="wbs" className="p-2"><WbsList /></TabsContent>
             <TabsContent value="discipline" className="p-4"><DisciplineTable /></TabsContent>
             <TabsContent value="contractor" className="p-4"><ContractorTable /></TabsContent>
@@ -257,7 +256,7 @@ function CostChart() {
         <LegendItem color="var(--color-info)" weight={1.5} label="Cash paid" />
         <LegendItem color="var(--color-series-forecast)" dash="2 5" weight={2.5} label="Forecast cost (advisory)" />
         <LegendItem color="var(--color-ink)" weight={1} label="Approved CAPEX Rp2,800 bn" />
-        <LegendItem color="var(--color-ink-3)" dash="2 4" weight={1} label="CAPEX plus contingency reserve Rp2,976 bn (illustrative)" />
+        <LegendItem color="var(--color-ink-3)" dash="2 4" weight={1} label="CAPEX plus contingency reserve Rp2,976 bn" />
         <span className="inline-flex items-center gap-2 text-[13px] text-ink-2"><span className="h-2.5 w-5 rounded-[2px] border border-warn/40 bg-warn-bg" />Management EAC range Rp2,846 to 2,918 bn</span>
       </div>
     </div>
@@ -347,12 +346,12 @@ function Indicators({ analyst }: { analyst: boolean }) {
     { plain: 'Cost gap', term: 'CV', value: '−Rp46 bn', tip: 'Cost variance = EV minus AC = 1,092 minus 1,138', tone: 'warn' },
     { plain: 'Forecast delay', term: 'COD variance', value: '42 days', tip: 'Forecast COD 11 Aug 2028 against target 30 Jun 2028 (current plan)', tone: 'bad' },
     { plain: 'Forecast overrun', term: 'EAC variance', value: '+Rp110 bn', note: 'EAC Rp2,910 bn; range 2,846 to 2,918', tip: 'Management EAC Rp2,910 bn; CPI-trend Rp2,918 bn; range Rp2,846 to 2,918 bn', tone: 'bad' },
-    { plain: 'Contingency remaining', term: 'Reserve', value: '63%', note: 'Rp111 bn of Rp176 bn', tip: 'Forecast use Rp65 bn. Illustrative until Denera finance confirms.' },
+    { plain: 'Contingency remaining', term: 'Reserve', value: '63%', note: 'Rp111 bn of Rp176 bn', tip: 'Forecast use Rp65 bn.' },
   ]
   return (
     <section className="mt-6 rounded-xl border border-line bg-surface px-5 py-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-[13px] font-semibold text-ink">Indicators at 30 Jun 2027</h2>
+        <h2 className="text-[16px] font-semibold text-ink">Indicators at 30 Jun 2027</h2>
         <button onClick={() => openDefs(true)} className="press inline-flex items-center gap-1 text-[12px] font-medium text-atlas-700 hover:underline"><Info className="size-3.5" />Definitions</button>
       </div>
       <div className="mt-3 grid gap-x-6 gap-y-4 sm:grid-cols-4 xl:grid-cols-7">
@@ -397,7 +396,7 @@ const td = 'px-3 py-2.5 text-[13px]'
 function Flagged({ r, v }: { r: number; v: number }) {
   const flag = r - v >= 5
   return flag ? (
-    <span className="inline-flex items-center gap-1 rounded-sm bg-bad-bg px-1.5 py-0.5 text-[12px] font-medium text-bad"><Flag className="size-3" />{r - v} pt gap</span>
+    <span className="inline-flex items-center gap-1 rounded-full border border-bad-line bg-bad-bg px-2 py-0.5 text-[12px] font-medium text-bad"><Flag className="size-3" />{r - v} pt gap</span>
   ) : <span className="text-[12px] text-ink-4">within 5 pts</span>
 }
 
@@ -431,14 +430,15 @@ function ContractorTable() {
 function PackageTable() {
   const tAc = PACKAGES_COST.reduce((s, p) => s + p.ac, 0)
   const tCo = PACKAGES_COST.reduce((s, p) => s + p.commit, 0)
+  const tBu = PACKAGES_COST.reduce((s, p) => s + p.budget, 0)
   return (
     <table className="w-full">
-      <thead className="border-b border-line"><tr><th className={th}>Work package</th><th className={cn(th, 'text-right')}>Actual cost (Rp bn)</th><th className={cn(th, 'text-right')}>Open commitments (Rp bn)</th></tr></thead>
+      <thead className="border-b border-line"><tr><th className={th}>Work package</th><th className={cn(th, 'text-right')}>Budget (Rp bn)</th><th className={cn(th, 'text-right')}>Actual cost (Rp bn)</th><th className={cn(th, 'text-right')}>Open commitments (Rp bn)</th><th className={cn(th, 'text-right')}>Incurred and committed</th></tr></thead>
       <tbody className="tnum divide-y divide-line-soft">
         {PACKAGES_COST.map((p) => (
-          <tr key={p.name}><td className={td}>{p.name}</td><td className={cn(td, 'text-right')}>{p.ac.toLocaleString('en-US')}</td><td className={cn(td, 'text-right', p.name === 'Boiler island' && 'font-semibold text-bad')}>{p.commit}</td></tr>
+          <tr key={p.name}><td className={td}>{p.name}</td><td className={cn(td, 'text-right')}>{p.budget.toLocaleString('en-US')}</td><td className={cn(td, 'text-right')}>{p.ac.toLocaleString('en-US')}</td><td className={cn(td, 'text-right', p.name === 'Boiler island' && 'font-semibold text-bad')}>{p.commit}</td><td className={cn(td, 'text-right text-ink-2')}>{Math.round(((p.ac + p.commit) / p.budget) * 100)}%</td></tr>
         ))}
-        <tr className="border-t border-line font-semibold"><td className={td}>Total</td><td className={cn(td, 'text-right')}>{tAc.toLocaleString('en-US')}</td><td className={cn(td, 'text-right')}>{tCo}</td></tr>
+        <tr className="border-t border-line font-semibold"><td className={td}>Total</td><td className={cn(td, 'text-right')}>{tBu.toLocaleString('en-US')}</td><td className={cn(td, 'text-right')}>{tAc.toLocaleString('en-US')}</td><td className={cn(td, 'text-right')}>{tCo}</td><td className={cn(td, 'text-right')}>{Math.round(((tAc + tCo) / tBu) * 100)}%</td></tr>
       </tbody>
     </table>
   )

@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, FileText, Sparkles } from 'lucide-react'
+import { ArrowRight, Clock, FileText, Gauge, Lightbulb, Search, Siren, Sparkles } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 import { cn } from '../../lib/cn'
@@ -8,7 +8,7 @@ import { useUi } from '../../state/ui'
 import { usePersona } from '../../state/store'
 import { projectValue, valueRowsFor } from './ValuePanel'
 import { HEALTH_STATEMENT } from './HealthRule'
-import { ClassChip, ConfidenceBadge, DataNeeded, StatusChip } from './chips'
+import { ClassChip, DataNeeded, StatusChip, SyncPill } from './chips'
 
 export type Answer = { label: ReactNode; value: ReactNode; foot?: ReactNode; tone?: 'bad' | 'warn' | 'ok' | 'ink'; action?: { label: string; onClick: () => void }; stake?: string[] }
 
@@ -37,59 +37,63 @@ export function ScreenFrame({
   const { pathname } = useLocation()
   const meta = screenByPath(pathname)
   return (
-    <div className="mx-auto w-full max-w-[1320px] px-4 pb-28 pt-6 sm:px-6 sm:pt-8 xl:px-10">
-      {meta && (
-        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2.5">
-          <div className="eyebrow min-w-0">{project}</div>
-          <div className="flex flex-wrap items-center gap-1">
-            <DataNeeded sources={meta.dataNeeded.sources} owner={meta.dataNeeded.owner} note={meta.path === '/portfolio' || meta.path === '/cockpit' ? HEALTH_STATEMENT : undefined} />
-            {confidence && <ConfidenceBadge />}
+    <div className="w-full px-4 pb-28 pt-[18px] md:px-7 md:pt-[26px]">
+      {/* Page header (ATLAS module .ph): title and muted description left, sync pill and actions right; stacks below 860px */}
+      <div className="flex flex-col gap-3.5 min-[860px]:flex-row min-[860px]:items-start min-[860px]:justify-between min-[860px]:gap-5">
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <h1 className="text-[20px] font-semibold leading-7 tracking-[-0.01em] text-ink">{meta?.title ?? 'ATLAS'}</h1>
+            <span className="inline-flex items-center whitespace-nowrap rounded-md border border-atlas-200 bg-atlas-50 px-[7px] py-0.5 text-[11.5px] font-semibold text-atlas-700">{project}</span>
+            {status && <StatusChip h={status} label={statusLabel} />}
           </div>
+          <p className="mt-1 max-w-[720px] text-[14px] leading-[1.45] text-ink-3">{headline}{sub && <> {sub}</>}</p>
         </div>
-      )}
-      <div className={cn('mt-5 grid gap-x-12 gap-y-6', answer && 'xl:grid-cols-[minmax(0,1fr)_280px] xl:items-start')}>
-        <div className="min-w-0">
-          <h1 className="display max-w-[46em] text-[clamp(20px,1.7vw,24px)] leading-[1.3] text-ink">{headline}</h1>
-          {(status || sub) && (
-            <div className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-2">
-              {status && <StatusChip h={status} label={statusLabel} size="md" />}
-              {sub && <p className="text-[14px] text-ink-2">{sub}</p>}
-            </div>
-          )}
-          {aside && <div className="mt-5 flex flex-wrap items-center gap-2">{aside}</div>}
-        </div>
-        {answer && <AnswerFigure {...answer} />}
+        {meta && (
+          <div className="flex flex-wrap items-center gap-2.5 min-[860px]:max-w-[60%] min-[860px]:justify-end">
+            <SyncPill withConfidence={confidence} />
+            <DataNeeded sources={meta.dataNeeded.sources} owner={meta.dataNeeded.owner} note={meta.path === '/portfolio' || meta.path === '/cockpit' ? HEALTH_STATEMENT : undefined} />
+            {aside}
+          </div>
+        )}
       </div>
-      <div className="mt-8 sm:mt-10">{children}</div>
+      {answer && <div className="mt-[18px]"><AnswerFigure {...answer} /></div>}
+      <div className="mt-6 sm:mt-7">{children}</div>
     </div>
   )
 }
 
+/** Full-width summary tile with a 4px tone edge (ATLAS module .qs tile). Figure left, value at stake right. */
 function AnswerFigure({ label, value, foot, tone = 'ink', action, stake }: Answer) {
   const { isPcu } = usePersona()
   const rows = stake ? valueRowsFor(stake, isPcu) : []
+  const edge = tone === 'bad' ? 'border-l-bad' : tone === 'warn' ? 'border-l-warn' : tone === 'ok' ? 'border-l-ok' : 'border-l-atlas-600'
   return (
-    <div className="animate-rise border-t border-line pt-4 xl:border-l xl:border-t-0 xl:pl-7 xl:pt-0">
-      <div className="eyebrow">{label}</div>
-      <div className={cn('tnum mt-1 text-[28px] font-semibold leading-none tracking-[-0.025em]', tone === 'bad' ? 'text-bad' : tone === 'warn' ? 'text-warn' : tone === 'ok' ? 'text-ok' : 'text-ink')}>{value}</div>
-      {foot && <div className="mt-2 text-[13px] leading-snug text-ink-3">{foot}</div>}
-      {action && (
-        <button onClick={action.onClick} className="press mt-2 inline-flex items-center gap-1 text-[13px] font-medium text-atlas-700 hover:underline">{action.label}<ArrowRight className="size-3.5" /></button>
-      )}
+    <div className={cn('animate-rise grid grid-cols-1 gap-4 rounded-xl border border-l-4 border-line bg-surface px-[18px] py-4', edge, rows.length > 0 && 'md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-center md:gap-8')}>
+      <div className="flex min-w-0 gap-3.5">
+        <span className={cn('grid size-[38px] shrink-0 place-items-center rounded-[9px]', tone === 'bad' ? 'bg-bad-bg text-bad' : tone === 'warn' ? 'bg-warn-bg text-warn' : tone === 'ok' ? 'bg-ok-bg text-ok' : 'bg-atlas-100 text-atlas-700')}><Gauge className="size-[19px]" /></span>
+        <div className="min-w-0">
+          <div className="text-[13px] text-ink-3">{label}</div>
+          <div className={cn('tnum mt-0.5 text-[28px] font-bold leading-[1.1] tracking-[-0.02em]', tone === 'bad' ? 'text-bad' : tone === 'warn' ? 'text-warn' : tone === 'ok' ? 'text-ok' : 'text-ink')}>{value}</div>
+          {foot && <div className="mt-1.5 text-[12.5px] leading-snug text-ink-2">{foot}</div>}
+          {action && (
+            <button onClick={action.onClick} className="press mt-2 inline-flex items-center gap-1 text-[13px] font-medium text-atlas-700 hover:underline">{action.label}<ArrowRight className="size-3.5" /></button>
+          )}
+        </div>
+      </div>
       {rows.length > 0 && (
-        <dl className="mt-3 space-y-0.5 rounded-lg bg-sunken px-3 py-2 text-[12px] leading-snug">
-          {rows.map((r) => <div key={r.uc}><div className="flex flex-wrap gap-x-1"><dt className="text-ink-3">{r.metric}</dt><dd className="tnum font-medium text-ink-2">{projectValue(r, isPcu)}</dd></div>{r.caption && <p className="mt-0.5 text-[12px] text-ink-3">{r.caption}</p>}</div>)}
+        <dl className="grid gap-x-6 gap-y-2 rounded-lg bg-sunken px-3.5 py-2.5 text-[12.5px] leading-snug sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+          {rows.map((r) => <div key={r.uc}><dt className="text-ink-3">{r.metric}</dt><dd className="tnum font-semibold text-ink">{projectValue(r, isPcu)}</dd>{r.caption && <p className="mt-0.5 text-[12px] text-ink-3">{r.caption}</p>}</div>)}
         </dl>
       )}
     </div>
   )
 }
 
-export function Provenance({ sources, classification, confidence, className }: { sources: { label: string; doc?: string }[]; classification?: string; confidence?: string; className?: string }) {
+export function Provenance({ sources, classification, confidence, className, plain }: { sources: { label: string; doc?: string }[]; classification?: string; confidence?: string; className?: string; plain?: boolean }) {
   const open = useUi((s) => s.openEvidence)
   const first = sources.find((s) => s.doc)
   return (
-    <div className={cn('flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-line-soft pt-3 text-[12px] text-ink-3', className)}>
+    <div className={cn('flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[12px] text-ink-3', !plain && 'border-t border-line-soft pt-3', className)}>
       <button
         className="press inline-flex items-center gap-1 font-medium text-atlas-700 hover:underline disabled:text-ink-3 disabled:no-underline"
         disabled={!first}
@@ -105,7 +109,20 @@ export function Provenance({ sources, classification, confidence, className }: {
   )
 }
 
-export function AtlasCard({ title = 'ATLAS insight', children, sources, classification = 'Advisory', confidence = 'Medium', className, tone = 'plain' }: {
+type InsightKind = 'insight' | 'alert' | 'explanation' | 'summary'
+const KIND: Record<InsightKind, { label: string; bar: string; badge: string; Icon: typeof Sparkles }> = {
+  insight: { label: 'Insight', bar: 'bg-atlas-500', badge: 'border-atlas-200 bg-atlas-50 text-atlas-700', Icon: Lightbulb },
+  summary: { label: 'Summary', bar: 'bg-atlas-500', badge: 'border-atlas-200 bg-atlas-50 text-atlas-700', Icon: Sparkles },
+  alert: { label: 'Alert', bar: 'bg-bad', badge: 'border-bad-line bg-bad-bg text-[#b91c1c]', Icon: Siren },
+  explanation: { label: 'Root cause', bar: 'bg-info', badge: 'border-info-line bg-info-bg text-[#1d4ed8]', Icon: Search },
+}
+const kindOf = (t: ReactNode): InsightKind => {
+  const x = typeof t === 'string' ? t.toLowerCase() : ''
+  return x.includes('alert') ? 'alert' : x.includes('explanation') ? 'explanation' : x.includes('summary') || x.includes('brief') ? 'summary' : 'insight'
+}
+
+/** ATLAS insight card (ATLAS module .ins): 3px type bar, uppercase type badge, title, body, source meta. */
+export function AtlasCard({ title = 'ATLAS insight', children, sources, classification = 'Advisory', confidence = 'Medium', className, tone = 'plain', kind }: {
   title?: ReactNode
   children: ReactNode
   sources: { label: string; doc?: string }[]
@@ -113,24 +130,33 @@ export function AtlasCard({ title = 'ATLAS insight', children, sources, classifi
   confidence?: string
   className?: string
   tone?: 'plain' | 'violet'
+  kind?: InsightKind
 }) {
-  return (
-    <section className={cn('rounded-xl border p-5', tone === 'violet' ? 'border-atlas-100 bg-atlas-50/70' : 'border-line bg-surface', className)}>
-      <div className="flex items-center gap-2">
-        <Sparkles className="size-4 text-atlas-600" />
-        <h3 className="text-[14px] font-semibold text-ink">{title}</h3>
+  const k = KIND[kind ?? kindOf(title)]
+  const heading = typeof title === 'string' ? title.replace(/^ATLAS /, '').replace(/^[a-z]/, (c) => c.toUpperCase()) : title
+  const card = (
+    <section className={cn('relative flex flex-col gap-2.5 overflow-hidden bg-surface px-[18px] pb-4 pt-[18px]', tone === 'violet' ? 'rounded-[12.5px]' : 'rounded-xl border border-line', tone === 'plain' && className)}>
+      {tone === 'plain' && <span className={cn('absolute inset-x-0 top-0 h-[3px]', k.bar)} />}
+      <div className="flex flex-wrap items-center gap-1.5">
+        <span className={cn('inline-flex items-center gap-1 rounded-md border px-2 py-[3px] text-[10.5px] font-bold uppercase tracking-[0.06em]', k.badge)}><k.Icon className="size-3" />{k.label}</span>
+        <ClassChip c={classification} />
+        <span className="tnum ml-auto text-[12px] text-ink-3">30 Jun 08:30</span>
       </div>
-      <div className="mt-3 text-[14px] leading-[1.6] text-ink-2">{children}</div>
-      <Provenance className="mt-4" sources={sources} classification={classification} confidence={confidence} />
+      <h3 className="text-[15px] font-semibold leading-[1.35] text-ink">{heading}</h3>
+      <div className="text-[13.5px] leading-[1.55] text-ink-2">{children}</div>
+      <Provenance plain className="mt-auto pt-1" sources={sources} confidence={confidence} />
     </section>
   )
+  if (tone !== 'violet') return card
+  // Highlighted recommendation (.ai-card): 1.5px violet gradient frame
+  return <div className={cn('rounded-[14px] bg-gradient-to-r from-atlas-400 via-atlas-600 to-[#c084fc] p-[1.5px]', className)}>{card}</div>
 }
 
 export function Metric({ label, value, note, tone, tip, className }: { label: ReactNode; value: ReactNode; note?: ReactNode; tone?: 'bad' | 'warn' | 'ok'; tip?: ReactNode; className?: string }) {
   return (
     <div className={cn('min-w-0', className)}>
       <div className="flex items-center gap-1 text-[13px] font-medium text-ink-3">{label}{tip}</div>
-      <div className={cn('tnum mt-1 text-[22px] font-semibold leading-7 tracking-[-0.01em] text-ink', tone === 'bad' && 'text-bad', tone === 'warn' && 'text-warn', tone === 'ok' && 'text-ok')}>{value}</div>
+      <div className={cn('tnum mt-0.5 text-[24px] font-bold leading-7 tracking-[-0.02em] text-ink', tone === 'bad' && 'text-bad', tone === 'warn' && 'text-warn', tone === 'ok' && 'text-ok')}>{value}</div>
       {note && <div className="mt-0.5 text-[13px] leading-snug text-ink-3">{note}</div>}
     </div>
   )
@@ -138,8 +164,8 @@ export function Metric({ label, value, note, tone, tip, className }: { label: Re
 
 export function MetricGroup({ title, children, className }: { title: string; children: ReactNode; className?: string }) {
   return (
-    <section className={cn('rounded-xl border border-line bg-surface px-5 py-4', className)}>
-      <h3 className="eyebrow">{title}</h3>
+    <section className={cn('rounded-xl border border-line bg-surface px-[18px] py-4', className)}>
+      <h3 className="text-[13px] font-medium text-ink-3">{title}</h3>
       <div className="mt-3 grid gap-x-6 gap-y-4 [grid-template-columns:repeat(auto-fit,minmax(140px,1fr))]">{children}</div>
     </section>
   )
@@ -177,7 +203,7 @@ export function EvidenceStrip({ items }: { items: { title: string; doc: string; 
 export function SectionTitle({ children, aside, className }: { children: ReactNode; aside?: ReactNode; className?: string }) {
   return (
     <div className={cn('mb-3 flex flex-wrap items-end justify-between gap-2', className)}>
-      <h2 className="text-[18px] font-semibold tracking-[-0.012em] text-ink">{children}</h2>
+      <h2 className="text-[16px] font-semibold text-ink">{children}</h2>
       {aside}
     </div>
   )

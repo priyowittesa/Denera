@@ -1,10 +1,14 @@
 import { Check, ClipboardList, Pencil, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AuthorityLabel, Stamp } from '../components/atlas/chips'
 import { ScreenFrame } from '../components/atlas/frame'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
 import { Modal } from '../components/ui/sheet'
+import { SelectInput } from '../components/ui/form'
+import { ReasonModal } from '../components/atlas/ReasonModal'
+import { Field, ReadOnly, TextInput } from '../components/ui/form'
+import { fmtDate, weekdayOf } from '../lib/date'
 import { Tip } from '../components/ui/tooltip'
 import { MEETING_ITEMS, MEETING_NOTE, isOverdue, type MeetingItem } from '../data/registers'
 import { cn } from '../lib/cn'
@@ -17,8 +21,6 @@ export function S05Meetings() {
   const [hover, setHover] = useState<number | null>(null)
   const [editing, setEditing] = useState<MeetingItem | null>(null)
   const [rejecting, setRejecting] = useState<MeetingItem | null>(null)
-  const [due, setDue] = useState('2027-07-06')
-  const [reason, setReason] = useState('Not discussed as an action')
   const confirmed = useDemo((s) => s.confirmed)
   const rejected = useDemo((s) => s.rejected)
   const edits = useDemo((s) => s.edits)
@@ -35,7 +37,7 @@ export function S05Meetings() {
     const e = edits[m.id]
     confirm(`meet-${m.id}`, m.title)
     if (m.kind === 'Action')
-      addAction({ title: m.title, owner: m.owner, authority: m.authority, due: e?.due ?? m.due.replace(' (a Sunday)', ''), dueIso: e?.dueIso ?? m.dueIso, status: 'Not started', linked: m.linked, source: 'Steering committee 29 Jun' }, 'Confirmed by the chair and added to the register')
+      addAction({ title: m.title, owner: e?.owner ?? m.owner, authority: m.authority, due: e?.due ?? m.due.replace(' (a Sunday)', ''), dueIso: e?.dueIso ?? m.dueIso, status: 'Not started', linked: m.linked, source: 'Steering committee 29 Jun' }, 'Confirmed by the chair and added to the register')
   }
 
   const overdue = actions.filter(isOverdue)
@@ -47,10 +49,10 @@ export function S05Meetings() {
       statusLabel={`${MEETING_ITEMS.filter((m) => !confirmed[`meet-${m.id}`] && !rejected[`meet-${m.id}`]).length} awaiting the chair`}
       aside={<Button variant="outline" onClick={() => setRegister(true)}><ClipboardList />Open action register</Button>}
     >
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-        <Card className="p-6">
+      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] [&>*:first-child]:lg:sticky [&>*:first-child]:lg:top-4">
+        <Card className="px-[18px] py-4">
           <div className="text-[12px] font-medium text-ink-3">{MEETING_NOTE.date} · Chair: {MEETING_NOTE.chair}</div>
-          <h2 className="mt-1 text-[15px] font-semibold text-ink">{MEETING_NOTE.title}</h2>
+          <h2 className="mt-1 text-[16px] font-semibold text-ink">{MEETING_NOTE.title}</h2>
           <div className="mt-4 space-y-3 text-[14px] leading-relaxed text-ink-2">
             {MEETING_NOTE.paragraphs.map((p, i) => (
               <p key={i} className={cn('rounded-md px-2 py-1 transition-colors', hover === i && 'bg-[#fff6c9] text-ink')}>{p}</p>
@@ -60,7 +62,7 @@ export function S05Meetings() {
 
         <div>
           <div className="mb-3 flex items-baseline justify-between">
-            <h2 className="text-[15px] font-semibold text-ink">Proposed by ATLAS</h2>
+            <h2 className="text-[16px] font-semibold text-ink">Proposed by ATLAS</h2>
             {!chair && <span className="text-[12px] text-ink-3">View only. Chair confirms.</span>}
           </div>
           <ul className="space-y-2.5">
@@ -78,7 +80,7 @@ export function S05Meetings() {
                     <AuthorityLabel a={m.authority} />
                   </div>
                   <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-ink-2">
-                    <span><span className="text-ink-3">Owner </span>{m.owner === 'Unclear' ? <span className="font-medium text-bad">Unclear</span> : m.owner}</span>
+                    <span><span className="text-ink-3">Owner </span>{e?.owner && e.owner !== m.owner ? <><s className="text-ink-4">{m.owner}</s> {e.owner}</> : m.owner === 'Unclear' ? <span className="font-medium text-bad">Unclear</span> : m.owner}</span>
                     <span className="tnum"><span className="text-ink-3">Due </span>{e ? <><s className="text-ink-4">{m.due}</s> {e.due}</> : m.due}</span>
                     <span><span className="text-ink-3">Linked </span>{m.linked}</span>
                   </div>
@@ -88,7 +90,7 @@ export function S05Meetings() {
                       <>
                         <Stamp kind="extracted" />
                         <span className="flex-1" />
-                        <Tip content={chair ? 'Edit owner or due date before confirming' : 'Chair only'}><span><Button size="sm" variant="ghost" disabled={!chair} onClick={() => { setEditing(m); setDue(m.dueIso === '2027-07-04' ? '2027-07-06' : (m.dueIso ?? '2027-07-06')) }}><Pencil />Edit</Button></span></Tip>
+                        <Tip content={chair ? 'Edit owner or due date before confirming' : 'Chair only'}><span><Button size="sm" variant="ghost" disabled={!chair} onClick={() => setEditing(m)}><Pencil />Edit</Button></span></Tip>
                         <Tip content={chair ? 'Reject with a reason' : 'Chair only'}><span><Button size="sm" variant="outline" disabled={!chair} onClick={() => setRejecting(m)}><X />Reject</Button></span></Tip>
                         <Tip content={chair ? (m.kind === 'Decision' ? 'Record the deferral' : 'Create the action in the register') : 'Chair only'}><span><Button size="sm" disabled={!chair} onClick={() => doConfirm(m)}><Check />{m.kind === 'Decision' ? 'Confirm deferral' : 'Confirm'}</Button></span></Tip>
                       </>
@@ -102,17 +104,17 @@ export function S05Meetings() {
       </div>
 
       <section className="mt-6 grid items-start gap-4 md:grid-cols-3">
-        <Card className="p-5">
+        <Card className="px-[18px] py-4">
           <div className="text-[13px] font-medium text-ink-3">Overdue actions</div>
           <div className="tnum text-[28px] font-semibold text-bad">{overdue.length}</div>
           <ul className="mt-2 space-y-1.5 text-[13px]">{overdue.map((a) => <li key={a.id}><span className="text-ink">{a.title}</span><span className="block text-ink-3">{a.owner} · was due {a.due} · <AuthorityLabel a={a.authority} /></span></li>)}</ul>
         </Card>
-        <Card className="p-5">
+        <Card className="px-[18px] py-4">
           <div className="text-[13px] font-medium text-ink-3">Deferred decisions</div>
           <div className="tnum text-[28px] font-semibold text-ink">1</div>
           <p className="mt-2 text-[13px] text-ink-2">Boiler island recovery strategy. Reason: waiting for the revised recovery programme. Now in the Decision room.</p>
         </Card>
-        <Card className="p-5">
+        <Card className="px-[18px] py-4">
           <div className="text-[13px] font-medium text-ink-3">Action closure rate</div>
           <div className="tnum text-[28px] font-semibold text-ink">71%</div>
           <div className="mt-2 h-2 rounded-full bg-sunken"><div className="h-full rounded-full bg-series-verified" style={{ width: '71%' }} /></div>
@@ -120,16 +122,50 @@ export function S05Meetings() {
         </Card>
       </section>
 
-      <Modal open={!!editing} onOpenChange={(v) => !v && setEditing(null)} title="Edit before confirming" description={editing?.title} footer={<><Button variant="ghost" onClick={() => setEditing(null)}>Cancel</Button><Button onClick={() => { const d = new Date(`${due}T00:00:00Z`); const label = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).replace(',', ''); setEdit(editing!.id, label, due); setEditing(null) }}>Save</Button></>}>
-        <label htmlFor="due" className="text-[13px] font-medium text-ink-2">Due date</label>
-        <input id="due" type="date" value={due} onChange={(e) => setDue(e.target.value)} className="tnum mt-1 block w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500" />
-        {editing?.id === 'M3' && <p className="mt-2 text-[13px] text-ink-3">ATLAS proposed 4 Jul 2027, which is a Sunday. Tuesday 6 Jul 2027 is suggested.</p>}
-      </Modal>
+      <EditItemModal item={editing} current={editing ? edits[editing.id] : undefined} onClose={() => setEditing(null)} onSave={(due, dueIso, owner) => setEdit(editing!.id, due, dueIso, owner)} />
 
-      <Modal open={!!rejecting} onOpenChange={(v) => !v && setRejecting(null)} title="Reject proposed item" description={rejecting?.title} footer={<><Button variant="ghost" onClick={() => setRejecting(null)}>Cancel</Button><Button disabled={!reason.trim()} onClick={() => { reject(`meet-${rejecting!.id}`, reason.trim(), rejecting!.title); setRejecting(null) }}>Reject with reason</Button></>}>
-        <label htmlFor="rr" className="text-[13px] font-medium text-ink-2">Reason</label>
-        <textarea id="rr" rows={3} value={reason} onChange={(e) => setReason(e.target.value)} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500" />
-      </Modal>
+      <ReasonModal open={!!rejecting} onClose={() => setRejecting(null)} title="Reject proposed item" description={rejecting?.title} initial={rejecting?.id === 'M6' ? 'Not discussed as an action' : ''} onConfirm={(r) => reject(`meet-${rejecting!.id}`, r, rejecting!.title)} danger />
     </ScreenFrame>
+  )
+}
+
+const OWNERS = ['Commercial and Legal Lead', 'Commercial Lead', 'Technical Director', 'Procurement Lead', 'Finance Lead', 'PMO Director', 'Project Director', 'Site manager']
+
+/** Chair edits the owner and due date of a proposed item before confirming it. */
+function EditItemModal({ item, current, onClose, onSave }: { item: MeetingItem | null; current?: { due: string; dueIso: string; owner?: string }; onClose: () => void; onSave: (due: string, dueIso: string, owner: string) => void }) {
+  const [owner, setOwner] = useState('')
+  const [due, setDue] = useState('')
+  const [tried, setTried] = useState(false)
+  useEffect(() => {
+    if (!item) return
+    setOwner(current?.owner ?? (item.owner === 'Unclear' ? '' : item.owner))
+    setDue(current?.dueIso ?? (item.dueIso === '2027-07-04' ? '2027-07-06' : item.dueIso ?? ''))
+    setTried(false)
+  }, [item, current])
+  const ownerErr = tried && !owner && 'Choose a named owner. An item cannot enter the register without one.'
+  const dueErr = tried && !due && 'Enter a due date.'
+  const weekend = due && [0, 6].includes(weekdayOf(due))
+  return (
+    <Modal
+      open={!!item}
+      onOpenChange={(v) => !v && onClose()}
+      title="Edit before confirming"
+      description={item?.title}
+      onSubmit={() => { setTried(true); if (owner && due) { onSave(fmtDate(due, true), due, owner); onClose() } }}
+      footer={<><Button variant="outline" type="button" onClick={onClose}>Cancel</Button><Button type="submit"><Check />Save changes</Button></>}
+    >
+      {item && <ReadOnly items={[['Kind', item.kind], ['Authority', item.authority], ['Linked to', item.linked], ['Proposed by ATLAS', `${item.owner}, ${item.due}`]]} />}
+      <Field label="Owner" required error={ownerErr}>
+        {(id, d) => (
+          <SelectInput id={id} aria-describedby={d} value={owner} onChange={(e) => setOwner(e.target.value)} invalid={!!ownerErr}>
+            <option value="">Choose an owner</option>
+            {OWNERS.map((o) => <option key={o}>{o}</option>)}
+          </SelectInput>
+        )}
+      </Field>
+      <Field label="Due date" required error={dueErr} hint={weekend ? `${fmtDate(due, true)} falls on a weekend.` : item?.id === 'M3' ? 'ATLAS proposed 4 Jul 2027, a Sunday. Tuesday 6 Jul 2027 is suggested.' : undefined}>
+        {(id, d) => <TextInput id={id} aria-describedby={d} type="date" value={due} onChange={(e) => setDue(e.target.value)} invalid={!!dueErr} />}
+      </Field>
+    </Modal>
   )
 }

@@ -108,7 +108,7 @@ export default function App() {
           </Route>
         </Routes>
       </HashRouter>
-      <Toaster position="bottom-right" offset={72} toastOptions={{ style: { fontFamily: 'Geist, sans-serif', fontSize: 13 } }} />
+      <Toaster position="bottom-right" offset={72} toastOptions={{ style: { fontFamily: 'Inter, sans-serif', fontSize: 13 } }} />
     </TooltipProvider>
   )
 }

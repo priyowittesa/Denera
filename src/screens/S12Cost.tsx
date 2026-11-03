@@ -40,7 +40,7 @@ export function S12Cost() {
           ['Forecast variance', '+Rp110 bn', isPcu ? 'Rp65 bn from contingency' : 'Rp65 bn contingency, Rp45 bn shareholder funding', 'bad'],
           ['Delay-linked revenue deferred', `USD ${(revenuePerDay() * 42 / 1e6).toFixed(1)} m`, '42 days, from the calculator below'],
         ]} />
-        <Group title="Contingency" note="Illustrative until Denera finance confirms" items={[
+        <Group title="Contingency" items={[
           ['Contingency available', 'Rp176 bn', '6.3% of CAPEX, outside approved CAPEX'],
           ['Forecast use', 'Rp65 bn'],
           ['Remaining', 'Rp111 bn', '63% of reserve'],
@@ -56,7 +56,7 @@ export function S12Cost() {
 
       <div className="mt-5 grid gap-5 lg:grid-cols-2">
         <Card>
-          <CardHeader title="Approved to forecast CAPEX" sub="Axis starts at Rp2,700 bn so the steps are visible" />
+          <CardHeader title="Approved to forecast CAPEX" sub="Rp bn" />
           <CardBody><Waterfall pcu={isPcu} /></CardBody>
         </Card>
         <Card>
@@ -68,8 +68,8 @@ export function S12Cost() {
       <Calculator days={days} setDays={setDays} pcu={isPcu} />
 
       <section id="scenarios" className="mt-8 scroll-mt-20">
-        <SectionTitle aside={<span className="text-[12px] text-ink-3">Advisory. Selecting a scenario also updates the S-curve forecast.</span>}>What-if scenarios against remaining contingency</SectionTitle>
-        <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_300px]">
+        <SectionTitle aside={<span className="text-[12px] text-ink-3">Selecting a scenario updates the S-curve forecast</span>}>What-if scenarios against remaining contingency</SectionTitle>
+        <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_300px] [&>*:last-child]:xl:sticky [&>*:last-child]:xl:top-4">
           <Card className="overflow-x-auto">
             <table className="w-full min-w-[760px] text-[13px]">
               <thead className="border-b border-line text-left text-[12px] text-ink-3">
@@ -89,7 +89,7 @@ export function S12Cost() {
                 ))}
               </tbody>
             </table>
-            <p className="border-t border-line-soft px-5 py-3 text-[12px] text-ink-3">Remaining contingency before scenario cost: Rp111 bn. Assumptions: acceleration and freight rates from vendor quotes; FX at Rp16,500 per USD; no change to EPC liquidated damages.</p>
+            <p className="border-t border-line-soft px-5 py-3 text-[12px] text-ink-3">Remaining contingency before scenario cost: Rp111 bn. Acceleration and freight rates from vendor quotes; FX at Rp16,500 per USD.</p>
           </Card>
           <ContingencyGauge remaining={remaining} rating={selected?.rating ?? 'Yellow, escalation'} />
         </div>
@@ -97,11 +97,11 @@ export function S12Cost() {
 
       <div className="mt-8 grid items-start gap-5 lg:grid-cols-2">
         <Card>
-          <CardHeader title="Cost variance by package" sub="Forecast, Rp bn, sums to 110" />
+          <CardHeader title="Cost variance by package" sub="Forecast overrun, Rp bn" />
           <CardBody><HBars rows={VARIANCE_BY_PACKAGE} total={110} /></CardBody>
         </Card>
         <Card>
-          <CardHeader title="Planned against actual monthly spend" sub="Rp bn, derived from the cumulative S-curve series" />
+          <CardHeader title="Planned against actual monthly spend" sub="Rp bn per month" />
           <CardBody>
             <div className="h-[230px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -150,7 +150,7 @@ export function S12Cost() {
           <CardBody className="grid gap-5 md:grid-cols-[220px_1fr]">
             <div><div className="text-[12px] text-ink-3">Requirement</div><div className="tnum text-[22px] font-semibold text-ink">Rp312 bn</div><div className="text-[12px] text-ink-3">Assumed input, from the cashflow forecast</div></div>
             <ul className="space-y-2 text-[13px]">
-              {[['CP-1', 'Updated insurance certificates'], ['CP-2', "Independent engineer's progress certificate"]].map(([k, v]) => (
+              {[['CP-1', 'Updated insurance certificates, to the Facility Agent'], ['CP-2', "Independent Engineer's progress certificate"]].map(([k, v]) => (
                 <li key={k} className="flex items-center justify-between rounded-md bg-sunken px-3 py-2"><span><b className="font-semibold text-ink">{k}</b> {v}</span><StatusChip h="Yellow" label="Open" /></li>
               ))}
             </ul>
@@ -249,8 +249,8 @@ function ContingencyGauge({ remaining, rating }: { remaining: number | null; rat
   const pct = remaining === null ? null : (remaining / 176) * 100
   const near = remaining !== null && remaining < 20
   return (
-    <Card className="p-5">
-      <h3 className="text-[13px] font-semibold text-ink">Contingency after scenario</h3>
+    <Card className="px-[18px] py-4">
+      <h3 className="text-[14px] font-semibold text-ink">Contingency after scenario</h3>
       <div className="tnum mt-3 text-[28px] font-semibold leading-none text-ink">{remaining === null ? 'To be confirmed' : `Rp${remaining} bn`}</div>
       <div className="mt-1 text-[13px] text-ink-3">{pct === null ? 'Range crosses the 60-day line' : `${Math.round(pct)}% of the Rp176 bn reserve`}</div>
       <div className="relative mt-4 h-3 rounded-full bg-sunken">
@@ -286,7 +286,7 @@ function Calculator({ days, setDays, pcu }: { days: number; setDays: (n: number)
   )
   return (
     <Card className="mt-5">
-      <CardHeader title="Delay-linked revenue calculator" sub="Revenue deferred, not necessarily lost. Depends on PPA delay and deemed-commissioning terms and on EPC liquidated damages. Illustrative until those terms are loaded." />
+      <CardHeader title="Delay-linked revenue calculator" sub="Revenue deferred, not necessarily lost. Depends on PPA delay terms and EPC liquidated damages." />
       <CardBody className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -305,7 +305,7 @@ function Calculator({ days, setDays, pcu }: { days: number; setDays: (n: number)
               const r = res(d)
               return (
                 <tr key={d} className={cn(d === days && 'font-semibold')}>
-                  <td className="py-2.5">{d} days{d === days && <span className="ml-1.5 rounded-sm bg-atlas-100 px-1 py-0.5 text-[12px] font-medium text-atlas-700">input</span>}</td>
+                  <td className="py-2.5">{d} days{d === days && <span className="ml-1.5 rounded-full border border-atlas-200 bg-atlas-50 px-2 py-0.5 text-[12px] font-medium text-atlas-700">input</span>}</td>
                   <td className="py-2.5 text-right text-ink">USD {r.usd} m <span className="text-ink-3">(Rp{r.rp} bn)</span></td>
                   {!pcu && <td className="py-2.5 text-right text-ink">Rp{r.share} bn</td>}
                 </tr>

@@ -155,7 +155,7 @@ export const ANSWERS: Record<string, Answer> = {
   },
   'A-15': {
     id: 'A-15', wave: 'W1', kind: 'oos', q: '',
-    direct: 'I can only answer the questions in this demonstration. Try one of the suggested questions, or ask about notices, gates, progress, packages, cost or decisions for PSEL Cakrawala Raya.',
+    direct: 'I do not have governed data to answer that yet. Ask about notices, gates, progress, packages, cost or decisions for PSEL Cakrawala Raya, or pick one of the suggested questions.',
   },
   'A-16': {
     id: 'A-16', wave: 'W3', kind: 'full', table: true, label: 'AI draft', q: 'Prepare a recovery-action tracker for the weekly PMO meeting.',

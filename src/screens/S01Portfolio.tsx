@@ -1,4 +1,4 @@
-import { ArrowRight, Flag, HardHat, Info, KeyRound } from 'lucide-react'
+import { ArrowRight, CalendarClock, Flag, HardHat, HeartPulse, Info, KeyRound, ListChecks, Package, PiggyBank, Scale, Wallet, type LucideIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { HEALTH_ICON, StatusChip } from '../components/atlas/chips'
@@ -36,62 +36,32 @@ export function S01Portfolio() {
         </Pop>
       }
     >
-      <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-        <Card className="overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between gap-3 px-5 pt-4">
-            <h2 className="text-[15px] font-semibold text-ink">Where the programme stands</h2>
-            <Segmented<Lane> label="Lane" value={lane} onChange={setLane} items={[{ value: 'construction', label: 'In construction (3)' }, { value: 'pre', label: 'Pre-investment gates (8)' }]} />
-          </div>
-          <IndonesiaMap lane={lane} onOpen={(to) => nav(to)} />
-        </Card>
-
-        <div className="grid gap-4">
-          <KpiGroup title="Delivery" items={[
-            ['Approved CAPEX in construction', 'Rp7,250 bn', '3 plants in construction'],
-            ['Largest COD exposure', `${K.largestExposure} days`, 'PSEL Cakrawala Raya', 'bad'],
-            ['Projects by health', <span key="h" className="flex flex-wrap gap-x-3 whitespace-nowrap text-[18px]"><span className="text-ok">1 Green</span><span className="text-warn">2 Yellow</span><span className="text-ink-3">0 Red</span></span>, 'Construction lane'],
-            ['Contingency forecast use', <span key="c" className="text-[18px]">37% · 18% · <span className="text-ink-4">n/a</span></span>, 'Cakrawala · Nusa Bahari · Sinar Lestari (no data)'],
-          ]} />
-          <KpiGroup title="Governance" items={[
-            ['Long-lead packages above 14 days', String(K.longLeadAbove14), 'Boiler island, flue-gas treatment', 'warn'],
-            ['Decisions due this week', String(K.decisionsThisWeek), 'Two for the project company board'],
-            ['Information-rights coverage', '9 of 12', '75% of required feeds agreed'],
-            ['Pre-investment gates at risk', String(K.gatesAtRisk), 'P2-06, P2-07 permits', 'warn'],
-          ]} />
-        </div>
+      {/* Stat row, as in the ATLAS module: icon tile, label, value, caption. 4 across, 2 on tablets, 1 on phones. */}
+      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-4">
+        <Stat icon={Wallet} label="Approved CAPEX in construction" value="Rp7,250 bn" cap="3 plants in construction" />
+        <Stat icon={CalendarClock} label="Largest COD exposure" value={`${K.largestExposure} days`} cap="PSEL Cakrawala Raya" tone="bad" />
+        <Stat icon={HeartPulse} label="Projects by health" value={<span className="flex flex-wrap gap-x-2.5"><span className="text-ok">1 Green</span><span className="text-warn">2 Yellow</span><span className="text-ink-3">0 Red</span></span>} cap="Construction lane" />
+        <Stat icon={PiggyBank} label="Contingency forecast use" value={<>37% · 18% · <span className="text-ink-4">n/a</span></>} cap="Cakrawala · Nusa Bahari · Sinar Lestari" />
+        <Stat icon={Package} label="Long-lead packages above 14 days" value={String(K.longLeadAbove14)} cap="Boiler island, flue-gas treatment" tone="warn" />
+        <Stat icon={Scale} label="Decisions due this week" value={String(K.decisionsThisWeek)} cap="Two for the project company board" />
+        <Stat icon={KeyRound} label="Information-rights coverage" value="9 of 12" cap="75% of required feeds agreed" />
+        <Stat icon={ListChecks} label="Pre-investment gates at risk" value={String(K.gatesAtRisk)} cap="P2-06, P2-07 permits" tone="warn" />
       </div>
 
-      <div className="mt-6 grid gap-5 2xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-        <section>
-          {lane === 'construction' ? (
-            <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]">
-              {CONSTRUCTION.map((p, i) => <ConstructionCard key={p.id} p={p} i={i} />)}
-            </div>
-          ) : (
-            <div className="grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(176px,1fr))]">
-              {PRE_INVESTMENT.map((p, i) => (
-                <button key={p.id} onClick={() => nav(`/gates?project=${p.id}`)} style={{ animationDelay: `${i * 30}ms` }} className={cn('press flex animate-rise flex-col rounded-xl border bg-surface p-4 text-left hover:border-atlas-300', p.atRisk ? 'border-warn/40' : 'border-line')}>
-                  <div className="flex h-6 items-center justify-between gap-2">
-                    <span className="text-[14px] font-semibold text-ink">{p.id}</span>
-                    {p.atRisk ? <StatusChip h="Yellow" label="At risk" /> : p.floa ? <span className="whitespace-nowrap rounded-sm bg-ok-bg px-1.5 py-0.5 text-[12px] font-medium text-ok">FLOA held</span> : null}
-                  </div>
-                  <div className="text-[12px] text-ink-3">{p.island}</div>
-                  <div className="mt-3 text-[12px] text-ink-3">Next gate</div>
-                  <div className="text-[13px] font-medium leading-snug text-ink">{p.nextGate}</div>
-                  <div className="tnum text-[13px] text-ink-2">{p.date}</div>
-                  <div className={cn('mt-auto whitespace-nowrap pt-3 text-[12px]', p.atRisk ? 'font-medium text-warn' : 'text-ink-3')}>{p.open} open condition{p.open > 1 ? 's' : ''}</div>
-                </button>
-              ))}
-            </div>
-          )}
-          <p className="mt-3 text-[12px] text-ink-3">Coverage: 11 projects shown. Health is computed only where a status feed exists.</p>
-        </section>
+      <div className="mt-[18px] grid grid-cols-1 gap-[18px] xl:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+        <Card className="flex flex-col overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between gap-3 px-[18px] pt-4">
+            <h2 className="text-[16px] font-semibold text-ink">Where the programme stands</h2>
+            <Segmented<Lane> label="Lane" value={lane} onChange={setLane} items={[{ value: 'construction', label: 'In construction (3)' }, { value: 'pre', label: 'Pre-investment gates (8)' }]} />
+          </div>
+          <div className="flex flex-1 flex-col justify-center"><IndonesiaMap lane={lane} onOpen={(to) => nav(to)} /></div>
+        </Card>
 
-        <AtlasCard title="ATLAS weekly brief" sources={[{ label: 'Health computation run R5', doc: 'epc-schedule' }, { label: 'Notice register', doc: 'epc-14-2' }, { label: 'Permit register', doc: 'permit-register' }]} classification="Advisory" confidence="High">
+        <AtlasCard className="h-full" title="ATLAS weekly brief" sources={[{ label: 'Health computation run R5', doc: 'epc-schedule' }, { label: 'Notice register', doc: 'epc-14-2' }, { label: 'Permit register', doc: 'permit-register' }]} classification="Advisory" confidence="High">
           <ul className="space-y-1">
             {WEEKLY_BRIEF.map((b) => (
               <li key={b.text}>
-                <button onClick={() => nav(b.to)} className="press group flex w-full items-start justify-between gap-3 rounded-md px-2 py-2 text-left text-ink hover:bg-sunken">
+                <button onClick={() => nav(b.to)} className="press group flex w-full items-start justify-between gap-3 rounded-md px-2 py-2.5 text-left text-ink hover:bg-sunken">
                   <span>{b.text}</span>
                   <ArrowRight className="mt-0.5 size-4 shrink-0 text-atlas-700 opacity-60 group-hover:opacity-100" />
                 </button>
@@ -100,24 +70,48 @@ export function S01Portfolio() {
           </ul>
         </AtlasCard>
       </div>
+
+      <section className="mt-[18px]">
+        <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="text-[16px] font-semibold text-ink">{lane === 'construction' ? 'Projects in construction' : 'Pre-investment projects'}</h2>
+          <p className="text-[12px] text-ink-3">Coverage: 11 projects shown. Health is computed only where a status feed exists.</p>
+        </div>
+        {lane === 'construction' ? (
+          <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2 xl:grid-cols-3">
+            {CONSTRUCTION.map((p, i) => <ConstructionCard key={p.id} p={p} i={i} />)}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-8">
+            {PRE_INVESTMENT.map((p, i) => (
+              <button key={p.id} onClick={() => nav(`/gates?project=${p.id}`)} style={{ animationDelay: `${i * 30}ms` }} className={cn('press flex animate-rise flex-col rounded-xl border bg-surface p-4 text-left hover:border-atlas-300', p.atRisk ? 'border-warn-line' : 'border-line')}>
+                <div className="flex h-6 items-center justify-between gap-2">
+                  <span className="text-[14px] font-semibold text-ink">{p.id}</span>
+                  {p.atRisk ? <StatusChip h="Yellow" label="At risk" /> : p.floa ? <span className="whitespace-nowrap rounded-full border border-ok-line bg-ok-bg px-2 py-0.5 text-[12px] font-medium text-ok">FLOA held</span> : null}
+                </div>
+                <div className="text-[12px] text-ink-3">{p.island}</div>
+                <div className="mt-3 text-[12px] text-ink-3">Next gate</div>
+                <div className="text-[13px] font-medium leading-snug text-ink">{p.nextGate}</div>
+                <div className="tnum text-[13px] text-ink-2">{p.date}</div>
+                <div className={cn('mt-auto whitespace-nowrap pt-3 text-[12px]', p.atRisk ? 'font-medium text-warn' : 'text-ink-3')}>{p.open} open condition{p.open > 1 ? 's' : ''}</div>
+              </button>
+            ))}
+          </div>
+        )}
+      </section>
     </ScreenFrame>
   )
 }
 
-function KpiGroup({ title, items }: { title: string; items: [string, React.ReactNode, string, ('bad' | 'warn')?][] }) {
+function Stat({ icon: I, label, value, cap, tone }: { icon: LucideIcon; label: string; value: React.ReactNode; cap: string; tone?: 'bad' | 'warn' }) {
   return (
-    <section className="rounded-xl border border-line bg-surface px-5 py-4">
-      <h3 className="text-[13px] font-semibold text-ink-2">{title}</h3>
-      <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-4">
-        {items.map(([l, v, n, tone]) => (
-          <div key={l}>
-            <div className="text-[12px] font-medium text-ink-3">{l}</div>
-            <div className={cn('tnum mt-0.5 text-[22px] font-semibold leading-8 tracking-[-0.01em] text-ink', tone === 'bad' && 'text-bad', tone === 'warn' && 'text-warn')}>{v}</div>
-            <div className="text-[12px] leading-snug text-ink-3">{n}</div>
-          </div>
-        ))}
+    <div className="flex items-start gap-3.5 rounded-xl border border-line bg-surface px-[18px] py-4">
+      <span className={cn('grid size-[38px] shrink-0 place-items-center rounded-[9px]', tone === 'bad' ? 'bg-bad-bg text-bad' : tone === 'warn' ? 'bg-warn-bg text-warn' : 'bg-atlas-100 text-atlas-600')}><I className="size-[19px]" /></span>
+      <div className="min-w-0">
+        <div className="text-[13px] text-ink-3">{label}</div>
+        <div className={cn('tnum mt-0.5 text-[24px] font-bold leading-tight tracking-[-0.02em] text-ink', tone === 'bad' && 'text-bad', tone === 'warn' && 'text-warn')}>{value}</div>
+        <div className="mt-0.5 text-[12px] text-ink-3">{cap}</div>
       </div>
-    </section>
+    </div>
   )
 }
 
@@ -136,6 +130,8 @@ function ConstructionCard({ p, i }: { p: (typeof CONSTRUCTION)[number]; i: numbe
       <dl className="tnum mt-3 grid grid-cols-2 gap-2 px-4 text-[13px]">
         <div><dt className="text-ink-3">CAPEX</dt><dd className="whitespace-nowrap font-medium text-ink">Rp{p.capex.toLocaleString('en-US')} bn</dd></div>
         <div><dt className="text-ink-3">COD target</dt><dd className="whitespace-nowrap font-medium text-ink">{p.cod}</dd></div>
+        <div><dt className="text-ink-3">Contingency</dt><dd className="whitespace-nowrap font-medium text-ink">Rp{p.contingencyBn} bn <span className="font-normal text-ink-3">{p.forecastUseBn === null ? '· use n/a' : `· ${p.contingencyUse} used`}</span></dd></div>
+        <div><dt className="text-ink-3">Net capacity</dt><dd className="whitespace-nowrap font-medium text-ink">{p.netMw.toFixed(1)} MW</dd></div>
       </dl>
       <div className="mt-auto space-y-1 border-t border-line-soft p-3 pt-2.5">
         <button onClick={() => nav('/partner-data')} className="press flex w-full items-center gap-1.5 rounded px-1 py-1 text-[13px] text-ink-2 hover:bg-sunken"><KeyRound className="size-3.5 shrink-0 text-ink-3" /><span className="whitespace-nowrap">Information rights <b className="tnum font-semibold text-ink">{p.rights}</b></span></button>

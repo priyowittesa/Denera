@@ -5,6 +5,10 @@ export const PROJECT = {
   name: 'PSEL Cakrawala Raya',
   island: 'Java',
   stage: 'EPC execution',
+  /** Fictional organisation names from the master data workbook (SYN-07) */
+  projectCompany: 'PT Cakrawala Raya Energi',
+  epcContractor: 'Arunika EPC Joint Operation',
+  netCapacityMw: 33.5,
   groundbreaking: '3 Aug 2026',
   targetCod: '30 Jun 2028',
   dataDate: '30 Jun 2027',
@@ -95,7 +99,7 @@ export const FIN_DEFS: { plain: string; term: string; def: string }[] = [
   { plain: 'Cost gap', term: 'Cost variance (CV)', def: 'EV minus AC = minus Rp46 bn' },
   { plain: 'Forecast final cost', term: 'Management EAC', def: 'Rp2,910 bn, built from commitments, expected change orders and risks' },
   { plain: 'Forecast range', term: 'EAC range', def: 'Method (a), remaining work at budget: 1,138 + 1,708 = Rp2,846 bn. Method (b), CPI trend: 2,800 / 0.96 = Rp2,918 bn. ATLAS flags a gap above 2% between management EAC and the CPI-trend figure; here 0.3%.' },
-  { plain: 'Contingency', term: 'Reserve outside approved CAPEX', def: 'Rp176 bn (6.3% of CAPEX), drawn only for delivery risk events approved by the steering committee. Forecast use Rp65 bn, leaving Rp111 bn (63%). Alert when remaining falls below 10% (Rp17.6 bn). Illustrative until Denera finance confirms.' },
+  { plain: 'Contingency', term: 'Reserve outside approved CAPEX', def: 'Rp176 bn (6.3% of CAPEX), drawn only for delivery risk events approved by the steering committee. Forecast use Rp65 bn, leaving Rp111 bn (63%). Alert when remaining falls below 10% (Rp17.6 bn).' },
 ]
 
 export const PROGRAM_TERMS: { term: string; def: string }[] = [
@@ -105,7 +109,7 @@ export const PROGRAM_TERMS: { term: string; def: string }[] = [
   { term: 'FLOA', def: 'Final letter of award' },
   { term: 'FID', def: 'Final investment decision' },
   { term: 'COD', def: 'Commercial operation date' },
-  { term: 'PPA', def: 'Power purchase agreement with PLN' },
+  { term: 'PPA', def: 'Power purchase agreement with the Offtaker' },
   { term: 'SHA', def: 'Shareholder agreement' },
   { term: 'CP', def: 'Condition precedent' },
   { term: 'EPC', def: 'Engineering, procurement and construction' },

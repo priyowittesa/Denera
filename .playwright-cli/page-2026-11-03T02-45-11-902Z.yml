@@ -1,0 +1,79 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - complementary [ref=e5]:
+      - generic [ref=e6]: ATLAS
+      - navigation "Modules" [ref=e23]:
+        - generic [ref=e25]:
+          - button "Delivery" [expanded] [ref=e26] [cursor=pointer]
+          - generic [ref=e33]:
+            - link "Portfolio" [ref=e35] [cursor=pointer]:
+              - /url: "#/portfolio"
+            - link "Cockpit" [ref=e43] [cursor=pointer]:
+              - /url: "#/cockpit"
+            - link "Progress and S-curve" [ref=e49] [cursor=pointer]:
+              - /url: "#/progress"
+            - link "Critical path" [ref=e55] [cursor=pointer]:
+              - /url: "#/critical-path"
+            - link "Procurement" [ref=e62] [cursor=pointer]:
+              - /url: "#/procurement"
+            - link "Cost and investment" [ref=e69] [cursor=pointer]:
+              - /url: "#/cost"
+        - generic [ref=e74]:
+          - button "Governance" [expanded] [ref=e75] [cursor=pointer]
+          - generic [ref=e82]:
+            - link "Pre-investment gates" [ref=e84] [cursor=pointer]:
+              - /url: "#/gates"
+            - link "Notices and obligations" [ref=e90] [cursor=pointer]:
+              - /url: "#/notices"
+            - link "Partner data and rights" [ref=e97] [cursor=pointer]:
+              - /url: "#/partner-data"
+            - link "Meetings and actions 2" [ref=e103] [cursor=pointer]:
+              - /url: "#/meetings"
+              - generic [ref=e108]: Meetings and actions
+              - generic [ref=e109]: "2"
+            - link "Ask ATLAS" [ref=e111] [cursor=pointer]:
+              - /url: "#/ask"
+            - link "Governance packs" [ref=e116] [cursor=pointer]:
+              - /url: "#/packs"
+        - generic [ref=e122]:
+          - button "Decisions and automation" [expanded] [ref=e123] [cursor=pointer]
+          - generic [ref=e129]:
+            - link "Decision room" [ref=e131] [cursor=pointer]:
+              - /url: "#/decisions"
+            - link "Orchestration Console 5" [ref=e138] [cursor=pointer]:
+              - /url: "#/orchestration"
+              - generic [ref=e143]: Orchestration Console
+              - generic [ref=e144]: "5"
+      - generic [ref=e145]:
+        - generic [ref=e146]: Demo workspace
+        - text: Demonstration data for Denera, data date 30 Jun 2027.
+        - button "Reset demo" [ref=e147] [cursor=pointer]
+    - generic [ref=e148]:
+      - banner [ref=e149]:
+        - navigation "Breadcrumb" [ref=e150]:
+          - generic [ref=e151]: Denera
+          - generic [ref=e154]: Screen
+        - generic [ref=e155]:
+          - generic [ref=e156]:
+            - text: Data date
+            - generic [ref=e158]: 30 Jun 2027
+            - text: · refreshed 08:30 WIB
+          - button "Ask ATLAS" [ref=e159] [cursor=pointer]
+          - button "Audit log, 2 overdue actions" [ref=e164] [cursor=pointer]:
+            - generic [ref=e168]: "2"
+          - button "Switch role" [ref=e169] [cursor=pointer]:
+            - generic [ref=e170]: CE
+            - generic [ref=e171]:
+              - generic [ref=e172]: Denera CEO
+              - generic [ref=e173]: Shareholder executive
+      - main [ref=e176]:
+        - 'button "Action register: 6 open, 2 overdue, 4 due this week" [ref=e177] [cursor=pointer]':
+          - generic [ref=e181]: Action register
+          - generic [ref=e182]:
+            - generic [ref=e183]: 6 open
+            - generic [ref=e184]:
+              - generic [ref=e187]: "2"
+              - text: overdue
+            - generic [ref=e188]: 4 due this week
+          - generic [ref=e189]: Open
+  - region "Notifications alt+T"

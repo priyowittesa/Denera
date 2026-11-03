@@ -10,6 +10,7 @@ import { ANSWERS } from '../data/answers'
 import { GATES, GATE_MATRIX, GATE_STATE_LABEL, PRE_INVESTMENT, gateCell, type GateState } from '../data/portfolio'
 import { cn } from '../lib/cn'
 import { useDemo, usePersona } from '../state/store'
+import { RequestModal, type RequestSpec } from '../components/atlas/RequestModal'
 import { useUi } from '../state/ui'
 
 const LABEL = GATE_STATE_LABEL
@@ -21,8 +22,7 @@ export function S02Gates() {
   const [cond, setCond] = useState<number | null>(params.get('project') === 'P2-08' ? 1 : null)
   const confirmed = useDemo((s) => s.confirmed)
   const confirm = useDemo((s) => s.confirm)
-  const log = useDemo((s) => s.log)
-  const addRequest = useDemo((s) => s.addRequest)
+  const [req, setReq] = useState<RequestSpec | null>(null)
   const requests = useDemo((s) => s.requests)
   const ask = useDemo((s) => s.ask)
   const openEv = useUi((s) => s.openEvidence)
@@ -41,13 +41,14 @@ export function S02Gates() {
       statusLabel="Two gates at risk"
       aside={<Button variant="outline" onClick={() => ask('A-03', ANSWERS['A-03'].q)}><Sparkles />Which can reach FID by 30 Sep 2027?</Button>}
     >
-      <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_320px]">
+      {/* The ten-gate matrix needs the full width; the project panel moves beside it only on wide screens. */}
+      <div className="grid items-start gap-5 2xl:grid-cols-[minmax(0,1fr)_340px] [&>*:last-child]:2xl:sticky [&>*:last-child]:2xl:top-4">
         <Card className="overflow-x-auto">
-          <table className="w-full min-w-[740px] text-[13px]">
+          <table className="w-full min-w-[1040px] text-[13px]">
             <thead>
               <tr className="border-b border-line">
-                <th className="sticky left-0 bg-surface px-4 py-3 text-left text-[12px] font-medium text-ink-3">Project</th>
-                {GATES.map((g) => <th key={g} className="px-1 py-3 text-center align-bottom text-[12px] font-medium leading-tight text-ink-3"><span className="mx-auto block max-w-[68px]">{g}</span></th>)}
+                <th className="sticky left-0 z-[1] bg-head px-4 py-3 text-left align-bottom">Project</th>
+                {GATES.map((g) => <th key={g} className="min-w-[94px] px-1 py-3 text-center align-bottom leading-tight"><span className="mx-auto block max-w-[100px] hyphens-auto">{g}</span></th>)}
               </tr>
             </thead>
             <tbody>
@@ -56,7 +57,7 @@ export function S02Gates() {
                   <td className="sticky left-0 bg-inherit px-4 py-2.5">
                     <button className="press text-left" aria-pressed={sel === p.id}>
                       <span className="block font-semibold text-ink">{p.id}</span>
-                      <span className="flex items-center gap-1.5 text-[12px] text-ink-3">{p.island}{p.floa && <span className="rounded-sm bg-ok-bg px-1 text-[12px] font-medium text-ok">FLOA</span>}</span>
+                      <span className="flex items-center gap-1.5 text-[12px] text-ink-3">{p.island}{p.floa && <span className="rounded-full border border-ok-line bg-ok-bg px-1.5 text-[11.5px] font-medium text-ok">FLOA</span>}</span>
                     </button>
                   </td>
                   {GATES.map((g, i) => {
@@ -75,18 +76,17 @@ export function S02Gates() {
           </table>
           <div className="flex flex-wrap gap-x-5 gap-y-2 border-t border-line-soft px-4 py-3 text-[12px] text-ink-3">
             {(Object.keys(LABEL) as GateState[]).map((k) => <span key={k} className="inline-flex items-center gap-1.5"><GateIcon s={k} />{LABEL[k]}</span>)}
-            <span className="ml-auto">Gate sequence is illustrative, to be confirmed in workshop W4.</span>
           </div>
         </Card>
 
         <div className="flex flex-col gap-5">
-          <Card className="p-5">
+          <Card className="px-[18px] py-4">
             <div className="flex items-baseline justify-between">
-              <h2 className="text-[15px] font-semibold text-ink">{project.id} · {project.island}</h2>
+              <h2 className="text-[16px] font-semibold text-ink">{project.id} · {project.island}</h2>
               <span className="text-[12px] text-ink-3">FID target {project.fidTarget}</span>
             </div>
             <MiniTimeline pid={sel} state={state} />
-            <h3 className="mt-4 text-[13px] font-semibold text-ink-2">{open.length} open condition{open.length === 1 ? '' : 's'}</h3>
+            <h3 className="mt-4 text-[14px] font-semibold text-ink-2">{open.length} open condition{open.length === 1 ? '' : 's'}</h3>
             <ul className="mt-2 space-y-1">
               {open.map(({ g, i, s }) => (
                 <li key={g}>
@@ -135,15 +135,16 @@ export function S02Gates() {
             </ul>
           </AtlasCard>
 
-          <Card className="p-5">
-            <h3 className="text-[13px] font-semibold text-ink">Shareholder (Denera) actions</h3>
+          <Card className="px-[18px] py-4">
+            <h3 className="text-[14px] font-semibold text-ink">Shareholder (Denera) actions</h3>
             <div className="mt-3 flex flex-col gap-2">
-              <Button variant="outline" disabled={requests.includes(`esc-${sel}`)} onClick={() => addRequest(`esc-${sel}`, `Escalate slipping gate, ${sel}`)}><TriangleAlert />{requests.includes(`esc-${sel}`) ? 'Escalated' : `Escalate slipping gate (${sel})`}</Button>
-              <Button variant="outline" onClick={() => { log('Requested agreement change', sel) ; addRequest(`chg-${sel}`, `Agreement change request, ${sel}`) }} disabled={requests.includes(`chg-${sel}`)}><ArrowUpRight />{requests.includes(`chg-${sel}`) ? 'Change requested' : 'Request agreement change'}</Button>
+              <Button variant="outline" disabled={requests.includes(`esc-${sel}`)} onClick={() => setReq({ key: `esc-${sel}`, title: `Escalate slipping gate, ${sel}`, to: 'Denera Project Steering Committee', route: 'Shareholder (Denera) escalation', authority: 'Shareholder (Denera)', subject: `Escalation: ${sel} gate slipping`, message: `${sel}: the next gate (${PRE_INVESTMENT.find((p) => p.id === sel)?.nextGate ?? 'gate'}) is at risk. Please confirm the recovery date and the owner of each open condition.`, due: '2027-07-07', owner: 'Investment and legal lead', linked: `${sel} gates`, source: 'Pre-investment gates', confirmLabel: 'Escalate' })}><TriangleAlert />{requests.includes(`esc-${sel}`) ? 'Escalated' : `Escalate slipping gate (${sel})`}</Button>
+              <Button variant="outline" disabled={requests.includes(`chg-${sel}`)} onClick={() => setReq({ key: `chg-${sel}`, title: `Request agreement change, ${sel}`, to: 'Partner consortium', route: 'Shareholder (Denera) request under the draft shareholder agreement', authority: 'Shareholder (Denera)', subject: `Agreement change request: ${sel}`, message: `Please add the information-rights clause and data annex to the ${sel} draft shareholder agreement before signing.`, due: '2027-07-14', owner: 'Commercial and Legal Lead', linked: `${sel} shareholder agreement`, source: 'Pre-investment gates' })}><ArrowUpRight />{requests.includes(`chg-${sel}`) ? 'Change requested' : 'Request agreement change'}</Button>
             </div>
           </Card>
         </div>
       </div>
+      <RequestModal spec={req} onClose={() => setReq(null)} />
     </ScreenFrame>
   )
 }

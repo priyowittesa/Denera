@@ -5,7 +5,8 @@ import { ClassChip, HEALTH_ICON, Stamp } from '../components/atlas/chips'
 import { AtlasCard, ScreenFrame } from '../components/atlas/frame'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
-import { Modal, Sheet } from '../components/ui/sheet'
+import { Sheet } from '../components/ui/sheet'
+import { ReasonModal } from '../components/atlas/ReasonModal'
 import { Tabs, TabsContent, TabsList } from '../components/ui/tabs'
 import { CHAIN, CORRESPONDENCE, EXPLANATION, LOOK_AHEAD, SCHEDULE_EVIDENCE, SCHEDULE_QUALITY as Q } from '../data/schedule'
 import { EVIDENCE } from '../data/evidence'
@@ -21,7 +22,6 @@ export function S10CriticalPath() {
   const [tab, setTab] = useState('look')
   const [chainOpen, setChainOpen] = useState(false)
   const [rejectOpen, setRejectOpen] = useState(false)
-  const [reason, setReason] = useState('')
   const open = useUi((s) => s.openEvidence)
   const nav = useNavigate()
   const confirmed = useDemo((s) => s.confirmed[KEY])
@@ -65,7 +65,7 @@ export function S10CriticalPath() {
             <div className="flex min-w-0 flex-col gap-5">
               <Card className="overflow-hidden">
                 <div className="flex items-baseline justify-between gap-3 px-5 pb-2 pt-4">
-                  <h3 className="text-[15px] font-semibold tracking-[-0.01em] text-ink">Evidence behind the chain</h3>
+                  <h3 className="text-[16px] font-semibold text-ink">Evidence behind the chain</h3>
                   <span className="text-[12px] text-ink-3">{step ? 'Showing sources for the selected step' : 'Select a step to trace it'}</span>
                 </div>
                 <ul className="divide-y divide-line-soft">
@@ -109,7 +109,7 @@ export function S10CriticalPath() {
                     </div>
                   )}
                 </div>
-                {!canConfirm && !confirmed && <p className="mt-2 text-[12px] text-ink-3">Only the interface owner (Technical Director, project company) or the PMO Director can confirm. Switch persona to try it.</p>}
+                {!canConfirm && !confirmed && <p className="mt-2 text-[12px] text-ink-3">Only the interface owner (Technical Director, project company) or the PMO Director can confirm.</p>}
               </section>
             </div>
           </div>
@@ -134,7 +134,6 @@ export function S10CriticalPath() {
                 })}
               </tbody>
             </table>
-            <p className="border-t border-line-soft px-5 py-3 text-[12px] text-ink-3">Highlighted: float under five days or unknown, each linked to its evidence.</p>
           </Card>
         </TabsContent>
       </Tabs>
@@ -152,10 +151,7 @@ export function S10CriticalPath() {
         </ol>
       </Sheet>
 
-      <Modal open={rejectOpen} onOpenChange={setRejectOpen} title="Reject the AI-detected conflict" description="A reason is required and is written to the audit log." footer={<><Button variant="ghost" onClick={() => setRejectOpen(false)}>Cancel</Button><Button disabled={!reason.trim()} onClick={() => { reject(KEY, reason.trim(), 'Interface conflict'); setRejectOpen(false) }}>Reject with reason</Button></>}>
-        <label className="block text-[13px] font-medium text-ink-2" htmlFor="reason">Reason</label>
-        <textarea id="reason" value={reason} onChange={(e) => setReason(e.target.value)} rows={3} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500" />
-      </Modal>
+      <ReasonModal open={rejectOpen} onClose={() => setRejectOpen(false)} title="Reject the AI-detected conflict" description="Waste-receiving system and boiler feed arrangement" onConfirm={(r) => reject(KEY, r, 'Interface conflict')} danger />
     </ScreenFrame>
   )
 }
@@ -174,7 +170,7 @@ function ChainStory({ step, setStep, impacted }: { step: string | null; setStep:
   return (
     <Card className="px-3 pb-3 pt-4">
       <div className="flex items-baseline justify-between gap-3 px-2">
-        <h2 className="text-[15px] font-semibold tracking-[-0.01em] text-ink">Critical-path story</h2>
+        <h2 className="text-[16px] font-semibold text-ink">Critical-path story</h2>
         <span className="tnum text-[12px] text-ink-3"><span className="text-bad">{reds} Red</span> · <span className="text-warn">{CHAIN.length - reds} Yellow</span></span>
       </div>
       <p className="mt-0.5 px-2 text-[13px] text-ink-3">Select a step to trace its evidence.</p>
@@ -215,7 +211,7 @@ function ChainStory({ step, setStep, impacted }: { step: string | null; setStep:
                     <span className={cn('mt-px inline-flex shrink-0 items-center gap-1 text-[12px] font-medium', c.status === 'Red' ? 'text-bad' : 'text-warn')}><Icon className="size-3" strokeWidth={2.4} />{c.status}</span>
                   </span>
                   <span className={cn('mt-0.5 block text-[13px] leading-snug', outcome ? 'font-medium text-bad' : 'text-ink-3')}>{c.date}</span>
-                  {hit && <span className="mt-1.5 inline-flex rounded-sm bg-bad-bg px-1.5 py-0.5 text-[12px] font-medium text-bad">Impacted activity</span>}
+                  {hit && <span className="mt-1.5 inline-flex rounded-full border border-bad-line bg-bad-bg px-2 py-0.5 text-[12px] font-medium text-bad">Impacted activity</span>}
                 </span>
               </button>
             </li>

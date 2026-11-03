@@ -4,6 +4,7 @@ import { MAP_H, MAP_W, project } from './indonesiaMap'
 import { CONSTRUCTION, PRE_INVESTMENT, gateCell } from './portfolio'
 import { INITIAL_ACTIONS, MEETING_ITEMS, isDueThisWeek, isOverdue } from './registers'
 import { RUNS } from './runs'
+import { PERSONAS, PERSONA_ORDER } from './personas'
 import { PACKAGES_COST, weighted } from './scurve'
 import { VALUE_ROWS, inRange, revenuePerDay } from './valueBasis'
 import type { Action } from './types'
@@ -17,6 +18,7 @@ describe('Denera synthetic data reconciles', () => {
   })
   it('work packages sum to actual cost and commitments', () => {
     expect(PACKAGES_COST.reduce((s, p) => s + p.ac, 0)).toBe(1138)
+    expect(PACKAGES_COST.reduce((s, p) => s + p.budget, 0)).toBe(2800)
     expect(PACKAGES_COST.reduce((s, p) => s + p.commit, 0)).toBe(318)
   })
   it('cost drivers and package variance sum to Rp110 bn', () => {
@@ -62,5 +64,16 @@ describe('Denera synthetic data reconciles', () => {
     expect(gateCell('P2-08', 1)).toMatchObject({ owner: 'Technical lead', due: '15 Jul 2027', evidence: 'Design package v3 and review comments' })
     expect(gateCell('P2-06', 2).due).toBe('28 Jul 2027')
     expect(gateCell('P2-06', 9).due).toBe('Date to be set')
+  })
+})
+
+describe('master data workbook alignment', () => {
+  it('six personas land where spec 1.5 says (C30)', () => {
+    expect(PERSONA_ORDER.map((p) => PERSONAS[p].landing)).toEqual(['/portfolio', '/cockpit', '/cockpit', '/notices', '/decisions', '/cockpit'])
+  })
+  it('Phase II islands and construction contingency match the workbook', () => {
+    expect(PRE_INVESTMENT.map((p) => p.island)).toEqual(['Java', 'Sumatra', 'Java', 'Kalimantan', 'Sulawesi', 'Java', 'Sumatra', 'Bali-Nusa Tenggara'])
+    expect(CONSTRUCTION.map((p) => [p.contingencyBn, p.forecastUseBn])).toEqual([[176, 65], [148, 26.6], [132, null]])
+    expect(Math.round((26.6 / 148) * 100)).toBe(18)
   })
 })

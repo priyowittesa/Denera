@@ -1,47 +1,63 @@
 @import "tailwindcss";
 
 /*
-  ATLAS Altimeda theme on shadcn conventions.
-  Chrome takes the ATLAS violet from the product screenshots; data colour carries meaning only.
+  ATLAS module style (matches the ATLAS Breakdown Triage module):
+  Inter, zinc neutrals on white, Tailwind violet primary, pill status badges with a border.
 */
 @theme {
-  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* ATLAS violet: chrome and primary actions */
-  --color-atlas-950: #1d0f47;
-  --color-atlas-900: #2a1764;
-  --color-atlas-800: #36207f;
-  --color-atlas-700: #4a26a6;
-  --color-atlas-600: #5a30c4;
-  --color-atlas-500: #7650e0;
-  --color-atlas-300: #c3b0f3;
-  --color-atlas-200: #ddd0f8;
-  --color-atlas-100: #efe8fc;
-  --color-atlas-50: #f7f3fe;
+  --color-atlas-950: #2e1065;
+  --color-atlas-900: #4c1d95;
+  --color-atlas-800: #5b21b6;
+  --color-atlas-700: #6d28d9;
+  --color-atlas-600: #7c3aed;
+  --color-atlas-500: #8b5cf6;
+  --color-atlas-400: #a78bfa;
+  --color-atlas-300: #c4b5fd;
+  --color-atlas-200: #ddd6fe;
+  --color-atlas-100: #ede9fe;
+  --color-atlas-50: #f5f3ff;
+
+  /* Sidebar (gradient #3d1b80 to #2d1366, active item #7547dd) */
+  --color-side-top: #3d1b80;
+  --color-side-bottom: #2d1366;
+  --color-side-active: #7547dd;
+  --color-side-label: #bba9ea;
+  --color-side-card: #3c1f82;
+  --color-side-card-line: #5b3aa8;
+  --color-side-button: #5a33c4;
+  --color-side-button-hover: #6a40d6;
 
   /* Ink: four text tiers */
-  --color-ink: #14102a;
-  --color-ink-2: #3d3756;
-  --color-ink-3: #635d7a;
-  --color-ink-4: #78728e;
+  --color-ink: #09090b;
+  --color-ink-2: #3f3f46;
+  --color-ink-3: #71717a;
+  --color-ink-4: #8a8a93;
 
   /* Surfaces */
-  --color-canvas: #f7f6fa;
+  --color-canvas: #ffffff;
   --color-surface: #ffffff;
-  --color-sunken: #f2f0f7;
-  --color-line: #e8e5ef;
-  --color-line-soft: #f0eef5;
+  --color-sunken: #f4f4f5;
+  --color-head: #fafafa;
+  --color-line: #e4e4e7;
+  --color-line-soft: #f0f0f2;
 
   /* Status: icon + word always accompany these */
-  --color-ok: #10716b;
-  --color-ok-bg: #e0efee;
-  --color-warn: #a34a07;
-  --color-warn-bg: #fbeedd;
-  --color-bad: #b52f1a;
-  --color-bad-bg: #fbe6e1;
-  --color-info: #0d61ee;
-  --color-info-bg: #e4edfe;
+  --color-ok: #15803d;
+  --color-ok-bg: #f0fdf4;
+  --color-ok-line: #bbf7d0;
+  --color-warn: #b45309;
+  --color-warn-bg: #fffbeb;
+  --color-warn-line: #fde68a;
+  --color-bad: #dc2626;
+  --color-bad-bg: #fef2f2;
+  --color-bad-line: #fecaca;
+  --color-info: #2563eb;
+  --color-info-bg: #eff6ff;
+  --color-info-line: #bfdbfe;
   --color-live: #f05a24;
 
   /* Chart series (spec 1.3) */
@@ -55,8 +71,8 @@
 
   --radius-sm: 6px;
   --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -98,16 +114,24 @@
   body {
     @apply bg-canvas text-ink font-sans;
     font-size: 14px;
-    line-height: 1.5;
-    font-feature-settings: "ss01";
+    line-height: 1.45;
   }
   h1, h2, h3 { text-wrap: balance; }
   p { text-wrap: pretty; }
   ::selection { background: var(--color-atlas-200); color: var(--color-atlas-950); }
-  :focus-visible { outline: 2px solid var(--color-atlas-500); outline-offset: 2px; border-radius: 4px; }
+  :focus-visible { outline: 2px solid var(--color-atlas-600); outline-offset: 2px; }
+  /* Table header band, as in the ATLAS module tables */
+  main thead { background: var(--color-head); }
+  main thead th { font-size: 12.5px; font-weight: 500; color: var(--color-ink-3); }
+  main tbody tr { transition: background-color 150ms ease; }
   * { scrollbar-width: thin; scrollbar-color: var(--color-line) transparent; }
   button { cursor: pointer; }
   button:disabled { cursor: not-allowed; }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
 }
 
 @utility tnum {
@@ -130,12 +154,22 @@
   color: var(--color-ink-3);
 }
 
+/* Cards carry a border, not a shadow; shadows are kept for overlays. */
 @utility lift {
-  box-shadow: 0 0 0 1px rgb(42 23 100 / 0.07), 0 1px 2px -1px rgb(42 23 100 / 0.06), 0 2px 4px rgb(42 23 100 / 0.03);
+  box-shadow: 0 0 0 1px var(--color-line);
 }
 
 @utility float {
-  box-shadow: 0 0 0 1px rgb(42 23 100 / 0.08), 0 8px 24px -6px rgb(42 23 100 / 0.18), 0 2px 6px rgb(42 23 100 / 0.06);
+  box-shadow: 0 0 0 1px var(--color-line), 0 14px 40px rgb(15 10 30 / 0.19);
+}
+
+@utility pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 #22c55e77; }
+  70% { box-shadow: 0 0 0 8px #22c55e00; }
+  100% { box-shadow: 0 0 0 0 #22c55e00; }
 }
 
 @media (prefers-reduced-motion: reduce) {

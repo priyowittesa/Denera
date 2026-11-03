@@ -37,6 +37,6 @@ export const BOILER_DETAIL: [string, string][] = [
   ['Site readiness', 'Foundations 70% complete'],
   ['Linked WBS activities', 'Boiler island, Waste receiving system'],
   ['Linked cashflow exposure', 'Rp120 bn open commitment'],
-  ['Contractual responsibilities', 'EPC contractor responsible for vendor performance'],
+  ['Contractual responsibilities', 'EPC contractor (Arunika EPC Joint Operation) responsible for vendor performance'],
   ['Latest supplier communication', 'Vendor A email, 28 Jun 2027: manufacturing completion revised to 3 Aug 2027.'],
 ]

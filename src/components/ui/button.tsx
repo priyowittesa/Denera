@@ -4,22 +4,25 @@ import type { ButtonHTMLAttributes } from 'react'
 import { cn } from '../../lib/cn'
 
 const buttonVariants = cva(
-  'press inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium disabled:opacity-45 disabled:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  // Long labels may wrap on phones instead of pushing past the card edge.
+  'press inline-flex max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium disabled:opacity-45 disabled:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
-        primary: 'bg-atlas-700 text-white hover:bg-atlas-800',
-        outline: 'border border-line bg-surface text-ink hover:bg-sunken hover:border-ink-4/40 [&_svg]:text-ink-3',
-        secondary: 'bg-sunken text-ink hover:bg-line-soft',
+        primary: 'bg-atlas-600 text-white hover:bg-atlas-700',
+        outline: 'border border-line bg-surface text-ink hover:bg-sunken [&_svg]:text-ink-2',
+        secondary: 'bg-sunken text-ink-2 hover:bg-[#e9e9ec]',
+        /** violet outline (.btn-po): the main action on a card */
+        accent: 'border border-atlas-300 bg-surface text-atlas-700 hover:bg-atlas-50 [&_svg]:text-atlas-600',
         ghost: 'text-ink-2 hover:bg-sunken hover:text-ink',
         danger: 'bg-bad text-white hover:bg-bad/90',
         link: 'text-atlas-700 underline-offset-4 hover:underline px-0 h-auto',
       },
       size: {
-        sm: 'h-8 px-3 text-[13px]',
-        md: 'h-9 px-3.5 text-sm',
-        lg: 'h-10 px-4 text-sm',
-        icon: 'size-9',
+        sm: 'h-8 px-3 text-[13px] max-sm:h-auto max-sm:min-h-8 max-sm:whitespace-normal max-sm:py-1.5 max-sm:text-left',
+        md: 'h-[38px] px-3.5 text-sm max-sm:h-auto max-sm:min-h-[38px] max-sm:whitespace-normal max-sm:py-2 max-sm:text-left',
+        lg: 'h-10 px-4 text-sm max-sm:h-auto max-sm:min-h-10 max-sm:whitespace-normal max-sm:py-2 max-sm:text-left',
+        icon: 'size-[34px]',
         iconSm: 'size-8',
       },
     },

@@ -11,18 +11,18 @@ import { ANSWERS } from '../data/answers'
 import { BOILER_DETAIL, PACKAGES, type DateBasis, type Package } from '../data/procurement'
 import { cn } from '../lib/cn'
 import { useDemo } from '../state/store'
+import { RequestModal, type RequestSpec } from '../components/atlas/RequestModal'
 
 const BASIS: Record<DateBasis, { I: typeof Truck; c: string; tip: string }> = {
-  'ATLAS-estimated': { I: Calculator, c: 'text-atlas-700 bg-atlas-100', tip: 'ATLAS estimated this date from manufacturing progress, inspections and transit time. It is a forecast, not a vendor commitment.' },
-  'Vendor-reported': { I: Truck, c: 'text-ink-2 bg-sunken', tip: 'The vendor reported this date. ATLAS has not verified it.' },
-  'Not available': { I: X, c: 'text-ink-3 border border-dashed border-ink-4', tip: 'No date has been provided. Vendor milestone reporting is not yet in the contract.' },
+  'ATLAS-estimated': { I: Calculator, c: 'text-atlas-700 bg-atlas-50 !border-atlas-200', tip: 'ATLAS estimated this date from manufacturing progress, inspections and transit time. It is a forecast, not a vendor commitment.' },
+  'Vendor-reported': { I: Truck, c: 'text-ink-2 bg-sunken !border-line', tip: 'The vendor reported this date. ATLAS has not verified it.' },
+  'Not available': { I: X, c: 'text-ink-3 bg-surface border-dashed !border-ink-4', tip: 'No date has been provided. Vendor milestone reporting is not yet in the contract.' },
 }
 
 export function S11Procurement() {
   const [filter, setFilter] = useState(false)
   const [detail, setDetail] = useState<Package | null>(null)
   const ask = useDemo((s) => s.ask)
-  const addAction = useDemo((s) => s.addAction)
   const rows = filter ? PACKAGES.filter((p) => (p.effectDays ?? 0) > 14) : PACKAGES
 
   const applyFilter = () => {
@@ -30,8 +30,22 @@ export function S11Procurement() {
     ask('A-09', ANSWERS['A-09'].q)
   }
 
-  const act = (p: Package) =>
-    addAction({ title: `${p.action}: ${p.name}`, owner: p.authority === 'Shareholder (Denera)' ? 'PMO Director' : 'Procurement Lead', authority: p.authority!, due: '6 Jul 2027', dueIso: '2027-07-06', status: 'Not started', linked: p.name, source: 'Procurement tower' })
+  const [req, setReq] = useState<RequestSpec | null>(null)
+  const requests = useDemo((s) => s.requests)
+  const act = (p: Package) => setReq({
+    key: `pkg-${p.name}`,
+    title: `${p.action}: ${p.name}`,
+    to: p.authority === 'Shareholder (Denera)' ? 'Denera Project Steering Committee' : p.authority === 'Joint' ? 'Project company board' : 'Project company, procurement',
+    route: p.authority === 'Shareholder (Denera)' ? 'Shareholder (Denera) escalation' : p.authority === 'Joint' ? 'Joint: through the board nominee' : 'Request through the board nominee',
+    authority: p.authority!,
+    subject: `${p.action}: ${p.name}`,
+    message: `${p.name} (${p.vendor}) is forecast ${p.forecast} against a required-on-site date of ${p.required}. Please ${p.action.toLowerCase()} and confirm the recovered date.`,
+    due: '2027-07-06',
+    owner: p.authority === 'Shareholder (Denera)' ? 'PMO Director' : 'Procurement Lead',
+    linked: p.name,
+    source: 'Procurement',
+    confirmLabel: p.authority === 'Shareholder (Denera)' ? 'Escalate' : 'Send request',
+  })
 
   return (
     <ScreenFrame
@@ -43,7 +57,7 @@ export function S11Procurement() {
     >
       <Card>
         <div className="flex flex-wrap items-center justify-between gap-3 px-5 pt-4">
-          <h2 className="text-[15px] font-semibold text-ink">Long-lead packages</h2>
+          <h2 className="text-[16px] font-semibold text-ink">Long-lead packages</h2>
           <div className="flex flex-wrap items-center gap-2">
             {filter ? (
               <button onClick={() => setFilter(false)} className="press inline-flex items-center gap-1.5 rounded-full bg-atlas-700 px-3 py-1.5 text-[13px] font-medium text-white">
@@ -74,7 +88,7 @@ export function S11Procurement() {
                   <div><dt className="text-[12px] text-ink-3">Forecast</dt><dd className="flex flex-wrap items-center gap-1.5 text-ink">{p.forecast}<span className={cn('inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[12px] font-medium', B.c)}><B.I className="size-3" />{p.basis}</span></dd></div>
                 </dl>
                 {p.authority ? (
-                  <div className="mt-3 flex flex-wrap items-center gap-2"><AuthorityLabel a={p.authority} /><ActionRoute authority={p.authority} verb={p.action} onAct={() => act(p)} className="h-auto min-h-9 whitespace-normal py-1.5 text-left" /></div>
+                  <div className="mt-3 flex flex-wrap items-center gap-2"><AuthorityLabel a={p.authority} /><ActionRoute authority={p.authority} verb={p.action} onAct={() => act(p)} disabled={requests.includes(`pkg-${p.name}`)} className="h-auto min-h-9 whitespace-normal py-1.5 text-left" /></div>
                 ) : <p className="mt-3 text-[13px] text-ink-3">{p.action}</p>}
               </li>
             )
@@ -106,7 +120,7 @@ export function S11Procurement() {
                     <td className="whitespace-nowrap px-3 py-3">{p.required}</td>
                     <td className={cn('whitespace-nowrap px-3 py-3', p.basis === 'Not available' && 'text-ink-3')}>{p.forecast}</td>
                     <td className="px-3 py-3">
-                      <Tip content={B.tip}><span tabIndex={0} className={cn('inline-flex items-center gap-1 whitespace-nowrap rounded-sm px-1.5 py-0.5 text-[12px] font-medium', B.c)}><B.I className="size-3" />{p.basis}</span></Tip>
+                      <Tip content={B.tip}><span tabIndex={0} className={cn('inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-transparent px-2 py-0.5 text-[12px] font-medium', B.c)}><B.I className="size-3" />{p.basis}</span></Tip>
                     </td>
                     <td className={cn('px-3 py-3 text-right', p.effectDays && p.effectDays > 14 && 'font-semibold text-bad')}>{p.effect}</td>
                     <td className={cn('whitespace-nowrap px-3 py-3 text-right font-medium', p.float.startsWith('Minus') && 'text-bad', p.float === 'Unknown' && 'text-ink-3')}>{p.float}</td>
@@ -115,7 +129,7 @@ export function S11Procurement() {
                       {p.authority ? (
                         <div className="flex flex-col items-start gap-1.5">
                           <AuthorityLabel a={p.authority} />
-                          <ActionRoute authority={p.authority} verb={p.action} onAct={() => act(p)} className="h-auto min-h-8 whitespace-normal py-1.5 text-left" />
+                          <ActionRoute authority={p.authority} verb={p.action} onAct={() => act(p)} disabled={requests.includes(`pkg-${p.name}`)} className="h-auto min-h-8 whitespace-normal py-1.5 text-left" />
                         </div>
                       ) : <span className="text-ink-3">{p.action}</span>}
                     </td>
@@ -151,6 +165,7 @@ export function S11Procurement() {
           </div>
         )}
       </Sheet>
+      <RequestModal spec={req} onClose={() => setReq(null)} />
     </ScreenFrame>
   )
 }

@@ -3,9 +3,9 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 import { toast } from 'sonner'
 import { ANSWERS } from '../data/answers'
 import { PERSONAS } from '../data/personas'
-import { INITIAL_ACTIONS } from '../data/registers'
+import { INITIAL_ACTIONS, RISKS } from '../data/registers'
 import type { ScenarioId } from '../data/scurve'
-import type { Action, PersonaId } from '../data/types'
+import type { Action, Authority, Comment, PersonaId, Proposal, Risk } from '../data/types'
 
 export interface AuditLine {
   t: string
@@ -54,10 +54,12 @@ interface DemoState {
   scenario: ScenarioId
   confirmed: Record<string, Stamp>
   rejected: Record<string, string>
-  edits: Record<string, { due: string; dueIso: string }>
-  riskOwners: Record<string, string>
+  edits: Record<string, { due: string; dueIso: string; owner?: string }>
+  risks: Risk[]
+  coReviews: Record<string, { decision: string; status: string; note: string; by: string; at: string }>
+  comments: Record<string, Comment[]>
   requests: string[]
-  proposals: string[]
+  proposals: Proposal[]
   decision: { response: string; reason?: string; at: string } | null
   packStage: 'Draft' | 'In review' | 'Approved'
   analyst: boolean
@@ -70,13 +72,21 @@ interface DemoState {
   setPersona: (p: PersonaId) => void
   log: (action: string, object: string) => void
   addAction: (a: Omit<Action, 'id'>, msg?: string) => void
+  updateAction: (id: string, patch: Partial<Pick<Action, 'owner' | 'due' | 'dueIso' | 'status' | 'dueNote'>>) => void
   confirm: (key: string, label: string) => void
   reject: (key: string, reason: string, label: string) => void
-  setEdit: (key: string, due: string, dueIso: string) => void
+  setEdit: (key: string, due: string, dueIso: string, owner?: string) => void
   setScenario: (s: ScenarioId, from?: string) => void
   assignRisk: (id: string, owner: string) => void
+  addRisk: (r: Omit<Risk, 'id'>) => void
+  reviewChange: (id: string, decision: string, status: string, note: string) => void
+  updateRisk: (id: string, patch: Partial<Omit<Risk, 'id'>>) => void
+  addComment: (key: string, label: string, text: string) => void
+  deleteComment: (key: string, id: string) => void
+  acceptProposal: (text: string, action: Omit<Action, 'id'>) => void
+  dismissProposal: (text: string, reason: string) => void
   addRequest: (key: string, label: string, action?: Omit<Action, 'id'>) => void
-  propose: (text: string) => void
+  propose: (text: string, authority: Authority, from?: string) => void
   respond: (response: string, reason?: string) => void
   setPackStage: (s: DemoState['packStage']) => void
   setAnalyst: (v: boolean) => void
@@ -111,10 +121,12 @@ const initial = {
   scenario: 'current' as ScenarioId,
   confirmed: {} as Record<string, Stamp>,
   rejected: {} as Record<string, string>,
-  edits: {} as Record<string, { due: string; dueIso: string }>,
-  riskOwners: {} as Record<string, string>,
+  edits: {} as Record<string, { due: string; dueIso: string; owner?: string }>,
+  risks: RISKS.map((r) => ({ ...r })) as Risk[],
+  coReviews: {} as Record<string, { decision: string; status: string; note: string; by: string; at: string }>,
+  comments: {} as Record<string, Comment[]>,
   requests: [] as string[],
-  proposals: [] as string[],
+  proposals: [] as Proposal[],
   decision: null,
   packStage: 'Draft' as const,
   analyst: false,
@@ -146,7 +158,7 @@ export const useDemo = create<DemoState>()(
       ...initial,
       setPersona: (p) => {
         set({ persona: p })
-        get().log('Switched persona', PERSONAS[p].name)
+        get().log('Switched role', PERSONAS[p].name)
       },
       log: (action, object) =>
         set((s) => ({ audit: [{ t: now(), persona: PERSONAS[s.persona].name, action, object }, ...s.audit].slice(0, 80) })),
@@ -155,6 +167,18 @@ export const useDemo = create<DemoState>()(
         set((s) => ({ actions: [...s.actions, { ...a, id }] }))
         get().log('Created action', a.title)
         toast.success(msg ?? 'Added to the action register', { description: `${a.title} · ${a.owner} · ${a.due}` })
+      },
+      updateAction: (id, patch) => {
+        const before = get().actions.find((a) => a.id === id)
+        if (!before) return
+        set((s) => ({ actions: s.actions.map((a) => (a.id === id ? { ...a, ...patch } : a)) }))
+        const changes = [
+          patch.owner && patch.owner !== before.owner && `owner ${before.owner} to ${patch.owner}`,
+          patch.due && patch.due !== before.due && `due ${before.due} to ${patch.due}`,
+          patch.status && patch.status !== before.status && `status ${before.status} to ${patch.status}`,
+        ].filter(Boolean).join('; ')
+        get().log(patch.status === 'Done' && before.status !== 'Done' ? 'Closed action' : 'Edited action', `${before.title}${changes ? ` (${changes})` : ''}`)
+        toast.success(patch.status === 'Done' && before.status !== 'Done' ? 'Action closed' : 'Action updated', { description: `${before.title}${changes ? ` · ${changes}` : ''}` })
       },
       confirm: (key, label) => {
         set((s) => ({ confirmed: { ...s.confirmed, [key]: { by: PERSONAS[s.persona].name, at: '30 Jun 2027' } } }))
@@ -166,16 +190,17 @@ export const useDemo = create<DemoState>()(
         get().log('Rejected', `${label} (${reason})`)
         toast('Rejected with reason', { description: `${label}: ${reason}` })
       },
-      setEdit: (key, due, dueIso) => {
-        set((s) => ({ edits: { ...s.edits, [key]: { due, dueIso } } }))
-        get().log('Edited due date', `${key} to ${due}`)
+      setEdit: (key, due, dueIso, owner) => {
+        set((s) => ({ edits: { ...s.edits, [key]: { due, dueIso, owner } } }))
+        get().log('Edited proposed item', `${key}: due ${due}${owner ? `, owner ${owner}` : ''}`)
+        toast.success('Changes saved', { description: `Due ${due}${owner ? ` · ${owner}` : ''}. Confirm the item to add it to the register.` })
       },
       setScenario: (sc, from) => {
         set({ scenario: sc })
         get().log('Selected scenario', `${sc}${from ? ` on ${from}` : ''}`)
       },
       assignRisk: (id, owner) => {
-        set((s) => ({ riskOwners: { ...s.riskOwners, [id]: owner } }))
+        set((s) => ({ risks: s.risks.map((r) => (r.id === id ? { ...r, owner } : r)) }))
         get().log('Assigned risk owner', `${id} to ${owner}`)
         toast.success('Owner assigned', { description: `${id} · ${owner}` })
       },
@@ -188,10 +213,53 @@ export const useDemo = create<DemoState>()(
           toast.success('Request raised', { description: label })
         }
       },
-      propose: (text) => {
-        set((s) => ({ proposals: [...s.proposals, text] }))
+      reviewChange: (id, decision, status, note) => {
+        const s0 = get()
+        set((s) => ({ coReviews: { ...s.coReviews, [id]: { decision, status, note, by: PERSONAS[s0.persona].name, at: now() } } }))
+        get().log('Reviewed change order', `${id}: ${decision}${note ? ` (${note})` : ''}`)
+        toast.success(`${id} ${status.toLowerCase()}`, { description: note || decision })
+      },
+      addRisk: (r) => {
+        const n = get().risks.reduce((m, x) => Math.max(m, Number(x.id.slice(2)) || 0), 0) + 1
+        const id = `R-${String(n).padStart(2, '0')}`
+        set((s) => ({ risks: [...s.risks, { ...r, id }] }))
+        get().log('Added risk', `${id} ${r.risk}`)
+        toast.success('Risk added', { description: `${id} · ${r.risk}` })
+      },
+      updateRisk: (id, patch) => {
+        const before = get().risks.find((r) => r.id === id)
+        if (!before) return
+        set((s) => ({ risks: s.risks.map((r) => (r.id === id ? { ...r, ...patch } : r)) }))
+        const changes = (Object.keys(patch) as (keyof typeof patch)[]).filter((k) => patch[k] !== before[k]).map((k) => `${k === 'p' ? 'probability' : k === 'i' ? 'impact' : k} ${before[k] ?? 'none'} to ${patch[k]}`).join('; ')
+        get().log('Edited risk', `${id}${changes ? ` (${changes})` : ''}`)
+        toast.success(patch.status === 'Closed' && before.status !== 'Closed' ? 'Risk closed' : 'Risk updated', { description: `${id} · ${before.risk}` })
+      },
+      addComment: (key, label, text) => {
+        const s0 = get()
+        const c: Comment = { id: `c${Date.now()}`, by: PERSONAS[s0.persona].name, role: s0.persona, at: now(), text }
+        set((s) => ({ comments: { ...s.comments, [key]: [...(s.comments[key] ?? []), c] } }))
+        get().log('Commented', `${label}: ${text}`)
+        toast.success('Comment added', { description: label })
+      },
+      deleteComment: (key, id) => {
+        set((s) => ({ comments: { ...s.comments, [key]: (s.comments[key] ?? []).filter((c) => c.id !== id) } }))
+        get().log('Deleted comment', key)
+        toast('Comment deleted')
+      },
+      acceptProposal: (text, action) => {
+        set((s) => ({ proposals: s.proposals.filter((p) => p.text !== text) }))
+        get().addAction(action, 'Proposal accepted and added to the register')
+      },
+      dismissProposal: (text, reason) => {
+        set((s) => ({ proposals: s.proposals.filter((p) => p.text !== text), rejected: { ...s.rejected, [`proposal-${text}`]: reason } }))
+        get().log('Dismissed proposal', `${text} (${reason})`)
+        toast('Proposal dismissed', { description: reason })
+      },
+      propose: (text, authority, from = 'Ask ATLAS') => {
+        if (get().proposals.some((p) => p.text === text)) return
+        set((s) => ({ proposals: [...s.proposals, { text, authority, from }] }))
         get().log('Proposed action (needs confirmation)', text)
-        toast('Proposal created', { description: 'A named person must confirm it before it becomes an action.' })
+        toast('Proposal created', { description: 'It waits in the Action register until a named person accepts it.' })
       },
       respond: (response, reason) => {
         set({ decision: { response, reason, at: now() } })
@@ -249,11 +317,13 @@ export const useDemo = create<DemoState>()(
       setRailCollapsed: (v) => set({ railCollapsed: v }),
       reset: () => {
         set({ ...initial, persona: get().persona, assistantOpen: false })
-        toast.success('Demo state reset', { description: 'Registers, confirmations and scenarios restored.' })
+        toast.success('Session reset', { description: 'Registers, confirmations and scenarios restored.' })
       },
     }),
     {
       name: 'denera-atlas-demo',
+      version: 2,
+      migrate: () => ({}),
       storage: createJSONStorage(() => {
         try {
           return sessionStorage

@@ -6,31 +6,33 @@ import { ScreenFrame } from '../components/atlas/frame'
 import { AnswerView } from '../components/atlas/AnswerView'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
-import { Modal, Sheet } from '../components/ui/sheet'
+import { Sheet } from '../components/ui/sheet'
+import { ReasonModal } from '../components/atlas/ReasonModal'
+import { ReadOnly } from '../components/ui/form'
 import { Segmented } from '../components/ui/tabs'
 import { NOTICES, type Notice } from '../data/registers'
 import type { Authority } from '../data/types'
 import { cn } from '../lib/cn'
 import { useDemo, usePersona } from '../state/store'
+import { RequestModal, type RequestSpec } from '../components/atlas/RequestModal'
 import { useUi } from '../state/ui'
 
 type View = 'list' | 'calendar'
 
 export function S03Notices() {
+  const [req, setReq] = useState<RequestSpec | null>(null)
   const [params] = useSearchParams()
   const [view, setView] = useState<View>('list')
   const [proj, setProj] = useState('All')
   const [auth, setAuth] = useState<'All' | Authority>('All')
   const [draft, setDraft] = useState(params.get('draft') === '1')
   const [rejecting, setRejecting] = useState<Notice | null>(null)
-  const [reason, setReason] = useState('')
   const [qa, setQa] = useState(false)
   const confirmed = useDemo((s) => s.confirmed)
   const rejected = useDemo((s) => s.rejected)
   const confirm = useDemo((s) => s.confirm)
   const reject = useDemo((s) => s.reject)
   const requests = useDemo((s) => s.requests)
-  const addRequest = useDemo((s) => s.addRequest)
   const openEv = useUi((s) => s.openEvidence)
   const { id: pid, isPcu } = usePersona()
   const canConfirm = pid === 'cll'
@@ -44,6 +46,22 @@ export function S03Notices() {
     .filter((n) => auth === 'All' || n.authority === auth)
   const projects = ['All', ...new Set(NOTICES.filter((n) => !isPcu || n.project === 'Cakrawala').map((n) => n.project))]
 
+  const status = (n: (typeof rows)[number]) => {
+    const b = badge(n)
+    const stamp = confirmed[`notice-${n.id}`]
+    return (b === 'Confirmed' ? <Stamp kind="confirmed" who={stamp ? stamp.by : n.confirmedBy?.split(',')[0]} when={stamp ? stamp.at : n.confirmedBy?.split(', ')[1]} />
+                        : b === 'Rejected' ? <span className="text-[12px] text-ink-3">Rejected: {rejected[`notice-${n.id}`]}</span>
+                        : (
+                          <div className="flex flex-col items-start gap-1.5">
+                            <Stamp kind="extracted" />
+                            <div className="flex gap-1.5">
+                              <Button size="sm" variant="outline" disabled={!canConfirm} onClick={() => setRejecting(n)} title={canConfirm ? undefined : 'Commercial and Legal Lead only'}><X />Reject</Button>
+                              <Button size="sm" disabled={!canConfirm} onClick={() => confirm(`notice-${n.id}`, `${n.clause} deadline ${n.due}`)} title={canConfirm ? undefined : 'Commercial and Legal Lead only'}><Check />Confirm</Button>
+                            </div>
+                          </div>
+                        ))
+  }
+
   return (
     <ScreenFrame
       headline="One confirmed notice deadline falls within seven days: the EPC notice for PSEL Cakrawala Raya, due Tuesday 6 July 2027."
@@ -52,14 +70,40 @@ export function S03Notices() {
       sub="Alerts rely only on confirmed deadlines."
       aside={<Button variant="outline" onClick={() => setDraft(true)}><Sparkles />Draft the 6 July notice</Button>}
     >
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-col gap-2 lg:flex-row lg:flex-wrap lg:items-center lg:gap-3">
         <Segmented<View> label="View" value={view} onChange={setView} items={[{ value: 'list', label: <span className="inline-flex items-center gap-1.5"><List className="size-3.5" />List</span> }, { value: 'calendar', label: <span className="inline-flex items-center gap-1.5"><CalendarDays className="size-3.5" />Calendar</span> }]} />
         <Segmented label="Project" size="sm" value={proj} onChange={setProj} items={projects.map((p) => ({ value: p, label: p }))} />
         <Segmented<'All' | Authority> label="Authority" size="sm" value={auth} onChange={setAuth} items={(['All', 'Joint', 'Project company', 'Shareholder (Denera)'] as const).map((a) => ({ value: a, label: a }))} />
       </div>
 
       {view === 'list' ? (
-        <Card className="mt-4 overflow-x-auto">
+        <>
+        {/* Phones and tablets: one card per obligation, as in the ATLAS module card list */}
+        <div className="mt-4 flex flex-col gap-2.5 md:hidden">
+          {rows.map((n) => {
+            const b = badge(n)
+            return (
+              <article key={n.id} className={cn('rounded-xl border border-line bg-surface px-3.5 py-3', n.id === 'N1' && 'border-bad-line bg-bad-bg/40', b === 'Rejected' && 'opacity-50')}>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="font-medium text-ink">{n.obligation}</div>
+                    <div className="text-[12px] text-ink-3">{n.project} · {n.owner}</div>
+                  </div>
+                  <span className={cn('tnum shrink-0 rounded-full border px-2 py-0.5 text-[12px] font-semibold', n.days <= 7 ? 'border-bad-line bg-bad-bg text-bad' : 'border-line bg-sunken text-ink-2')}>{n.days} days</span>
+                </div>
+                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px] text-ink-2">
+                  <button onClick={() => openEv(n.doc)} className="press inline-flex items-center gap-1 font-medium text-atlas-700 hover:underline"><FileText className="size-3.5" />{n.clause}</button>
+                  <span className="tnum">Due {n.due}</span>
+                  <AuthorityLabel a={n.authority} />
+                  <span className="text-ink-3">Evidence pack: {n.pack}</span>
+                </div>
+                <div className="mt-2.5 border-t border-line-soft pt-2.5">{status(n)}</div>
+              </article>
+            )
+          })}
+          {!canConfirm && <p className="px-1 text-[12px] text-ink-3">Only the Commercial and Legal Lead can confirm or reject extracted deadlines.</p>}
+        </div>
+        <Card className="mt-4 hidden overflow-x-auto md:block">
           <table className="w-full min-w-[1160px] text-[13px]">
             <thead className="border-b border-line text-left text-[12px] text-ink-3">
               <tr><th className="px-5 py-2.5 font-medium">Obligation</th><th className="px-3 py-2.5 font-medium">Source clause</th><th className="px-3 py-2.5 font-medium">Due</th><th className="px-3 py-2.5 text-right font-medium">Days</th><th className="px-3 py-2.5 font-medium">Owner</th><th className="px-3 py-2.5 font-medium">Authority</th><th className="px-3 py-2.5 font-medium">Evidence pack</th><th className="px-5 py-2.5 font-medium">Status</th></tr>
@@ -67,7 +111,6 @@ export function S03Notices() {
             <tbody className="divide-y divide-line-soft">
               {rows.map((n) => {
                 const b = badge(n)
-                const stamp = confirmed[`notice-${n.id}`]
                 return (
                   <tr key={n.id} className={cn(n.id === 'N1' && 'bg-bad-bg/30', b === 'Rejected' && 'opacity-50')}>
                     <td className="px-5 py-3"><div className="font-medium text-ink">{n.obligation}</div><div className="text-[12px] text-ink-3">{n.project}</div></td>
@@ -78,32 +121,23 @@ export function S03Notices() {
                     <td className="px-3 py-3"><AuthorityLabel a={n.authority} /></td>
                     <td className="whitespace-nowrap px-3 py-3 text-ink-2">{n.pack}</td>
                     <td className="px-5 py-3">
-                      {b === 'Confirmed' ? <Stamp kind="confirmed" who={stamp ? stamp.by : n.confirmedBy?.split(',')[0]} when={stamp ? stamp.at : n.confirmedBy?.split(', ')[1]} />
-                        : b === 'Rejected' ? <span className="text-[12px] text-ink-3">Rejected: {rejected[`notice-${n.id}`]}</span>
-                        : (
-                          <div className="flex flex-col items-start gap-1.5">
-                            <Stamp kind="extracted" />
-                            <div className="flex gap-1.5">
-                              <Button size="sm" variant="outline" disabled={!canConfirm} onClick={() => setRejecting(n)} title={canConfirm ? undefined : 'Commercial and Legal Lead only'}><X />Reject</Button>
-                              <Button size="sm" disabled={!canConfirm} onClick={() => confirm(`notice-${n.id}`, `${n.clause} deadline ${n.due}`)} title={canConfirm ? undefined : 'Commercial and Legal Lead only'}><Check />Confirm</Button>
-                            </div>
-                          </div>
-                        )}
+                      {status(n)}
                     </td>
                   </tr>
                 )
               })}
             </tbody>
           </table>
-          {!canConfirm && <p className="border-t border-line-soft px-5 py-3 text-[12px] text-ink-3">Switch to the Commercial and Legal Lead persona to confirm or reject extracted deadlines.</p>}
+          {!canConfirm && <p className="border-t border-line-soft px-5 py-3 text-[12px] text-ink-3">Only the Commercial and Legal Lead can confirm or reject extracted deadlines.</p>}
         </Card>
+        </>
       ) : (
         <CalendarView rows={rows} badge={badge} />
       )}
 
-      <div className="mt-6 grid gap-5 lg:grid-cols-2">
-        <Card className="p-5">
-          <h2 className="text-[15px] font-semibold text-ink">Ask about a clause</h2>
+      <div className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <Card className="px-[18px] py-4">
+          <h2 className="text-[16px] font-semibold text-ink">Ask about a clause</h2>
           <p className="mt-1 text-[13px] text-ink-3">Cited answers from executed agreements.</p>
           {!qa ? (
             <button onClick={() => setQa(true)} className="press mt-3 w-full rounded-md border border-atlas-200 bg-atlas-50 px-3 py-2.5 text-left text-[13px] text-atlas-800 hover:border-atlas-300">
@@ -111,11 +145,11 @@ export function S03Notices() {
             </button>
           ) : <div className="mt-4 animate-rise"><AnswerView id="A-06" compact /></div>}
         </Card>
-        <Card className="p-5">
-          <h2 className="text-[15px] font-semibold text-ink">Requests to the project company</h2>
+        <Card className="px-[18px] py-4">
+          <h2 className="text-[16px] font-semibold text-ink">Requests to the project company</h2>
           <p className="mt-1 text-[13px] text-ink-3">Denera cannot issue the EPC notice; the project company board does.</p>
           <div className="mt-4 flex flex-col items-start gap-2">
-            <Button variant="outline" disabled={requests.includes('board-notice') || isPcu} onClick={() => addRequest('board-notice', 'Issue EPC notice', { title: 'Project company board to issue EPC notice (cl. 14.2)', owner: 'Project company board', authority: 'Joint', due: '2 Jul 2027', dueIso: '2027-07-02', status: 'Not started', linked: 'Contractual entitlement', source: 'Notice calendar' })}>
+            <Button variant="outline" disabled={requests.includes('board-notice') || isPcu} onClick={() => setReq({ key: 'board-notice', title: 'Request the board to issue the EPC notice', to: 'Project company board', route: 'Joint: Denera asks through its board nominee; the board decides', authority: 'Joint', subject: 'Project company board to issue EPC notice (cl. 14.2)', message: 'Please issue formal notice of the boiler island delay event to the EPC contractor under cl. 14.2 by 5 PM Friday 2 July 2027. The notice window closes on 6 July.', due: '2027-07-02', owner: 'Commercial and Legal Lead', linked: 'Contractual entitlement', source: 'Notice calendar' })}>
               <Send />{requests.includes('board-notice') ? 'Request sent to the board' : 'Request project company board to issue notice'}
             </Button>
             <span className="text-[12px] text-ink-3"><StatusChip h="Red" label="Deadline Tue 6 Jul 2027" /></span>
@@ -125,10 +159,10 @@ export function S03Notices() {
 
       <DraftNotice open={draft} onOpenChange={setDraft} />
 
-      <Modal open={!!rejecting} onOpenChange={(v) => !v && setRejecting(null)} title="Reject extracted deadline" description={rejecting ? `${rejecting.clause}, ${rejecting.obligation}` : ''} footer={<><Button variant="ghost" onClick={() => setRejecting(null)}>Cancel</Button><Button disabled={!reason.trim()} onClick={() => { reject(`notice-${rejecting!.id}`, reason.trim(), rejecting!.clause); setRejecting(null); setReason('') }}>Reject with reason</Button></>}>
-        <label htmlFor="r" className="text-[13px] font-medium text-ink-2">Reason</label>
-        <textarea id="r" rows={3} value={reason} onChange={(e) => setReason(e.target.value)} className="mt-1 w-full rounded-md border border-line bg-sunken px-3 py-2 text-[14px] outline-none focus:border-atlas-500" />
-      </Modal>
+      <ReasonModal open={!!rejecting} onClose={() => setRejecting(null)} title="Reject extracted deadline" description={rejecting ? `${rejecting.clause}, ${rejecting.obligation}` : ''} onConfirm={(r) => reject(`notice-${rejecting!.id}`, r, rejecting!.clause)} danger>
+        {rejecting && <ReadOnly items={[['Due', rejecting.due], ['Owner', rejecting.owner], ['Project', rejecting.project], ['Badge', 'Extracted by ATLAS']]} />}
+      </ReasonModal>
+      <RequestModal spec={req} onClose={() => setReq(null)} />
     </ScreenFrame>
   )
 }
@@ -139,7 +173,7 @@ function CalendarView({ rows, badge }: { rows: Notice[]; badge: (n: Notice) => s
     <div className="mt-4 grid gap-4 lg:grid-cols-2">
       {months.map((mo, mi) => (
         <Card key={mo.m} className="p-4">
-          <h3 className="text-[13px] font-semibold text-ink">{mo.m === 'Jul' ? 'July' : 'August'} {mo.y}</h3>
+          <h3 className="text-[14px] font-semibold text-ink">{mo.m === 'Jul' ? 'July' : 'August'} {mo.y}</h3>
           <div className="mt-2 grid grid-cols-7 gap-1 text-center text-[12px] text-ink-3">{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => <div key={d}>{d}</div>)}</div>
           <div className="mt-1 grid grid-cols-7 gap-1">
             {Array.from({ length: mo.start }).map((_, i) => <div key={`e${i}`} />)}

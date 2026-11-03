@@ -23,7 +23,7 @@ export function ValuePanel({ ucs }: { ucs: string[] }) {
   return (
     <section id="value-at-stake" aria-labelledby="value-at-stake-title" className="mt-10 scroll-mt-6">
       <div className="mb-3 flex items-center gap-1.5">
-        <h2 id="value-at-stake-title" className="text-[15px] font-semibold text-ink">Value at stake</h2>
+        <h2 id="value-at-stake-title" className="text-[16px] font-semibold text-ink">Value at stake</h2>
         <InfoDot>{CAVEAT}</InfoDot>
         <span className="ml-auto text-[12px] text-ink-3">Sensitivity, not an investment case</span>
       </div>

@@ -23,6 +23,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
   const a = ANSWERS[id]
   const propose = useDemo((s) => s.propose)
   const proposals = useDemo((s) => s.proposals)
+  const actionsMade = useDemo((s) => s.actions).map((a) => a.title)
   const addRequest = useDemo((s) => s.addRequest)
   const requests = useDemo((s) => s.requests)
   const actions = useDemo((s) => s.actions)
@@ -135,7 +136,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
         <Section title="Recommended actions" aside={<span className="text-[12px] text-ink-3">ATLAS recommends, people decide</span>}>
           <ol className="space-y-2.5">
             {a.actions.map((x, i) => {
-              const done = proposals.includes(x.text)
+              const done = proposals.some((p) => p.text === x.text) || actionsMade.includes(x.text)
               return (
                 <li key={x.text} className="flex gap-3 rounded-lg border border-line bg-surface p-3">
                   <span className="tnum mt-px grid size-5 shrink-0 place-items-center rounded-full bg-sunken text-[12px] font-semibold text-ink-2">{i + 1}</span>
@@ -143,7 +144,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
                     <p className="text-[14px] leading-snug text-ink">{x.text}</p>
                     <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
                       <AuthorityLabel a={x.authority} />
-                      <Button size="sm" variant={done ? 'ghost' : 'outline'} disabled={done} onClick={() => propose(x.text)}>
+                      <Button size="sm" variant={done ? 'ghost' : 'outline'} disabled={done} onClick={() => propose(x.text, x.authority)}>
                         <Plus />{done ? 'Proposed, awaiting confirmation' : 'Propose as action'}
                       </Button>
                     </div>

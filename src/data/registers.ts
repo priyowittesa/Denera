@@ -1,4 +1,4 @@
-import type { Action, Authority } from './types'
+import type { Action, Authority, Risk } from './types'
 
 export const DATA_DATE_ISO = '2027-06-30'
 export const WEEK_END_ISO = '2027-07-06'
@@ -12,8 +12,8 @@ export const INITIAL_ACTIONS: Action[] = [
   { id: 'A-02', title: 'Close engineering interface', owner: 'Technical Director', authority: 'Project company', due: '2 Jul 2027', dueIso: '2027-07-02', status: 'Not started', linked: 'Boiler package', source: 'Steering committee' },
   { id: 'A-03', title: 'Obtain vendor recovery programme', owner: 'Procurement Lead', authority: 'Project company', due: '5 Jul 2027', dueIso: '2027-07-05', status: 'In progress', linked: 'Manufacturing delay', source: 'Steering committee' },
   { id: 'A-04', title: 'Update cashflow forecast', owner: 'Finance Lead', authority: 'Shareholder (Denera)', due: '5 Jul 2027', dueIso: '2027-07-05', status: 'Not started', linked: 'Funding drawdown', source: 'Steering committee' },
-  { id: 'A-05', title: 'Confirm cashflow data template with project company', owner: 'Finance Lead', authority: 'Shareholder (Denera)', due: '18 Jun 2027', dueIso: '2027-06-18', status: 'Not started', linked: 'Cost feed', source: 'Earlier PMO meeting' },
-  { id: 'A-06', title: 'Update permit register for P2-06', owner: 'Investment and legal lead', authority: 'Shareholder (Denera)', due: '24 Jun 2027', dueIso: '2027-06-24', status: 'Not started', linked: 'P2-06 permits', source: 'Earlier PMO meeting' },
+  { id: 'A-05', title: 'Confirm cashflow data template with project company', owner: 'Finance Lead', authority: 'Shareholder (Denera)', due: '18 Jun 2027', dueIso: '2027-06-18', status: 'Not started', linked: 'Funding drawdown', source: 'Earlier PMO meeting' },
+  { id: 'A-06', title: 'Update permit register for P2-06', owner: 'Investment and legal lead', authority: 'Shareholder (Denera)', due: '24 Jun 2027', dueIso: '2027-06-24', status: 'Not started', linked: 'Permits', source: 'Earlier PMO meeting' },
 ]
 
 export interface Notice {
@@ -35,7 +35,7 @@ export interface Notice {
 export const NOTICES: Notice[] = [
   { id: 'N1', project: 'Cakrawala', obligation: 'EPC notice of delay event', clause: 'EPC cl. 14.2', doc: 'epc-14-2', due: 'Tue 6 Jul 2027', dueIso: '2027-07-06', days: 6, owner: 'Commercial and Legal Lead', authority: 'Joint', pack: 'In progress', badge: 'Confirmed', confirmedBy: 'Commercial and Legal Lead, 29 Jun 2027' },
   { id: 'N2', project: 'Cakrawala', obligation: 'Response to contractor correspondence on interface', clause: 'EPC cl. 8.4', doc: 'epc-8-4', due: '9 Jul 2027', dueIso: '2027-07-09', days: 9, owner: 'Technical Director', authority: 'Project company', pack: 'Not started', badge: 'Extracted' },
-  { id: 'N3', project: 'Cakrawala', obligation: 'PPA delay notification to PLN', clause: 'PPA cl. 6.3', doc: 'ppa-6-3', due: '30 Jul 2027', dueIso: '2027-07-30', days: 30, owner: 'Commercial and Legal Lead', authority: 'Joint', pack: 'Not started', badge: 'Extracted' },
+  { id: 'N3', project: 'Cakrawala', obligation: 'PPA delay notification to the Offtaker', clause: 'PPA cl. 6.3', doc: 'ppa-6-3', due: '30 Jul 2027', dueIso: '2027-07-30', days: 30, owner: 'Commercial and Legal Lead', authority: 'Joint', pack: 'Not started', badge: 'Extracted' },
   { id: 'N4', project: 'Cakrawala', obligation: 'Lender quarterly report', clause: 'Facility cl. 12.1', doc: 'facility-12-1', due: '15 Jul 2027', dueIso: '2027-07-15', days: 15, owner: 'Finance Lead', authority: 'Joint', pack: 'In progress', badge: 'Confirmed', confirmedBy: 'Lender liaison, 25 Jun 2027' },
   { id: 'N5', project: 'Cakrawala', obligation: 'Shareholder information request for waste supply feed', clause: 'SHA cl. 9.1', doc: 'sha-9', due: '12 Jul 2027', dueIso: '2027-07-12', days: 12, owner: 'PMO Director', authority: 'Shareholder (Denera)', pack: 'Not started', badge: 'Extracted' },
   { id: 'N6', project: 'Nusa Bahari', obligation: 'EPC notice for imported equipment delay event', clause: 'EPC cl. 14.2', doc: 'epc-14-2-nb', due: '21 Jul 2027', dueIso: '2027-07-21', days: 21, owner: 'Commercial and Legal Lead', authority: 'Joint', pack: 'Not started', badge: 'Confirmed', confirmedBy: 'Commercial and Legal Lead, 24 Jun 2027' },
@@ -136,7 +136,7 @@ export const MEETING_ITEMS: MeetingItem[] = [
   { id: 'M6', kind: 'Action', title: 'Mobilise additional site inspectors', owner: 'Unclear', due: 'No date', dueIso: null, authority: 'Project company', linked: 'Quality', confidence: 'Low', sentence: 5 },
 ]
 
-export const RISKS = [
+export const RISKS: Risk[] = [
   { id: 'R-01', risk: 'Boiler island late delivery', p: 'High', i: 'High', owner: 'Procurement Lead', status: 'In progress', pkg: 'Boiler island' },
   { id: 'R-02', risk: 'Unresolved boiler and waste-receiving interface', p: 'High', i: 'High', owner: 'Technical Director', status: 'In progress', pkg: 'Boiler island' },
   { id: 'R-03', risk: 'EPC recovery programme not credible', p: 'High', i: 'High', owner: null, status: 'Not started', pkg: 'All' },
@@ -145,7 +145,7 @@ export const RISKS = [
   { id: 'R-06', risk: 'Grid connection date unconfirmed', p: 'Medium', i: 'High', owner: null, status: 'Not started', pkg: 'Grid switchgear' },
   { id: 'R-07', risk: 'Collection fleet plan not evidenced', p: 'Medium', i: 'Medium', owner: 'Regional government liaison', status: 'In progress', pkg: 'Waste supply' },
   { id: 'R-08', risk: 'One approval at risk of delay', p: 'Low', i: 'Medium', owner: 'Permits lead', status: 'In progress', pkg: 'Utilities' },
-] as const
+]
 
 export const CHANGE_ORDERS = [
   { id: 'CO-01', event: 'Interface redesign, waste-receiving to boiler feed', raised: '14 Jun 2027', cost: 'Rp11 bn', schedule: 'plus 10 days', status: 'Under assessment', route: 'Joint' as Authority },
@@ -154,10 +154,10 @@ export const CHANGE_ORDERS = [
 ]
 
 export const BUNDLE: { n: number; text: string; authority: Authority; owner: string; due: string; dueIso: string; links?: string; evidence: string }[] = [
-  { n: 1, text: 'Request the project company board to issue formal notice to the EPC contractor by 5 PM Friday 2 July 2027.', authority: 'Joint', owner: 'Commercial Lead', due: '2 Jul 2027', dueIso: '2027-07-02', links: 'A-01', evidence: 'epc-14-2' },
+  { n: 1, text: 'Request the project company board to issue formal notice to the EPC contractor by 5 PM Friday 2 July 2027.', authority: 'Joint', owner: 'Commercial and Legal Lead', due: '2 Jul 2027', dueIso: '2027-07-02', links: 'A-01', evidence: 'epc-14-2' },
   { n: 2, text: 'Require a revised recovery programme within three working days.', authority: 'Project company', owner: 'Project Director', due: '5 Jul 2027', dueIso: '2027-07-05', evidence: 'epc-schedule' },
   { n: 3, text: 'Approve a technical task force to close the interface decision within 48 hours.', authority: 'Project company', owner: 'Technical Director', due: '2 Jul 2027', dueIso: '2027-07-02', links: 'A-02', evidence: 'review-comment' },
   { n: 4, text: 'Request the vendor factory recovery plan and weekly manufacturing evidence.', authority: 'Project company', owner: 'Procurement Lead', due: '5 Jul 2027', dueIso: '2027-07-05', links: 'A-03', evidence: 'vendor-email' },
-  { n: 5, text: 'Assess the alternative logistics route and cost-sharing position.', authority: 'Joint', owner: 'Procurement Lead', due: '6 Jul 2027', dueIso: '2027-07-06', evidence: 'logistics-note' },
-  { n: 6, text: 'Escalate to the Denera Project Steering Committee and, if needed, the Investment Committee.', authority: 'Shareholder (Denera)', owner: 'PMO Director', due: '6 Jul 2027', dueIso: '2027-07-06', evidence: 'steering-minute' },
+  { n: 5, text: 'Assess the alternative logistics route and cost-sharing position.', authority: 'Joint', owner: 'Procurement Lead', due: '9 Jul 2027', dueIso: '2027-07-09', evidence: 'logistics-note' },
+  { n: 6, text: 'Escalate to the Denera Project Steering Committee and, if needed, the Investment Committee.', authority: 'Shareholder (Denera)', owner: 'PMO Director', due: '2 Jul 2027', dueIso: '2027-07-02', evidence: 'steering-minute' },
 ]

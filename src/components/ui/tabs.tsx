@@ -7,12 +7,12 @@ export const TabsContent = ({ className, ...p }: T.TabsContentProps) => <T.Conte
 
 export function TabsList({ items, className }: { items: { value: string; label: ReactNode }[]; className?: string }) {
   return (
-    <T.List className={cn('flex gap-1 overflow-x-auto border-b border-line', className)}>
+    <T.List className={cn('no-scrollbar flex min-w-0 max-w-full gap-1.5 overflow-x-auto', className)}>
       {items.map((i) => (
         <T.Trigger
           key={i.value}
           value={i.value}
-          className="press -mb-px shrink-0 border-b-2 border-transparent px-3 py-2 text-[13px] font-medium text-ink-3 hover:text-ink data-[state=active]:border-atlas-600 data-[state=active]:text-ink"
+          className="press inline-flex h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-surface px-3 text-[13px] font-medium text-ink-2 hover:bg-sunken data-[state=active]:border-atlas-300 data-[state=active]:bg-atlas-50 data-[state=active]:text-atlas-700"
         >
           {i.label}
         </T.Trigger>
@@ -21,10 +21,13 @@ export function TabsList({ items, className }: { items: { value: string; label: 
   )
 }
 
-/** Segmented control for compact view switches. */
-export function Segmented<V extends string>({ value, onChange, items, className, size = 'md', label }: { value: V; onChange: (v: V) => void; items: { value: V; label: ReactNode }[]; className?: string; size?: 'sm' | 'md'; label?: string }) {
+/**
+ * View switches and filters as pill chips (ATLAS module .chip pattern).
+ * One row that never wraps; on narrow screens it scrolls sideways.
+ */
+export function Segmented<V extends string>({ value, onChange, items, className, label }: { value: V; onChange: (v: V) => void; items: { value: V; label: ReactNode }[]; className?: string; size?: 'sm' | 'md'; label?: string }) {
   return (
-    <div role="radiogroup" aria-label={label} className={cn('inline-flex flex-wrap rounded-md bg-sunken p-0.5', className)}>
+    <div role="radiogroup" aria-label={label} className={cn('no-scrollbar flex min-w-0 max-w-full gap-1.5 overflow-x-auto', className)}>
       {items.map((i) => (
         <button
           key={i.value}
@@ -32,9 +35,8 @@ export function Segmented<V extends string>({ value, onChange, items, className,
           aria-checked={value === i.value}
           onClick={() => onChange(i.value)}
           className={cn(
-            'press rounded-[6px] font-medium text-ink-3 hover:text-ink',
-            size === 'sm' ? 'px-2.5 py-1 text-[13px]' : 'px-3 py-1.5 text-[13px]',
-            value === i.value && 'lift bg-surface text-ink',
+            'press inline-flex h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3 text-[13px] font-medium [&_svg]:size-3.5',
+            value === i.value ? 'border-atlas-300 bg-atlas-50 text-atlas-700' : 'border-line bg-surface text-ink-2 hover:bg-sunken',
           )}
         >
           {i.label}

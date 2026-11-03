@@ -9,12 +9,14 @@ import { Sheet } from '../components/ui/sheet'
 import { NARRATIVE, PROJECT, SCORECARDS, WEEKLY_MOVEMENT, type Scorecard } from '../data/cakrawala'
 import { ANSWERS } from '../data/answers'
 import { cn } from '../lib/cn'
+import { CommentButton, CommentsModal } from '../components/atlas/Comments'
 import { useDemo } from '../state/store'
 import { useUi } from '../state/ui'
 
 const RED_SIGNALS = ['Schedule Red: forecast COD slip of 42 days', 'Cost Red: Rp45 bn needs shareholder funding approval', 'Procurement Red: two critical packages late', 'Commercial Red: formal notice due in six days', 'Exposure 42 days, at or below 60, so overall Yellow; four Red dimensions raise the escalation flag. Without intervention exposure reaches 64 days and the rating turns Red.']
 
 export function S08Cockpit() {
+  const [commenting, setCommenting] = useState<Scorecard | null>(null)
   const nav = useNavigate()
   const ask = useDemo((s) => s.ask)
   const openEvidence = useUi((s) => s.openEvidence)
@@ -26,7 +28,7 @@ export function S08Cockpit() {
       answer={{ label: 'COD exposure', value: '42 days', tone: 'bad', foot: <>Rises to <b className="font-semibold text-bad">64 days</b> if nothing is decided this week.</>, stake: ['UC01'] }}
       aside={
         <>
-          <Button variant="outline" onClick={() => ask('A-05', ANSWERS['A-05'].q)}><Sparkles />Ask ATLAS</Button>
+          <Button variant="outline" onClick={() => ask('A-05', ANSWERS['A-05'].q)}><Sparkles />Why is it behind plan?</Button>
           <Button variant="outline" onClick={() => openEvidence('epc-schedule')}><FileText />See evidence</Button>
           <Button onClick={() => nav('/decisions')}><Gavel />View urgent decisions</Button>
         </>
@@ -34,15 +36,15 @@ export function S08Cockpit() {
     >
       <HeaderStrip />
 
-      <div className="mt-8 grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="mt-[18px] grid items-start gap-[18px] xl:grid-cols-[minmax(0,1fr)_340px] [&>*:last-child]:xl:sticky [&>*:last-child]:xl:top-4">
         <section aria-labelledby="dims">
           <div className="mb-3 flex items-center justify-between">
-            <h2 id="dims" className="text-[18px] font-semibold tracking-[-0.012em] text-ink">Twelve health dimensions</h2>
-            <span className="text-[13px] text-ink-3">Computed by ATLAS. Comment, not edit. <span className="font-medium text-bad">4 of 12 Red</span></span>
+            <h2 id="dims" className="text-[16px] font-semibold text-ink">Twelve health dimensions</h2>
+            <span className="text-[13px] text-ink-3">Computed by ATLAS. Ratings can be commented on, not edited. <span className="font-medium text-bad">4 of 12 Red</span></span>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {SCORECARDS.map((c, i) => (
-              <ScoreTile key={c.id} c={c} i={i} onOpen={() => (c.panel ? setPanel(c) : nav(c.to!))} />
+              <ScoreTile key={c.id} c={c} i={i} onOpen={() => (c.panel ? setPanel(c) : nav(c.to!))} onComment={() => setCommenting(c)} />
             ))}
           </div>
         </section>
@@ -54,7 +56,7 @@ export function S08Cockpit() {
             </div>
           </AtlasCard>
           <section className="rounded-xl border border-line bg-surface p-5">
-            <h3 className="text-[13px] font-semibold text-ink">Why this matters</h3>
+            <h3 className="text-[14px] font-semibold text-ink">Why this matters</h3>
             <p className="mt-2 text-[14px] leading-relaxed text-ink-2">{NARRATIVE}</p>
           </section>
         </div>
@@ -79,13 +81,14 @@ export function S08Cockpit() {
           </div>
         )}
       </Sheet>
+      <CommentsModal k={commenting ? `health-${commenting.id}` : null} label={commenting?.name ?? ''} onClose={() => setCommenting(null)} context={commenting && <div className="flex items-start gap-2 rounded-[10px] bg-sunken px-3.5 py-3 text-[13px]"><StatusChip h={commenting.status} /><span className="text-ink-2">{commenting.text}</span></div>} />
     </ScreenFrame>
   )
 }
 
 function HeaderStrip() {
   const items: { label: string; value: React.ReactNode; note?: string }[] = [
-    { label: 'Stage', value: PROJECT.stage, note: 'Groundbreaking 3 Aug 2026' },
+    { label: 'Stage', value: PROJECT.stage, note: `${PROJECT.epcContractor} · groundbreaking ${PROJECT.groundbreaking}` },
     { label: 'Target COD', value: PROJECT.targetCod, note: 'Forecast 11 Aug 2028' },
     { label: 'Approved CAPEX', value: 'Rp2,800 bn' },
     { label: 'Management EAC', value: 'Rp2,910 bn', note: 'Range Rp2,846 to 2,918 bn' },
@@ -120,22 +123,23 @@ function HeaderStrip() {
   )
 }
 
-function ScoreTile({ c, i, onOpen }: { c: Scorecard; i: number; onOpen: () => void }) {
+function ScoreTile({ c, i, onOpen, onComment }: { c: Scorecard; i: number; onOpen: () => void; onComment: () => void }) {
   const Icon = HEALTH_ICON[c.status]
-    return (
-    <button
-      onClick={onOpen}
-      style={{ animationDelay: `${i * 30}ms` }}
-      className="press group flex animate-rise flex-col rounded-xl border border-line bg-surface px-4 pb-3 pt-3.5 text-left transition-colors hover:border-atlas-300"
-    >
-      <div className="flex items-center justify-between gap-2">
-        <span className="text-[14px] font-semibold text-ink">{c.name}</span>
-        <span className={cn('inline-flex items-center gap-1 text-[12px] font-semibold', c.status === 'Red' ? 'text-bad' : c.status === 'Yellow' ? 'text-warn' : 'text-ok')}>
-          <Icon className="size-3.5" strokeWidth={2.4} />{c.status}
-        </span>
+  return (
+    <div style={{ animationDelay: `${i * 30}ms` }} className="group flex animate-rise flex-col rounded-xl border border-line bg-surface transition-colors hover:border-atlas-300">
+      <button onClick={onOpen} className="press flex flex-1 flex-col rounded-t-xl px-4 pt-3.5 text-left" aria-label={`${c.name}, ${c.status}. Open`}>
+        <div className="flex w-full items-center justify-between gap-2">
+          <span className="text-[14px] font-semibold text-ink">{c.name}</span>
+          <span className={cn('inline-flex items-center gap-1 text-[12px] font-semibold', c.status === 'Red' ? 'text-bad' : c.status === 'Yellow' ? 'text-warn' : 'text-ok')}>
+            <Icon className="size-3.5" strokeWidth={2.4} />{c.status}
+          </span>
+        </div>
+        <p className="mt-1 flex-1 text-[13px] leading-snug text-ink-3">{c.text}</p>
+      </button>
+      <div className="flex items-center justify-between px-2.5 pb-2 pt-1.5">
+        <CommentButton k={`health-${c.id}`} label={c.name} onOpen={onComment} />
+        <button onClick={onOpen} className="press inline-flex items-center gap-0.5 rounded-md px-1.5 py-1 text-[12px] font-medium text-atlas-700 opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100" tabIndex={-1} aria-hidden>Open<ArrowUpRight className="size-3.5" /></button>
       </div>
-      <p className="mt-1 flex-1 text-[13px] leading-snug text-ink-3">{c.text}</p>
-      <span className="mt-2 inline-flex items-center gap-0.5 text-[12px] font-medium text-atlas-700 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">Open<ArrowUpRight className="size-3.5" /></span>
-    </button>
+    </div>
   )
 }

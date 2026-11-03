@@ -93,7 +93,7 @@ export function S07Packs() {
             <header className="flex flex-wrap items-start justify-between gap-3 border-b border-line-soft pb-5">
               <div>
                 <div className="text-[12px] font-medium text-ink-3">Weekly pack · week ending 30 Jun 2027 · Confidential</div>
-                <h2 className="mt-1 text-[18px] font-semibold tracking-[-0.01em] text-ink">PSEL Cakrawala Raya</h2>
+                <h2 className="mt-1 text-[16px] font-semibold text-ink">PSEL Cakrawala Raya</h2>
               </div>
               {approved ? <Stamp kind="approved" who="PMO lead" when="30 Jun 2027" /> : <Stamp kind="draft" />}
             </header>
@@ -101,7 +101,7 @@ export function S07Packs() {
               {sections.map((s, i) => (
                 <li key={`${version}-${s.id}`} className="grid animate-rise gap-4 py-4 sm:grid-cols-[1fr_auto]" style={{ animationDelay: `${Math.min(i, 8) * 25}ms` }}>
                   <div className="min-w-0">
-                    <h3 className="text-[14px] font-semibold text-ink">{s.title}</h3>
+                    <h3 className="text-[16px] font-semibold text-ink">{s.title}</h3>
                     {s.id === '1' && simple ? (
                       <div className="mt-1.5 rounded-md bg-info-bg/60 p-3"><Stamp kind="draft" /><p className="mt-1.5 text-[14px] leading-relaxed text-ink">{ANSWERS['A-14'].direct}</p></div>
                     ) : <p className="mt-1 text-[14px] leading-relaxed text-ink-2">{s.line}</p>}
@@ -119,8 +119,8 @@ export function S07Packs() {
         </div>
 
         <aside className="space-y-4">
-          <Card className="p-5">
-            <h3 className="text-[13px] font-semibold text-ink">Release</h3>
+          <Card className="px-[18px] py-4">
+            <h3 className="text-[14px] font-semibold text-ink">Release</h3>
             <ol className="mt-3 space-y-3">
               {(['Draft', 'In review', 'Approved'] as const).map((st, i) => {
                 const idx = ['Draft', 'In review', 'Approved'].indexOf(stage)
@@ -141,10 +141,9 @@ export function S07Packs() {
             </div>
             <p className="mt-3 text-[12px] text-ink-3">Numbers come only from the governed layer. A named reviewer approves release.</p>
           </Card>
-          <Card className="p-5">
-            <h3 className="text-[13px] font-semibold text-ink">Headline status</h3>
+          <Card className="px-[18px] py-4">
+            <h3 className="text-[14px] font-semibold text-ink">Headline status</h3>
             <div className="mt-2"><StatusChip h="Yellow" label="Yellow, escalation required" /></div>
-            <p className="mt-2 text-[13px] text-ink-3">Same rating as the Cockpit; computed, never typed.</p>
           </Card>
         </aside>
       </div>

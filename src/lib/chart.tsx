@@ -12,7 +12,7 @@ export const fmtDay = (ms: number) => {
   return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`
 }
 
-export const AXIS = { fontSize: 11.5, fill: 'var(--color-ink-3)', fontFamily: 'Geist, sans-serif' }
+export const AXIS = { fontSize: 11.5, fill: 'var(--color-ink-3)', fontFamily: 'Inter, sans-serif' }
 
 /** Quarterly ticks from Aug 2026 to Sep 2028. */
 export const TICKS = ['2026-08-01', '2026-11-01', '2027-02-01', '2027-05-01', '2027-08-01', '2027-11-01', '2028-02-01', '2028-05-01', '2028-08-01'].map(t)
