@@ -7,7 +7,7 @@ import { ChatScroller, Composer, Conversation, Greeting, SuggestionCard, ThreadL
 import { Pop } from '../ui/popover'
 import { Tip } from '../ui/tooltip'
 
-/** Side panel: the same chat as Ask ATLAS, scoped to the screen the user is on. */
+/** Side panel: the same chat as NEXA Intelligence, scoped to the screen the user is on. */
 export function AssistantPanel() {
   const open = useDemo((s) => s.assistantOpen)
   const setOpen = useDemo((s) => s.setAssistantOpen)
@@ -26,10 +26,10 @@ export function AssistantPanel() {
   return (
     <>
       <button tabIndex={-1} aria-label="Close assistant" onClick={() => setOpen(false)} className="fixed inset-0 z-40 animate-fade cursor-default bg-atlas-950/25 2xl:hidden" />
-      <aside className="float fixed inset-y-0 right-0 z-50 flex h-dvh w-full animate-[drawer-in_280ms_var(--ease-drawer)] flex-col border-l border-line bg-canvas sm:w-[420px] 2xl:static 2xl:shrink-0 2xl:shadow-none" aria-label="ATLAS assistant">
+      <aside className="float fixed inset-y-0 right-0 z-50 flex h-dvh w-full animate-[drawer-in_280ms_var(--ease-drawer)] flex-col border-l border-line bg-canvas sm:w-[420px] 2xl:static 2xl:shrink-0 2xl:shadow-none" aria-label="NEXA assistant">
         <header className="flex h-16 shrink-0 items-center gap-1 border-b border-line bg-surface pl-4 pr-2">
           <div className="min-w-0 flex-1 leading-tight">
-            <div className="text-[14px] font-semibold text-ink">Ask ATLAS</div>
+            <div className="text-[14px] font-semibold text-ink">Ask NEXA</div>
             <div className="truncate text-[12px] text-ink-3">On {meta?.short ?? 'this screen'}</div>
           </div>
           <Tip content="New chat"><button onClick={newChat} className="press grid size-9 place-items-center rounded-md text-ink-3 hover:bg-sunken hover:text-ink" aria-label="New chat"><SquarePen className="size-4" /></button></Tip>
@@ -49,7 +49,7 @@ export function AssistantPanel() {
             {chat.length === 0 ? (
               <div>
                 <Greeting compact title={`Ask about ${meta?.short?.toLowerCase() ?? 'this screen'}`} />
-                <p className="mt-2 text-[13px] leading-relaxed text-ink-3">Answers come from governed data with sources. When evidence is missing, ATLAS says so.</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-ink-3">Answers come from governed data with sources. When evidence is missing, NEXA says so.</p>
                 {sugg.length > 0 && (
                   <div className="mt-5 space-y-2">
                     {sugg.map((id) => <SuggestionCard key={id} id={id} onPick={askById} dashed={id === 'A-17'} />)}

@@ -1,7 +1,7 @@
 import { CheckCircle2, CircleDashed, FileSpreadsheet, Lock, Send, ShieldCheck, XCircle } from 'lucide-react'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { WaveTag } from '../components/atlas/chips'
+import { WaveTag, StatePill } from '../components/atlas/chips'
 import { ScreenFrame, SectionTitle } from '../components/atlas/frame'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
@@ -73,17 +73,17 @@ export function S04PartnerData() {
                 <button onClick={() => openEv('sha-9')} className="press text-[13px] font-medium text-atlas-700 hover:underline">Right granted by {P.clause}</button>
               </div>
               <table className="mt-3 w-full min-w-[820px] text-[13px]">
-                <thead className="border-y border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Required feed</th><th className="px-3 py-2.5 font-medium">Agreed</th><th className="px-3 py-2.5 font-medium">Template</th><th className="px-3 py-2.5 font-medium">Latest submission</th><th className="px-5 py-2.5 font-medium">Validation</th></tr></thead>
+                <thead className="border-y border-line text-left text-[12px] text-ink-3"><tr><th className="font-medium">Required feed</th><th className="font-medium">Agreed</th><th className="font-medium">Template</th><th className="font-medium">Latest submission</th><th className="font-medium">Validation</th></tr></thead>
                 <tbody className="divide-y divide-line-soft">
                   {P.feeds.map((f) => (
                     <tr key={f.name}>
-                      <td className="px-5 py-3 font-medium text-ink">{f.name}</td>
-                      <td className="px-3 py-3">{f.agreed ? <span className="inline-flex items-center gap-1 text-ok"><CheckCircle2 className="size-4" />Agreed</span> : <span className="inline-flex items-center gap-1 text-ink-3"><CircleDashed className="size-4" />Not yet agreed</span>}</td>
-                      <td className="px-3 py-3">{f.template ? <button onClick={() => setTpl(f)} className="press inline-flex items-center gap-1 font-medium text-atlas-700 hover:underline"><FileSpreadsheet className="size-3.5" />{f.template}</button> : <span className="text-ink-4">No template</span>}</td>
-                      <td className="tnum px-3 py-3 text-ink-2">{f.last ?? 'n/a'}</td>
-                      <td className="px-5 py-3">
-                        {f.result === 'Accepted' && <span className="inline-flex items-center gap-1 text-ok"><CheckCircle2 className="size-4" />Accepted</span>}
-                        {f.result === 'Rejected' && <button onClick={() => setRej(f)} className="press inline-flex items-center gap-1 font-medium text-bad hover:underline"><XCircle className="size-4" />Rejected, see reasons</button>}
+                      <td className="font-medium text-ink">{f.name}</td>
+                      <td><StatePill s={f.agreed ? 'Agreed' : 'Not yet agreed'} /></td>
+                      <td>{f.template ? <button onClick={() => setTpl(f)} className="press inline-flex items-center gap-1 font-medium text-atlas-700 hover:underline"><FileSpreadsheet className="size-3.5" />{f.template}</button> : <span className="text-ink-4">No template</span>}</td>
+                      <td className="tnum text-ink-2">{f.last ?? 'n/a'}</td>
+                      <td>
+                        {f.result === 'Accepted' && <StatePill s="Accepted" />}
+                        {f.result === 'Rejected' && <button onClick={() => setRej(f)} className="press rounded-full hover:opacity-80" aria-label="Rejected, see reasons"><StatePill s="Rejected" label="Rejected, see reasons" /></button>}
                         {!f.agreed && proj === 'cakrawala' && f.name.startsWith('Waste') && (
                           <div className="flex flex-col items-start gap-1">
                             <Button size="sm" disabled={requests.includes('waste-feed') || isPcu} onClick={requestFeed}><Send />{requests.includes('waste-feed') ? 'Request raised' : 'Request project company to provide missing feed'}</Button>
@@ -102,10 +102,10 @@ export function S04PartnerData() {
         <TabsContent value="phase2" className="pt-5">
           <Card className="overflow-x-auto">
             <table className="w-full text-[13px]">
-              <thead className="border-b border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Project</th><th className="px-3 py-2.5 font-medium">Information-rights clause</th><th className="px-5 py-2.5 font-medium">Data annex</th></tr></thead>
+              <thead className="border-b border-line text-left text-[12px] text-ink-3"><tr><th className="font-medium">Project</th><th className="font-medium">Information-rights clause</th><th className="font-medium">Data annex</th></tr></thead>
               <tbody className="divide-y divide-line-soft">
                 {PHASE2_RIGHTS.map((r) => (
-                  <tr key={r.id}><td className="px-5 py-3 font-semibold text-ink">{r.id}</td><td className="px-3 py-3"><Flag v={r.clause} /></td><td className="px-5 py-3"><Flag v={r.annex} /></td></tr>
+                  <tr key={r.id}><td className="font-semibold text-ink">{r.id}</td><td><Flag v={r.clause} /></td><td><Flag v={r.annex} /></td></tr>
                 ))}
               </tbody>
             </table>
@@ -135,7 +135,7 @@ export function S04PartnerData() {
               })}
             </div>
             <div className="mt-3 flex flex-wrap gap-1.5 text-[12px]">
-              {['Public', 'Internal', 'Confidential', 'Restricted'].map((c) => <span key={c} className="rounded-md border border-line bg-surface px-2 py-0.5 text-[12px] text-ink-2">{c}</span>)}
+              {['Public', 'Internal', 'Confidential', 'Restricted'].map((c) => <span key={c} className="rounded-full border border-line bg-sunken px-[9px] py-0.5 text-[12px] font-medium text-ink-2">{c}</span>)}
             </div>
             <ol className="mt-4 space-y-1.5 text-[12px]">
               {audit.slice(0, 5).map((a, i) => <li key={i} className="flex gap-3"><span className="tnum w-[104px] shrink-0 text-ink-3">{a.t}</span><span className="text-ink-2"><b className="font-medium text-ink">{a.action}</b> {a.object}</span></li>)}
@@ -147,8 +147,8 @@ export function S04PartnerData() {
       <Sheet open={!!tpl} onOpenChange={(v) => !v && setTpl(null)} title={`Template ${tpl?.template ?? ''}`} description={tpl?.name}>
         <div className="overflow-x-auto rounded-md border border-line">
           <table className="w-full text-[12px]">
-            <thead className="bg-sunken text-left text-ink-3"><tr>{['project_id', 'wbs_code', 'period_end', 'quantity', 'unit', 'evidence_ref'].map((c) => <th key={c} className="px-2.5 py-2 font-mono font-medium">{c}</th>)}</tr></thead>
-            <tbody><tr className="font-mono text-ink-2">{['CKR', 'BI-03.2', '2027-06-30', '412.5', 't', 'INS-0612'].map((c) => <td key={c} className="px-2.5 py-2">{c}</td>)}</tr></tbody>
+            <thead className="bg-sunken text-left text-ink-3"><tr>{['project_id', 'wbs_code', 'period_end', 'quantity', 'unit', 'evidence_ref'].map((c) => <th key={c} className="font-mono font-medium">{c}</th>)}</tr></thead>
+            <tbody><tr className="font-mono text-ink-2">{['CKR', 'BI-03.2', '2027-06-30', '412.5', 't', 'INS-0612'].map((c) => <td key={c}>{c}</td>)}</tr></tbody>
           </table>
         </div>
         <p className="mt-3 text-[13px] text-ink-3">Files that fail schema checks are rejected with reasons. No partner data loads before access control and the audit log are in place.</p>

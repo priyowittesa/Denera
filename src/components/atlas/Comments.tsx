@@ -45,7 +45,7 @@ export function CommentsModal({ k, label, context, onClose }: { k: string | null
               <span className="grid size-7 shrink-0 place-items-center rounded-full bg-atlas-100 text-[11px] font-bold text-atlas-700">{c.by.split(' ').map((w) => w[0]).join('').slice(0, 2)}</span>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-baseline gap-x-2 text-[12px] text-ink-3"><span className="text-[13px] font-medium text-ink">{c.by}</span><span className="tnum">{c.at}</span></div>
-                <p className="mt-0.5 text-[13.5px] text-ink-2">{c.text}</p>
+                <p className="mt-0.5 text-[14px] text-ink-2">{c.text}</p>
               </div>
               {c.role === me && (
                 <button type="button" onClick={() => del(k!, c.id)} className="press grid size-8 place-items-center rounded-md text-ink-3 hover:bg-bad-bg hover:text-bad" aria-label="Delete comment"><Trash2 className="size-4" /></button>

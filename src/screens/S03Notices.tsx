@@ -1,13 +1,14 @@
 import { CalendarDays, Check, FileText, List, Send, Sparkles, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { AuthorityLabel, Stamp, StatusChip } from '../components/atlas/chips'
+import { AuthorityLabel, Stamp, StatusChip, StatePill } from '../components/atlas/chips'
 import { ScreenFrame } from '../components/atlas/frame'
 import { AnswerView } from '../components/atlas/AnswerView'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
 import { Sheet } from '../components/ui/sheet'
 import { ReasonModal } from '../components/atlas/ReasonModal'
+import { NoResults, ResultFooter, SearchBox } from '../components/ui/toolbar'
 import { ReadOnly } from '../components/ui/form'
 import { Segmented } from '../components/ui/tabs'
 import { NOTICES, type Notice } from '../data/registers'
@@ -40,10 +41,14 @@ export function S03Notices() {
   useEffect(() => { if (params.get('draft') === '1') setDraft(true) }, [params])
 
   const badge = (n: Notice) => (confirmed[`notice-${n.id}`] ? 'Confirmed' : rejected[`notice-${n.id}`] ? 'Rejected' : n.badge)
-  const rows = NOTICES
-    .filter((n) => !isPcu || (n.project === 'Cakrawala' && n.authority !== 'Shareholder (Denera)'))
+  const [q, setQ] = useState('')
+  const visible = NOTICES.filter((n) => !isPcu || (n.project === 'Cakrawala' && n.authority !== 'Shareholder (Denera)'))
+  const rows = visible
     .filter((n) => proj === 'All' || n.project === proj)
     .filter((n) => auth === 'All' || n.authority === auth)
+    .filter((n) => !q.trim() || `${n.obligation} ${n.clause} ${n.owner} ${n.project} ${n.due}`.toLowerCase().includes(q.trim().toLowerCase()))
+  const filtered = proj !== 'All' || auth !== 'All' || !!q.trim()
+  const resetFilters = () => { setProj('All'); setAuth('All'); setQ('') }
   const projects = ['All', ...new Set(NOTICES.filter((n) => !isPcu || n.project === 'Cakrawala').map((n) => n.project))]
 
   const status = (n: (typeof rows)[number]) => {
@@ -71,6 +76,7 @@ export function S03Notices() {
       aside={<Button variant="outline" onClick={() => setDraft(true)}><Sparkles />Draft the 6 July notice</Button>}
     >
       <div className="flex flex-col gap-2 lg:flex-row lg:flex-wrap lg:items-center lg:gap-3">
+        <SearchBox value={q} onChange={setQ} label="Search obligations" placeholder="Search obligation, clause or owner" className="w-full lg:w-[320px]" />
         <Segmented<View> label="View" value={view} onChange={setView} items={[{ value: 'list', label: <span className="inline-flex items-center gap-1.5"><List className="size-3.5" />List</span> }, { value: 'calendar', label: <span className="inline-flex items-center gap-1.5"><CalendarDays className="size-3.5" />Calendar</span> }]} />
         <Segmented label="Project" size="sm" value={proj} onChange={setProj} items={projects.map((p) => ({ value: p, label: p }))} />
         <Segmented<'All' | Authority> label="Authority" size="sm" value={auth} onChange={setAuth} items={(['All', 'Joint', 'Project company', 'Shareholder (Denera)'] as const).map((a) => ({ value: a, label: a }))} />
@@ -91,36 +97,38 @@ export function S03Notices() {
                   </div>
                   <span className={cn('tnum shrink-0 rounded-full border px-2 py-0.5 text-[12px] font-semibold', n.days <= 7 ? 'border-bad-line bg-bad-bg text-bad' : 'border-line bg-sunken text-ink-2')}>{n.days} days</span>
                 </div>
-                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px] text-ink-2">
+                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[13px] text-ink-2">
                   <button onClick={() => openEv(n.doc)} className="press inline-flex items-center gap-1 font-medium text-atlas-700 hover:underline"><FileText className="size-3.5" />{n.clause}</button>
                   <span className="tnum">Due {n.due}</span>
                   <AuthorityLabel a={n.authority} />
-                  <span className="text-ink-3">Evidence pack: {n.pack}</span>
+                  <span className="inline-flex items-center gap-1.5 text-ink-3">Evidence pack <StatePill s={n.pack} /></span>
                 </div>
                 <div className="mt-2.5 border-t border-line-soft pt-2.5">{status(n)}</div>
               </article>
             )
           })}
+          {rows.length === 0 && <div className="rounded-xl border border-line bg-surface"><NoResults noun="obligations" onReset={resetFilters} /></div>}
+          <ResultFooter shown={rows.length} total={visible.length} noun="obligations" filtered={filtered} onReset={resetFilters} className="rounded-xl border border-line bg-surface" />
           {!canConfirm && <p className="px-1 text-[12px] text-ink-3">Only the Commercial and Legal Lead can confirm or reject extracted deadlines.</p>}
         </div>
         <Card className="mt-4 hidden overflow-x-auto md:block">
-          <table className="w-full min-w-[1160px] text-[13px]">
+          <table className="w-full min-w-[1000px] text-[13px]">
             <thead className="border-b border-line text-left text-[12px] text-ink-3">
-              <tr><th className="px-5 py-2.5 font-medium">Obligation</th><th className="px-3 py-2.5 font-medium">Source clause</th><th className="px-3 py-2.5 font-medium">Due</th><th className="px-3 py-2.5 text-right font-medium">Days</th><th className="px-3 py-2.5 font-medium">Owner</th><th className="px-3 py-2.5 font-medium">Authority</th><th className="px-3 py-2.5 font-medium">Evidence pack</th><th className="px-5 py-2.5 font-medium">Status</th></tr>
+              <tr><th className="font-medium">Obligation</th><th className="font-medium">Source clause</th><th className="font-medium">Due</th><th className="text-right font-medium">Days</th><th className="font-medium">Owner</th><th className="font-medium">Authority</th><th className="font-medium">Evidence pack</th><th className="font-medium">Status</th></tr>
             </thead>
             <tbody className="divide-y divide-line-soft">
               {rows.map((n) => {
                 const b = badge(n)
                 return (
                   <tr key={n.id} className={cn(n.id === 'N1' && 'bg-bad-bg/30', b === 'Rejected' && 'opacity-50')}>
-                    <td className="px-5 py-3"><div className="font-medium text-ink">{n.obligation}</div><div className="text-[12px] text-ink-3">{n.project}</div></td>
-                    <td className="px-3 py-3"><button onClick={() => openEv(n.doc)} className="press inline-flex items-center gap-1 whitespace-nowrap font-medium text-atlas-700 hover:underline"><FileText className="size-3.5" />{n.clause}</button></td>
-                    <td className="tnum whitespace-nowrap px-3 py-3">{n.due}</td>
+                    <td><div className="font-medium text-ink">{n.obligation}</div><div className="text-[12px] text-ink-3">{n.project}</div></td>
+                    <td><button onClick={() => openEv(n.doc)} className="press inline-flex items-center gap-1 whitespace-nowrap font-medium text-atlas-700 hover:underline"><FileText className="size-3.5" />{n.clause}</button></td>
+                    <td className="tnum whitespace-nowrap">{n.due}</td>
                     <td className={cn('tnum px-3 py-3 text-right font-semibold', n.days <= 7 ? 'text-bad' : 'text-ink')}>{n.days}</td>
-                    <td className="px-3 py-3 text-ink-2">{n.owner}</td>
-                    <td className="px-3 py-3"><AuthorityLabel a={n.authority} /></td>
-                    <td className="whitespace-nowrap px-3 py-3 text-ink-2">{n.pack}</td>
-                    <td className="px-5 py-3">
+                    <td className="text-ink-2">{n.owner}</td>
+                    <td><AuthorityLabel a={n.authority} /></td>
+                    <td className="whitespace-nowrap">{n.pack === 'n/a' ? <span className="text-ink-4">n/a</span> : <StatePill s={n.pack} />}</td>
+                    <td className="w-[260px] min-w-[260px]">
                       {status(n)}
                     </td>
                   </tr>
@@ -128,7 +136,8 @@ export function S03Notices() {
               })}
             </tbody>
           </table>
-          {!canConfirm && <p className="border-t border-line-soft px-5 py-3 text-[12px] text-ink-3">Only the Commercial and Legal Lead can confirm or reject extracted deadlines.</p>}
+          {rows.length === 0 && <NoResults noun="obligations" onReset={resetFilters} />}
+          <ResultFooter shown={rows.length} total={visible.length} noun="obligations" filtered={filtered} onReset={resetFilters} aside={!canConfirm ? <span>Only the Commercial and Legal Lead can confirm or reject extracted deadlines.</span> : undefined} />
         </Card>
         </>
       ) : (
@@ -201,9 +210,11 @@ function CalendarView({ rows, badge }: { rows: Notice[]; badge: (n: Notice) => s
 
 function DraftNotice({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
   const requests = useDemo((s) => s.requests)
-  const addRequest = useDemo((s) => s.addRequest)
+  const [req, setReq] = useState<RequestSpec | null>(null)
   const sent = requests.includes('legal-review')
   return (
+    <>
+    <RequestModal spec={req} onClose={() => setReq(null)} />
     <Sheet
       open={open}
       onOpenChange={onOpenChange}
@@ -213,7 +224,7 @@ function DraftNotice({ open, onOpenChange }: { open: boolean; onOpenChange: (v: 
       footer={
         <div className="flex items-center justify-between gap-3">
           <span className="text-[12px] text-ink-3">AI drafts, a lawyer sends. There is no send control here.</span>
-          <Button disabled={sent} onClick={() => addRequest('legal-review', 'EPC notice draft sent for legal review')}><Send />{sent ? 'With legal for review' : 'Send for legal review'}</Button>
+          <Button disabled={sent} onClick={() => setReq({ key: 'legal-review', title: 'Send the draft for legal review', to: 'Commercial and Legal Lead', route: 'Review only: a lawyer sends, never ATLAS', authority: 'Joint', subject: 'EPC notice draft sent for legal review (cl. 14.2)', message: 'Please review the AI draft notice of delay event under EPC cl. 14.2 and mark up any changes. The project company board must issue it by 5 PM Friday 2 July 2027.', due: '2027-07-01', owner: 'Commercial and Legal Lead', linked: 'Contractual entitlement', source: 'Notice calendar', confirmLabel: 'Send for review' })}><Send />{sent ? 'With legal for review' : 'Send for legal review'}</Button>
         </div>
       }
     >
@@ -227,5 +238,6 @@ function DraftNotice({ open, onOpenChange }: { open: boolean; onOpenChange: (v: 
         <p className="text-ink-3">[Signature block for the project company]</p>
       </article>
     </Sheet>
+    </>
   )
 }

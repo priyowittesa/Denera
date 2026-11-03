@@ -1,16 +1,15 @@
-import { ArrowRight, Flag, Info } from 'lucide-react'
+import { ArrowRight, CalendarClock, ChartSpline, Flag, Gauge as GaugeIcon, Info, ShieldCheck, TrendingDown, TrendingUp, Wallet } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Area, CartesianGrid, ComposedChart, Line, ReferenceArea, ReferenceDot, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts'
-import { AtlasCard, Metric, ScreenFrame, SectionTitle } from '../components/atlas/frame'
+import { AtlasCard, Metric, ScreenFrame, SectionTitle, StatTile } from '../components/atlas/frame'
 import { PlainStatus, StatusChip } from '../components/atlas/chips'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
 import { Switch } from '../components/ui/switch'
 import { Segmented, Tabs, TabsContent, TabsList } from '../components/ui/tabs'
-import { Tip } from '../components/ui/tooltip'
 import { CONTRACTORS, DISCIPLINES, EVENT_PINS, FORECAST, HISTORY, PACKAGES_COST, PLANNED_FUTURE, SCENARIOS, WBS, type ScenarioId } from '../data/scurve'
 import { cn } from '../lib/cn'
 import { AXIS, ChartTooltip, LegendItem, TICKS, fmtMonth, t } from '../lib/chart'
@@ -101,9 +100,9 @@ export function S09Progress() {
             <h3 className="text-[14px] font-semibold text-ink">Reported and verified, always apart</h3>
             <p className="mt-1 text-[13px] leading-relaxed text-ink-3">Reported is what the contractor claims. Verified is what ATLAS has checked against quantities and inspection records. A gap of 5 points or more carries a flag.</p>
             <div className="mt-3 flex items-end gap-6">
-              <div><div className="text-[12px] text-ink-3">Reported</div><div className="tnum text-[22px] font-semibold text-ink-3">42%</div></div>
-              <div><div className="text-[12px] text-ink-3">Verified</div><div className="tnum text-[22px] font-semibold text-series-verified">39%</div></div>
-              <div><div className="text-[12px] text-ink-3">Planned</div><div className="tnum text-[22px] font-semibold text-ink-2">46%</div></div>
+              <div><div className="text-[12px] text-ink-3">Reported</div><div className="tnum text-[24px] font-semibold text-ink-3">42%</div></div>
+              <div><div className="text-[12px] text-ink-3">Verified</div><div className="tnum text-[24px] font-semibold text-series-verified">39%</div></div>
+              <div><div className="text-[12px] text-ink-3">Planned</div><div className="tnum text-[24px] font-semibold text-ink-2">46%</div></div>
             </div>
           </Card>
         </div>
@@ -157,14 +156,14 @@ function ProgressChart({ scenario }: { scenario: ScenarioId }) {
             <Line dataKey="reported" stroke="var(--color-series-reported)" strokeWidth={1.5} dot={false} isAnimationActive={false} />
             <Line dataKey="verified" stroke="var(--color-series-verified)" strokeWidth={3} dot={false} isAnimationActive={false} />
             <Line key={scenario} dataKey="forecast" stroke={sc.color} strokeWidth={2.5} strokeDasharray={scenario === 'current' ? '2 5' : '7 5'} strokeLinecap="round" dot={false} isAnimationActive animationDuration={420} animationEasing="ease-out" connectNulls />
-            <ReferenceLine x={DD} stroke="var(--color-ink)" strokeWidth={1.25} label={{ value: 'Today, 30 Jun 2027', position: 'top', fill: 'var(--color-ink)', fontSize: 11.5, fontWeight: 600 }} />
-            <ReferenceLine segment={[{ x: DD, y: 39 }, { x: DD, y: 46 }]} stroke="var(--color-bad)" strokeWidth={2.5} label={{ value: '7.0 points behind plan', position: 'right', fill: 'var(--color-bad)', fontSize: 11.5, fontWeight: 700, offset: 12, stroke: 'white', strokeWidth: 4, paintOrder: 'stroke' }} />
+            <ReferenceLine x={DD} stroke="var(--color-ink)" strokeWidth={1.25} label={{ value: 'Today, 30 Jun 2027', position: 'top', fill: 'var(--color-ink)', fontSize: 12, fontWeight: 600 }} />
+            <ReferenceLine segment={[{ x: DD, y: 39 }, { x: DD, y: 46 }]} stroke="var(--color-bad)" strokeWidth={2.5} label={{ value: '7.0 points behind plan', position: 'right', fill: 'var(--color-bad)', fontSize: 12, fontWeight: 700, offset: 12, stroke: 'white', strokeWidth: 4, paintOrder: 'stroke' }} />
             <ReferenceLine x={TARGET} stroke="var(--color-series-planned)" strokeDasharray="3 3" label={{ value: 'Target COD', position: 'insideBottomRight', fill: 'var(--color-ink-2)', fontSize: 11 }} />
             <ReferenceLine x={codX} stroke={sc.color} strokeWidth={1.5} />
             <ReferenceLine segment={[{ x: TARGET, y: 104 }, { x: codX, y: 104 }]} stroke={sc.color} strokeWidth={3} label={{ value: `${sc.days} days`, position: 'top', fill: scenario === 'none' ? 'var(--color-bad)' : recovery ? 'var(--color-ok)' : 'var(--color-warn)', fontSize: 12, fontWeight: 700 }} />
-            <ReferenceDot x={DD} y={46} r={3.5} fill="var(--color-series-planned)" stroke="white" label={{ value: 'Planned 46%', position: 'left', fontSize: 11.5, fill: 'var(--color-ink-2)', fontWeight: 600, dy: -10, offset: 10, stroke: 'white', strokeWidth: 4, paintOrder: 'stroke' }} />
+            <ReferenceDot x={DD} y={46} r={3.5} fill="var(--color-series-planned)" stroke="white" label={{ value: 'Planned 46%', position: 'left', fontSize: 12, fill: 'var(--color-ink-2)', fontWeight: 600, dy: -10, offset: 10, stroke: 'white', strokeWidth: 4, paintOrder: 'stroke' }} />
             <ReferenceDot x={DD} y={42} r={3} fill="var(--color-series-reported)" stroke="white" label={{ value: 'Reported 42%', position: 'left', fontSize: 11, fill: 'var(--color-ink-3)', offset: 10, dy: -2, stroke: 'white', strokeWidth: 4, paintOrder: 'stroke' }} />
-            <ReferenceDot x={DD} y={39} r={4.5} fill="var(--color-series-verified)" stroke="white" strokeWidth={2} label={{ value: 'Verified 39%', position: 'left', fontSize: 11.5, fill: 'var(--color-series-verified)', fontWeight: 700, offset: 10, dy: 12, stroke: 'white', strokeWidth: 4, paintOrder: 'stroke' }} />
+            <ReferenceDot x={DD} y={39} r={4.5} fill="var(--color-series-verified)" stroke="white" strokeWidth={2} label={{ value: 'Verified 39%', position: 'left', fontSize: 12, fill: 'var(--color-series-verified)', fontWeight: 700, offset: 10, dy: 12, stroke: 'white', strokeWidth: 4, paintOrder: 'stroke' }} />
             {EVENT_PINS.map((p) => {
               const ys: Record<number, number> = { 1: 3, 2: 16, 3: 22, 4: 62 }
               return <ReferenceDot key={p.n} x={t(p.date)} y={ys[p.n]} r={8} fill="var(--color-ink)" stroke="white" strokeWidth={1.5} label={{ value: String(p.n), fill: 'white', fontSize: 10, fontWeight: 700, position: 'center' }} />
@@ -228,15 +227,15 @@ function CostChart() {
             <XAxis dataKey="x" type="number" scale="time" domain={[START, END]} ticks={TICKS} tickFormatter={fmtMonth} tick={AXIS} axisLine={{ stroke: 'var(--color-line)' }} tickLine={false} />
             <YAxis domain={[0, 3200]} ticks={[0, 800, 1600, 2400, 3200]} tickFormatter={(v) => `${v.toLocaleString('en-US')}`} tick={AXIS} axisLine={false} tickLine={false} width={52} label={{ value: 'Rp bn', angle: -90, position: 'insideLeft', fill: 'var(--color-ink-3)', fontSize: 11 }} />
             <ReferenceArea x1={t('2028-08-11')} x2={END} y1={2846} y2={2918} fill="var(--color-warn-bg)" stroke="var(--color-warn)" strokeOpacity={0.4} />
-            <ReferenceLine y={2800} stroke="var(--color-ink)" label={{ value: 'CAPEX 2,800', position: 'right', offset: 8, dy: 9, fontSize: 11.5, fill: 'var(--color-ink)', fontWeight: 600 }} />
+            <ReferenceLine y={2800} stroke="var(--color-ink)" label={{ value: 'CAPEX 2,800', position: 'right', offset: 8, dy: 9, fontSize: 12, fill: 'var(--color-ink)', fontWeight: 600 }} />
             <ReferenceLine y={2976} stroke="var(--color-ink-3)" strokeDasharray="2 4" label={{ value: 'Reserve 2,976', position: 'right', offset: 8, dy: -8, fontSize: 11, fill: 'var(--color-ink-3)' }} />
-            <ReferenceLine x={DD} stroke="var(--color-ink)" strokeWidth={1.25} label={{ value: 'Today', position: 'top', fill: 'var(--color-ink)', fontSize: 11.5, fontWeight: 600 }} />
+            <ReferenceLine x={DD} stroke="var(--color-ink)" strokeWidth={1.25} label={{ value: 'Today', position: 'top', fill: 'var(--color-ink)', fontSize: 12, fontWeight: 600 }} />
             <Line dataKey="plan" stroke="var(--color-series-planned)" strokeDasharray="6 5" strokeWidth={2} dot={false} isAnimationActive={false} connectNulls />
             <Line dataKey="cash" stroke="var(--color-info)" strokeWidth={1.5} dot={false} isAnimationActive={false} />
             <Line dataKey="acCommit" stroke="var(--color-warn)" strokeWidth={2} dot={false} isAnimationActive={false} />
             <Line dataKey="ac" stroke="var(--color-series-verified)" strokeWidth={3} dot={false} isAnimationActive={false} />
             <Line dataKey="fc" stroke="var(--color-series-forecast)" strokeDasharray="2 5" strokeWidth={2.5} strokeLinecap="round" dot={false} isAnimationActive={false} connectNulls />
-            <ReferenceDot x={DD} y={1456} r={4} fill="var(--color-warn)" stroke="white" label={{ value: 'Incurred and committed Rp1,456 bn', position: 'left', fontSize: 11.5, fill: 'var(--color-ink)', fontWeight: 600, offset: 10 }} />
+            <ReferenceDot x={DD} y={1456} r={4} fill="var(--color-warn)" stroke="white" label={{ value: 'Incurred and committed Rp1,456 bn', position: 'left', fontSize: 12, fill: 'var(--color-ink)', fontWeight: 600, offset: 10 }} />
             <Tooltip cursor={{ stroke: 'var(--color-atlas-500)' }} content={(p) => (
               <ChartTooltip {...(p as object)} label={p.label as number} rows={[
                 { key: 'plan', label: 'Planned cashflow', color: 'var(--color-series-planned)', fmt: rp },
@@ -278,9 +277,9 @@ function EvChart({ analyst }: { analyst: boolean }) {
             <Line dataKey="pv" stroke="var(--color-series-planned)" strokeDasharray="6 5" strokeWidth={2} dot={false} isAnimationActive={false} />
             <Line dataKey="ac" stroke="var(--color-warn)" strokeWidth={2} dot={false} isAnimationActive={false} />
             <Line dataKey="ev" stroke="var(--color-series-verified)" strokeWidth={3} dot={false} isAnimationActive={false} />
-            <ReferenceDot x={DD} y={1288} r={3.5} fill="var(--color-series-planned)" stroke="white" label={{ value: `${analyst ? 'PV' : 'Planned'} Rp1,288 bn`, position: 'right', fontSize: 11.5, fill: 'var(--color-ink-2)', fontWeight: 600 }} />
-            <ReferenceDot x={DD} y={1138} r={3.5} fill="var(--color-warn)" stroke="white" label={{ value: `${analyst ? 'AC' : 'Cost'} Rp1,138 bn`, position: 'right', fontSize: 11.5, fill: 'var(--color-warn)', fontWeight: 600 }} />
-            <ReferenceDot x={DD} y={1092} r={4.5} fill="var(--color-series-verified)" stroke="white" strokeWidth={2} label={{ value: `${analyst ? 'EV' : 'Done'} Rp1,092 bn`, position: 'right', fontSize: 11.5, fill: 'var(--color-series-verified)', fontWeight: 700, dy: 10 }} />
+            <ReferenceDot x={DD} y={1288} r={3.5} fill="var(--color-series-planned)" stroke="white" label={{ value: `${analyst ? 'PV' : 'Planned'} Rp1,288 bn`, position: 'right', fontSize: 12, fill: 'var(--color-ink-2)', fontWeight: 600 }} />
+            <ReferenceDot x={DD} y={1138} r={3.5} fill="var(--color-warn)" stroke="white" label={{ value: `${analyst ? 'AC' : 'Cost'} Rp1,138 bn`, position: 'right', fontSize: 12, fill: 'var(--color-warn)', fontWeight: 600 }} />
+            <ReferenceDot x={DD} y={1092} r={4.5} fill="var(--color-series-verified)" stroke="white" strokeWidth={2} label={{ value: `${analyst ? 'EV' : 'Done'} Rp1,092 bn`, position: 'right', fontSize: 12, fill: 'var(--color-series-verified)', fontWeight: 700, dy: 10 }} />
             <Tooltip cursor={{ stroke: 'var(--color-atlas-500)' }} content={(p) => (
               <ChartTooltip {...(p as object)} label={p.label as number} rows={[
                 { key: 'pv', label: L.pv, color: 'var(--color-series-planned)', fmt: rp },
@@ -348,19 +347,18 @@ function Indicators({ analyst }: { analyst: boolean }) {
     { plain: 'Forecast overrun', term: 'EAC variance', value: '+Rp110 bn', note: 'EAC Rp2,910 bn; range 2,846 to 2,918', tip: 'Management EAC Rp2,910 bn; CPI-trend Rp2,918 bn; range Rp2,846 to 2,918 bn', tone: 'bad' },
     { plain: 'Contingency remaining', term: 'Reserve', value: '63%', note: 'Rp111 bn of Rp176 bn', tip: 'Forecast use Rp65 bn.' },
   ]
+  const icons = [GaugeIcon, Wallet, ChartSpline, TrendingDown, CalendarClock, TrendingUp, ShieldCheck]
   return (
-    <section className="mt-6 rounded-xl border border-line bg-surface px-5 py-4">
-      <div className="flex items-center justify-between">
+    <section className="mt-[18px]">
+      <div className="mb-2.5 flex items-center justify-between gap-3">
         <h2 className="text-[16px] font-semibold text-ink">Indicators at 30 Jun 2027</h2>
-        <button onClick={() => openDefs(true)} className="press inline-flex items-center gap-1 text-[12px] font-medium text-atlas-700 hover:underline"><Info className="size-3.5" />Definitions</button>
+        <button onClick={() => openDefs(true)} className="press inline-flex items-center gap-1 text-[13px] font-medium text-atlas-700 hover:underline"><Info className="size-3.5" />Definitions</button>
       </div>
-      <div className="mt-3 grid gap-x-6 gap-y-4 sm:grid-cols-4 xl:grid-cols-7">
-        {items.map((i) => (
-          <Tip key={i.plain} content={<><b>{i.term}</b>. {i.tip}</>}>
-            <div tabIndex={0} className="rounded-sm outline-offset-4">
-              <Metric label={analyst ? i.term : i.plain} value={i.value} note={i.note ?? (analyst ? i.plain : i.term)} tone={i.tone} />
-            </div>
-          </Tip>
+      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-12">
+        {items.map((i, k) => (
+          <div key={i.plain} className={cn('min-w-0 xl:col-span-3', k >= 4 && 'xl:col-span-4')}>
+          <StatTile icon={icons[k]} label={analyst ? i.term : i.plain} value={i.value} cap={i.note ?? (analyst ? i.plain : i.term)} tone={i.tone} tip={<><b>{i.term}</b>. {i.tip}</>} />
+          </div>
         ))}
       </div>
     </section>
@@ -390,8 +388,8 @@ function WbsList() {
   )
 }
 
-const th = 'px-3 py-2 text-left text-[12px] font-medium text-ink-3'
-const td = 'px-3 py-2.5 text-[13px]'
+const th = 'text-left'
+const td = ''
 
 function Flagged({ r, v }: { r: number; v: number }) {
   const flag = r - v >= 5

@@ -1,7 +1,7 @@
 import { ArrowUpRight, Check, FileText, Sparkles, TriangleAlert } from 'lucide-react'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { GateIcon, Stamp, StatusChip } from '../components/atlas/chips'
+import { GateIcon, Stamp, StatusChip, StatePill } from '../components/atlas/chips'
 import { AtlasCard, ScreenFrame } from '../components/atlas/frame'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
@@ -42,28 +42,28 @@ export function S02Gates() {
       aside={<Button variant="outline" onClick={() => ask('A-03', ANSWERS['A-03'].q)}><Sparkles />Which can reach FID by 30 Sep 2027?</Button>}
     >
       {/* The ten-gate matrix needs the full width; the project panel moves beside it only on wide screens. */}
-      <div className="grid items-start gap-5 2xl:grid-cols-[minmax(0,1fr)_340px] [&>*:last-child]:2xl:sticky [&>*:last-child]:2xl:top-4">
+      <div className="grid grid-cols-1 items-start gap-5 2xl:grid-cols-[minmax(0,1fr)_340px] [&>*:last-child]:2xl:sticky [&>*:last-child]:2xl:top-4">
         <Card className="overflow-x-auto">
           <table className="w-full min-w-[1040px] text-[13px]">
             <thead>
               <tr className="border-b border-line">
-                <th className="sticky left-0 z-[1] bg-head px-4 py-3 text-left align-bottom">Project</th>
-                {GATES.map((g) => <th key={g} className="min-w-[94px] px-1 py-3 text-center align-bottom leading-tight"><span className="mx-auto block max-w-[100px] hyphens-auto">{g}</span></th>)}
+                <th className="sticky left-0 z-[1] bg-head text-left align-bottom">Project</th>
+                {GATES.map((g) => <th key={g} className="min-w-[94px] text-center align-bottom leading-tight"><span className="mx-auto block max-w-[100px] hyphens-auto">{g}</span></th>)}
               </tr>
             </thead>
             <tbody>
               {PRE_INVESTMENT.map((p) => (
                 <tr key={p.id} onClick={() => { setSel(p.id); setCond(null) }} className={cn('cursor-pointer border-b border-line-soft transition-colors hover:bg-atlas-50/50', sel === p.id && 'bg-atlas-50')}>
-                  <td className="sticky left-0 bg-inherit px-4 py-2.5">
+                  <td className="sticky left-0 bg-inherit">
                     <button className="press text-left" aria-pressed={sel === p.id}>
                       <span className="block font-semibold text-ink">{p.id}</span>
-                      <span className="flex items-center gap-1.5 text-[12px] text-ink-3">{p.island}{p.floa && <span className="rounded-full border border-ok-line bg-ok-bg px-1.5 text-[11.5px] font-medium text-ok">FLOA</span>}</span>
+                      <span className="flex items-center gap-1.5 text-[12px] text-ink-3">{p.island}{p.floa && <span className="rounded-full border border-ok-line bg-ok-bg px-1.5 text-[12px] font-medium text-ok">FLOA</span>}</span>
                     </button>
                   </td>
                   {GATES.map((g, i) => {
                     const s = state(p.id, i)
                     return (
-                      <td key={g} className="px-1 py-2.5 text-center">
+                      <td key={g} className="text-center">
                         <Tip content={<GateTip pid={p.id} gate={g} i={i} by={confirmed[`gate-${p.id}-${i}`]?.by} />}>
                           <span tabIndex={0} className={cn('inline-grid size-7 place-items-center rounded-md', s === 'R' && 'bg-warn-bg', s === 'C' && 'bg-atlas-100')}><GateIcon s={s} /></span>
                         </Tip>
@@ -90,8 +90,8 @@ export function S02Gates() {
             <ul className="mt-2 space-y-1">
               {open.map(({ g, i, s }) => (
                 <li key={g}>
-                  <button onClick={() => setCond(i)} className={cn('press flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-[13px] hover:bg-sunken', cond === i && 'bg-sunken')}>
-                    <GateIcon s={s} /><span className="flex-1 text-ink">{g}</span><span className="text-[12px] text-ink-3">{LABEL[s]}</span>
+                  <button onClick={() => setCond(i)} className={cn('press flex w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-md px-2 py-1.5 text-left text-[13px] hover:bg-sunken', cond === i && 'bg-sunken')}>
+                    <GateIcon s={s} /><span className="flex-1 text-ink">{g}</span><StatePill s={LABEL[s]} />
                   </button>
                 </li>
               ))}
@@ -123,7 +123,7 @@ export function S02Gates() {
             )}
           </Card>
 
-          <AtlasCard title="ATLAS alert" sources={[{ label: 'Permit register', doc: 'permit-register' }, { label: 'Gate checklists', doc: 'gate-checklist' }]} classification="Forecast" confidence="Medium">
+          <AtlasCard title="FID dates at risk" sources={[{ label: 'Permit register', doc: 'permit-register' }, { label: 'Gate checklists', doc: 'gate-checklist' }]} classification="Forecast" confidence="Medium">
             <p className="font-medium text-ink">Two projects have a permit dependency that puts the FID date at risk by three weeks.</p>
             <ul className="mt-3 space-y-2 text-[13px]">
               {[['P2-06', '28 Jul 2027', '15 Dec 2027', '5 Jan 2028'], ['P2-07', '4 Aug 2027', '31 Jan 2028', '21 Feb 2028']].map(([p, clock, t, f]) => (

@@ -42,7 +42,7 @@ export function Notifications() {
       <P.Trigger asChild>
         <button className="press relative grid size-9 place-items-center rounded-lg border border-line bg-surface text-ink-2 hover:bg-sunken data-[state=open]:bg-sunken" aria-label={`Notifications, ${items.length}`}>
           <Bell className="size-4" />
-          {items.length > 0 && <span className="tnum absolute -right-1 -top-1 grid h-[17px] min-w-[17px] place-items-center rounded-full border-2 border-surface bg-bad px-1 text-[10px] font-bold text-white">{items.length}</span>}
+          {items.length > 0 && <span className="tnum absolute -right-1 -top-1 grid h-[17px] min-w-[17px] place-items-center rounded-full border-2 border-surface bg-bad px-1 text-[11px] font-bold text-white">{items.length}</span>}
         </button>
       </P.Trigger>
       <P.Portal>

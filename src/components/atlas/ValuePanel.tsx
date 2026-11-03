@@ -47,7 +47,7 @@ function Row({ r, pcu }: { r: ValueRow; pcu: boolean }) {
         </div>
         <div className="flex items-center gap-3 sm:justify-end">
           <Tip content={`Derived: ${r.derivation}`}>
-            <span tabIndex={0} className="tnum text-[15px] font-semibold text-ink">{label}</span>
+            <span tabIndex={0} className="tnum text-[16px] font-semibold text-ink">{label}</span>
           </Tip>
           {ok && <span className="inline-flex items-center gap-1 text-[12px] font-medium text-ok"><CheckCircle2 className="size-3.5" />Inside the range</span>}
           <span className="inline-flex items-center gap-1 rounded-md px-1.5 py-1 text-[12px] font-medium text-ink-3 group-hover:text-ink">

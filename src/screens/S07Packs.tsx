@@ -14,6 +14,7 @@ import { NARRATIVE } from '../data/cakrawala'
 import { HISTORY } from '../data/scurve'
 import { cn } from '../lib/cn'
 import { useDemo, usePersona } from '../state/store'
+import { ConfirmModal } from '../components/atlas/ConfirmModal'
 
 type Version = 'pmo' | 'ic' | 'sponsor' | 'lender'
 
@@ -58,6 +59,7 @@ export function S07Packs() {
   const setStage = useDemo((s) => s.setPackStage)
   const log = useDemo((s) => s.log)
   const approved = stage === 'Approved'
+  const [approving, setApproving] = useState(false)
 
   const sections = useMemo(() => {
     const all = [...BASE, ...LENDER_EXTRA]
@@ -87,7 +89,7 @@ export function S07Packs() {
             {isPcu ? <span className="text-[13px] font-medium text-ink-2">PMO version (project company view)</span> : (
               <Segmented<Version> label="Pack version" value={version} onChange={setVersion} items={[{ value: 'pmo', label: 'PMO' }, { value: 'ic', label: 'Investment Committee' }, { value: 'sponsor', label: 'Danantara sponsor' }, { value: 'lender', label: 'Lender' }]} />
             )}
-            <Button variant="ghost" size="sm" onClick={() => setSimple((v) => !v)} aria-pressed={simple}><Sparkles />{simple ? 'Show full narrative' : 'Ask ATLAS to simplify the narrative'}</Button>
+            <Button variant="ghost" size="sm" onClick={() => setSimple((v) => !v)} aria-pressed={simple}><Sparkles />{simple ? 'Show full narrative' : 'Ask NEXA to simplify the narrative'}</Button>
           </div>
           <article className="mt-4 rounded-xl border border-line bg-surface px-8 py-7">
             <header className="flex flex-wrap items-start justify-between gap-3 border-b border-line-soft pb-5">
@@ -136,7 +138,7 @@ export function S07Packs() {
             </ol>
             <div className="mt-4 space-y-2">
               {stage === 'Draft' && <Button className="w-full" variant="outline" onClick={() => setStage('In review')}><FileText />Send to reviewer (PMO lead)</Button>}
-              {stage === 'In review' && <Button className="w-full" onClick={() => { setStage('Approved'); toast.success('Approved by PMO lead', { description: 'Export is now enabled.' }) }}><ShieldCheck />Approve as PMO lead</Button>}
+              {stage === 'In review' && <Button className="w-full" onClick={() => setApproving(true)}><ShieldCheck />Approve as PMO lead</Button>}
               {approved && <p className="text-[13px] text-ok">Approved. Export is enabled.</p>}
             </div>
             <p className="mt-3 text-[12px] text-ink-3">Numbers come only from the governed layer. A named reviewer approves release.</p>
@@ -147,6 +149,17 @@ export function S07Packs() {
           </Card>
         </aside>
       </div>
+      <ConfirmModal
+        open={approving}
+        onClose={() => setApproving(false)}
+        title="Approve the weekly pack"
+        description="PSEL Cakrawala Raya, week ending 30 Jun 2027"
+        confirmLabel="Approve pack"
+        confirmIcon={<ShieldCheck />}
+        onConfirm={() => { setStage('Approved'); toast.success('Approved by PMO lead', { description: 'Export is now enabled.' }) }}
+        effects={['Stamp the pack as approved by you, with the time.', 'Enable PDF and PowerPoint export for every version.', 'Lock the numbers: figures come only from the governed layer.']}
+        note="Check the lead sections first: health, S-curve movement and the decisions required."
+      />
     </ScreenFrame>
   )
 }
@@ -158,7 +171,7 @@ function MiniCurve() {
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 4, right: 8, bottom: 0, left: -28 }}>
           <XAxis dataKey="d" hide />
-          <YAxis domain={[0, 50]} tick={{ fontSize: 10, fill: 'var(--color-ink-3)' }} axisLine={false} tickLine={false} />
+          <YAxis domain={[0, 50]} tick={{ fontSize: 12, fill: 'var(--color-ink-3)' }} axisLine={false} tickLine={false} />
           <Line dataKey="p" stroke="var(--color-series-planned)" strokeDasharray="5 4" strokeWidth={1.5} dot={false} isAnimationActive={false} />
           <Line dataKey="r" stroke="var(--color-series-reported)" strokeWidth={1.25} dot={false} isAnimationActive={false} />
           <Line dataKey="v" stroke="var(--color-series-verified)" strokeWidth={2.5} dot={false} isAnimationActive={false} />

@@ -34,7 +34,7 @@ function stepsFor(id?: string): string[] {
   if (!a) return ['Checking scope']
   if (a.kind === 'permission') return ['Checking your access rights', 'Matching the question to permitted data']
   if (a.kind === 'refusal') return ['Searching laboratory and waste-supply records', 'Searching feasibility study', 'No measured value found']
-  if (a.kind === 'oos') return ['Checking which questions ATLAS covers']
+  if (a.kind === 'oos') return ['Checking which questions NEXA covers']
   if (a.kind === 'text') return ['Reading the current pack narrative', 'Drafting a simpler version']
   return ['Reading the question', ...(a.sources ?? []).map((s) => `Reading ${s.label}`), 'Cross-checking figures across sources']
 }
@@ -135,7 +135,7 @@ function AtlasMessage({ msg, compact, last }: { msg: ChatMsg; compact?: boolean;
     <div className="group animate-rise">
       <div className="mb-2.5 flex items-center gap-2">
         <AtlasAvatar size="sm" />
-        <span className="text-[13px] font-semibold text-ink">ATLAS</span>
+        <span className="text-[13px] font-semibold text-ink">NEXA</span>
       </div>
       <div className={compact ? '' : 'sm:pl-8'}>
         <ThinkingSteps msg={msg} />
@@ -151,7 +151,7 @@ function AtlasMessage({ msg, compact, last }: { msg: ChatMsg; compact?: boolean;
             <IconAction label="Helpful" active={msg.feedback === 'up'} onClick={() => rate(msg.id, 'up')}><ThumbsUp className={msg.feedback === 'up' ? 'fill-current' : ''} /></IconAction>
             <IconAction label="Not helpful" active={msg.feedback === 'down'} onClick={() => rate(msg.id, 'down')}><ThumbsDown className={msg.feedback === 'down' ? 'fill-current' : ''} /></IconAction>
             {a?.kind !== 'permission' && a?.kind !== 'oos' && (
-              <IconAction label="Add to governance pack draft" onClick={() => { log('Added answer to pack draft', a?.q || 'ATLAS answer'); toast.success('Added to the pack draft', { description: 'Marked AI draft. A reviewer approves it in Governance packs.' }) }}><FileStack /></IconAction>
+              <IconAction label="Add to governance pack draft" onClick={() => { log('Added answer to pack draft', a?.q || 'NEXA answer'); toast.success('Added to the pack draft', { description: 'Marked AI draft. A reviewer approves it in Governance packs.' }) }}><FileStack /></IconAction>
             )}
           </div>
         )}
@@ -269,7 +269,7 @@ export function Composer({ autoFocus, compact, defaultScope = 'cakrawala' }: { a
         onSubmit={(e) => { e.preventDefault(); send() }}
         className="rounded-2xl border border-line bg-surface p-2 shadow-[0_1px_2px_rgb(20_16_42/0.04),0_4px_16px_-8px_rgb(42_23_100/0.12)] transition-[border-color,box-shadow] focus-within:border-atlas-300 focus-within:shadow-[0_0_0_4px_var(--color-atlas-100)]"
       >
-        <label htmlFor="atlas-input" className="sr-only">Ask ATLAS</label>
+        <label htmlFor="atlas-input" className="sr-only">Ask NEXA</label>
         <textarea
           id="atlas-input"
           ref={ta}
@@ -293,7 +293,7 @@ export function Composer({ autoFocus, compact, defaultScope = 'cakrawala' }: { a
             }
           }}
           placeholder={compact ? 'Ask about this screen...' : 'Ask about notices, progress, packages, cost or the critical path...'}
-          className={cn('block max-h-[200px] w-full resize-none bg-transparent px-2.5 pt-1.5 leading-relaxed text-ink outline-none placeholder:text-ink-4', compact ? 'min-h-[44px] text-[14px]' : 'min-h-[52px] text-[15px]')}
+          className={cn('block max-h-[200px] w-full resize-none bg-transparent px-2.5 pt-1.5 leading-relaxed text-ink outline-none placeholder:text-ink-4', compact ? 'min-h-[44px] text-[14px]' : 'min-h-[52px] text-[16px]')}
         />
         <div className="mt-1 flex items-center gap-2">
           <ScopePicker scope={scope} setScope={setScope} isPcu={isPcu} />
@@ -310,7 +310,7 @@ export function Composer({ autoFocus, compact, defaultScope = 'cakrawala' }: { a
           )}
         </div>
       </form>
-      <p className="mt-2 text-center text-[12px] text-ink-3">ATLAS recommends; people decide. Every answer cites its sources.</p>
+      <p className="mt-2 text-center text-[12px] text-ink-3">NEXA recommends; people decide. Every answer cites its sources.</p>
     </div>
   )
 }
@@ -390,7 +390,7 @@ export function Greeting({ compact, title }: { compact?: boolean; title?: string
         {compact && <span className="text-[13px] font-medium text-ink-3">Good morning, {persona.name}</span>}
       </div>
       {!compact && <p className="mt-4 text-[14px] text-ink-3">Good morning, {persona.name}</p>}
-      <h2 className={cn('display text-ink', compact ? 'mt-3 text-[22px] leading-tight' : 'mt-1.5 text-[clamp(26px,3vw,36px)] leading-[1.1]')}>{title ?? 'What do you need to know today?'}</h2>
+      <h2 className={cn('display text-ink', compact ? 'mt-3 text-[24px] leading-tight' : 'mt-1.5 text-[clamp(26px,3vw,36px)] leading-[1.1]')}>{title ?? 'What do you need to know today?'}</h2>
     </div>
   )
 }

@@ -255,7 +255,7 @@ export const useDemo = create<DemoState>()(
         get().log('Dismissed proposal', `${text} (${reason})`)
         toast('Proposal dismissed', { description: reason })
       },
-      propose: (text, authority, from = 'Ask ATLAS') => {
+      propose: (text, authority, from = 'Ask NEXA') => {
         if (get().proposals.some((p) => p.text === text)) return
         set((s) => ({ proposals: [...s.proposals, { text, authority, from }] }))
         get().log('Proposed action (needs confirmation)', text)

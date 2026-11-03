@@ -31,6 +31,7 @@ export const SCREENS: ScreenMeta[] = [
   { n: 7, path: '/packs', title: 'Weekly PMO, Committee, Sponsor and Lender Pack', short: 'Governance packs', group: 'enabling', uc: 'UC04', waves: ['W1'], tier: 'Tier 1', dataNeeded: { sources: ['Portfolio health, gate status and notices', 'Cost summary', 'Lender reporting templates'], owner: 'PMO lead, finance' } },
   { n: 13, path: '/decisions', title: 'Decision Room: Risk, Change and Claims', short: 'Decision room', group: 'platform', uc: 'UC12 · UC03 · UC06', waves: ['W2', 'W3'], tier: 'UC03 Tier 1 · UC12, UC06 Tier 2', dataNeeded: { sources: ['Risk and action registers', 'Change events and correspondence', 'Contract terms'], owner: 'PMO, Commercial and Legal' } },
   { n: 14, path: '/orchestration', title: 'Orchestration Console', short: 'Orchestration', group: 'platform', uc: 'View of E1, UC01 to UC12', waves: [], dataNeeded: { sources: ['Outputs of the jobs on this screen'], owner: 'ATLAS platform' } },
+  { n: 15, path: '/workflows', title: 'Workflow Automation', short: 'Workflow automation', group: 'ai', uc: 'Platform', waves: [], hiddenForPcu: true, dataNeeded: { sources: ['Partner feeds and contract documents', 'Cost, schedule and health outputs', 'Action register and approvals'], owner: 'PMO Director' } },
 ]
 
 export const screenByPath = (p: string) => SCREENS.find((s) => s.path === p)

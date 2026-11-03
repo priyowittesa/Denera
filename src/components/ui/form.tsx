@@ -23,8 +23,8 @@ export function Field({ label, required, error, hint, children, id }: { label: R
       </label>
       {children(fid, error ? errId : undefined)}
       {error ? (
-        <p id={errId} className="mt-[5px] flex items-center gap-[5px] text-[12.5px] text-bad"><AlertCircle className="size-[13px] shrink-0" />{error}</p>
-      ) : hint ? <p className="mt-[5px] text-[12.5px] text-ink-3">{hint}</p> : null}
+        <p id={errId} className="mt-[5px] flex items-center gap-[5px] text-[13px] text-bad"><AlertCircle className="size-[13px] shrink-0" />{error}</p>
+      ) : hint ? <p className="mt-[5px] text-[13px] text-ink-3">{hint}</p> : null}
     </div>
   )
 }
@@ -62,11 +62,11 @@ export function RadioCards<V extends string>({ value, onChange, options, label, 
           disabled={o.disabled}
           onClick={() => onChange(o.value)}
           className={cn(
-            'press flex flex-col items-start gap-1.5 rounded-[10px] border-[1.5px] p-3 text-left text-[12.5px] text-ink-3 disabled:cursor-not-allowed disabled:opacity-45',
+            'press flex flex-col items-start gap-1.5 rounded-[10px] border-[1.5px] p-3 text-left text-[13px] text-ink-3 disabled:cursor-not-allowed disabled:opacity-45',
             value === o.value ? 'border-atlas-600 bg-atlas-50' : 'border-line hover:border-atlas-300',
           )}
         >
-          <span className="flex items-center gap-1.5 text-[13.5px] font-semibold text-ink">{o.icon}{o.label}</span>
+          <span className="flex items-center gap-1.5 text-[14px] font-semibold text-ink">{o.icon}{o.label}</span>
           {o.note && <span className="leading-snug">{o.note}</span>}
         </button>
       ))}

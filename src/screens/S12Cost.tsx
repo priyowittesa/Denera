@@ -1,9 +1,9 @@
-import { CheckCircle2, TriangleAlert } from 'lucide-react'
+import { Banknote, Calculator as CalcIcon, CalendarClock, CalendarRange, CheckCircle2, ClipboardList, Landmark, PiggyBank, Receipt, ShieldCheck, TrendingUp, TriangleAlert, Wallet, type LucideIcon } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Bar, BarChart, CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { AuthorityLabel, StatusChip } from '../components/atlas/chips'
-import { AtlasCard, ScreenFrame, SectionTitle } from '../components/atlas/frame'
+import { AtlasCard, ScreenFrame, SectionTitle, StatTile } from '../components/atlas/frame'
 import { Card, CardBody, CardHeader } from '../components/ui/card'
 import { ALERT_LINE_USED, CONTINGENCY_PATH, COST_INSIGHT, COST_RISKS, DRIVERS, MONTHLY_CASHFLOW, VARIANCE_BY_PACKAGE, WHAT_IFS } from '../data/cost'
 import { revenuePerDay } from '../data/valueBasis'
@@ -33,24 +33,24 @@ export function S12Cost() {
       sub="Management EAC Rp2,910 bn against approved CAPEX Rp2,800 bn."
       answer={isPcu ? { label: 'Forecast above CAPEX', value: 'Rp110 bn', tone: 'bad', foot: 'Rp65 bn is covered from contingency.', stake: ['UC09'] } : { label: 'Needs shareholder approval', value: 'Rp45 bn', tone: 'bad', foot: <>Of a <b className="font-semibold text-ink">Rp110 bn</b> forecast overrun. Contingency covers Rp65 bn.</>, stake: ['UC09'] }}
     >
-      <div className="grid items-start gap-4 2xl:grid-cols-3">
+      <div className="space-y-5">
         <Group title="Forecast" items={[
-          ['Approved CAPEX', 'Rp2,800 bn'],
-          ['Management EAC', 'Rp2,910 bn', 'Range Rp2,846 to 2,918 bn: (a) remaining work at budget, (b) CPI trend'],
-          ['Forecast variance', '+Rp110 bn', isPcu ? 'Rp65 bn from contingency' : 'Rp65 bn contingency, Rp45 bn shareholder funding', 'bad'],
-          ['Delay-linked revenue deferred', `USD ${(revenuePerDay() * 42 / 1e6).toFixed(1)} m`, '42 days, from the calculator below'],
+          [Landmark, 'Approved CAPEX', 'Rp2,800 bn'],
+          [CalcIcon, 'Management EAC', 'Rp2,910 bn', 'Range Rp2,846 to 2,918 bn'],
+          [TrendingUp, 'Forecast variance', '+Rp110 bn', isPcu ? 'Rp65 bn from contingency' : 'Rp65 bn contingency, Rp45 bn shareholder funding', 'bad'],
+          [CalendarClock, 'Delay-linked revenue deferred', `USD ${(revenuePerDay() * 42 / 1e6).toFixed(1)} m`, '42 days, from the calculator below'],
         ]} />
         <Group title="Contingency" items={[
-          ['Contingency available', 'Rp176 bn', '6.3% of CAPEX, outside approved CAPEX'],
-          ['Forecast use', 'Rp65 bn'],
-          ['Remaining', 'Rp111 bn', '63% of reserve'],
-          ['Alert threshold', 'Rp17.6 bn', '10% of reserve'],
+          [ShieldCheck, 'Contingency available', 'Rp176 bn', '6.3% of CAPEX, outside approved CAPEX'],
+          [PiggyBank, 'Forecast use', 'Rp65 bn', '37% of the reserve'],
+          [Wallet, 'Remaining', 'Rp111 bn', '63% of reserve'],
+          [TriangleAlert, 'Alert threshold', 'Rp17.6 bn', '10% of reserve'],
         ]} />
         <Group title="Cash" items={[
-          ['Actual cost', 'Rp1,138 bn'],
-          ['Open commitments', 'Rp318 bn'],
-          ['Cash paid', 'Rp1,190 bn', 'Includes Rp52 bn vendor advances'],
-          ...(!isPcu ? [['Next-quarter funding', 'Rp312 bn', 'Assumed input, from the cashflow forecast'] as [string, string, string]] : []),
+          [Receipt, 'Actual cost', 'Rp1,138 bn'],
+          [ClipboardList, 'Open commitments', 'Rp318 bn'],
+          [Banknote, 'Cash paid', 'Rp1,190 bn', 'Includes Rp52 bn vendor advances'],
+          ...(!isPcu ? [[CalendarRange, 'Next-quarter funding', 'Rp312 bn', 'Assumed input, from the cashflow forecast'] as GroupItem] : []),
         ]} />
       </div>
 
@@ -73,7 +73,7 @@ export function S12Cost() {
           <Card className="overflow-x-auto">
             <table className="w-full min-w-[760px] text-[13px]">
               <thead className="border-b border-line text-left text-[12px] text-ink-3">
-                <tr><th className="px-5 py-2.5 font-medium">Scenario</th><th className="px-3 py-2.5 font-medium">COD delay</th><th className="px-3 py-2.5 text-right font-medium">Incremental cost</th><th className="px-3 py-2.5 text-right font-medium">Contingency remaining</th><th className="px-3 py-2.5 font-medium">Rating</th><th className="px-5 py-2.5 font-medium">Approval route</th></tr>
+                <tr><th className="font-medium">Scenario</th><th className="font-medium">COD delay</th><th className="text-right font-medium">Incremental cost</th><th className="text-right font-medium">Contingency remaining</th><th className="font-medium">Rating</th><th className="font-medium">Approval route</th></tr>
               </thead>
               <tbody className="tnum divide-y divide-line-soft">
                 <Row active={scenario === 'current'} onClick={() => setScenario('current', 'Cost')} cells={['Current plan', 'plus 42 days', 'n/a', 'Rp111 bn (63%)']} rating="Yellow, escalation" route="n/a" />
@@ -148,7 +148,7 @@ export function S12Cost() {
         <Card className="mt-5">
           <CardHeader title="Funding drawdown forecast" sub="Next quarter" />
           <CardBody className="grid gap-5 md:grid-cols-[220px_1fr]">
-            <div><div className="text-[12px] text-ink-3">Requirement</div><div className="tnum text-[22px] font-semibold text-ink">Rp312 bn</div><div className="text-[12px] text-ink-3">Assumed input, from the cashflow forecast</div></div>
+            <div><div className="text-[12px] text-ink-3">Requirement</div><div className="tnum text-[24px] font-semibold text-ink">Rp312 bn</div><div className="text-[12px] text-ink-3">Assumed input, from the cashflow forecast</div></div>
             <ul className="space-y-2 text-[13px]">
               {[['CP-1', 'Updated insurance certificates, to the Facility Agent'], ['CP-2', "Independent Engineer's progress certificate"]].map(([k, v]) => (
                 <li key={k} className="flex items-center justify-between rounded-md bg-sunken px-3 py-2"><span><b className="font-semibold text-ink">{k}</b> {v}</span><StatusChip h="Yellow" label="Open" /></li>
@@ -158,25 +158,22 @@ export function S12Cost() {
         </Card>
       )}
 
-      <AtlasCard className="mt-5" title="ATLAS insight" sources={[{ label: 'Cost report June 2027', doc: 'cost-report' }, { label: 'Scenario run R8' }]} classification="Advisory" confidence="Medium">
+      <AtlasCard className="mt-5" title="Contingency and funding" sources={[{ label: 'Cost report June 2027', doc: 'cost-report' }, { label: 'Scenario run R8' }]} classification="Advisory" confidence="Medium">
         <p>{isPcu ? COST_INSIGHT.replace("but the Rp45 billion of foreign-exchange and owner's cost needs shareholder funding approval", "but Rp45 billion of foreign-exchange and owner's cost sits outside eligible contingency") : COST_INSIGHT}</p>
       </AtlasCard>
     </ScreenFrame>
   )
 }
 
-function Group({ title, items, note }: { title: string; note?: string; items: [string, string, string?, ('bad' | 'warn')?][] }) {
+type GroupItem = [LucideIcon, string, string, string?, ('bad' | 'warn')?]
+
+/** A labelled row of KPI stat tiles. */
+function Group({ title, items }: { title: string; items: GroupItem[] }) {
   return (
-    <section className="rounded-xl border border-line bg-surface px-5 py-4">
-      <div className="flex items-baseline justify-between gap-2"><h3 className="eyebrow">{title}</h3>{note && <span className="text-[12px] text-ink-3">{note}</span>}</div>
-      <div className="mt-3 grid grid-cols-2 gap-x-5 gap-y-4 md:grid-cols-4 2xl:grid-cols-2">
-        {items.map(([l, v, n, tone]) => (
-          <div key={l} className="min-w-0">
-            <div className="text-[12px] font-medium text-ink-3">{l}</div>
-            <div className={cn('tnum mt-0.5 whitespace-nowrap text-[18px] font-semibold tracking-[-0.01em] text-ink', tone === 'bad' && 'text-bad')}>{v}</div>
-            {n && <div className="text-[12px] leading-snug text-ink-3">{n}</div>}
-          </div>
-        ))}
+    <section>
+      <h3 className="mb-2.5 text-[13px] font-medium text-ink-3">{title}</h3>
+      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-4">
+        {items.map(([I, l, v, n, tone]) => <StatTile key={l} icon={I} label={l} value={v} cap={n} tone={tone} />)}
       </div>
     </section>
   )
@@ -230,17 +227,17 @@ function Row({ cells, rating, route, active, onClick }: { cells: string[]; ratin
   const h = rating.startsWith('Red') ? 'Red' : 'Yellow'
   return (
     <tr className={cn('cursor-pointer transition-colors hover:bg-atlas-50/60', active && 'bg-atlas-50')} onClick={onClick}>
-      <td className="px-5 py-3">
+      <td>
         <button className="press flex items-center gap-2 text-left font-medium text-ink" aria-pressed={active}>
           <span className={cn('grid size-4 place-items-center rounded-full border', active ? 'border-atlas-600' : 'border-ink-4')}>{active && <span className="size-2 rounded-full bg-atlas-600" />}</span>
           {cells[0]}
         </button>
       </td>
-      <td className="px-3 py-3">{cells[1]}</td>
-      <td className="px-3 py-3 text-right">{cells[2]}</td>
-      <td className={cn('px-3 py-3 text-right', cells[3].startsWith('Rp19') && 'font-semibold text-bad')}>{cells[3]}</td>
-      <td className="px-3 py-3"><StatusChip h={h} label={rating} /></td>
-      <td className="px-5 py-3">{route === 'Joint' || route === 'Project company' || route === 'Shareholder (Denera)' ? <AuthorityLabel a={route} /> : <span className="text-[13px] text-ink-3">{route}</span>}</td>
+      <td className="whitespace-nowrap">{cells[1]}</td>
+      <td className="whitespace-nowrap text-right">{cells[2]}</td>
+      <td className={cn('whitespace-nowrap text-right', cells[3].startsWith('Rp19') && 'font-semibold text-bad')}>{cells[3]}</td>
+      <td><StatusChip h={h} label={rating} /></td>
+      <td>{route === 'Joint' || route === 'Project company' || route === 'Shareholder (Denera)' ? <AuthorityLabel a={route} /> : <span className="text-[13px] text-ink-3">{route}</span>}</td>
     </tr>
   )
 }
@@ -299,15 +296,15 @@ function Calculator({ days, setDays, pcu }: { days: number; setDays: (n: number)
           <p className="mt-3 rounded-md bg-sunken px-3 py-2 font-mono text-[12px] text-ink-2">capacity × 8,760 × availability × 1,000 × tariff ÷ 365 = USD {Math.round(perDay).toLocaleString('en-US')} per day</p>
         </div>
         <table className="tnum w-full self-start text-[13px]">
-          <thead className="text-left text-[12px] text-ink-3"><tr><th className="py-1.5 font-medium">Delay</th><th className="py-1.5 text-right font-medium">Revenue deferred</th>{!pcu && <th className="py-1.5 text-right font-medium">Denera 30% share</th>}</tr></thead>
+          <thead className="text-left text-[12px] text-ink-3"><tr><th className="font-medium">Delay</th><th className="text-right font-medium">Revenue deferred</th>{!pcu && <th className="text-right font-medium">Denera 30% share</th>}</tr></thead>
           <tbody className="divide-y divide-line-soft">
             {[days, 42, 64].filter((v, i, a) => a.indexOf(v) === i).map((d) => {
               const r = res(d)
               return (
                 <tr key={d} className={cn(d === days && 'font-semibold')}>
-                  <td className="py-2.5">{d} days{d === days && <span className="ml-1.5 rounded-full border border-atlas-200 bg-atlas-50 px-2 py-0.5 text-[12px] font-medium text-atlas-700">input</span>}</td>
-                  <td className="py-2.5 text-right text-ink">USD {r.usd} m <span className="text-ink-3">(Rp{r.rp} bn)</span></td>
-                  {!pcu && <td className="py-2.5 text-right text-ink">Rp{r.share} bn</td>}
+                  <td>{d} days{d === days && <span className="ml-1.5 rounded-full border border-atlas-200 bg-atlas-50 px-2 py-0.5 text-[12px] font-medium text-atlas-700">input</span>}</td>
+                  <td className="text-right text-ink">USD {r.usd} m <span className="text-ink-3">(Rp{r.rp} bn)</span></td>
+                  {!pcu && <td className="text-right text-ink">Rp{r.share} bn</td>}
                 </tr>
               )
             })}

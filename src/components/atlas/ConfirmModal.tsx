@@ -30,7 +30,7 @@ export function ConfirmModal({ open, onClose, title, description, effects, confi
         <div className="mb-2 text-[12px] font-semibold uppercase tracking-[0.05em] text-ink-2">This will</div>
         <ol className="space-y-2">
           {effects.map((e, i) => (
-            <li key={i} className="flex gap-2.5 text-[13.5px] text-ink">
+            <li key={i} className="flex gap-2.5 text-[14px] text-ink">
               <span className="tnum grid size-[22px] shrink-0 place-items-center rounded-full bg-atlas-100 text-[12px] font-bold text-atlas-700">{i + 1}</span>
               <span className="pt-0.5">{e}</span>
             </li>

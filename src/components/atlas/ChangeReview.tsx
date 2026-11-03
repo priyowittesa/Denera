@@ -61,7 +61,7 @@ export function ChangeReviewModal({ co, onClose }: { co: CO | null; onClose: () 
     >
       {co && <ReadOnly items={[['Cost effect', co.cost], ['Schedule effect', co.schedule], ['Raised', co.raised], ['Approval route', <AuthorityLabel key="r" a={co.route} />]]} />}
       {!isPcu && co?.route !== 'Shareholder (Denera)' && (
-        <p className="rounded-[10px] bg-sunken px-3.5 py-2.5 text-[12.5px] text-ink-2">
+        <p className="rounded-[10px] bg-sunken px-3.5 py-2.5 text-[13px] text-ink-2">
           {co?.route === 'Joint' ? 'The project company board decides. Your review is tabled with the item.' : 'The project company decides. Your review is sent to it through the board nominee.'}
         </p>
       )}

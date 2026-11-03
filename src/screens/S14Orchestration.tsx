@@ -3,6 +3,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ScreenFrame } from '../components/atlas/frame'
 import { Card } from '../components/ui/card'
+import { Pill, StatePill } from '../components/atlas/chips'
+import { Segmented } from '../components/ui/tabs'
+import { NoResults, ResultFooter, SearchBox } from '../components/ui/toolbar'
 import { Sheet } from '../components/ui/sheet'
 import { Button } from '../components/ui/button'
 import { APPROVAL_QUEUE, GUARDRAILS, RUNS, type Lane, type Run, type RunState } from '../data/runs'
@@ -14,7 +17,7 @@ import { useDemo, usePersona } from '../state/store'
 const LANES: { id: Lane; icon: typeof Plug; note: string }[] = [
   { id: 'Connect', icon: Plug, note: 'Agreed templates and exports, schema validation' },
   { id: 'Identify', icon: Search, note: 'Deadlines, gates, progress, health, procurement' },
-  { id: 'Explain', icon: Sparkles, note: 'Root cause, scenarios, Ask ATLAS on demand' },
+  { id: 'Explain', icon: Sparkles, note: 'Root cause, scenarios, Ask NEXA on demand' },
   { id: 'Act and track', icon: Waypoints, note: 'Meeting capture, packs, decisions, register' },
 ]
 
@@ -30,11 +33,16 @@ export function S14Orchestration() {
   const { isPcu } = usePersona()
   const confirmed = useDemo((s) => s.confirmed)
   const [trace, setTrace] = useState<Run | null>(null)
+  const [q, setQ] = useState('')
+  const [stateF, setStateF] = useState<'all' | 'Completed' | 'Waiting for human' | 'Blocked'>('all')
   const runs = RUNS.filter((r) => !(isPcu && r.denaraOnly)).map((r) =>
     r.id === 'R7' && confirmed['interface-conflict'] ? { ...r, state: 'Completed' as RunState, waiting: `Confirmed by ${confirmed['interface-conflict'].by}` } : r,
   )
   const count = (pred: (r: Run) => boolean) => runs.filter(pred).length
   const completed = count((r) => r.state.startsWith('Completed'))
+  const shownRuns = runs
+    .filter((r) => stateF === 'all' || (stateF === 'Completed' ? r.state.startsWith('Completed') : r.state === stateF))
+    .filter((r) => !q.trim() || `${r.id} ${r.job} ${r.trigger} ${r.waiting} ${r.lane} ${r.sources}`.toLowerCase().includes(q.trim().toLowerCase()))
   const waiting = count((r) => r.state === 'Waiting for human')
   const blocked = count((r) => r.state === 'Blocked')
 
@@ -70,25 +78,35 @@ export function S14Orchestration() {
           <h2 className="text-[16px] font-semibold text-ink">Run board</h2>
           <span className="tnum text-[13px] text-ink-3">{runs.length} jobs · {completed} completed · {waiting} waiting for human · {blocked} blocked</span>
         </div>
+        <div className="flex flex-wrap items-center gap-2.5 px-5 pt-3">
+          <SearchBox value={q} onChange={setQ} label="Search jobs" placeholder="Search job, trigger or owner" className="w-full sm:w-[300px]" />
+          <Segmented<typeof stateF> label="Job state" value={stateF} onChange={setStateF} items={[
+            { value: 'all', label: `All ${runs.length}` },
+            { value: 'Completed', label: `Completed ${completed}` },
+            { value: 'Waiting for human', label: `Waiting ${waiting}` },
+            { value: 'Blocked', label: `Blocked ${blocked}` },
+          ]} />
+        </div>
         <table className="mt-3 w-full min-w-[1060px] text-[13px]">
-          <thead className="border-y border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Job</th><th className="px-3 py-2.5 font-medium">Mode</th><th className="px-3 py-2.5 font-medium">Lane</th><th className="px-3 py-2.5 font-medium">Trigger</th><th className="px-3 py-2.5 font-medium">State</th><th className="px-3 py-2.5 font-medium">Waiting on</th><th className="px-5 py-2.5 font-medium">Output</th></tr></thead>
+          <thead className="border-y border-line text-left text-[12px] text-ink-3"><tr><th className="font-medium">Job</th><th className="font-medium">Mode</th><th className="font-medium">Lane</th><th className="font-medium">Trigger</th><th className="font-medium">State</th><th className="font-medium">Waiting on</th><th className="font-medium">Output</th></tr></thead>
           <tbody className="divide-y divide-line-soft">
-            {runs.map((r) => {
-              const S = STATE[r.state]
+            {shownRuns.map((r) => {
               return (
                 <tr key={r.id} onClick={() => setTrace(r)} className="cursor-pointer hover:bg-atlas-50/50">
-                  <td className="px-5 py-3"><button className="press text-left font-medium text-ink hover:text-atlas-700"><span className="tnum text-ink-3">{r.id}</span> {r.job}</button></td>
-                  <td className="px-3 py-3"><span className={cn('rounded-full border px-2 py-0.5 text-[12px] font-medium', r.mode === 'Assistant' ? 'border-info-line bg-info-bg text-info' : 'border-line bg-sunken text-ink-2')}>{r.mode}</span></td>
-                  <td className="px-3 py-3 text-ink-2">{r.lane}</td>
-                  <td className="px-3 py-3 text-ink-2">{r.trigger}</td>
-                  <td className="px-3 py-3"><span className={cn('inline-flex items-center gap-1 font-medium', S.c)}><S.I className="size-3.5" />{r.state === 'Blocked' ? 'Blocked: feed not agreed' : r.state}</span></td>
-                  <td className="px-3 py-3 text-[13px] text-ink-2">{r.waiting}</td>
-                  <td className="px-5 py-3"><button onClick={(e) => { e.stopPropagation(); nav(r.to) }} className="press inline-flex items-center gap-1 whitespace-nowrap font-medium text-atlas-700 hover:underline">{screenByPath(r.to)?.short ?? r.output}<ArrowRight className="size-3.5" /></button></td>
+                  <td><button className="press text-left font-medium text-ink hover:text-atlas-700"><span className="tnum text-ink-3">{r.id}</span> {r.job}</button></td>
+                  <td><Pill tone={r.mode === 'Assistant' ? 'info' : 'muted'}>{r.mode}</Pill></td>
+                  <td className="text-ink-2">{r.lane}</td>
+                  <td className="text-ink-2">{r.trigger}</td>
+                  <td><StatePill s={r.state} label={r.state === 'Blocked' ? 'Blocked: feed not agreed' : undefined} /></td>
+                  <td className="text-[13px] text-ink-2">{r.waiting}</td>
+                  <td><button onClick={(e) => { e.stopPropagation(); nav(r.to) }} className="press inline-flex items-center gap-1 whitespace-nowrap font-medium text-atlas-700 hover:underline">{screenByPath(r.to)?.short ?? r.output}<ArrowRight className="size-3.5" /></button></td>
                 </tr>
               )
             })}
           </tbody>
         </table>
+        {shownRuns.length === 0 && <NoResults noun="jobs" onReset={() => { setQ(''); setStateF('all') }} />}
+        <ResultFooter shown={shownRuns.length} total={runs.length} noun="jobs" filtered={!!q.trim() || stateF !== 'all'} onReset={() => { setQ(''); setStateF('all') }} />
       </Card>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
@@ -118,8 +136,8 @@ export function S14Orchestration() {
             {FEEDS.cakrawala.feeds.map((f) => (
               <li key={f.name} className="text-[13px]">
                 <div className="font-medium text-ink">{f.name}</div>
-                <div className={cn('flex items-center gap-1.5', f.result === 'Accepted' ? 'text-ok' : f.result === 'Rejected' ? 'text-bad' : 'text-bad')}>
-                  {f.agreed ? `${f.last}, ${f.result?.toLowerCase()}` : <button onClick={() => nav('/partner-data')} className="press inline-flex items-center gap-1 font-medium hover:underline"><Ban className="size-3.5" />Blocked: feed not agreed</button>}
+                <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-ink-3">
+                  {f.agreed ? <><StatePill s={f.result ?? 'Accepted'} /><span className="tnum">{f.last}</span></> : <button onClick={() => nav('/partner-data')} className="press"><StatePill s="Blocked" label="Blocked: feed not agreed" /></button>}
                 </div>
               </li>
             ))}

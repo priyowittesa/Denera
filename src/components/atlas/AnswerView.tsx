@@ -36,7 +36,7 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
   const text = streaming ? all.slice(0, Math.max(1, words)).join(' ') : a.direct
   const cited = (a.sources ?? []).map((s, i) => ({ ...s, n: i + 1 }))
   const lead = (
-    <p className={cn('leading-[1.65] text-ink', compact ? 'text-[14px]' : 'text-[15px]')}>
+    <p className={cn('leading-[1.65] text-ink', compact ? 'text-[14px]' : 'text-[16px]')}>
       {text}
       {streaming && !stopped && <span className="ml-0.5 inline-block h-[1.05em] w-[7px] translate-y-[3px] animate-pulse rounded-[1px] bg-atlas-500" aria-hidden />}
       {!streaming && cited.filter((s) => s.doc).slice(0, 3).map((s) => <Cite key={s.n} n={s.n} label={s.label} onOpen={() => openEvidence(s.doc!)} />)}
@@ -124,10 +124,10 @@ export function AnswerView({ id, compact = false, words, stopped = false, onFoll
       {a.table && (
         <div className="overflow-x-auto rounded-lg border border-line">
           <table className="w-full min-w-[520px] text-[13px]">
-            <thead className="bg-sunken/60 text-left text-ink-3"><tr><th className="px-3 py-2 font-medium">Action</th><th className="px-3 py-2 font-medium">Owner</th><th className="px-3 py-2 font-medium">Due</th><th className="px-3 py-2 font-medium">Authority</th></tr></thead>
+            <thead className="bg-sunken/60 text-left text-ink-3"><tr><th className="font-medium">Action</th><th className="font-medium">Owner</th><th className="font-medium">Due</th><th className="font-medium">Authority</th></tr></thead>
             <tbody className="divide-y divide-line-soft">
-              {BUNDLE.map((b) => <tr key={b.n}><td className="px-3 py-2 text-ink">{b.text}</td><td className="px-3 py-2">{b.owner}</td><td className="tnum px-3 py-2">{b.due}</td><td className="px-3 py-2"><AuthorityLabel a={b.authority} /></td></tr>)}
-              {actions.filter((x) => !BUNDLE.some((b) => b.links === x.id)).slice(0, 4).map((x) => <tr key={x.id}><td className="px-3 py-2 text-ink">{x.title}</td><td className="px-3 py-2">{x.owner}</td><td className="tnum px-3 py-2">{x.due}</td><td className="px-3 py-2"><AuthorityLabel a={x.authority} /></td></tr>)}
+              {BUNDLE.map((b) => <tr key={b.n}><td className="text-ink">{b.text}</td><td>{b.owner}</td><td className="tnum">{b.due}</td><td><AuthorityLabel a={b.authority} /></td></tr>)}
+              {actions.filter((x) => !BUNDLE.some((b) => b.links === x.id)).slice(0, 4).map((x) => <tr key={x.id}><td className="text-ink">{x.title}</td><td>{x.owner}</td><td className="tnum">{x.due}</td><td><AuthorityLabel a={x.authority} /></td></tr>)}
             </tbody>
           </table>
         </div>

@@ -2,7 +2,7 @@ import { CheckCircle2, FileSearch, FileText, Gavel, Inbox, Pencil, Plus, Scale, 
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { toast } from 'sonner'
-import { AuthorityLabel, StatusChip } from '../components/atlas/chips'
+import { AuthorityLabel, StatusChip, StatePill } from '../components/atlas/chips'
 import { ScreenFrame, SectionTitle } from '../components/atlas/frame'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
@@ -15,6 +15,9 @@ import { BUNDLE, CHANGE_ORDERS, NOTICES, isOverdue } from '../data/registers'
 import type { Level, Risk, RiskStatus } from '../data/types'
 import { RiskModal } from '../components/atlas/RiskModal'
 import { ChangeReviewModal } from '../components/atlas/ChangeReview'
+import { ConfirmModal } from '../components/atlas/ConfirmModal'
+import { NoResults, ResultFooter, SearchBox } from '../components/ui/toolbar'
+import { Segmented } from '../components/ui/tabs'
 import { cn } from '../lib/cn'
 import { useDemo, usePersona } from '../state/store'
 import { RequestModal, type RequestSpec } from '../components/atlas/RequestModal'
@@ -38,6 +41,11 @@ export function S13Decisions() {
   const addAction = useDemo((s) => s.addAction)
   const risks = useDemo((s) => s.risks)
   const [riskForm, setRiskForm] = useState<Risk | 'new' | null>(null)
+  const [rq, setRq] = useState('')
+  const [rf, setRf] = useState<'all' | 'open' | 'noowner' | 'closed'>('all')
+  const shownRisks = risks
+    .filter((r) => rf === 'all' || (rf === 'open' ? r.status !== 'Closed' : rf === 'closed' ? r.status === 'Closed' : !r.owner && r.status !== 'Closed'))
+    .filter((r) => !rq.trim() || `${r.id} ${r.risk} ${r.owner ?? ''} ${r.pkg} ${r.status}`.toLowerCase().includes(rq.trim().toLowerCase()))
   const [reviewing, setReviewing] = useState<(typeof CHANGE_ORDERS)[number] | null>(null)
   const reviews = useDemo((s) => s.coReviews)
   const assignRisk = useDemo((s) => s.assignRisk)
@@ -56,8 +64,10 @@ export function S13Decisions() {
     toast.success('Plan approved', { description: 'Actions 1, 3 and 4 linked to existing register items; 2, 5 and 6 created. Monitoring started.' })
   }
 
+  const [confirm, setConfirm] = useState<'approve' | 'escalate' | null>(null)
   const onRespond = (id: string, label: string) => {
-    if (id === 'approve') return approve()
+    if (id === 'approve') return setConfirm('approve')
+    if (id === 'ic') return setConfirm('escalate')
     if (id === 'defer') return setDefer(true)
     respond(label)
     toast.success('Response recorded', { description: label })
@@ -72,7 +82,7 @@ export function S13Decisions() {
       statusLabel="Decide this week"
       sub="Why now: the forecast creates a 42-day COD exposure, a contractual notice deadline falls on 6 July 2027 and the EPC recovery programme is incomplete."
     >
-      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
         <Card>
           <div className="flex flex-wrap items-center justify-between gap-2 px-5 pt-4">
             <h2 className="flex items-center gap-2 text-[16px] font-semibold text-ink"><Scale className="size-4 text-atlas-700" />Recommended action bundle</h2>
@@ -132,10 +142,10 @@ export function S13Decisions() {
           <Card className="px-[18px] py-4">
             <div className="flex items-center justify-between gap-2"><h3 className="text-[16px] font-semibold text-ink">Action register</h3><Button variant="link" size="sm" onClick={() => setRegister(true)}>Open all</Button></div>
             <ul className="mt-3 divide-y divide-line-soft">
-              {actions.filter((a) => !isPcu || a.authority !== 'Shareholder (Denera)').slice(0, 8).map((a) => (
+              {actions.filter((a) => !isPcu || a.authority !== 'Shareholder (Denera)').slice(0, 5).map((a) => (
                 <li key={a.id} className="py-2.5 text-[13px] first:pt-0 last:pb-0">
                   <div className={cn('font-medium text-ink', a.status === 'Done' && 'text-ink-3 line-through decoration-ink-4')}>{a.title}</div>
-                  <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[12.5px] text-ink-3"><span>{a.owner}</span><span className={cn('tnum', isOverdue(a) && 'font-medium text-bad')}>{isOverdue(a) ? 'Overdue' : 'Due'} {a.due}</span><ActionStatus s={a.status} /></div>
+                  <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[13px] text-ink-3"><span>{a.owner}</span><span className={cn('tnum', isOverdue(a) && 'font-medium text-bad')}>{isOverdue(a) ? 'Overdue' : 'Due'} {a.due}</span><ActionStatus s={a.status} /></div>
                 </li>
               ))}
             </ul>
@@ -150,41 +160,51 @@ export function S13Decisions() {
             <TabsList className="px-[18px] pb-3 pt-4" items={[{ value: 'risks', label: 'Risk register' }, { value: 'changes', label: 'Change orders and variations' }, { value: 'claims', label: 'Notices and claims' }]} />
             <TabsContent value="risks" className="overflow-x-auto">
               <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-[18px] py-3">
-                <span className="text-[12.5px] text-ink-3">{risks.filter((r) => r.status !== 'Closed').length} open · {risks.filter((r) => !r.owner && r.status !== 'Closed').length} without an effective owner</span>
+                <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2.5">
+                  <SearchBox value={rq} onChange={setRq} label="Search risks" placeholder="Search risk, owner or package" className="w-full sm:w-[280px]" />
+                  <Segmented<typeof rf> label="Risk filter" value={rf} onChange={setRf} items={[
+                    { value: 'all', label: `All ${risks.length}` },
+                    { value: 'open', label: `Open ${risks.filter((r) => r.status !== 'Closed').length}` },
+                    { value: 'noowner', label: `No owner ${risks.filter((r) => !r.owner && r.status !== 'Closed').length}` },
+                    { value: 'closed', label: `Closed ${risks.filter((r) => r.status === 'Closed').length}` },
+                  ]} />
+                </div>
                 {pid !== 'bn' && <Button size="sm" variant="accent" onClick={() => setRiskForm('new')}><Plus />Add risk</Button>}
               </div>
               <table className="w-full min-w-[880px] text-[13px]">
-                <thead className="border-b border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Risk</th><th className="px-3 py-2.5 font-medium">Probability</th><th className="px-3 py-2.5 font-medium">Impact</th><th className="px-3 py-2.5 font-medium">Owner</th><th className="px-3 py-2.5 font-medium">Mitigation</th><th className="px-5 py-2.5 font-medium">Package</th><th className="w-12 px-3 py-2.5"><span className="sr-only">Actions</span></th></tr></thead>
+                <thead className="border-b border-line text-left text-[12px] text-ink-3"><tr><th className="font-medium">Risk</th><th className="font-medium">Probability</th><th className="font-medium">Impact</th><th className="font-medium">Owner</th><th className="font-medium">Mitigation</th><th className="font-medium">Package</th><th className="w-12"><span className="sr-only">Actions</span></th></tr></thead>
                 <tbody className="divide-y divide-line-soft">
-                  {risks.map((r) => {
+                  {shownRisks.map((r) => {
                     const own = r.owner
                     const closed = r.status === 'Closed'
                     return (
                       <tr key={r.id} className={cn(!own && !closed && 'bg-warn-bg/50', closed && 'text-ink-3')}>
-                        <td className="px-5 py-3"><span className="tnum text-ink-3">{r.id}</span> <span className={cn('font-medium', closed ? 'text-ink-3 line-through decoration-ink-4' : 'text-ink')}>{r.risk}</span></td>
-                        <td className="px-3 py-3"><LevelPill l={r.p} /></td><td className="px-3 py-3"><LevelPill l={r.i} /></td>
-                        <td className="px-3 py-3">{own ?? (closed ? <span className="text-ink-3">n/a</span> : <Button size="sm" variant="outline" onClick={() => setAssign(r.id)}><UserPlus />No effective owner: assign</Button>)}</td>
-                        <td className="px-3 py-3"><RiskStatusPill s={r.status} /></td><td className="px-5 py-3 text-ink-2">{r.pkg}</td>
-                        <td className="px-3 py-3 text-right">{pid !== 'bn' && <Button size="iconSm" variant="ghost" aria-label={`Edit ${r.id}`} onClick={() => setRiskForm(r)}><Pencil /></Button>}</td>
+                        <td><span className="tnum text-ink-3">{r.id}</span> <span className={cn('font-medium', closed ? 'text-ink-3 line-through decoration-ink-4' : 'text-ink')}>{r.risk}</span></td>
+                        <td><LevelPill l={r.p} /></td><td><LevelPill l={r.i} /></td>
+                        <td>{own ?? (closed ? <span className="text-ink-3">n/a</span> : <Button size="sm" variant="outline" onClick={() => setAssign(r.id)}><UserPlus />No effective owner: assign</Button>)}</td>
+                        <td><RiskStatusPill s={r.status} /></td><td className="text-ink-2">{r.pkg}</td>
+                        <td className="text-right">{pid !== 'bn' && <Button size="iconSm" variant="ghost" aria-label={`Edit ${r.id}`} onClick={() => setRiskForm(r)}><Pencil /></Button>}</td>
                       </tr>
                     )
                   })}
                 </tbody>
               </table>
+              {shownRisks.length === 0 && <NoResults noun="risks" onReset={() => { setRq(''); setRf('all') }} />}
+              <ResultFooter shown={shownRisks.length} total={risks.length} noun="risks" filtered={!!rq.trim() || rf !== 'all'} onReset={() => { setRq(''); setRf('all') }} />
             </TabsContent>
             <TabsContent value="changes" className="overflow-x-auto">
               <table className="w-full min-w-[820px] text-[13px]">
-                <thead className="border-b border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Change event</th><th className="px-3 py-2.5 font-medium">Raised</th><th className="px-3 py-2.5 text-right font-medium">Cost effect</th><th className="px-3 py-2.5 font-medium">Schedule effect</th><th className="px-3 py-2.5 font-medium">Status</th><th className="px-5 py-2.5 font-medium">Approval route</th><th className="w-28 px-3 py-2.5"><span className="sr-only">Review</span></th></tr></thead>
+                <thead className="border-b border-line text-left text-[12px] text-ink-3"><tr><th className="font-medium">Change event</th><th className="font-medium">Raised</th><th className="text-right font-medium">Cost effect</th><th className="font-medium">Schedule effect</th><th className="font-medium">Status</th><th className="font-medium">Approval route</th><th className="w-28"><span className="sr-only">Review</span></th></tr></thead>
                 <tbody className="tnum divide-y divide-line-soft">
-                  {CHANGE_ORDERS.map((c) => <tr key={c.id}><td className="px-5 py-3"><span className="text-ink-3">{c.id}</span> <span className="font-medium text-ink">{c.event}</span></td><td className="px-3 py-3">{c.raised}</td><td className="px-3 py-3 text-right">{c.cost}</td><td className="px-3 py-3">{c.schedule}</td><td className="px-3 py-3"><COStatus c={c} /></td><td className="px-5 py-3"><AuthorityLabel a={c.route} /></td><td className="px-3 py-3 text-right">{pid !== 'bn' && <Button size="sm" variant="accent" onClick={() => setReviewing(c)}><Gavel />{reviews[c.id] ? 'Update' : 'Review'}</Button>}</td></tr>)}
+                  {CHANGE_ORDERS.map((c) => <tr key={c.id}><td><span className="text-ink-3">{c.id}</span> <span className="font-medium text-ink">{c.event}</span></td><td>{c.raised}</td><td className="text-right">{c.cost}</td><td>{c.schedule}</td><td><COStatus c={c} /></td><td><AuthorityLabel a={c.route} /></td><td className="text-right">{pid !== 'bn' && <Button size="sm" variant="accent" onClick={() => setReviewing(c)}><Gavel />{reviews[c.id] ? 'Update' : 'Review'}</Button>}</td></tr>)}
                 </tbody>
               </table>
             </TabsContent>
             <TabsContent value="claims" className="p-5">
               <div className="grid gap-4 md:grid-cols-3">
-                <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Extension-of-time evidence pack</div><div className="tnum mt-1 text-[22px] font-semibold text-ink">4 of 7</div><div className="mt-2 h-1.5 rounded-full bg-surface"><div className="h-full rounded-full bg-series-verified" style={{ width: `${(4 / 7) * 100}%` }} /></div></div>
-                <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Claims readiness score</div><div className="tnum mt-1 text-[22px] font-semibold text-warn">62%</div><div className="text-[12px] text-ink-3">Notices, records and correspondence</div></div>
-                <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Notices issued and due</div><div className="tnum mt-1 text-[22px] font-semibold text-ink">0 issued · {notices.length} due</div><div className="text-[12px] text-ink-3">PSEL Cakrawala Raya</div></div>
+                <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Extension-of-time evidence pack</div><div className="tnum mt-1 text-[24px] font-semibold text-ink">4 of 7</div><div className="mt-2 h-1.5 rounded-full bg-surface"><div className="h-full rounded-full bg-series-verified" style={{ width: `${(4 / 7) * 100}%` }} /></div></div>
+                <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Claims readiness score</div><div className="tnum mt-1 text-[24px] font-semibold text-warn">62%</div><div className="text-[12px] text-ink-3">Notices, records and correspondence</div></div>
+                <div className="rounded-md bg-sunken p-4"><div className="text-[12px] text-ink-3">Notices issued and due</div><div className="tnum mt-1 text-[24px] font-semibold text-ink">0 issued · {notices.length} due</div><div className="text-[12px] text-ink-3">PSEL Cakrawala Raya</div></div>
               </div>
               <ul className="mt-4 divide-y divide-line-soft rounded-md border border-line">
                 {notices.filter((n) => !isPcu || n.authority !== 'Shareholder (Denera)').map((n) => (
@@ -200,6 +220,33 @@ export function S13Decisions() {
       </section>
 
       <ReasonModal open={defer} onClose={() => setDefer(false)} title="Reject or defer the decision" description="Boiler Island Recovery Strategy. A reason is required before the decision is recorded." confirmLabel="Record decision" confirmIcon={<Send />} onConfirm={(r) => respond('Deferred', r)} />
+      <ConfirmModal
+        open={confirm === 'approve'}
+        onClose={() => setConfirm(null)}
+        title="Approve the recommended action plan"
+        description="Boiler Island Recovery Strategy"
+        confirmLabel="Approve plan"
+        confirmIcon={<Gavel />}
+        onConfirm={approve}
+        effects={[
+          'Link actions 1, 3 and 4 to the items already in the Action register.',
+          'Create new register actions for 2, 5 and 6, each with its owner and due date.',
+          'Start monitoring COD exposure (42 days today) against these actions.',
+          'Send the two Joint actions to the project company board as requests.',
+        ]}
+        note="This is recorded as your decision in the audit log. You can still edit each action afterwards."
+      />
+      <ConfirmModal
+        open={confirm === 'escalate'}
+        onClose={() => setConfirm(null)}
+        title="Escalate to the Investment Committee"
+        description="Boiler Island Recovery Strategy"
+        confirmLabel="Escalate"
+        confirmIcon={<Gavel />}
+        onConfirm={() => { respond('Escalated to the Investment Committee'); toast.success('Escalated', { description: 'The Investment Committee chair will see this on the next pack.' }) }}
+        effects={['Record the escalation against the decision.', 'Add it to the Investment Committee version of the weekly pack.']}
+        note="Use this when the Rp45 bn funding route or the recovery plan needs committee approval."
+      />
       <RiskModal risk={riskForm} onClose={() => setRiskForm(null)} />
       <ChangeReviewModal co={reviewing} onClose={() => setReviewing(null)} />
       <AssignOwnerModal riskId={assign} onClose={() => setAssign(null)} onSave={(o) => assignRisk(assign!, o)} />
@@ -216,7 +263,7 @@ function Monitoring() {
       <h3 className="flex items-center gap-2 text-[16px] font-semibold text-ink"><Inbox className="size-4 text-ok" />Monitoring the approved plan</h3>
       <div className="mt-3 flex items-end gap-1.5" aria-label="COD exposure trend, 42 days today">
         {[42, 42, 42, 42].map((v, i) => <span key={i} className={cn('w-6 rounded-t-sm', i === 3 ? 'bg-warn' : 'bg-atlas-200')} style={{ height: `${v}px` }} />)}
-        <span className="tnum ml-2 text-[13px] text-ink-2"><b className="text-[18px] font-semibold text-ink">42</b> days today; target after plan +12</span>
+        <span className="tnum ml-2 text-[13px] text-ink-2"><b className="text-[20px] font-semibold text-ink">42</b> days today; target after plan +12</span>
       </div>
       <ul className="mt-3 space-y-1.5 text-[13px]">
         {linked.map((a) => <li key={a.id} className="flex justify-between gap-3"><span className="truncate text-ink">{a.title}</span><span className="shrink-0 text-ink-3">{a.status}</span></li>)}
@@ -260,19 +307,16 @@ const LEVEL_CLS: Record<Level, string> = { High: 'border-bad-line bg-bad-bg text
 function LevelPill({ l }: { l: Level }) {
   return <span className={cn('inline-flex rounded-full border px-2 py-px text-[12px] font-medium', LEVEL_CLS[l])}>{l}</span>
 }
-const RS_CLS: Record<RiskStatus, string> = { 'Not started': 'border-line bg-sunken text-ink-2', 'In progress': 'border-info-line bg-info-bg text-info', Mitigated: 'border-ok-line bg-ok-bg text-ok', Closed: 'border-line bg-surface text-ink-3' }
 function RiskStatusPill({ s }: { s: RiskStatus }) {
-  return <span className={cn('inline-flex whitespace-nowrap rounded-full border px-2 py-px text-[12px] font-medium', RS_CLS[s])}>{s}</span>
+  return <StatePill s={s} />
 }
 
 function COStatus({ c }: { c: (typeof CHANGE_ORDERS)[number] }) {
   const r = useDemo((s) => s.coReviews[c.id])
-  const st = r?.status ?? c.status
-  const cls = /Approved|Supported/.test(st) ? 'border-ok-line bg-ok-bg text-ok' : /Rejected|objection/.test(st) ? 'border-bad-line bg-bad-bg text-bad' : /requested/.test(st) ? 'border-info-line bg-info-bg text-info' : 'border-line bg-sunken text-ink-2'
   return (
     <span className="flex flex-col items-start gap-0.5">
-      <span className={cn('inline-flex whitespace-nowrap rounded-full border px-2 py-px text-[12px] font-medium', cls)}>{st}</span>
-      {r && <span className="text-[11.5px] text-ink-3">{r.by}, {r.at.slice(-5)}</span>}
+      <StatePill s={r?.status ?? c.status} />
+      {r && <span className="text-[12px] text-ink-3">{r.by}, {r.at.slice(-5)}</span>}
     </span>
   )
 }

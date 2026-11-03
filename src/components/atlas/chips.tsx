@@ -1,4 +1,4 @@
-import { CheckCircle2, CircleDashed, Clock3, Database, Hourglass, Info, Minus, OctagonAlert, ShieldCheck, Sparkles, TriangleAlert, UserCheck } from 'lucide-react'
+import { CheckCircle2, CircleDashed, Clock3, Database, Hourglass, Info, Minus, OctagonAlert, ShieldCheck, Sparkles, TriangleAlert, UserCheck, Ban, XCircle, type LucideIcon } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { cn } from '../../lib/cn'
 import type { Authority, Health, Wave } from '../../data/types'
@@ -119,7 +119,7 @@ export function Stamp({ kind, who, when }: { kind: 'draft' | 'extracted' | 'conf
 /** Sync pill with a live dot (ATLAS module .sync): data date, refresh time and, when relevant, data confidence. */
 export function SyncPill({ withConfidence = true, value = 91 }: { withConfidence?: boolean; value?: number }) {
   const pill = (
-    <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-line bg-surface px-3 py-[7px] text-[12.5px] text-ink-2">
+    <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-line bg-surface px-3 py-[7px] text-[13px] text-ink-2">
       <span className="pulse-dot size-2 shrink-0 rounded-full bg-[#22c55e]" />
       Data 30 Jun 2027 08:30{withConfidence && <> · confidence <span className="tnum font-semibold text-ink">{value}%</span></>}
     </span>
@@ -169,4 +169,38 @@ export function InfoDot({ children }: { children: ReactNode }) {
       </button>
     </Tip>
   )
+}
+
+type Tone = 'ok' | 'warn' | 'bad' | 'info' | 'brand' | 'muted'
+const TONE: Record<Tone, string> = {
+  ok: 'border-ok-line bg-ok-bg text-ok',
+  warn: 'border-warn-line bg-warn-bg text-warn',
+  bad: 'border-bad-line bg-bad-bg text-bad',
+  info: 'border-info-line bg-info-bg text-info',
+  brand: 'border-atlas-200 bg-atlas-50 text-atlas-700',
+  muted: 'border-line bg-sunken text-ink-2',
+}
+
+/** Generic bordered pill: one shape for every state, mode and tag. */
+export function Pill({ tone = 'muted', icon: I, children, className }: { tone?: Tone; icon?: LucideIcon; children: ReactNode; className?: string }) {
+  return (
+    <span className={cn('inline-flex items-center gap-[5px] whitespace-nowrap rounded-full border px-[9px] py-0.5 text-[12px] font-medium leading-4 [&_svg]:size-3', TONE[tone], className)}>
+      {I && <I strokeWidth={2.4} />}{children}
+    </span>
+  )
+}
+
+/** A workflow state in words: tone and icon come from the wording, so the same state looks the same on every screen. */
+export function StatePill({ s, label }: { s: string; label?: ReactNode }) {
+  const t = s.toLowerCase()
+  let tone: Tone = 'muted'
+  let icon: LucideIcon = CircleDashed
+  if (/^(accepted|agreed|completed$|done|approved|met|confirmed|mitigated|closed|supported|active)/.test(t)) { tone = 'ok'; icon = CheckCircle2 }
+  else if (/exception|at risk/.test(t)) { tone = 'warn'; icon = TriangleAlert }
+  else if (/waiting|awaiting/.test(t)) { tone = 'brand'; icon = Hourglass }
+  else if (/in progress|submitted|in review|under assessment|requested/.test(t)) { tone = 'info'; icon = Clock3 }
+  else if (/rejected|objection/.test(t)) { tone = 'bad'; icon = XCircle }
+  else if (/blocked|overdue/.test(t)) { tone = 'bad'; icon = Ban }
+  else if (/not (started|yet)|draft|raised|n\/a|none/.test(t)) { tone = 'muted'; icon = CircleDashed }
+  return <Pill tone={tone} icon={icon}>{label ?? s}</Pill>
 }

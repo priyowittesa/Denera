@@ -1,8 +1,8 @@
-import { ArrowUpRight, ChevronRight, FileText, Gavel, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Calculator, CalendarClock, FileText, Gavel, HardHat, HeartPulse, Info, KeyRound, Landmark, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { HEALTH_ICON, StatusChip } from '../components/atlas/chips'
-import { AtlasCard, ScreenFrame } from '../components/atlas/frame'
+import { AtlasCard, ScreenFrame, StatTile } from '../components/atlas/frame'
 import { HealthRulePop } from '../components/atlas/HealthRule'
 import { Button } from '../components/ui/button'
 import { Sheet } from '../components/ui/sheet'
@@ -36,30 +36,30 @@ export function S08Cockpit() {
     >
       <HeaderStrip />
 
-      <div className="mt-[18px] grid items-start gap-[18px] xl:grid-cols-[minmax(0,1fr)_340px] [&>*:last-child]:xl:sticky [&>*:last-child]:xl:top-4">
-        <section aria-labelledby="dims">
-          <div className="mb-3 flex items-center justify-between">
-            <h2 id="dims" className="text-[16px] font-semibold text-ink">Twelve health dimensions</h2>
-            <span className="text-[13px] text-ink-3">Computed by ATLAS. Ratings can be commented on, not edited. <span className="font-medium text-bad">4 of 12 Red</span></span>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {SCORECARDS.map((c, i) => (
-              <ScoreTile key={c.id} c={c} i={i} onOpen={() => (c.panel ? setPanel(c) : nav(c.to!))} onComment={() => setCommenting(c)} />
-            ))}
-          </div>
-        </section>
-        <div className="flex flex-col gap-5">
-          <AtlasCard title="ATLAS summary this week" tone="violet" sources={[{ label: 'Schedule update 28 Jun', doc: 'epc-schedule' }, { label: 'Transmittal log', doc: 'transmittal-boiler' }, { label: 'Cost report', doc: 'cost-report' }]} classification="Advisory" confidence="Medium">
-            <p>{WEEKLY_MOVEMENT}</p>
-            <div className="mt-3 flex items-center gap-2 rounded-md bg-surface px-3 py-2 text-[13px] text-ink-2">
-              <Gavel className="size-4 shrink-0 text-[#8a3b12]" />2 of 6 recommended actions are Joint and need a project company board decision.
-            </div>
-          </AtlasCard>
-          <section className="rounded-xl border border-line bg-surface p-5">
-            <h3 className="text-[14px] font-semibold text-ink">Why this matters</h3>
-            <p className="mt-2 text-[14px] leading-relaxed text-ink-2">{NARRATIVE}</p>
-          </section>
+      {/* Health dimensions use the full width: 2 columns on tablets, 3 on laptops, 4 on wide screens */}
+      <section aria-labelledby="dims" className="mt-[18px]">
+        <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h2 id="dims" className="text-[16px] font-semibold text-ink">Twelve health dimensions</h2>
+          <span className="text-[13px] text-ink-3">Computed by ATLAS. Ratings can be commented on, not edited. <span className="font-medium text-bad">4 of 12 Red</span></span>
         </div>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+          {SCORECARDS.map((c, i) => (
+            <ScoreTile key={c.id} c={c} i={i} onOpen={() => (c.panel ? setPanel(c) : nav(c.to!))} onComment={() => setCommenting(c)} />
+          ))}
+        </div>
+      </section>
+
+      {/* ATLAS read-out: two cards side by side, same height */}
+      <div className="mt-[18px] grid grid-cols-1 gap-[18px] lg:grid-cols-2 lg:items-stretch">
+        <AtlasCard className="h-full" title="What changed this week" tone="violet" sources={[{ label: 'Schedule update 28 Jun', doc: 'epc-schedule' }, { label: 'Transmittal log', doc: 'transmittal-boiler' }, { label: 'Cost report', doc: 'cost-report' }]} classification="Advisory" confidence="Medium">
+          <p>{WEEKLY_MOVEMENT}</p>
+          <div className="mt-3 flex items-center gap-2 rounded-lg bg-sunken px-3 py-2 text-[13px] text-ink-2">
+            <Gavel className="size-4 shrink-0 text-[#8a3b12]" />2 of 6 recommended actions are Joint and need a project company board decision.
+          </div>
+        </AtlasCard>
+        <AtlasCard className="h-full" title="Why this matters" kind="insight" sources={[{ label: 'Critical path', doc: 'review-comment' }, { label: 'Procurement tower', doc: 'vendor-email' }]} classification="Advisory" confidence="Medium">
+          <p>{NARRATIVE}</p>
+        </AtlasCard>
       </div>
 
       <Sheet open={!!panel} onOpenChange={(v) => !v && setPanel(null)} title={panel?.name ?? ''} description="Detail panel">
@@ -87,38 +87,16 @@ export function S08Cockpit() {
 }
 
 function HeaderStrip() {
-  const items: { label: string; value: React.ReactNode; note?: string }[] = [
-    { label: 'Stage', value: PROJECT.stage, note: `${PROJECT.epcContractor} · groundbreaking ${PROJECT.groundbreaking}` },
-    { label: 'Target COD', value: PROJECT.targetCod, note: 'Forecast 11 Aug 2028' },
-    { label: 'Approved CAPEX', value: 'Rp2,800 bn' },
-    { label: 'Management EAC', value: 'Rp2,910 bn', note: 'Range Rp2,846 to 2,918 bn' },
-  ]
   return (
-    <div className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-[1.3fr_repeat(4,1fr)_1.1fr]">
-      <div className="bg-atlas-50/70 px-5 py-4">
-        <div className="text-[12px] font-medium text-ink-3">Overall health</div>
-        <HealthRulePop
-          signals={RED_SIGNALS}
-          trigger={
-            <button className="press mt-1.5 flex items-center gap-2 text-left">
-              <StatusChip h="Yellow" size="md" label="Yellow, escalation required" />
-            </button>
-          }
-        />
-        <div className="mt-2 text-[12px] text-ink-3">Without action: <span className="font-semibold text-bad">Red, 64 days</span></div>
-      </div>
-      {items.map((i) => (
-        <div key={i.label} className="bg-surface px-5 py-4">
-          <div className="text-[12px] font-medium text-ink-3">{i.label}</div>
-          <div className="tnum mt-1 text-[18px] font-semibold tracking-[-0.01em] text-ink">{i.value}</div>
-          {i.note && <div className="text-[12px] text-ink-3">{i.note}</div>}
-        </div>
-      ))}
-      <div className="bg-surface px-5 py-4 text-[13px] text-ink-2">
-        <div><span className="text-ink-3">Data date </span><span className="tnum font-medium text-ink">30 Jun 2027</span> <span className="text-ink-3">08:30 WIB</span></div>
-        <div className="mt-1"><span className="text-ink-3">Confidence </span><span className="tnum font-medium text-ink">91%</span></div>
-        <a href="#/partner-data" className="mt-1 inline-flex items-center gap-0.5 font-medium text-atlas-700 hover:underline">Information rights 3 of 4<ChevronRight className="size-3.5" /></a>
-      </div>
+    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
+      <StatTile icon={HeartPulse} tone="warn" label="Overall health" value={<span className="text-[16px]">Yellow, escalation</span>} cap={<>Without action: <span className="font-semibold text-bad">Red, 64 days</span></>}>
+        <HealthRulePop signals={RED_SIGNALS} trigger={<button className="press mt-1 inline-flex items-center gap-1 text-[13px] font-medium text-atlas-700 hover:underline"><Info className="size-3.5" />How is this rated?</button>} />
+      </StatTile>
+      <StatTile icon={HardHat} label="Stage" value={PROJECT.stage} cap={PROJECT.epcContractor} />
+      <StatTile icon={CalendarClock} label="Target COD" value={PROJECT.targetCod} cap="Forecast 11 Aug 2028" />
+      <StatTile icon={Landmark} label="Approved CAPEX" value="Rp2,800 bn" cap="Contingency Rp176 bn" />
+      <StatTile icon={Calculator} label="Management EAC" value="Rp2,910 bn" cap="Range Rp2,846 to 2,918 bn" />
+      <StatTile icon={KeyRound} label="Information rights" value="3 of 4" cap="Data confidence 91%" onClick={() => { window.location.hash = '#/partner-data' }} />
     </div>
   )
 }

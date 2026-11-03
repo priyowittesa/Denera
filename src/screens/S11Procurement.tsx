@@ -98,14 +98,14 @@ export function S11Procurement() {
           <table className="w-full min-w-[1040px]">
             <thead className="border-y border-line text-left text-[12px] text-ink-3">
               <tr>
-                <th className="px-5 py-2 font-medium">Package</th>
-                <th className="px-3 py-2 font-medium">Required on site</th>
-                <th className="px-3 py-2 font-medium">Current forecast</th>
-                <th className="px-3 py-2 font-medium">Date basis</th>
-                <th className="px-3 py-2 text-right font-medium">Schedule effect</th>
-                <th className="px-3 py-2 text-right font-medium">Float to need date</th>
-                <th className="px-3 py-2 font-medium">Risk</th>
-                <th className="px-5 py-2 font-medium">Recommended action</th>
+                <th className="font-medium">Package</th>
+                <th className="font-medium">Required on site</th>
+                <th className="font-medium">Current forecast</th>
+                <th className="font-medium">Date basis</th>
+                <th className="text-right font-medium">Schedule effect</th>
+                <th className="text-right font-medium">Float to need date</th>
+                <th className="font-medium">Risk</th>
+                <th className="font-medium">Recommended action</th>
               </tr>
             </thead>
             <tbody className="tnum divide-y divide-line-soft text-[13px]">
@@ -113,19 +113,19 @@ export function S11Procurement() {
                 const B = BASIS[p.basis]
                 return (
                   <tr key={p.id} className={cn('animate-fade', p.id === 'boiler' && 'bg-bad-bg/30')}>
-                    <td className="px-5 py-3">
+                    <td>
                       <button onClick={() => setDetail(p)} className="press whitespace-nowrap text-left font-semibold text-ink hover:text-atlas-700 hover:underline">{p.name}</button>
                       <div className="text-[12px] text-ink-3">{p.vendor}</div>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-3">{p.required}</td>
+                    <td className="whitespace-nowrap">{p.required}</td>
                     <td className={cn('whitespace-nowrap px-3 py-3', p.basis === 'Not available' && 'text-ink-3')}>{p.forecast}</td>
-                    <td className="px-3 py-3">
+                    <td>
                       <Tip content={B.tip}><span tabIndex={0} className={cn('inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-transparent px-2 py-0.5 text-[12px] font-medium', B.c)}><B.I className="size-3" />{p.basis}</span></Tip>
                     </td>
                     <td className={cn('px-3 py-3 text-right', p.effectDays && p.effectDays > 14 && 'font-semibold text-bad')}>{p.effect}</td>
                     <td className={cn('whitespace-nowrap px-3 py-3 text-right font-medium', p.float.startsWith('Minus') && 'text-bad', p.float === 'Unknown' && 'text-ink-3')}>{p.float}</td>
-                    <td className="px-3 py-3"><StatusChip h={p.risk} /></td>
-                    <td className="px-5 py-3">
+                    <td><StatusChip h={p.risk} /></td>
+                    <td>
                       {p.authority ? (
                         <div className="flex flex-col items-start gap-1.5">
                           <AuthorityLabel a={p.authority} />

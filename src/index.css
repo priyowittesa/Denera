@@ -120,9 +120,16 @@
   p { text-wrap: pretty; }
   ::selection { background: var(--color-atlas-200); color: var(--color-atlas-950); }
   :focus-visible { outline: 2px solid var(--color-atlas-600); outline-offset: 2px; }
-  /* Table header band, as in the ATLAS module tables */
+  /*
+    One table style (ATLAS module .tbl): 12px muted header on a #fafafa band, 13px cells,
+    10px/12px vertical padding, 14px between columns, 18px at the card edge.
+    Cells carry no padding classes of their own.
+  */
+  main table th { padding: 10px 14px; font-size: 12px; font-weight: 500; color: var(--color-ink-3); text-align: left; vertical-align: bottom; }
+  main table td { padding: 12px 14px; vertical-align: middle; }
+  main table th:first-child, main table td:first-child { padding-left: 18px; }
+  main table th:last-child, main table td:last-child { padding-right: 18px; }
   main thead { background: var(--color-head); }
-  main thead th { font-size: 12.5px; font-weight: 500; color: var(--color-ink-3); }
   main tbody tr { transition: background-color 150ms ease; }
   * { scrollbar-width: thin; scrollbar-color: var(--color-line) transparent; }
   button { cursor: pointer; }

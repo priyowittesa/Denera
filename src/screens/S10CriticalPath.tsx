@@ -97,7 +97,7 @@ export function S10CriticalPath() {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <div className="text-[12px] font-medium text-ink-3">AI-detected interface conflict</div>
-                    <div className="mt-0.5 text-[15px] font-semibold text-ink">Waste-receiving system and boiler feed arrangement</div>
+                    <div className="mt-0.5 text-[16px] font-semibold text-ink">Waste-receiving system and boiler feed arrangement</div>
                     <div className="mt-2">
                       {confirmed ? <Stamp kind="confirmed" who={`${confirmed.by} (interface owner)`} when={confirmed.at} /> : rejected ? <span className="text-[13px] text-ink-3">Rejected: {rejected}</span> : <Stamp kind="extracted" />}
                     </div>
@@ -118,17 +118,17 @@ export function S10CriticalPath() {
         <TabsContent value="look" className="pt-5">
           <Card className="overflow-x-auto">
             <table className="w-full min-w-[760px] text-[13px]">
-              <thead className="border-b border-line text-left text-[12px] text-ink-3"><tr><th className="px-5 py-2.5 font-medium">Activity, 5 Jul to 9 Aug 2027</th><th className="px-3 py-2.5 font-medium">Constraint</th><th className="px-3 py-2.5 font-medium">Owner</th><th className="px-3 py-2.5 text-right font-medium">Float</th><th className="px-5 py-2.5 font-medium">Evidence</th></tr></thead>
+              <thead className="border-b border-line text-left text-[12px] text-ink-3"><tr><th className="font-medium">Activity, 5 Jul to 9 Aug 2027</th><th className="font-medium">Constraint</th><th className="font-medium">Owner</th><th className="text-right font-medium">Float</th><th className="font-medium">Evidence</th></tr></thead>
               <tbody className="divide-y divide-line-soft">
                 {LOOK_AHEAD.map((l) => {
                   const low = l.float === null || l.float < 5
                   return (
                     <tr key={l.activity} className={cn(low && 'bg-warn-bg/40', impacted && l.steps.length > 0 && 'bg-bad-bg/40')}>
-                      <td className="px-5 py-3 font-medium text-ink">{low && <TriangleAlert className="mr-1.5 inline size-3.5 text-warn" />}{l.activity}</td>
-                      <td className="px-3 py-3 text-ink-2">{l.constraint}</td>
-                      <td className="px-3 py-3 text-ink-2">{l.owner}</td>
+                      <td className="font-medium text-ink">{low && <TriangleAlert className="mr-1.5 inline size-3.5 text-warn" />}{l.activity}</td>
+                      <td className="text-ink-2">{l.constraint}</td>
+                      <td className="text-ink-2">{l.owner}</td>
                       <td className={cn('tnum px-3 py-3 text-right font-semibold', low ? 'text-warn' : 'text-ink')}>{l.float === null ? 'Unknown' : `${l.float} days`}</td>
-                      <td className="px-5 py-3">{low ? <button onClick={() => open(l.evidence)} className="press inline-flex items-center gap-1 text-[13px] font-medium text-atlas-700 hover:underline"><FileText className="size-3.5" />Open</button> : <span className="text-ink-4">n/a</span>}</td>
+                      <td>{low ? <button onClick={() => open(l.evidence)} className="press inline-flex items-center gap-1 text-[13px] font-medium text-atlas-700 hover:underline"><FileText className="size-3.5" />Open</button> : <span className="text-ink-4">n/a</span>}</td>
                     </tr>
                   )
                 })}

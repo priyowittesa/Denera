@@ -25,24 +25,24 @@ export function Topbar() {
   return (
     <header className="sticky top-0 z-30 flex h-[60px] shrink-0 items-center gap-2 border-b border-line bg-surface px-3 sm:gap-4 sm:px-7">
       <button onClick={() => setNavOpen(true)} className="press grid size-9 shrink-0 place-items-center rounded-lg border border-line bg-surface text-ink-2 hover:bg-sunken lg:hidden" aria-label="Open navigation"><Menu className="size-[18px]" /></button>
-      <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-1.5 text-[13.5px] text-ink-3">
+      <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-1.5 text-[14px] text-ink-3">
         <span className="hidden truncate sm:inline">{group?.label ?? 'ATLAS'}</span>
         <ChevronRight className="hidden size-4 text-ink-3 sm:block" />
         <span className="truncate font-medium text-ink">{meta?.short ?? 'Screen'}</span>
       </nav>
 
       <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
-        <Button variant="accent" size="md" onClick={() => setAssistantOpen(!assistantOpen)} aria-pressed={assistantOpen} aria-label="Ask ATLAS" className={cn('h-9', assistantOpen && 'bg-atlas-50')}>
-          <Sparkles /><span className="hidden sm:inline">Ask ATLAS</span>
+        <Button variant="accent" size="md" onClick={() => setAssistantOpen(!assistantOpen)} aria-pressed={assistantOpen} aria-label="Ask NEXA" className={cn('h-9', assistantOpen && 'bg-atlas-50')}>
+          <Sparkles /><span className="hidden sm:inline">Ask NEXA</span>
         </Button>
         <Notifications />
         <DM.Root>
           <DM.Trigger asChild>
             <button className="press flex items-center gap-2.5 rounded-[10px] px-1.5 py-1 text-left text-[13px] hover:bg-sunken" aria-label="Switch role">
-              <span className="grid size-[34px] shrink-0 place-items-center rounded-full bg-atlas-100 text-[12.5px] font-bold text-atlas-700">{persona.initials}</span>
+              <span className="grid size-[34px] shrink-0 place-items-center rounded-full bg-atlas-100 text-[13px] font-bold text-atlas-700">{persona.initials}</span>
               <span className="hidden leading-tight lg:block">
                 <span className="block whitespace-nowrap text-ink">{persona.name}</span>
-                <span className="block whitespace-nowrap text-[11.5px] text-ink-3">{persona.role}</span>
+                <span className="block whitespace-nowrap text-[12px] text-ink-3">{persona.role}</span>
               </span>
               <ChevronDown className="hidden size-4 text-ink-2 sm:block" />
             </button>

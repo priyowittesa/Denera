@@ -3,6 +3,7 @@ import { EyeOff } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { HashRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import { Toaster } from 'sonner'
+import { AssistantFab } from './components/shell/AssistantFab'
 import { AssistantPanel } from './components/shell/AssistantPanel'
 import { ActionBar, AuditSheet, DefinitionsSheet, EvidenceDrawer, RegisterSheet } from './components/shell/Overlays'
 import { Sidebar } from './components/shell/Sidebar'
@@ -27,9 +28,10 @@ import { S11Procurement } from './screens/S11Procurement'
 import { S12Cost } from './screens/S12Cost'
 import { S13Decisions } from './screens/S13Decisions'
 import { S14Orchestration } from './screens/S14Orchestration'
+import { S15Workflows } from './screens/S15Workflows'
 
 function Layout() {
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
   const { isPcu } = usePersona()
   const main = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -39,7 +41,8 @@ function Layout() {
   }, [pathname])
   const navOpen = useUi((s) => s.navOpen)
   const setNavOpen = useUi((s) => s.setNavOpen)
-  const isAsk = pathname === '/ask'
+  // The chat and the workflow canvas fill the whole content area instead of scrolling.
+  const isAsk = pathname === '/ask' || (pathname === '/workflows' && search.includes('flow='))
   const meta = screenByPath(pathname)
   if (isPcu && meta?.hiddenForPcu) return <Navigate to="/cockpit" replace />
 
@@ -70,6 +73,7 @@ function Layout() {
         </main>
       </div>
       <AssistantPanel />
+      <AssistantFab />
       <EvidenceDrawer />
       <RegisterSheet />
       <DefinitionsSheet />
@@ -104,6 +108,7 @@ export default function App() {
             <Route path="cost" element={<S12Cost />} />
             <Route path="decisions" element={<S13Decisions />} />
             <Route path="orchestration" element={<S14Orchestration />} />
+            <Route path="workflows" element={<S15Workflows />} />
             <Route path="*" element={<Landing />} />
           </Route>
         </Routes>

@@ -1,5 +1,5 @@
 import {
-  CalendarClock, ChartSpline, ChevronDown, ChevronRight, ClipboardCheck, FileStack, Gauge, KeyRound, Landmark, LayoutGrid, ListChecks, Package, Route, Scale, ShieldCheck, Sparkles, Wallet, Workflow,
+  CalendarClock, ChartSpline, ChevronDown, ChevronRight, ClipboardCheck, FileStack, Gauge, KeyRound, Landmark, LayoutGrid, ListChecks, Package, Route, Scale, ShieldCheck, Sparkles, Wallet, Waypoints, Workflow,
 } from 'lucide-react'
 import { useState, useSyncExternalStore, type ComponentType, type ReactNode } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
@@ -18,7 +18,7 @@ type Icon = ComponentType<{ className?: string; strokeWidth?: number }>
 const ICONS: Record<number, Icon> = {
   1: LayoutGrid, 8: Gauge, 9: ChartSpline, 10: Route, 11: Package, 12: Wallet,
   2: ListChecks, 3: CalendarClock, 4: KeyRound, 5: ClipboardCheck, 6: Sparkles, 7: FileStack,
-  13: Scale, 14: Workflow,
+  13: Scale, 14: Workflow, 15: Waypoints,
 }
 const GROUP_ICONS: Record<Exclude<ScreenMeta['group'], 'ai'>, Icon> = { leading: Gauge, enabling: ShieldCheck, platform: Landmark }
 
@@ -30,10 +30,10 @@ const useNarrow = () => useSyncExternalStore(subscribe, () => window.matchMedia(
 /** Red count badge, as in the ATLAS module sidebar. */
 function Count({ n }: { n: number }) {
   if (!n) return null
-  return <span className="tnum grid h-[18px] min-w-[18px] place-items-center rounded-full bg-bad px-[5px] text-[10.5px] font-bold text-white">{n}</span>
+  return <span className="tnum grid h-[18px] min-w-[18px] place-items-center rounded-full bg-bad px-[5px] text-[11px] font-bold text-white">{n}</span>
 }
 
-const item = 'flex items-center gap-3 rounded-lg px-3 py-2.5 text-[14.5px] text-white select-none hover:bg-white/[0.07] transition-colors duration-150'
+const item = 'flex items-center gap-3 rounded-lg px-3 py-2.5 text-[14px] text-white select-none hover:bg-white/[0.07] transition-colors duration-150'
 
 export function Sidebar({ drawer = false }: { drawer?: boolean }) {
   const narrow = useNarrow()
@@ -60,7 +60,7 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
         className={cn(
           item,
           'mb-0.5',
-          nested && !collapsed && 'py-[9px] pl-10 text-[13.5px] text-[#ece6fd]',
+          nested && !collapsed && 'py-[9px] pl-10 text-[13px] text-[#ece6fd]',
           collapsed && 'justify-center px-0',
           pathname === s.path && 'bg-side-active text-white hover:bg-side-active',
         )}
@@ -88,7 +88,7 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
       </div>
 
       <nav className="no-scrollbar min-h-0 flex-1 overflow-y-auto" aria-label="Modules">
-        {!collapsed && <div className="px-3 pb-1.5 pt-3 text-[12.5px] font-medium text-side-label">Modules</div>}
+        {!collapsed && <div className="px-3 pb-1.5 pt-3 text-[13px] font-medium text-side-label">Modules</div>}
         {/* NEXA Intelligence stands on its own at the top, like AI Insights in the ATLAS module sidebar */}
         {screens('ai').map((s) => leaf(s, false))}
         {GROUPS.map((g) => {
@@ -122,8 +122,8 @@ export function Sidebar({ drawer = false }: { drawer?: boolean }) {
       </nav>
 
       {collapsed ? null : (
-        <div className="mt-2.5 rounded-xl border border-side-card-line bg-side-card px-3.5 pb-3.5 pt-4 text-center text-[12.5px] leading-[1.4] text-[#e2d9fb]">
-          <b className="mb-1 block text-[15px] font-semibold text-white">Expand Your Platform</b>
+        <div className="mt-2.5 rounded-xl border border-side-card-line bg-side-card px-3.5 pb-3.5 pt-4 text-center text-[13px] leading-[1.4] text-[#e2d9fb]">
+          <b className="mb-1 block text-[16px] font-semibold text-white">Expand Your Platform</b>
           Discover and add new modules to unlock more capabilities.
           <button onClick={() => toast('Opening the ATLAS module catalogue')} className="press mt-3 w-full rounded-lg bg-side-button py-2.5 text-[14px] font-medium text-white hover:bg-side-button-hover">
             Explore Modules

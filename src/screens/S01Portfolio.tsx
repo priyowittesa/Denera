@@ -1,8 +1,8 @@
-import { ArrowRight, CalendarClock, Flag, HardHat, HeartPulse, Info, KeyRound, ListChecks, Package, PiggyBank, Scale, Wallet, type LucideIcon } from 'lucide-react'
+import { ArrowRight, CalendarClock, Flag, HardHat, HeartPulse, Info, KeyRound, ListChecks, Package, PiggyBank, Scale, Wallet } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { HEALTH_ICON, StatusChip } from '../components/atlas/chips'
-import { AtlasCard, ScreenFrame } from '../components/atlas/frame'
+import { AtlasCard, ScreenFrame, StatTile } from '../components/atlas/frame'
 import { HealthRulePop } from '../components/atlas/HealthRule'
 import { Card } from '../components/ui/card'
 import { Pop } from '../components/ui/popover'
@@ -38,14 +38,14 @@ export function S01Portfolio() {
     >
       {/* Stat row, as in the ATLAS module: icon tile, label, value, caption. 4 across, 2 on tablets, 1 on phones. */}
       <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat icon={Wallet} label="Approved CAPEX in construction" value="Rp7,250 bn" cap="3 plants in construction" />
-        <Stat icon={CalendarClock} label="Largest COD exposure" value={`${K.largestExposure} days`} cap="PSEL Cakrawala Raya" tone="bad" />
-        <Stat icon={HeartPulse} label="Projects by health" value={<span className="flex flex-wrap gap-x-2.5"><span className="text-ok">1 Green</span><span className="text-warn">2 Yellow</span><span className="text-ink-3">0 Red</span></span>} cap="Construction lane" />
-        <Stat icon={PiggyBank} label="Contingency forecast use" value={<>37% · 18% · <span className="text-ink-4">n/a</span></>} cap="Cakrawala · Nusa Bahari · Sinar Lestari" />
-        <Stat icon={Package} label="Long-lead packages above 14 days" value={String(K.longLeadAbove14)} cap="Boiler island, flue-gas treatment" tone="warn" />
-        <Stat icon={Scale} label="Decisions due this week" value={String(K.decisionsThisWeek)} cap="Two for the project company board" />
-        <Stat icon={KeyRound} label="Information-rights coverage" value="9 of 12" cap="75% of required feeds agreed" />
-        <Stat icon={ListChecks} label="Pre-investment gates at risk" value={String(K.gatesAtRisk)} cap="P2-06, P2-07 permits" tone="warn" />
+        <StatTile icon={Wallet} label="Approved CAPEX in construction" value="Rp7,250 bn" cap="3 plants in construction" />
+        <StatTile icon={CalendarClock} label="Largest COD exposure" value={`${K.largestExposure} days`} cap="PSEL Cakrawala Raya" tone="bad" />
+        <StatTile icon={HeartPulse} label="Projects by health" value={<span className="flex flex-wrap gap-x-2.5"><span className="text-ok">1 Green</span><span className="text-warn">2 Yellow</span><span className="text-ink-3">0 Red</span></span>} cap="Construction lane" />
+        <StatTile icon={PiggyBank} label="Contingency forecast use" value={<>37% · 18% · <span className="text-ink-4">n/a</span></>} cap="Cakrawala · Nusa Bahari · Sinar Lestari" />
+        <StatTile icon={Package} label="Long-lead packages above 14 days" value={String(K.longLeadAbove14)} cap="Boiler island, flue-gas treatment" tone="warn" />
+        <StatTile icon={Scale} label="Decisions due this week" value={String(K.decisionsThisWeek)} cap="Two for the project company board" />
+        <StatTile icon={KeyRound} label="Information-rights coverage" value="9 of 12" cap="75% of required feeds agreed" />
+        <StatTile icon={ListChecks} label="Pre-investment gates at risk" value={String(K.gatesAtRisk)} cap="P2-06, P2-07 permits" tone="warn" />
       </div>
 
       <div className="mt-[18px] grid grid-cols-1 gap-[18px] xl:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
@@ -102,18 +102,6 @@ export function S01Portfolio() {
   )
 }
 
-function Stat({ icon: I, label, value, cap, tone }: { icon: LucideIcon; label: string; value: React.ReactNode; cap: string; tone?: 'bad' | 'warn' }) {
-  return (
-    <div className="flex items-start gap-3.5 rounded-xl border border-line bg-surface px-[18px] py-4">
-      <span className={cn('grid size-[38px] shrink-0 place-items-center rounded-[9px]', tone === 'bad' ? 'bg-bad-bg text-bad' : tone === 'warn' ? 'bg-warn-bg text-warn' : 'bg-atlas-100 text-atlas-600')}><I className="size-[19px]" /></span>
-      <div className="min-w-0">
-        <div className="text-[13px] text-ink-3">{label}</div>
-        <div className={cn('tnum mt-0.5 text-[24px] font-bold leading-tight tracking-[-0.02em] text-ink', tone === 'bad' && 'text-bad', tone === 'warn' && 'text-warn')}>{value}</div>
-        <div className="mt-0.5 text-[12px] text-ink-3">{cap}</div>
-      </div>
-    </div>
-  )
-}
 
 function ConstructionCard({ p, i }: { p: (typeof CONSTRUCTION)[number]; i: number }) {
   const nav = useNavigate()
@@ -121,7 +109,7 @@ function ConstructionCard({ p, i }: { p: (typeof CONSTRUCTION)[number]; i: numbe
     <article style={{ animationDelay: `${i * 40}ms` }} className={cn('flex animate-rise flex-col rounded-xl border bg-surface', p.escalation ? 'border-atlas-300 ring-1 ring-atlas-200' : 'border-line')}>
       <button onClick={() => nav(p.id === 'cakrawala' ? '/cockpit' : `/partner-data?project=${p.id}`)} className="press rounded-t-xl p-4 pb-3 text-left hover:bg-atlas-50/50" aria-label={`${p.name}, ${p.id === 'cakrawala' ? 'open cockpit' : 'open data feeds'}`}>
         <div className="flex items-center gap-1.5 text-[12px] text-ink-3"><HardHat className="size-3.5" />{p.island} · EPC execution</div>
-        <div className="mt-1 text-[15px] font-semibold leading-snug text-ink">{p.name}</div>
+        <div className="mt-1 text-[16px] font-semibold leading-snug text-ink">{p.name}</div>
       </button>
       <div className="px-4">
         <HealthRulePop signals={p.signals} trigger={<button className="press max-w-full text-left" aria-label={`Why ${p.healthLabel}`}><StatusChip h={p.health} label={p.healthLabel} className="whitespace-normal" /></button>} />
